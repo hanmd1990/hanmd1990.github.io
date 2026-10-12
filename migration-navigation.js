@@ -1,2 +1,0 @@
-// Use real static pages rather than the original platform's page API.
-document.addEventListener('click',function(e){const a=e.target.closest('a[href]');if(!a||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||a.target==='_blank'||a.hasAttribute('download'))return;const u=new URL(a.href,location.href);if(![location.hostname,'hmd-lab.com','www.hmd-lab.com'].includes(u.hostname))return;if(u.pathname===location.pathname&&u.hash)return;e.preventDefault();e.stopImmediatePropagation();location.assign(u.pathname+u.search+u.hash);},true);
