@@ -3,7 +3,7 @@
 One-time migration: python independent.py SOURCE DESTINATION
 Requires lxml. No browser or original-platform runtime is used by the result.
 """
-import csv, hashlib, html as html_std, json, re, shutil, sys, urllib.request
+import base64, csv, gzip, hashlib, html as html_std, json, re, shutil, sys
 from pathlib import Path
 from urllib.parse import urljoin, urlparse, unquote
 from lxml import html, etree
@@ -11,6 +11,7 @@ from lxml import html, etree
 SRC=Path(sys.argv[1]).resolve(); OUT=Path(sys.argv[2]).resolve()
 OUT.mkdir(parents=True,exist_ok=True)
 HERE=Path(__file__).resolve().parent
+CACHE=json.loads((HERE/'resource-cache.json').read_text(encoding='utf-8'))
 PLATFORM=re.compile(r'(?:sxlcdn|sxldns|strikinglycdn|strikingly|sxl\.cn|weitie)',re.I)
 URL_RE=re.compile(r'url\(\s*([\"\']?)(.*?)\1\s*\)',re.I)
 def cls(e,c): return c in e.get('class','').split()
@@ -39,8 +40,7 @@ def resource(raw):
         key=u.geturl()
         if key not in resources:
             try:
-                req=urllib.request.Request(key,headers={'User-Agent':'Mozilla/5.0'})
-                with urllib.request.urlopen(req,timeout=30) as r: data=r.read()
+                data=gzip.decompress(base64.b64decode(CACHE[key]))
                 resources[key]={'data':data,'source':key,'ext':Path(u.path).suffix.lower()}
             except Exception as e: errors.append({'url':key,'error':str(e)});return None
         return key
@@ -256,3 +256,4 @@ write('MAINTENANCE.md','''# 图片与网站维护
 ''')
 write('independence-report.json',json.dumps({'pages':len(pages),'images':len(catalog),'resource_errors':errors},ensure_ascii=False,indent=2))
 print(json.dumps({'pages':len(pages),'images':len(catalog),'errors':errors},ensure_ascii=False))
+
