@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 concurrency:
@@ -22,17 +22,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install lxml==5.3.0
-      - name: Convert the original snapshot once
-        run: |
-          if [ ! -f independence-report.json ]; then
-            python tools/independent.py . "$RUNNER_TEMP/independent-site"
-            python tools/verify_site.py "$RUNNER_TEMP/independent-site"
-            git rm -r --ignore-unmatch assets vendor migration-navigation.js work/mirror.mjs work/complete-mirror.mjs work/finalize.mjs
-            cp -a "$RUNNER_TEMP/independent-site"/. .
-            git add '*.html' images static MAINTENANCE.md independence-report.json .nojekyll
-            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Replace platform runtime with independent static pages and organized images'
-            git push origin HEAD:main
-          fi
       - name: Verify and package independent website
         run: |
           python tools/verify_site.py .
