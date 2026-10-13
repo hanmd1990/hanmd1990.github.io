@@ -9,7 +9,7 @@ ROOT=Path(sys.argv[1]).resolve()
 color_version=hashlib.sha256((ROOT/'static/hmd-color.css').read_bytes()).hexdigest()[:12]
 script_version=hashlib.sha256((ROOT/'static/site.js').read_bytes()).hexdigest()[:12]
 today=datetime.datetime.now(ZoneInfo('Asia/Shanghai')).year
-def read(path):return html.document_fromstring(path.read_bytes())
+def read(path):return html.document_fromstring(path.read_text(encoding='utf-8'))
 def write(path,tree):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_bytes(html.tostring(tree,encoding='utf-8',doctype='<!DOCTYPE html>'))
@@ -39,7 +39,7 @@ def article_link(href):
 def paper_id(e):
     m=re.match(r'^\((\d+)\)',text(e));return int(m[1]) if m else None
 def paper_wrapper(tree):
-    candidates=[e for e in tree.xpath('//div[@class="s-rich-text-wrapper"]') if any(paper_id(c) for c in e)]
+    candidates=[e for e in tree.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," s-rich-text-wrapper ")]') if any(paper_id(c) for c in e)]
     assert len(candidates)==1,'Expected one publication content block'
     return candidates[0]
 def slides(tree):
@@ -125,6 +125,13 @@ for path in ROOT.rglob('index.html'):
         link.set('class',' '.join(c for c in link.get('class','').split() if c!='lab-publication-link'))
         if not route.startswith('news') and route!='covers' and text(link).lower() not in ('cover','covers') and (link.get('data-link-kind')=='article' or article_link(link.get('href'))):add_class(link,'lab-publication-link')
     if re.fullmatch(r'publications\d{4}',route) or route in ('publications','all'):
+        content=paper_wrapper(tree);add_class(content,'lab-publication-body')
+        while len(content) and not text(content[0]) and not content[0].xpath('.//img'):content.remove(content[0])
+        for year in content.xpath('./p|./h4|./h5|./h6'):
+            if re.fullmatch(r'\d{4}',text(year)):
+                year.tag='h2';year.attrib.pop('style',None);add_class(year,'lab-content-year')
+                following=year.getnext()
+                if following is not None and not text(following) and not following.xpath('.//img'):content.remove(following)
         for paragraph in tree.xpath('//*[@id="s-content"]//p'):
             links=paragraph.xpath('.//a[@href]')
             if paper_id(paragraph) and links:add_class(links[0],'lab-publication-link')
@@ -155,6 +162,10 @@ for path in ROOT.rglob('index.html'):
         if route=='join':
             for heading in tree.xpath('//details[@class="lab-disclosure"]/summary//h4'):
                 add_class(heading,'lab-position-title')
+        if route=='alumni':
+            for strong in tree.xpath('//details[@class="lab-disclosure"]/summary//strong'):add_class(strong,'lab-alumni-name')
+            for strong in tree.xpath('//details[@class="lab-disclosure"]//strong'):
+                if text(strong).lower().rstrip(':')=='selected publications':add_class(strong,'lab-alumni-label')
     for carousel in tree.xpath('//div[contains(concat(" ",@class," ")," lab-carousel ")]'):
         for controls in carousel.xpath('./div[contains(@class,"lab-carousel-controls") or contains(@class,"lab-carousel-dots")]'):carousel.remove(controls)
         slides_list=carousel.xpath('./figure');dots=html.Element('div',{'class':'lab-carousel-dots','role':'group','aria-label':'Choose research highlight'})
