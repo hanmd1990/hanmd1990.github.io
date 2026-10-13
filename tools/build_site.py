@@ -177,6 +177,7 @@ for path in ROOT.rglob('index.html'):
         for name in profile_names:
             if name in profile_links:
                 link=html.Element('a',href=profile_links[name]);link.text=name;profile_nav.append(link)
+        layout.append(html.fragment_fromstring('<footer class="lab-contact-footer">Copyright © 2021 Mengdi Han Research Group - All Rights Reserved<br><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">京ICP备2021005752号-1</a></footer>'))
         contact.append(layout)
         # The platform snapshot nests the right column inside the left column.
         for right in tree.xpath('//div[contains(concat(" ",@class," ")," col-7 ")]'):

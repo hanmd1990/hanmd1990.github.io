@@ -122,6 +122,7 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-contact-travel{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
 .lab-contact-driving{grid-column:1/-1;border-top:1px solid var(--hmd-light-gray);padding-top:16px}
 .lab-contact-page .s-footer-section{min-height:0!important;padding:24px 0!important}
+.lab-contact-footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--hmd-light-gray);font-size:11px;line-height:1.8;color:var(--hmd-text);text-align:center}
 @media(max-width:1000px){.lab-decade-label{flex-basis:104px;font-size:17px}.lab-decade-row{gap:5px}}
 @media(max-width:800px){.lab-decade-label{font-size:17px;margin:0 0 6px}.lab-decade-row{row-gap:6px}.lab-contact-grid{grid-template-columns:1fr;gap:28px}.lab-contact-layout{margin:28px auto 40px;padding:0 18px}.lab-contact-intro h1{font-size:30px!important}.lab-contact-profile{padding:20px}}
 @media(max-width:420px){.lab-contact-travel{grid-template-columns:1fr}.lab-contact-driving{grid-column:auto}.lab-contact-person{gap:14px}.lab-contact-profiles{gap:10px}.lab-contact-layout h2{font-size:20px!important}}
