@@ -69,14 +69,28 @@ for kind,ys in [('publications',pub_years),('news',news_years)]:
 def archive_nav(kind,active):
     ys=pub_years if kind=='publications' else news_years
     nav=html.Element('nav',{'class':'lab-archive-nav','aria-label':kind.capitalize()+' years'})
-    for year in ys:
-        a=html.Element('a',href=f'/{kind}{year}/');a.text=str(year)
-        if active==str(year):a.set('aria-current','page')
-        nav.append(a)
+    year_rows=html.Element('div',{'class':'lab-archive-years'})
+    for decade in sorted({year//10*10 for year in ys},reverse=True):
+        group=[year for year in ys if year//10*10==decade]
+        row=html.Element('div',{'class':'lab-decade-row','data-decade':str(decade),'aria-label':f'{min(group)}–{decade+9}'})
+        label=html.Element('span',{'class':'lab-decade-label'});label.text=f'{min(group)}–{decade+9}';row.append(label)
+        for year in group:
+            a=html.Element('a',href=f'/{kind}{year}/');a.text=str(year)
+            if active==str(year):a.set('aria-current','page')
+            row.append(a)
+        year_rows.append(row)
+    nav.append(year_rows)
+    actions=html.Element('div',{'class':'lab-archive-actions'})
+    primary=html.Element('div',{'class':'lab-archive-action-row'})
     for label,route in [('Full List','all' if kind=='publications' else 'news-all')]+([('Covers','covers')] if kind=='publications' else []):
         a=html.Element('a',href='/'+route+'/',attrib={'class':'lab-archive-feature'});a.text=label
         if active==route:a.set('aria-current','page')
-        nav.append(a)
+        primary.append(a)
+    actions.append(primary)
+    if kind=='publications':
+        secondary=html.Element('div',{'class':'lab-archive-action-row'})
+        scholar=html.Element('a',href='https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en',target='_blank',rel='noopener noreferrer',attrib={'class':'lab-archive-feature lab-scholar-link'});scholar.text='Google Scholar Profile';secondary.append(scholar);actions.append(secondary)
+    nav.append(actions)
     return nav
 
 for path in ROOT.rglob('index.html'):
@@ -103,9 +117,12 @@ for path in ROOT.rglob('index.html'):
         for canonical in tree.xpath('//link[@rel="canonical"]'):canonical.set('href','https://hanmd1990.github.io/'+route+'/')
         # Avoid a duplicate Covers link left from the old archive layout.
         for heading in tree.xpath('//h5[.//a[contains(@href,"scholar.google.com")]]'):
-            heading.clear();a=html.Element('a',href='https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en',target='_blank',rel='noopener noreferrer');a.text='Google Scholar Profile';heading.append(a)
+            heading.getparent().remove(heading)
+    if not tree.xpath('//link[@href="/static/hmd-color.css"]'):
+        tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css'))
     write(path,tree)
 
 report={'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}
 (ROOT/'archive-build-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
 print(json.dumps(report))
+
