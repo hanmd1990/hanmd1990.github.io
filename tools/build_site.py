@@ -1,10 +1,11 @@
 """Build archive navigation and full lists from editable year pages. No network."""
-import copy,datetime,json,re,sys
+import copy,datetime,hashlib,json,re,sys
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from lxml import html
 
 ROOT=Path(sys.argv[1]).resolve()
+color_version=hashlib.sha256((ROOT/'static/hmd-color.css').read_bytes()).hexdigest()[:12]
 today=datetime.datetime.now(ZoneInfo('Asia/Shanghai')).year
 def read(path):return html.document_fromstring(path.read_bytes())
 def write(path,tree):
@@ -119,8 +120,9 @@ for path in ROOT.rglob('index.html'):
         # Avoid a duplicate Covers link left from the old archive layout.
         for heading in tree.xpath('//h5[.//a[contains(@href,"scholar.google.com")]]'):
             heading.getparent().remove(heading)
-    if not tree.xpath('//link[@href="/static/hmd-color.css"]'):
-        tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css'))
+    for stylesheet in tree.xpath('//link[starts-with(@href,"/static/hmd-color.css")]'):
+        stylesheet.getparent().remove(stylesheet)
+    tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css?v='+color_version))
     write(path,tree)
 
 report={'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}
