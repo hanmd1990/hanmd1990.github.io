@@ -73,9 +73,9 @@ def archive_nav(kind,active):
     year_rows=html.Element('div',{'class':'lab-archive-years'})
     for decade in sorted({year//10*10 for year in ys},reverse=True):
         group=[year for year in ys if year//10*10==decade]
-        row=html.Element('div',{'class':'lab-decade-row','data-decade':str(decade),'aria-label':f'{min(group)}–{decade+9}'})
+        row=html.Element('div',{'class':'lab-decade-row','data-decade':str(decade),'aria-label':f'{decade}s'})
         row.set('style',f'--year-count:{len(group)}')
-        label=html.Element('span',{'class':'lab-decade-label'});label.text=f'{min(group)}–{decade+9}';row.append(label)
+        label=html.Element('span',{'class':'lab-decade-label'});label.text=f'{decade}s';row.append(label)
         for year in group:
             a=html.Element('a',href=f'/{kind}{year}/');a.text=str(year)
             if active==str(year):a.set('aria-current','page')
@@ -93,11 +93,21 @@ def archive_nav(kind,active):
         secondary=html.Element('div',{'class':'lab-archive-action-row'})
         scholar=html.Element('a',href='https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en',target='_blank',rel='noopener noreferrer',attrib={'class':'lab-archive-feature lab-scholar-link'});scholar.text='Google Scholar Profile';secondary.append(scholar);actions.append(secondary)
     nav.append(actions)
+    if kind=='publications' and active!='covers':
+        note=html.Element('p',{'class':'lab-publication-legend'});note.text='* Corresponding authors; ¹ Authors contributed equally';nav.append(note)
     return nav
 
 for path in ROOT.rglob('index.html'):
     if any(p in path.relative_to(ROOT).parts for p in ('tools','work','outputs','.git','.github')):continue
     tree=read(path);route=path.parent.relative_to(ROOT).as_posix()
+    for em in tree.xpath('//*[@id="s-content"]//p//em'):
+        if re.fullmatch(r'\d+(?:[.\-–]\d+)?',text(em)):
+            em.set('class',(em.get('class','')+' lab-volume').strip())
+    for heading in tree.xpath('//h1|//h2|//h3|//h4|//h5|//h6'):
+        if 'representative publication' in text(heading).lower():
+            wrapper=next((a for a in heading.iterancestors() if a.tag=='div' and a.get('class')=='s-rich-text-wrapper'),None)
+            if wrapper is not None:
+                for link in wrapper.xpath('.//a[@href]'):link.set('class',(link.get('class','')+' lab-publication-link').strip())
     for menu in tree.xpath('//header[contains(@class,"lab-header")]//details'):
         label=text(menu.find('summary')).replace('⌄','').strip().upper()
         if label not in ('PUBLICATIONS','NEWS'):continue
@@ -109,7 +119,7 @@ for path in ROOT.rglob('index.html'):
     elif route in ('all','covers'):kind='publications';active=route
     elif route=='news-all':kind='news';active=route
     if kind:
-        body=tree.find('body');body.set('class',(body.get('class','')+' lab-archive-page').strip())
+        body=tree.find('body');body.set('class',(body.get('class','')+' lab-archive-page '+('lab-news-page' if kind=='news' else 'lab-publications-page')).strip())
         for old in tree.xpath('//nav[contains(@class,"lab-archive-nav")]'):old.getparent().remove(old)
         header=tree.xpath('//header[contains(@class,"lab-header")]')[0]
         header.addnext(archive_nav(kind,active))
@@ -120,6 +130,8 @@ for path in ROOT.rglob('index.html'):
         # Avoid a duplicate Covers link left from the old archive layout.
         for heading in tree.xpath('//h5[.//a[contains(@href,"scholar.google.com")]]'):
             heading.getparent().remove(heading)
+        for note in tree.xpath('//*[@id="s-content"]//h5|//*[@id="s-content"]//p'):
+            if 'Corresponding authors' in text(note) and 'Authors contributed equally' in text(note):note.getparent().remove(note)
     for stylesheet in tree.xpath('//link[starts-with(@href,"/static/hmd-color.css")]'):
         stylesheet.getparent().remove(stylesheet)
     tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css?v='+color_version))
