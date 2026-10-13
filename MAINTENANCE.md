@@ -23,3 +23,11 @@
 内容直接在各栏目 index.html 中编辑。首页为 index.html，2026 新闻为 news2026/index.html，2026 论文为 publications2026/index.html。外部论文链接仍指向出版商；点击外链与页面自身加载依赖是两回事。
 
 原域名与阿里云 DNS 未变更。历史迁移记录仍可通过 Git 历史恢复；当前发布不再执行抓取。
+
+## 年份导航和 Full List 自动维护
+
+顶部 Publications 和 News 直接打开当年的页面；如果当年页面尚未创建，则打开最近的已有年份。页面第一行自动列出已存在的年份，并高亮当前年份；Full List 与 Covers 为突出显示的入口。
+
+论文内容只编辑 publicationsYYYY/index.html；News 内容只编辑 newsYYYY/index.html。GitHub Actions 发布时运行 tools/build_site.py，从各年份论文页生成 /all/，从各年份新闻页生成 /news-all/，并更新所有年份链接。不要单独维护 Full List，生成结果会覆盖旧版本。
+
+新增年份时创建 publicationsYYYY/index.html 或 newsYYYY/index.html，保留相应类型页面结构即可；导航会自动发现新目录。论文条目延续现有的 (数字) 编号，编号在所有年份中应保持唯一，以避免重复收录。

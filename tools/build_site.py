@@ -1,0 +1,111 @@
+"""Build archive navigation and full lists from editable year pages. No network."""
+import copy,datetime,json,re,sys
+from pathlib import Path
+from zoneinfo import ZoneInfo
+from lxml import html
+
+ROOT=Path(sys.argv[1]).resolve()
+today=datetime.datetime.now(ZoneInfo('Asia/Shanghai')).year
+def read(path):return html.document_fromstring(path.read_bytes())
+def write(path,tree):
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_bytes(html.tostring(tree,encoding='utf-8',doctype='<!DOCTYPE html>'))
+def years(kind):
+    return sorted([int(p.parent.name[len(kind):]) for p in ROOT.glob(kind+'*/index.html') if re.fullmatch(kind+r'\d{4}',p.parent.name)],reverse=True)
+pub_years=years('publications');news_years=years('news')
+assert pub_years and news_years,'Year pages are required'
+def current(ys):return today if today in ys else next((y for y in ys if y<=today),ys[0])
+def text(e):return ' '.join(''.join(e.itertext()).split())
+def paper_id(e):
+    m=re.match(r'^\((\d+)\)',text(e));return int(m[1]) if m else None
+def paper_wrapper(tree):
+    candidates=[e for e in tree.xpath('//div[@class="s-rich-text-wrapper"]') if any(paper_id(c) for c in e)]
+    assert len(candidates)==1,'Expected one publication content block'
+    return candidates[0]
+def slides(tree):
+    return tree.xpath('//ul[contains(concat(" ",normalize-space(@class)," ")," slides ")]')[0]
+
+# Publication year pages are the sole source of the full list.
+pub=read(ROOT/f'publications{pub_years[0]}/index.html')
+destination=paper_wrapper(pub);destination.clear();destination.set('class','s-rich-text-wrapper');destination.set('style','display:block')
+legend=html.Element('p',{'class':'lab-publication-legend'});legend.text='*Corresponding authors; ¹Authors contributed equally';destination.append(legend)
+paper_ids=[];counts={}
+for year in pub_years:
+    source=paper_wrapper(read(ROOT/f'publications{year}/index.html'))
+    elements=list(source);start=next(i for i,e in enumerate(elements) if paper_id(e))
+    heading=html.Element('h2',id='year-'+str(year),attrib={'class':'lab-year-heading'});heading.text=str(year);destination.append(heading)
+    n=0;previous_blank=False
+    # Preserve titles, authors, journal details, notes, links and images together.
+    for element in elements[start:]:
+        pid=paper_id(element)
+        if pid:paper_ids.append(pid);n+=1
+        blank=not text(element) and not element.xpath('.//img')
+        if blank and previous_blank:continue
+        destination.append(copy.deepcopy(element));previous_blank=blank
+    while len(destination) and not text(destination[-1]) and not destination[-1].xpath('.//img'):destination.remove(destination[-1])
+    counts[str(year)]=n
+assert len(paper_ids)==len(set(paper_ids)),'Duplicate publication numbers across year pages'
+write(ROOT/'all/index.html',pub)
+
+# News full list preserves complete sections, including their photographs.
+news=read(ROOT/f'news{news_years[0]}/index.html');target=slides(news)
+for child in list(target):target.remove(child)
+style_texts={e.text for e in news.xpath('//style')}
+for year in news_years:
+    source=read(ROOT/f'news{year}/index.html')
+    for style in source.xpath('//style'):
+        if style.text not in style_texts:news.find('head').append(copy.deepcopy(style));style_texts.add(style.text)
+    for section in slides(source):
+        section=copy.deepcopy(section)
+        for element in section.iter():
+            if element.get('id'):element.set('id','news-'+str(year)+'-'+element.get('id'))
+        section.set('id','year-'+str(year));target.append(section)
+write(ROOT/'news-all/index.html',news)
+
+# Stable entry links open the current calendar year when available.
+for kind,ys in [('publications',pub_years),('news',news_years)]:
+    write(ROOT/kind/'index.html',read(ROOT/f'{kind}{current(ys)}/index.html'))
+
+def archive_nav(kind,active):
+    ys=pub_years if kind=='publications' else news_years
+    nav=html.Element('nav',{'class':'lab-archive-nav','aria-label':kind.capitalize()+' years'})
+    for year in ys:
+        a=html.Element('a',href=f'/{kind}{year}/');a.text=str(year)
+        if active==str(year):a.set('aria-current','page')
+        nav.append(a)
+    for label,route in [('Full List','all' if kind=='publications' else 'news-all')]+([('Covers','covers')] if kind=='publications' else []):
+        a=html.Element('a',href='/'+route+'/',attrib={'class':'lab-archive-feature'});a.text=label
+        if active==route:a.set('aria-current','page')
+        nav.append(a)
+    return nav
+
+for path in ROOT.rglob('index.html'):
+    if any(p in path.relative_to(ROOT).parts for p in ('tools','work','outputs','.git','.github')):continue
+    tree=read(path);route=path.parent.relative_to(ROOT).as_posix()
+    for menu in tree.xpath('//header[contains(@class,"lab-header")]//details'):
+        label=text(menu.find('summary')).replace('⌄','').strip().upper()
+        if label not in ('PUBLICATIONS','NEWS'):continue
+        a=html.Element('a',href='/'+label.lower()+'/');a.text=label;menu.getparent().replace(menu,a)
+    kind=None;active=None
+    if re.fullmatch(r'publications\d{4}',route):kind='publications';active=route[len(kind):]
+    elif re.fullmatch(r'news\d{4}',route):kind='news';active=route[4:]
+    elif route in ('publications','news'):kind=route;active=str(current(pub_years if kind=='publications' else news_years))
+    elif route in ('all','covers'):kind='publications';active=route
+    elif route=='news-all':kind='news';active=route
+    if kind:
+        body=tree.find('body');body.set('class',(body.get('class','')+' lab-archive-page').strip())
+        for old in tree.xpath('//nav[contains(@class,"lab-archive-nav")]'):old.getparent().remove(old)
+        header=tree.xpath('//header[contains(@class,"lab-header")]')[0]
+        header.addnext(archive_nav(kind,active))
+        title=tree.find('head/title')
+        if title is not None:title.text=('Publications' if kind=='publications' else 'News')+' — '+('Full List' if active in ('all','news-all') else 'Covers' if active=='covers' else active)+' — Mengdi Han Research Group'
+        for meta in tree.xpath('//meta[@property="og:url"]'):meta.set('content','https://hanmd1990.github.io/'+route+'/')
+        for canonical in tree.xpath('//link[@rel="canonical"]'):canonical.set('href','https://hanmd1990.github.io/'+route+'/')
+        # Avoid a duplicate Covers link left from the old archive layout.
+        for heading in tree.xpath('//h5[.//a[contains(@href,"scholar.google.com")]]'):
+            heading.clear();a=html.Element('a',href='https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en',target='_blank',rel='noopener noreferrer');a.text='Google Scholar Profile';heading.append(a)
+    write(path,tree)
+
+report={'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}
+(ROOT/'archive-build-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+print(json.dumps(report))

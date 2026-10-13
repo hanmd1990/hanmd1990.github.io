@@ -24,9 +24,10 @@ jobs:
       - run: pip install lxml==5.3.0
       - name: Verify and package independent website
         run: |
-          python tools/verify_site.py .
           mkdir -p outputs/hmd-lab-site
           git archive HEAD | tar -x -C outputs/hmd-lab-site --exclude='.github' --exclude='work' --exclude='tools' --exclude='.gitignore' --exclude='README.md'
+          python tools/build_site.py outputs/hmd-lab-site
+          python tools/verify_site.py outputs/hmd-lab-site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
