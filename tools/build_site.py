@@ -157,6 +157,12 @@ for path in ROOT.rglob('index.html'):
             dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
         carousel.append(dots)
     if route=='contact':
+        # The platform snapshot nests the right column inside the left column.
+        for right in tree.xpath('//div[contains(concat(" ",@class," ")," col-7 ")]'):
+            rows=right.xpath('ancestor::div[contains(concat(" ",@class," ")," s-row-content ")]')
+            if rows:rows[-1].append(right)
+        for spacer in tree.xpath('//div[contains(concat(" ",@class," ")," s-element-spacer ")]'):
+            spacer.getparent().remove(spacer)
         for image in tree.xpath('//img[@src]'):
             if image.get('src')=='/images/people/mengdi-han/contact-02.jpg':
                 image.set('alt','Peking University campus map and laboratory location');image.set('loading','eager')
@@ -197,4 +203,3 @@ for path in ROOT.rglob('index.html'):
 report={'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}
 (ROOT/'archive-build-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
 print(json.dumps(report))
-
