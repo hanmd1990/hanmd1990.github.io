@@ -73,6 +73,7 @@ def archive_nav(kind,active):
     for decade in sorted({year//10*10 for year in ys},reverse=True):
         group=[year for year in ys if year//10*10==decade]
         row=html.Element('div',{'class':'lab-decade-row','data-decade':str(decade),'aria-label':f'{min(group)}–{decade+9}'})
+        row.set('style',f'--year-count:{len(group)}')
         label=html.Element('span',{'class':'lab-decade-label'});label.text=f'{min(group)}–{decade+9}';row.append(label)
         for year in group:
             a=html.Element('a',href=f'/{kind}{year}/');a.text=str(year)
