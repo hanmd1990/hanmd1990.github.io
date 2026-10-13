@@ -123,18 +123,20 @@ for path in ROOT.rglob('index.html'):
     if page_class:add_class(tree.find('body'),page_class)
     for link in tree.xpath('//a[@href]'):
         link.set('class',' '.join(c for c in link.get('class','').split() if c!='lab-publication-link'))
-        if route!='covers' and text(link).lower() not in ('cover','covers') and (link.get('data-link-kind')=='article' or article_link(link.get('href'))):add_class(link,'lab-publication-link')
+        if not route.startswith('news') and route!='covers' and text(link).lower() not in ('cover','covers') and (link.get('data-link-kind')=='article' or article_link(link.get('href'))):add_class(link,'lab-publication-link')
     if re.fullmatch(r'publications\d{4}',route) or route in ('publications','all'):
         for paragraph in tree.xpath('//*[@id="s-content"]//p'):
             links=paragraph.xpath('.//a[@href]')
             if paper_id(paragraph) and links:add_class(links[0],'lab-publication-link')
     for em in tree.xpath('//*[@id="s-content"]//p//em'):
+        if re.fullmatch(r'et\s*al\.?',text(em),re.I):add_class(em,'lab-author-note')
         if re.fullmatch(r'\d+(?:[.\-–]\d+)?',text(em)):
             em.set('class',(em.get('class','')+' lab-volume').strip())
     if route=='.':
         for heading in tree.xpath('//h1|//h2|//h3|//h4|//h5|//h6'):
             if text(heading).lower() in ('our mission','open positions','recent highlights'):add_class(heading,'lab-section-accent')
         for subtitle in tree.xpath('//*[contains(concat(" ",normalize-space(@class)," ")," s-item-subtitle ")]'):add_class(subtitle,'lab-home-citation')
+        for em in tree.xpath('//*[contains(concat(" ",@class," ")," lab-home-citation ")]//em'):add_class(em,'lab-home-journal')
     if route=='current':
         for strong in tree.xpath('//*[@id="s-content"]//strong'):
             if re.fullmatch(r'(?:Princip(?:al|le) Investigator|Postdoctoral Fellows?|Undergrads? & Visiting Students|Ph\.D\. Students?|Master Students?|Research Assistants?|课题组长|博士后研究员|本科生 & 访问学生|博士研究生)',text(strong),re.I):
@@ -150,13 +152,32 @@ for path in ROOT.rglob('index.html'):
             summary.append(header);details.append(summary)
             content=contents[0];content.set('class','lab-disclosure-content');content.attrib.pop('style',None);details.append(content)
             item.getparent().replace(item,details)
+        if route=='join':
+            for heading in tree.xpath('//details[@class="lab-disclosure"]/summary//h4'):
+                add_class(heading,'lab-position-title')
     for carousel in tree.xpath('//div[contains(concat(" ",@class," ")," lab-carousel ")]'):
         for controls in carousel.xpath('./div[contains(@class,"lab-carousel-controls") or contains(@class,"lab-carousel-dots")]'):carousel.remove(controls)
         slides_list=carousel.xpath('./figure');dots=html.Element('div',{'class':'lab-carousel-dots','role':'group','aria-label':'Choose research highlight'})
+        for image in carousel.xpath('./figure//img'):image.set('loading','eager')
         for index in range(len(slides_list)):
             dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
         carousel.append(dots)
     if route=='contact':
+        contact=tree.xpath('//*[@id="s-content"]')[0]
+        profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
+        profile_links={text(a):a.get('href') for a in contact.xpath('.//a[@href]') if text(a) in profile_names}
+        contact.clear();contact.set('id','s-content')
+        layout=html.fragment_fromstring('''<main class="lab-contact-layout">
+          <header class="lab-contact-intro"><p class="lab-contact-eyebrow">Mengdi Han Research Group</p><h1>Contact</h1><p>Department of Biomedical Engineering · Peking University</p></header>
+          <div class="lab-contact-grid">
+            <section class="lab-contact-profile" aria-labelledby="contact-name"><div class="lab-contact-person"><div class="lab-contact-portrait"><img src="/images/people/mengdi-han/contact.jpg" alt="Mengdi Han"></div><div><h2 id="contact-name">Mengdi Han</h2><p>College of Future Technology<br>Peking University</p></div></div><div class="lab-contact-email"><span>Email</span><a href="mailto:hmd@pku.edu.cn">hmd[at]pku.edu.cn</a></div><h3>Profiles &amp; resources</h3><nav class="lab-contact-profiles" aria-label="Profiles and resources"></nav><div class="lab-contact-address"><h3>Mailing address</h3><p>Department of Biomedical Engineering<br>College of Future Technology<br>Peking University<br>Beijing 100871, China</p></div></section>
+            <section class="lab-contact-visit" aria-labelledby="contact-visit"><h2 id="contact-visit">Visit our lab</h2><figure class="lab-contact-map"><a href="/images/people/mengdi-han/contact-02.jpg" data-lightbox="true" aria-label="Enlarge laboratory location map"><img src="/images/people/mengdi-han/contact-02.jpg" alt="Peking University campus map and laboratory location"></a><figcaption>Campus map · Click to enlarge</figcaption></figure><nav class="lab-contact-map-links" aria-label="Map services"><a href="https://maps.app.goo.gl/XG2o6uWEqPignxYM8" target="_blank" rel="noopener noreferrer">Google Map ↗</a><a href="https://j.map.baidu.com/86/7Spi" target="_blank" rel="noopener noreferrer">百度地图 ↗</a><a href="https://surl.amap.com/4fO0iYusb3Nn" target="_blank" rel="noopener noreferrer">高德地图 ↗</a></nav><div class="lab-contact-travel"><section><h3>② Metro · ~350 m</h3><p>East Gate of Peking University, Exit B<br>北京大学东门站，B出口</p></section><section><h3>③ Bus · ~350 m</h3><p>Zhongguanyuan North<br>中关园北站</p></section><section class="lab-contact-driving"><h3>① Lab location / ④ Driving &amp; taxi</h3><p>No. 116 Zhongguancun North Street<br>中关村北大街116号，北京大学新奥工学大楼</p></section></div></section>
+          </div></main>''')
+        profile_nav=layout.xpath('.//nav[@class="lab-contact-profiles"]')[0]
+        for name in profile_names:
+            if name in profile_links:
+                link=html.Element('a',href=profile_links[name]);link.text=name;profile_nav.append(link)
+        contact.append(layout)
         # The platform snapshot nests the right column inside the left column.
         for right in tree.xpath('//div[contains(concat(" ",@class," ")," col-7 ")]'):
             rows=right.xpath('ancestor::div[contains(concat(" ",@class," ")," s-row-content ")]')
