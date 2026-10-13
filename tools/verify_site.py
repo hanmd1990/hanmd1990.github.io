@@ -9,6 +9,8 @@ urls=re.compile(r'url\(\s*([\"\']?)(.*?)\1\s*\)',re.I)
 def check(raw,file,kind='asset'):
     if not raw or raw.startswith(('data:','#','mailto:','tel:')):return
     u=urlparse(urljoin('https://hanmd1990.github.io/'+file.relative_to(ROOT).as_posix(),raw))
+    if re.search(r'(?:sxlcdn|strikingly|sxl\.cn|sxldns|hmd-lab\.com)',u.netloc,re.I):
+        errors.append(f'{file.relative_to(ROOT)}: legacy platform link {raw}')
     if u.netloc!='hanmd1990.github.io':
         if kind=='asset':errors.append(f'{file.relative_to(ROOT)}: external resource {raw}')
         return
@@ -30,7 +32,7 @@ for f in ROOT.rglob('*'):
             s=e.get('style','')+((e.text or '') if e.tag=='style' else '')
             for m in urls.finditer(s):check(m[2],f)
             if e.tag=='script' and not e.get('src') and re.search(r'fetch\s*\(|XMLHttpRequest|https?://',e.text or ''):errors.append(f'{f}: external inline script')
-        if re.search(r'https?://[^\s"<>]*(?:sxlcdn|strikingly|sxl\.cn|sxldns)',f.read_text(encoding='utf-8')):errors.append(f'{f}: legacy platform URL')
+        if re.search(r'(?:https?:)?//[^\s"<>]*(?:sxlcdn|strikingly|sxl\.cn|sxldns)',f.read_text(encoding='utf-8')):errors.append(f'{f}: legacy platform URL')
     elif f.suffix=='.css':
         s=f.read_text(encoding='utf-8')
         for m in urls.finditer(s):check(m[2],f)

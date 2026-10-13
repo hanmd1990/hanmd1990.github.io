@@ -1,4 +1,4 @@
-﻿图片路径,分类,说明,使用页面,旧文件（仅供追溯）
+图片路径,分类,说明,使用页面,旧文件（仅供追溯）
 images/brand/site-icon.png,brand,site-icon,/ | /all/ | /alumni/ | /bio/ | /c68o-uyegikxeco-gqn8/ | /contact/ | /covers/ | /current/ | /electronic-skins/ | /join/ | /lab-tour/ | /microrobot/ | /news2020/ | /news2021/ | /news2022/ | /news2023/ | /news2024/ | /news2025/ | /news2026/ | /overview/ | /publications2013/ | /publications2014/ | /publications2015/ | /publications2016/ | /publications2017/ | /publications2018/ | /publications2019/ | /publications2020/ | /publications2021/ | /publications2022/ | /publications2023/ | /publications2024/ | /publications2025/ | /publications2026/ | /smart-implants/ | /wearable-devices/,assets/75d8cb1d2ff0c4975797.png
 images/brand/site-share.png,brand,site-share,/ | /all/ | /alumni/ | /bio/ | /c68o-uyegikxeco-gqn8/ | /contact/ | /covers/ | /current/ | /electronic-skins/ | /join/ | /lab-tour/ | /microrobot/ | /news2020/ | /news2021/ | /news2022/ | /news2023/ | /news2024/ | /news2025/ | /news2026/ | /overview/ | /publications2013/ | /publications2014/ | /publications2015/ | /publications2016/ | /publications2017/ | /publications2018/ | /publications2019/ | /publications2020/ | /publications2021/ | /publications2022/ | /publications2023/ | /publications2024/ | /publications2025/ | /publications2026/ | /smart-implants/ | /wearable-devices/,assets/4c0b0d19a03c55a2eb2a.png
 images/people/mengdi-han/contact.png,people/mengdi-han,contact,/c68o-uyegikxeco-gqn8/ | /contact/,assets/fdae151a229943f03b50.PNG
@@ -263,3 +263,6 @@ images/research/smart-implants/representative-publications.png,research/smart-im
 images/research/wearable-devices/representative-publications.png,research/wearable-devices,Representative Publications,/wearable-devices/,assets/5e4a1616ffe78b6c3c3e.png
 images/research/wearable-devices/representative-publications-02.png,research/wearable-devices,Representative Publications,/wearable-devices/,assets/5edc7fed69cc959e178c.png
 images/research/wearable-devices/representative-publications-03.png,research/wearable-devices,Representative Publications,/wearable-devices/,assets/b23aee50386fd31a177c.png
+images/lab-tour/hotplate-full.png,lab-tour,Hotplate (Full resolution),/lab-tour/,Archived original image
+images/lab-tour/digital-microscope-full.png,lab-tour,Digital Microscope (Full resolution),/lab-tour/,Archived original image
+images/lab-tour/pxi-chassis-full.png,lab-tour,PXI Chassis (Full resolution),/lab-tour/,Archived original image

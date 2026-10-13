@@ -2456,5 +2456,32 @@
       "/wearable-devices/"
     ],
     "previous_file": "assets/b23aee50386fd31a177c.png"
+  },
+  {
+    "file": "images/lab-tour/hotplate-full.png",
+    "category": "lab-tour",
+    "description": "Hotplate (Full resolution)",
+    "pages": [
+      "/lab-tour/"
+    ],
+    "previous_file": "Archived original image"
+  },
+  {
+    "file": "images/lab-tour/digital-microscope-full.png",
+    "category": "lab-tour",
+    "description": "Digital Microscope (Full resolution)",
+    "pages": [
+      "/lab-tour/"
+    ],
+    "previous_file": "Archived original image"
+  },
+  {
+    "file": "images/lab-tour/pxi-chassis-full.png",
+    "category": "lab-tour",
+    "description": "PXI Chassis (Full resolution)",
+    "pages": [
+      "/lab-tour/"
+    ],
+    "previous_file": "Archived original image"
   }
 ]
