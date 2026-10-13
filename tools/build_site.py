@@ -105,7 +105,7 @@ for path in ROOT.rglob('index.html'):
             em.set('class',(em.get('class','')+' lab-volume').strip())
     for heading in tree.xpath('//h1|//h2|//h3|//h4|//h5|//h6'):
         if 'representative publication' in text(heading).lower():
-            wrapper=next((a for a in heading.iterancestors() if a.tag=='div' and a.get('class')=='s-rich-text-wrapper'),None)
+            wrapper=next((a for a in heading.iterancestors() if a.tag=='li' and 'slide' in a.get('class','').split()),None)
             if wrapper is not None:
                 for link in wrapper.xpath('.//a[@href]'):link.set('class',(link.get('class','')+' lab-publication-link').strip())
     for menu in tree.xpath('//header[contains(@class,"lab-header")]//details'):
