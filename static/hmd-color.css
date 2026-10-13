@@ -147,6 +147,7 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-publications-page #s-content .lab-publication-body p{font-size:15.5px!important;line-height:1.7!important;text-align:left!important;margin:0 0 5px!important}
 .lab-publications-page #s-content .lab-publication-body p :is(span,a,strong,em){font-size:inherit!important;line-height:inherit!important}
 .lab-publications-page #s-content .lab-publication-body .lab-content-year,.lab-publications-page #s-content .lab-publication-body .lab-year-heading{font-size:22px!important;font-weight:700!important;line-height:1.4!important;margin:0 0 24px!important;text-align:left!important}
+.lab-publications-page #s-content .lab-publication-body .lab-content-year *{font-size:inherit!important;line-height:inherit!important;font-family:inherit!important}
 .lab-publications-page #s-content .lab-publication-body .lab-year-heading:not(:first-child){margin-top:36px!important}
 .lab-publications-page #s-content .s-footer-section{padding:24px 0!important}
 @media(max-width:800px){.lab-publications-page #s-content .s-section{padding-top:22px!important}.lab-publications-page #s-content .s-section>.container{width:calc(100% - 30px)!important}.lab-publications-page #s-content .lab-publication-body p{font-size:15px!important}.lab-publications-page #s-content .lab-publication-body .lab-content-year{font-size:22px!important}}
