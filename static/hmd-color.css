@@ -41,10 +41,37 @@ body:has(#search) input{border:1px solid var(--hmd-blue);border-radius:5px;color
 /* News text stays uniform; blue hover is reserved for publication/news links. */
 .lab-news-page #s-content,.lab-news-page #s-content :is(p,span,strong,em,a,h1,h2,h3,h4,h5,h6),.lab-news-page #s-content [style*="color:"]{color:var(--hmd-text)!important}
 body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
-:is(.lab-publications-page,.lab-news-page) a:is(:hover,:focus-visible),:is(.lab-publications-page,.lab-news-page) a:is(:hover,:focus-visible) :is(span,strong,em),:is(.lab-publications-page,.lab-news-page) a:is(:hover,:focus-visible) [style]{color:var(--hmd-blue)!important}
-:is(.lab-publications-page,.lab-news-page) #s-content a:is(:hover,:focus-visible),:is(.lab-publications-page,.lab-news-page) #s-content a:is(:hover,:focus-visible) *{color:var(--hmd-blue)!important}
+#s-content a:is(:hover,:focus-visible),#s-content a:is(:hover,:focus-visible) *,#s-content a:is(:hover,:focus-visible) [style]{color:var(--hmd-gold)!important}
 #s-content a.lab-publication-link:is(:hover,:focus-visible),#s-content a.lab-publication-link:is(:hover,:focus-visible) *{color:var(--hmd-blue)!important}
-:is(.lab-publications-page,.lab-news-page) .lab-archive-nav a:is(:hover,:focus-visible){color:var(--hmd-blue)!important;background:var(--hmd-light-gray);border-color:var(--hmd-blue)}
+.lab-archive-nav a:is(:hover,:focus-visible){color:var(--hmd-gold)!important;background:var(--hmd-light-gray);border-color:var(--hmd-gold)}
+/* Article metadata and per-page emphasis. Year selector colors stay unchanged. */
+:is(.lab-publications-page,.lab-news-page) #s-content .lab-year-heading,
+:is(.lab-publications-page,.lab-news-page) #s-content .lab-content-year,
+:is(.lab-publications-page,.lab-news-page) #s-content :is(h1,h2,h3,h4,h5,h6).lab-content-year,
+:is(.lab-publications-page,.lab-news-page) #s-content .lab-content-year [style],
+:is(.lab-publications-page,.lab-news-page) #s-content .lab-content-year *{color:var(--hmd-gold)!important}
+#s-content .lab-section-accent,#s-content .lab-section-accent[style],#s-content .lab-section-accent [style],#s-content .lab-section-accent :is(span,strong){color:var(--hmd-gold)!important}
+.lab-home-page #s-content .lab-home-citation,.lab-home-page #s-content .lab-home-citation [style],.lab-home-page #s-content .lab-home-citation :is(p,em,span,strong,h6){color:var(--hmd-navy)!important}
+.lab-alumni-page #s-content strong,.lab-alumni-page #s-content strong[style],.lab-alumni-page #s-content strong [style],.lab-alumni-page #s-content strong *{color:var(--hmd-blue)!important}
+.lab-bio-page #s-content strong,.lab-bio-page #s-content strong[style],.lab-bio-page #s-content strong [style],.lab-bio-page #s-content strong *{color:var(--hmd-gold)!important}
+/* Last rules ensure link intent wins over bold and inline text styles. */
+#s-content a:is(:hover,:focus-visible) strong,#s-content a:is(:hover,:focus-visible) [style] strong,#s-content a:is(:hover,:focus-visible) strong[style]{color:var(--hmd-gold)!important}
+#s-content a.lab-publication-link:is(:hover,:focus-visible),#s-content a.lab-publication-link:is(:hover,:focus-visible) *,#s-content a.lab-publication-link:is(:hover,:focus-visible) [style],#s-content a.lab-publication-link:is(:hover,:focus-visible) strong{color:var(--hmd-blue)!important}
+.lab-carousel-dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;padding:9px 13px;border-radius:24px;background:#ffffffd9;z-index:2}
+.lab-carousel-dots .lab-carousel-dot{display:block;width:10px;height:10px;min-width:10px;border-radius:50%;padding:0;border:1px solid var(--hmd-navy);background:var(--hmd-white);cursor:pointer}
+.lab-carousel-dots .lab-carousel-dot[aria-pressed=true]{background:var(--hmd-navy)}
+.lab-carousel-dots .lab-carousel-dot:hover{background:var(--hmd-gold);border-color:var(--hmd-gold)}
+.lab-disclosure{border-bottom:1px solid var(--hmd-light-gray);margin:0 0 12px}
+.lab-disclosure>summary{position:relative;list-style:none;cursor:pointer;padding:16px 38px 16px 0}
+.lab-disclosure>summary::-webkit-details-marker{display:none}
+.lab-disclosure>summary::after{content:'+';position:absolute;right:8px;top:17px;font-size:23px;line-height:1;color:var(--hmd-gold)}
+.lab-disclosure[open]>summary::after{content:'−'}
+.lab-disclosure summary .s-kit-collapse-header{padding:0!important;display:block}
+.lab-disclosure-content{padding:0 0 20px;display:block}
+.lab-disclosure>summary:focus-visible{outline:2px solid var(--hmd-gold);outline-offset:3px}
+.lab-contact-page .s-image .s-img-wrapper{height:auto!important;min-height:0!important;padding-bottom:0!important;position:relative!important;overflow:visible!important}
+.lab-contact-page .s-image .s-img-wrapper img{position:static!important;display:block!important;opacity:1!important;visibility:visible!important;width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;transform:none!important;margin:0!important;object-fit:contain}
+.lab-contact-page .s-image .s-img-wrapper>a{display:block}
 @media(max-width:1000px){.lab-archive-nav{max-width:820px;gap:18px}.lab-decade-label{flex-basis:88px;font-size:11px}.lab-decade-row{gap:3px}.lab-archive-nav a{padding:6px 8px;font-size:13px}}
 @media(max-width:800px){.lab-archive-nav{grid-template-columns:1fr;gap:14px;margin-top:18px;padding:0 15px}.lab-decade-row{display:grid;grid-template-columns:repeat(var(--year-count),minmax(0,1fr));gap:3px}.lab-decade-label{grid-column:1/-1;margin-bottom:2px}.lab-decade-row a{min-width:0;padding:6px 2px;font-size:clamp(10px,2.8vw,12px);text-align:center;white-space:nowrap}.lab-archive-actions{align-items:flex-start}.lab-archive-action-row{width:230px}.lab-archive-page .slides>li:first-child .s-section{padding-top:22px!important}}
 @media(max-width:800px){.lab-publication-legend{text-align:left;font-size:11px!important;margin:0!important}.lab-archive-nav{row-gap:12px}}

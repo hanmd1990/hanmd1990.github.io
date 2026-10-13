@@ -2,10 +2,12 @@
 import copy,datetime,hashlib,json,re,sys
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from urllib.parse import urlparse
 from lxml import html
 
 ROOT=Path(sys.argv[1]).resolve()
 color_version=hashlib.sha256((ROOT/'static/hmd-color.css').read_bytes()).hexdigest()[:12]
+script_version=hashlib.sha256((ROOT/'static/site.js').read_bytes()).hexdigest()[:12]
 today=datetime.datetime.now(ZoneInfo('Asia/Shanghai')).year
 def read(path):return html.document_fromstring(path.read_bytes())
 def write(path,tree):
@@ -17,6 +19,23 @@ pub_years=years('publications');news_years=years('news')
 assert pub_years and news_years,'Year pages are required'
 def current(ys):return today if today in ys else next((y for y in ys if y<=today),ys[0])
 def text(e):return ' '.join(''.join(e.itertext()).split())
+def add_class(e,name):
+    classes=e.get('class','').split()
+    if name not in classes:classes.append(name)
+    e.set('class',' '.join(classes))
+def article_link(href):
+    u=urlparse(href);host=(u.hostname or '').lower();path=u.path
+    if '/doi/toc/' in path:return False
+    if re.search(r'/doi/(?:abs/|full/|epdf/|pdf/)?10\.\d{4,9}/',path):return True
+    if host in ('doi.org','dx.doi.org') and path.startswith('/10.'):return True
+    return any(host.endswith(domain) and re.search(pattern,path) for domain,pattern in [
+        ('nature.com',r'^/articles/[^/]+'),('sciencedirect.com',r'/science/article/'),
+        ('link.springer.com',r'/article/'),('pnas.org',r'^/content/\d+/'),
+        ('ieeexplore.ieee.org',r'^/document/\d+'),('pubmed.ncbi.nlm.nih.gov',r'^/\d+'),
+        ('ieeexplore.ieee.org',r'^/stamp/stamp.jsp'),('iopscience.iop.org',r'^/article/'),
+        ('pubs.rsc.org',r'/content/articlelanding/'),('cambridge.org',r'/core/journals/.*/article/'),
+        ('frontiersin.org',r'/articles/10\.'),('mdpi.com',r'^/\d{4}-\d{4}/\d+/\d+/\d+'),
+        ('academic.oup.com',r'/article/'),('pubs.aip.org',r'/article/')])
 def paper_id(e):
     m=re.match(r'^\((\d+)\)',text(e));return int(m[1]) if m else None
 def paper_wrapper(tree):
@@ -100,14 +119,49 @@ def archive_nav(kind,active):
 for path in ROOT.rglob('index.html'):
     if any(p in path.relative_to(ROOT).parts for p in ('tools','work','outputs','.git','.github')):continue
     tree=read(path);route=path.parent.relative_to(ROOT).as_posix()
+    page_class={'.':'lab-home-page','current':'lab-current-page','alumni':'lab-alumni-page','bio':'lab-bio-page','contact':'lab-contact-page','join':'lab-join-page'}.get(route)
+    if page_class:add_class(tree.find('body'),page_class)
+    for link in tree.xpath('//a[@href]'):
+        link.set('class',' '.join(c for c in link.get('class','').split() if c!='lab-publication-link'))
+        if route!='covers' and text(link).lower() not in ('cover','covers') and (link.get('data-link-kind')=='article' or article_link(link.get('href'))):add_class(link,'lab-publication-link')
+    if re.fullmatch(r'publications\d{4}',route) or route in ('publications','all'):
+        for paragraph in tree.xpath('//*[@id="s-content"]//p'):
+            links=paragraph.xpath('.//a[@href]')
+            if paper_id(paragraph) and links:add_class(links[0],'lab-publication-link')
     for em in tree.xpath('//*[@id="s-content"]//p//em'):
         if re.fullmatch(r'\d+(?:[.\-–]\d+)?',text(em)):
             em.set('class',(em.get('class','')+' lab-volume').strip())
-    for heading in tree.xpath('//h1|//h2|//h3|//h4|//h5|//h6'):
-        if 'representative publication' in text(heading).lower():
-            wrapper=next((a for a in heading.iterancestors() if a.tag=='li' and 'slide' in a.get('class','').split()),None)
-            if wrapper is not None:
-                for link in wrapper.xpath('.//a[@href]'):link.set('class',(link.get('class','')+' lab-publication-link').strip())
+    if route=='.':
+        for heading in tree.xpath('//h1|//h2|//h3|//h4|//h5|//h6'):
+            if text(heading).lower() in ('our mission','open positions','recent highlights'):add_class(heading,'lab-section-accent')
+        for subtitle in tree.xpath('//*[contains(concat(" ",normalize-space(@class)," ")," s-item-subtitle ")]'):add_class(subtitle,'lab-home-citation')
+    if route=='current':
+        for strong in tree.xpath('//*[@id="s-content"]//strong'):
+            if re.fullmatch(r'(?:Princip(?:al|le) Investigator|Postdoctoral Fellows?|Undergrads? & Visiting Students|Ph\.D\. Students?|Master Students?|Research Assistants?|课题组长|博士后研究员|本科生 & 访问学生|博士研究生)',text(strong),re.I):
+                element=next((a for a in strong.iterancestors() if a.tag in ('p','h1','h2','h3','h4','h5','h6')),strong);add_class(element,'lab-section-accent')
+    if route in ('alumni','join'):
+        for item in list(tree.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," s-kit-collapse-item ")]')):
+            headers=item.xpath('./div[contains(concat(" ",@class," ")," s-kit-collapse-header ")]');contents=item.xpath('./div[contains(concat(" ",@class," ")," s-kit-collapse-content ")]')
+            if not headers or not contents:continue
+            details=html.Element('details',{'class':'lab-disclosure'});summary=html.Element('summary')
+            header=headers[0]
+            for attr in ('role','tabindex','aria-expanded','aria-disabled'):header.attrib.pop(attr,None)
+            for icon in header.xpath('.//div[contains(@class,"s-kit-collapse-expand-icon")]'):icon.getparent().remove(icon)
+            summary.append(header);details.append(summary)
+            content=contents[0];content.set('class','lab-disclosure-content');content.attrib.pop('style',None);details.append(content)
+            item.getparent().replace(item,details)
+    for carousel in tree.xpath('//div[contains(concat(" ",@class," ")," lab-carousel ")]'):
+        for controls in carousel.xpath('./div[contains(@class,"lab-carousel-controls") or contains(@class,"lab-carousel-dots")]'):carousel.remove(controls)
+        slides_list=carousel.xpath('./figure');dots=html.Element('div',{'class':'lab-carousel-dots','role':'group','aria-label':'Choose research highlight'})
+        for index in range(len(slides_list)):
+            dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
+        carousel.append(dots)
+    if route=='contact':
+        for image in tree.xpath('//img[@src]'):
+            if image.get('src')=='/images/people/mengdi-han/contact-02.jpg':
+                image.set('alt','Peking University campus map and laboratory location');image.set('loading','eager')
+                if image.getparent().tag!='a':
+                    parent=image.getparent();link=html.Element('a',href=image.get('src'),attrib={'data-lightbox':'true','aria-label':'Enlarge laboratory location map'});parent.replace(image,link);link.append(image)
     for menu in tree.xpath('//header[contains(@class,"lab-header")]//details'):
         label=text(menu.find('summary')).replace('⌄','').strip().upper()
         if label not in ('PUBLICATIONS','NEWS'):continue
@@ -132,9 +186,12 @@ for path in ROOT.rglob('index.html'):
             heading.getparent().remove(heading)
         for note in tree.xpath('//*[@id="s-content"]//h5|//*[@id="s-content"]//p'):
             if 'Corresponding authors' in text(note) and 'Authors contributed equally' in text(note):note.getparent().remove(note)
+        for element in tree.xpath('//*[@id="s-content"]//h1|//*[@id="s-content"]//h2|//*[@id="s-content"]//h3|//*[@id="s-content"]//h4|//*[@id="s-content"]//h5|//*[@id="s-content"]//h6|//*[@id="s-content"]//p'):
+            if re.fullmatch(r'\d{4}',text(element)):add_class(element,'lab-content-year')
     for stylesheet in tree.xpath('//link[starts-with(@href,"/static/hmd-color.css")]'):
         stylesheet.getparent().remove(stylesheet)
     tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css?v='+color_version))
+    for script in tree.xpath('//script[starts-with(@src,"/static/site.js")]'):script.set('src','/static/site.js?v='+script_version)
     write(path,tree)
 
 report={'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}

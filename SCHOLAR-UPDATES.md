@@ -23,5 +23,7 @@ Google Scholar：https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en
 
 ## 本次样式规则
 
-年份组标签为 2020s、2010s 等。卷号的数字斜体保持正文色；News 内容文字统一正文色。Publications、News 的超链接及 Research 中代表论文链接悬停为中蓝 #547DA6，其它页面超链接悬停为棕金 #A1662F。作者说明统一放在年份导航下方的小字号注释中。
+年份组标签为 2020s、2010s 等。卷号的数字斜体保持正文色；News 内容文字统一正文色。只有具体文章链接悬停为中蓝 #547DA6，规则适用于 Publications、Research、Alumni 等所有页面的具体论文链接；其它超链接（包括主导航、年份选择、Full List、Covers、Scholar 主页）悬停均为棕金 #A1662F。年份选择栏的布局和选中色保持，正文中的年份标题为棕金。作者说明统一放在年份导航下方的小字号注释中。
+
+文章链接按出版商/DOI 地址及论文条目结构识别；未知出版商或本地论文 PDF 可以在链接上使用 data-link-kind="article" 明确标记，避免把简历、招聘或普通新闻链接误判为文章。
 
