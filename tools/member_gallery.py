@@ -1,4 +1,5 @@
 from lxml import html
+from datetime import datetime
 
 def build_gallery(entries):
     aside=html.Element('aside',{'class':'member-photos member-gallery','aria-label':'Group photos'})
@@ -19,5 +20,6 @@ def build_gallery(entries):
     thumbs=html.Element('div',{'class':'member-gallery-thumbs','aria-label':'Choose a group photograph'});aside.append(thumbs)
     for i,entry in enumerate(entries):
         link=html.Element('a',href='#group-photo-'+str(i+1),attrib={'data-gallery-index':str(i),'aria-label':entry['caption']+' — '+entry['date'],'title':entry['caption']+' — '+entry['date']})
-        link.append(html.Element('img',src=entry.get('thumbnail',entry['image']),alt='',loading='lazy',decoding='async'));thumbs.append(link)
+        link.append(html.Element('img',src=entry.get('thumbnail',entry['image']),alt='',loading='lazy',decoding='async'))
+        date=html.Element('span',{'class':'member-thumb-date'});date.text=datetime.strptime(entry['date'],'%B %Y').strftime('%b. %Y');link.append(date);thumbs.append(link)
     return aside

@@ -181,20 +181,24 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-contact-email strong{display:block;font-weight:600;font-size:17px;color:var(--hmd-navy)}
 .lab-contact-profiles img{mix-blend-mode:multiply;background:transparent!important}
 
-.lab-alumni-layout{max-width:1120px;margin:32px auto 48px;padding:0 24px}
+.lab-alumni-layout{max-width:1040px;margin:32px auto 48px;padding:0 24px}
 .lab-alumni-layout>h1{font-size:32px!important;line-height:1.2;margin:0 0 25px!important}
 .alumni-member{border-top:1px solid #d9dfe8;margin:0 0 18px;padding:18px 0 0}
 .alumni-member>summary{cursor:pointer;list-style:none}
 .alumni-member>summary::-webkit-details-marker{display:none}
-.alumni-profile{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,1fr) minmax(0,1fr);gap:30px;align-items:center}
-.alumni-profile p{font-size:15.5px;line-height:1.65;margin:0 0 4px;color:#252A34}
+.alumni-profile{display:grid;grid-template-columns:minmax(0,.7fr) minmax(300px,1.6fr) minmax(0,.7fr);gap:24px;align-items:center}
+.alumni-profile p{font-size:14px;line-height:1.65;margin:0 0 4px;color:#252A34}
 .lab-alumni-page #s-content .alumni-profile h2{font-size:14px!important;line-height:1.5;color:#A1662F!important;margin:0 0 8px!important;font-weight:600}
-.lab-alumni-page #s-content .alumni-profile h3{font-size:19px!important;line-height:1.5;color:#142B55!important;margin:0 0 2px!important}
+.lab-alumni-page #s-content .alumni-profile h3{font-size:24px!important;line-height:1.5;color:#142B55!important;margin:0 0 2px!important}
 .alumni-identity{text-align:center}
 .alumni-profile .alumni-role{font-size:13px;color:#547DA6}
-.alumni-profile .alumni-years,.alumni-profile .alumni-degree{font-size:14px;color:#656b74}
-.alumni-profile .alumni-chinese{color:#656b74}
-.alumni-publications-toggle{position:relative;font-size:14px;line-height:1.6;color:#A1662F;padding:9px 22px 9px 0;margin-top:12px;border-bottom:1px solid #EFF1F5}
+.alumni-profile .alumni-years,.alumni-profile .alumni-degree{font-size:13px;color:#656b74}
+.alumni-tenure{display:flex;gap:10px;align-items:baseline;justify-content:center;margin-top:5px}
+.alumni-tenure p{margin:0!important}
+.alumni-prior,.alumni-next{max-width:220px}
+.alumni-next{justify-self:end;width:100%}
+.alumni-profile .alumni-chinese{font-size:16px;color:#656b74}
+.alumni-publications-toggle{position:relative;max-width:230px;margin:9px auto 0;font-size:14px;line-height:1.6;color:#A1662F;padding:6px 22px 6px 0;border-bottom:1px solid #EFF1F5;text-align:left}
 .alumni-publications-toggle:after{content:'+';position:absolute;right:3px;font-size:17px}
 .alumni-member[open] .alumni-publications-toggle:after{content:'−'}
 .alumni-publications{max-width:900px;margin:18px auto 24px}
@@ -203,8 +207,8 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .alumni-paper-title:first-child{margin-top:0}
 .alumni-paper-title a{font-weight:600;text-decoration:none}
 .alumni-member>summary:focus-visible{outline:2px solid #A1662F;outline-offset:5px}
-@media(max-width:700px){.alumni-profile{grid-template-columns:1fr 1fr;gap:15px}.alumni-identity{grid-column:1/-1;grid-row:1;text-align:left}.lab-alumni-layout{padding:0 18px}.alumni-profile p{font-size:14px}.alumni-publications{margin:14px 0 20px}}
-@media(max-width:420px){.alumni-profile{grid-template-columns:1fr}.alumni-identity{grid-column:1;grid-row:1}}
+@media(max-width:700px){.alumni-profile{grid-template-columns:1fr 1fr;gap:15px}.alumni-identity{grid-column:1/-1;grid-row:1;text-align:left}.alumni-tenure{justify-content:flex-start}.alumni-publications-toggle{margin-left:0;margin-right:0}.alumni-next{justify-self:start}.alumni-prior,.alumni-next{max-width:none}.lab-alumni-layout{padding:0 18px}.alumni-profile p{font-size:14px}.alumni-publications{margin:14px 0 20px}}
+@media(max-width:360px){.alumni-profile{grid-template-columns:1fr}.alumni-identity{grid-column:1;grid-row:1}}
 
 .lab-scholar-metrics{grid-column:1/-1;display:flex;gap:28px;align-items:center;padding:14px 0 6px;border-top:1px solid #EFF1F5;margin-top:12px}
 .lab-scholar-metrics>div{display:flex;align-items:baseline;gap:8px}
