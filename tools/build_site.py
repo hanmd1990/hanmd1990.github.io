@@ -4,6 +4,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.parse import urlparse,quote
 from lxml import html
+from alumni_layout import rebuild_alumni
 
 ROOT=Path(sys.argv[1]).resolve()
 color_version=hashlib.sha256((ROOT/'static/hmd-color.css').read_bytes()).hexdigest()[:12]
@@ -146,15 +147,22 @@ def archive_nav(kind,active):
         secondary=html.Element('div',{'class':'lab-archive-action-row'})
         scholar=html.Element('a',href='https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en',target='_blank',rel='noopener noreferrer',attrib={'class':'lab-archive-feature lab-scholar-link'});scholar.text='Google Scholar Profile';secondary.append(scholar);actions.append(secondary)
     nav.append(actions)
+    if kind=='publications' and citations.get('profile_metrics'):
+        metrics=citations['profile_metrics'];stats=html.Element('div',{'class':'lab-scholar-metrics','aria-label':'Google Scholar profile statistics'})
+        for label,key in [('Total citations','total_citations'),('h-index','h_index'),('i10-index','i10_index')]:
+            metric=html.Element('div');value=html.Element('strong');value.text=format(metrics[key],',');metric.append(value);caption=html.Element('span');caption.text=label;metric.append(caption);stats.append(metric)
+        nav.append(stats)
     if kind=='publications' and active!='covers':
         note=html.Element('p',{'class':'lab-publication-legend'});note.text='* Corresponding authors; ¹ Authors contributed equally';nav.append(note)
         if citations.get('checked_on'):
-            note=html.Element('p',{'class':'lab-citation-updated'});note.text='Citation counts: Google Scholar · updated '+citations['checked_on'];nav.append(note)
+            note=html.Element('p',{'class':'lab-citation-updated'});note.text='Citation counts: Google Scholar · automatically updated '+citations['checked_on'];nav.append(note)
     return nav
 
 for path in ROOT.rglob('index.html'):
     if any(p in path.relative_to(ROOT).parts for p in ('tools','work','outputs','.git','.github')):continue
     tree=read(path);route=path.parent.relative_to(ROOT).as_posix()
+    for footer in tree.xpath('//*[@id="s-footer-section-container"] | //*[@id="s-footer-logo-wrapper"] | //*[contains(concat(" ",normalize-space(@class)," ")," members-footer ")]'):
+        if footer.getparent() is not None:footer.getparent().remove(footer)
     for old in tree.xpath('//*[contains(concat(" ",@class," ")," lab-citation-badge ")]'):old.getparent().remove(old)
     page_class={'.':'lab-home-page','current':'lab-current-page','alumni':'lab-alumni-page','bio':'lab-bio-page','contact':'lab-contact-page','join':'lab-join-page'}.get(route)
     if page_class:add_class(tree.find('body'),page_class)
@@ -210,6 +218,7 @@ for path in ROOT.rglob('index.html'):
         for index in range(len(slides_list)):
             dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
         carousel.append(dots)
+    if route=='alumni':rebuild_alumni(tree)
     if route=='contact':
         contact=tree.xpath('//*[@id="s-content"]')[0]
         profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
@@ -218,7 +227,7 @@ for path in ROOT.rglob('index.html'):
         layout=html.fragment_fromstring('''<main class="lab-contact-layout">
           <header class="lab-contact-intro"><p class="lab-contact-eyebrow">Mengdi Han Research Group</p><h1>Contact</h1><p>Department of Biomedical Engineering · Peking University</p></header>
           <div class="lab-contact-grid">
-            <section class="lab-contact-profile" aria-labelledby="contact-name"><div class="lab-contact-person"><div class="lab-contact-portrait"><img src="/images/people/mengdi-han/contact.jpg" alt="Mengdi Han"></div><div><h2 id="contact-name">Mengdi Han</h2><p>College of Future Technology<br>Peking University</p></div></div><div class="lab-contact-email"><span>Email</span><a href="mailto:hmd@pku.edu.cn">hmd[at]pku.edu.cn</a></div><h3>Profiles &amp; resources</h3><nav class="lab-contact-profiles" aria-label="Profiles and resources"></nav><div class="lab-contact-address"><h3>Mailing address</h3><p>Department of Biomedical Engineering<br>College of Future Technology<br>Peking University<br>Beijing 100871, China</p></div></section>
+            <section class="lab-contact-profile" aria-labelledby="contact-name"><div class="lab-contact-person"><div class="lab-contact-portrait"><img src="/images/people/mengdi-han/contact.jpg" alt="Mengdi Han"></div><div><h2 id="contact-name">Mengdi Han</h2><p>College of Future Technology<br>Peking University</p></div></div><div class="lab-contact-email"><span>Email</span><strong>hmd[at]pku.edu.cn</strong></div><h3>Profiles &amp; resources</h3><nav class="lab-contact-profiles" aria-label="Profiles and resources"></nav><div class="lab-contact-address"><p>Department of Biomedical Engineering<br>College of Future Technology<br>Peking University<br>Beijing 100871, China</p></div></section>
             <section class="lab-contact-visit" aria-labelledby="contact-visit"><h2 id="contact-visit">Visit our lab</h2><figure class="lab-contact-map"><a href="/images/people/mengdi-han/contact-02.jpg" data-lightbox="true" aria-label="Enlarge laboratory location map"><img src="/images/people/mengdi-han/contact-02.jpg" alt="Peking University campus map and laboratory location"></a><figcaption>Campus map · Click to enlarge</figcaption></figure><nav class="lab-contact-map-links" aria-label="Map services"><a href="https://maps.app.goo.gl/XG2o6uWEqPignxYM8" target="_blank" rel="noopener noreferrer">Google Map ↗</a><a href="https://j.map.baidu.com/86/7Spi" target="_blank" rel="noopener noreferrer">百度地图 ↗</a><a href="https://surl.amap.com/4fO0iYusb3Nn" target="_blank" rel="noopener noreferrer">高德地图 ↗</a></nav><div class="lab-contact-travel"><section><h3>② Metro · ~350 m</h3><p>East Gate of Peking University, Exit B<br>北京大学东门站，B出口</p></section><section><h3>③ Bus · ~350 m</h3><p>Zhongguanyuan North<br>中关园北站</p></section><section class="lab-contact-driving"><h3>① Lab location / ④ Driving &amp; taxi</h3><p>No. 116 Zhongguancun North Street<br>中关村北大街116号，北京大学新奥工学大楼</p></section></div></section>
           </div></main>''')
         profile_nav=layout.xpath('.//nav[@class="lab-contact-profiles"]')[0]
@@ -226,7 +235,6 @@ for path in ROOT.rglob('index.html'):
         for name,icon in zip(profile_names,profile_icons):
             if name in profile_links:
                 link=html.Element('a',href=profile_links[name]);link.append(html.Element('img',src='/images/people/mengdi-han/'+icon,alt='',attrib={'aria-hidden':'true','width':'18','height':'18'}));label=html.Element('span');label.text=name;link.append(label);profile_nav.append(link)
-        layout.append(html.fragment_fromstring('<footer class="lab-contact-footer">Copyright © 2021 Mengdi Han Research Group - All Rights Reserved<br><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">京ICP备2021005752号-1</a></footer>'))
         contact.append(layout)
         # The platform snapshot nests the right column inside the left column.
         for right in tree.xpath('//div[contains(concat(" ",@class," ")," col-7 ")]'):
@@ -265,7 +273,6 @@ for path in ROOT.rglob('index.html'):
             article=html.Element('a',href=href,attrib={'target':'_blank','rel':'noopener noreferrer','class':'lab-cover-article'});article.text='View article ↗';caption.append(article)
             paper=html.Element('a',href=href);paper.text=info.get('title','Journal cover');caption.append(citation_badge(citation_record(paper),paper.text))
             card.append(caption);grid.append(card)
-        gallery.append(html.fragment_fromstring('<footer class="lab-contact-footer">Copyright © 2021 Mengdi Han Research Group - All Rights Reserved<br><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">京ICP备2021005752号-1</a></footer>'))
         content.append(gallery)
     for menu in tree.xpath('//header[contains(@class,"lab-header")]//details'):
         label=text(menu.find('summary')).replace('⌄','').strip().upper()
@@ -293,7 +300,7 @@ for path in ROOT.rglob('index.html'):
             if 'Corresponding authors' in text(note) and 'Authors contributed equally' in text(note):note.getparent().remove(note)
         for element in tree.xpath('//*[@id="s-content"]//h1|//*[@id="s-content"]//h2|//*[@id="s-content"]//h3|//*[@id="s-content"]//h4|//*[@id="s-content"]//h5|//*[@id="s-content"]//h6|//*[@id="s-content"]//p'):
             if re.fullmatch(r'\d{4}',text(element)):add_class(element,'lab-content-year')
-    if not route.startswith('news') and route!='covers':
+    if not route.startswith('news') and route not in ('covers','overview','electronic-skins','wearable-devices','smart-implants'):
         for link in tree.xpath('//a[contains(concat(" ",@class," ")," lab-publication-link ")]'):
             if not text(link):
                 if route=='.':

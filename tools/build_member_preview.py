@@ -1,5 +1,6 @@
 from pathlib import Path
 from lxml import html
+from member_gallery import build_gallery
 import ast,copy,json,re,sys,unicodedata
 root=Path(sys.argv[1] if len(sys.argv)>1 else 'work/design-preview')
 publish='--publish' in sys.argv
@@ -41,9 +42,13 @@ def is_first_author(name,pid):
         if name_key(token.replace('¹','').replace('*',''))!=name_key(initials):continue
         if index==0 or '¹' in token:return True
     return False
-page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-full-photos"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
+page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-gallery-v2"><script src="/static/site.js" defer></script><script src="/static/member-gallery.js?v=20261014-gallery-v2" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
 page.find('body').insert(0,copy.deepcopy(source.xpath('//header[contains(@class,"lab-header")]')[0]))
 main=html.fragment_fromstring('''<main class="members-layout"><header class="members-intro"><h1>Current Members</h1><p>Our team brings together electrical engineering, biomedical engineering, mechanical engineering, materials science, life science and medicine.</p><p class="members-preview-note">Layout preview. <a href="/current/">View the current page</a></p></header></main>''')
+full_order={}
+for paragraph in html.document_fromstring((root/'all/index.html').read_text(encoding='utf8')).xpath('//p'):
+    match=re.match(r'^\((\d+)\)',paragraph.text_content().strip())
+    if match:full_order.setdefault(int(match[1]),len(full_order))
 groups=roster['groups']
 grid=html.Element('div',{'class':'members-grid'})
 body_layout=html.Element('div',{'class':'members-body'})
@@ -59,6 +64,7 @@ for section_id,label,chinese,people in groups:
         chinese_name=html.Element('p',{'class':'member-chinese'});chinese_name.text=zh+(' · '+chinese_school if chinese_school else '');card.append(chinese_name)
         if name=='Mengdi Han':grid.append(card);continue
         ids=[pid for pid in roster['member_paper_ids'].get(name,[]) if pid in papers and str(pid) not in roster.get('excluded_representative_paper_ids',{}) and is_first_author(name,pid)]
+        ids.sort(key=lambda pid:full_order.get(pid,len(full_order)+126-pid))
         details=html.Element('details',{'class':'member-publications'})
         summary=html.Element('summary');summary.text='Selected Publications'+(' ('+str(len(ids))+')' if ids else '');details.append(summary)
         if ids:
@@ -79,18 +85,11 @@ for section_id,label,chinese,people in groups:
                 item.append(metadata);listing.append(item)
             details.append(listing)
         else:
-            empty=html.Element('p',{'class':'member-paper-pending'});empty.text='No representative first / co-first author research paper or review has been confirmed in the lab publication list yet.';details.append(empty)
+            empty=html.Element('p',{'class':'member-paper-pending'});empty.text='-';details.append(empty)
         card.append(details);grid.append(card)
-photos=html.Element('aside',{'class':'member-photos','aria-label':'Group photos'})
-photos_heading=html.Element('h2');photos_heading.text='Group Photos';photos.append(photos_heading)
 photo_data=json.loads((root/'data/group-photos.json').read_text(encoding='utf8'))
-for entry in photo_data:
-    src=entry['image']
-    figure=html.Element('figure');link=html.Element('a',href=src,attrib={'data-lightbox':'true','aria-label':'Enlarge '+entry['caption']+' — '+entry['date']})
-    photo=html.Element('img',src=src,alt=entry['caption'],loading='lazy',decoding='async');link.append(photo);figure.append(link)
-    caption=html.Element('figcaption');caption.text=entry['caption'];date=html.Element('span',{'class':'photo-date'});date.text=entry['date'];caption.append(date);figure.append(caption);photos.append(figure)
+photos=build_gallery(photo_data)
 body_layout.append(photos)
-main.append(html.fragment_fromstring('<footer class="members-footer">Mengdi Han Research Group · Peking University<br>Member publication lists were checked on 2026-10-14.</footer>'))
 page.xpath('//*[@id="s-content"]')[0].append(main)
 out=root/'preview/current-members/index.html';out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(html.tostring(page,encoding='utf8',doctype='<!DOCTYPE html>'))
 if publish:

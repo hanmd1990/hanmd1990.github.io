@@ -124,8 +124,13 @@
           "Peking University / 北京大学"
         ],
         [
-          "Xiaowen Zhang",
-          "张晓雯",
+          "Penglai Yao",
+          "姚朋来",
+          "Peking University / 北京大学"
+        ],
+        [
+          "Junjie Wang",
+          "王俊洁",
           "Peking University / 北京大学"
         ]
       ]
@@ -237,7 +242,8 @@
     ],
     "Yanzhong Wang": [],
     "Yunling Li": [],
-    "Xiaowen Zhang": []
+    "Penglai Yao": [],
+    "Junjie Wang": []
   },
   "evidence": {
     "85": {
@@ -951,6 +957,7 @@
     "Kangle Li": "Undergraduate",
     "Yanzhong Wang": "Undergraduate",
     "Yunling Li": "Undergraduate",
-    "Xiaowen Zhang": "Undergraduate"
+    "Penglai Yao": "Undergraduate",
+    "Junjie Wang": "Undergraduate"
   }
 }

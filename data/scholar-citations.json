@@ -1352,6 +1352,23 @@
       "cited_by": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=2624761119887230343",
       "scholar_article": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=rjC8MUQAAAAJ&pagesize=100&citation_for_view=rjC8MUQAAAAJ:bKqednn6t2AC",
       "checked_on": "2026-10-14"
+    },
+    "aflexiblehybridizedelectromagnetictriboelectricnanogeneratoranditsapplicationfor3dtrajectorysensing": {
+      "title": "A flexible hybridized electromagnetic-triboelectric nanogenerator and its application for 3D trajectory sensing",
+      "year": 2020,
+      "count": 85,
+      "estimated": false,
+      "cited_by": "https://scholar.google.com/scholar?cites=2204454159587458542&as_sdt=2005&sciodt=0,5&hl=en",
+      "scholar_article": "https://scholar.google.com/scholar?cluster=2204454159587458542&hl=en&as_sdt=0,5",
+      "checked_on": "2026-10-14",
+      "source": "Google Scholar title search; independent Alumni article outside PI profile"
     }
+  },
+  "profile_metrics": {
+    "total_citations": 15699,
+    "h_index": 64,
+    "i10_index": 120,
+    "checked_on": "2026-10-14",
+    "source_url": "https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en"
   }
 }
