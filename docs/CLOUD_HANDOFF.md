@@ -51,3 +51,16 @@ Publication/News entry opens current year. Decade navigation labels 2020s, 2010s
 Full site currently has 42 HTML pages, 126 listed publications, shared Scholar citation data, independently hosted local assets.
 Preserve existing Alumni/Join disclosures, Contact layout/icons/map, Covers gallery, smooth Home carousel dots, and hover dropdown navigation.
 A weekly Scholar update was configured on the original host. Do not create a duplicate schedule without checking existing automation. Article additions concern years after 2025; older conference entries should not be imported. Citation counts may refresh across all years.
+
+
+## Cloud continuation checkpoint — 2026-10-14
+
+Current page fix published in `ea76fff5d875efc3b3ec8c023f90f45ef828c469`.
+- Generator now uses all 16 full-resolution entries from group-photos.json, native proportions, original captions/dates and existing lightbox.
+- Removed education prefixes; school and paper text 15.5px; roles 13px; other secondary text 14px. Uniform 20-member list preserved.
+- Official page browser verification: Yiran and Zhongyi disclosures opened, papers 88/114, co-first markers, metadata/citation links visible; original-photo dialog opened successfully. Desktop screenshots in docs/verification/.
+- All 42 website HTML pages passed resource/internal-link validation. Other site pages restored unchanged after generator run.
+- Mobile CSS reviewed (single-column below 520px; photos stack below members below 760px), but actual mobile viewport screenshots are STILL PENDING: cloud browser API in this session does not expose viewport resize/device emulation. Do not claim mobile visual QA is complete.
+- Analytics implementation prepared in analytics/ with Worker, D1 migration, dashboard, tracker, deployment template and lockfile. Three local security tests and Wrangler dry-run build pass. No Cloudflare resources or credentials created; tracker not installed. Access/D1 end-to-end tests pending login and deployment.
+- Site verifier excludes the independent analytics backend tree, whose dependencies are not website assets. Use npm test / Wrangler dry-run for backend verification.
+- Next: cloud Cloudflare login; verify free account plans; configure Access owner email/AUD/issuer and D1; deploy; test unauthorized access and actual collection; then attach tracker. Follow analytics/README.md. No DNS changes and no duplicate Scholar schedule.

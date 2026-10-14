@@ -18,7 +18,7 @@ def check(raw,file,kind='asset'):
     if p.is_dir():p=p/'index.html'
     if not p.is_file():errors.append(f'{file.relative_to(ROOT)}: missing {raw}')
 for f in ROOT.rglob('*'):
-    if any(x in f.relative_to(ROOT).parts for x in ('.git','.github','work','outputs','tools')):continue
+    if any(x in f.relative_to(ROOT).parts for x in ('.git','.github','work','outputs','tools','analytics')):continue
     if f.suffix=='.html':
         count+=1;t=html.document_fromstring(f.read_bytes())
         for e in t.iter():
