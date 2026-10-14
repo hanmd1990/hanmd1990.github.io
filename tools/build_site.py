@@ -46,6 +46,13 @@ for year in pub_years:
         publication_index[paper_key(links[0].get('href'))]={'title':' '.join(links[0].text_content().split()),'journal':journal,'year':year}
 def current(ys):return today if today in ys else next((y for y in ys if y<=today),ys[0])
 def text(e):return ' '.join(''.join(e.itertext()).split())
+def citation_badge(record,title):
+    count=record.get('count') if record else None
+    url=(record.get('cited_by') or record.get('scholar_article')) if record else 'https://scholar.google.com/scholar?hl=en&q='+quote('"'+title+'"')
+    badge=html.Element('span',{'class':'lab-citation-badge'})
+    anchor=html.Element('a',href=url,attrib={'class':'lab-citation-link','target':'_blank','rel':'noopener noreferrer','data-link-kind':'citation','title':('Google Scholar · checked '+record['checked_on'] if record else 'Not yet matched in Google Scholar; search by article title')})
+    anchor.text='Citations ('+(str(count)+('*' if record.get('estimated') else '') if count is not None else '—')+')';badge.append(anchor)
+    return badge
 def add_class(e,name):
     classes=e.get('class','').split()
     if name not in classes:classes.append(name)
@@ -255,7 +262,9 @@ for path in ROOT.rglob('index.html'):
                 year=html.Element('p',{'class':'lab-cover-year'});year.text='Publication · '+str(info['year']);caption.append(year)
             if info.get('title'):
                 title=html.Element('p',{'class':'lab-cover-title'});title.text=info['title'];caption.append(title)
-            article=html.Element('a',href=href,attrib={'target':'_blank','rel':'noopener noreferrer','class':'lab-cover-article'});article.text='View article ↗';caption.append(article);card.append(caption);grid.append(card)
+            article=html.Element('a',href=href,attrib={'target':'_blank','rel':'noopener noreferrer','class':'lab-cover-article'});article.text='View article ↗';caption.append(article)
+            paper=html.Element('a',href=href);paper.text=info.get('title','Journal cover');caption.append(citation_badge(citation_record(paper),paper.text))
+            card.append(caption);grid.append(card)
         gallery.append(html.fragment_fromstring('<footer class="lab-contact-footer">Copyright © 2021 Mengdi Han Research Group - All Rights Reserved<br><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">京ICP备2021005752号-1</a></footer>'))
         content.append(gallery)
     for menu in tree.xpath('//header[contains(@class,"lab-header")]//details'):
@@ -286,21 +295,26 @@ for path in ROOT.rglob('index.html'):
             if re.fullmatch(r'\d{4}',text(element)):add_class(element,'lab-content-year')
     if not route.startswith('news') and route!='covers':
         for link in tree.xpath('//a[contains(concat(" ",@class," ")," lab-publication-link ")]'):
-            if not text(link):continue
+            if not text(link):
+                if route=='.':
+                    feature=next((e for e in link.iterancestors() if 's-block-feature' in e.get('class','').split()),None)
+                    info=publication_index.get(paper_key(link.get('href','')))
+                    if feature is not None and info:
+                        subtitles=feature.xpath('.//*[contains(concat(" ",@class," ")," lab-home-citation ")]')
+                        if subtitles:
+                            paper=html.Element('a',href=link.get('href'));paper.text=info['title'];subtitles[0].append(citation_badge(citation_record(paper),paper.text))
+                continue
             paragraph=next((a for a in link.iterancestors() if a.tag=='p'),None)
             if paragraph is None:continue
             if (route in ('all','publications') or re.fullmatch(r'publications\d{4}',route)) and (not paper_id(paragraph) or paragraph.xpath('.//a[@href]')[0] is not link):continue
-            record=citation_record(link);count=record.get('count') if record else None
-            url=(record.get('cited_by') or record.get('scholar_article')) if record else 'https://scholar.google.com/scholar?hl=en&q='+quote('"'+text(link)+'"')
+            record=citation_record(link)
             target=paragraph;next_element=paragraph.getnext()
             for _ in range(3):
                 if next_element is None or paper_id(next_element):break
                 if next_element.tag=='p' and next_element.xpath('.//em[not(contains(@class,"lab-author-note"))]'):target=next_element
                 next_element=next_element.getnext()
             if target.xpath('./span[contains(@class,"lab-citation-badge")]'):continue
-            badge=html.Element('span',{'class':'lab-citation-badge'})
-            anchor=html.Element('a',href=url,attrib={'class':'lab-citation-link','target':'_blank','rel':'noopener noreferrer','data-link-kind':'citation','title':('Google Scholar · checked '+record['checked_on'] if record else 'Not yet matched in Google Scholar; search by article title')})
-            anchor.text='Citations ('+(str(count)+('*' if record.get('estimated') else '') if count is not None else '—')+')';badge.append(anchor);target.append(badge)
+            target.append(citation_badge(record,text(link)))
     for stylesheet in tree.xpath('//link[starts-with(@href,"/static/hmd-color.css")]'):
         stylesheet.getparent().remove(stylesheet)
     tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css?v='+color_version))
