@@ -41,7 +41,7 @@ def is_first_author(name,pid):
         if name_key(token.replace('¹','').replace('*',''))!=name_key(initials):continue
         if index==0 or '¹' in token:return True
     return False
-page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-members-photos"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
+page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-full-photos"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
 page.find('body').insert(0,copy.deepcopy(source.xpath('//header[contains(@class,"lab-header")]')[0]))
 main=html.fragment_fromstring('''<main class="members-layout"><header class="members-intro"><h1>Current Members</h1><p>Our team brings together electrical engineering, biomedical engineering, mechanical engineering, materials science, life science and medicine.</p><p class="members-preview-note">Layout preview. <a href="/current/">View the current page</a></p></header></main>''')
 groups=roster['groups']
@@ -55,8 +55,7 @@ for section_id,label,chinese,people in groups:
         if name==people[0][0]:card.set('id',section_id)
         if name=='Mengdi Han':school='Peking University / 北京大学'
         english_school,_,chinese_school=school.partition(' / ')
-        prefix={'postdoctoral-fellows':'Ph.D. school: ','phd-students':'Undergraduate school: '}.get(section_id,'')
-        education=html.Element('p',{'class':'member-school'});education.text=prefix+english_school;card.append(education)
+        education=html.Element('p',{'class':'member-school'});education.text=english_school;card.append(education)
         chinese_name=html.Element('p',{'class':'member-chinese'});chinese_name.text=zh+(' · '+chinese_school if chinese_school else '');card.append(chinese_name)
         if name=='Mengdi Han':grid.append(card);continue
         ids=[pid for pid in roster['member_paper_ids'].get(name,[]) if pid in papers and str(pid) not in roster.get('excluded_representative_paper_ids',{}) and is_first_author(name,pid)]
@@ -84,14 +83,12 @@ for section_id,label,chinese,people in groups:
         card.append(details);grid.append(card)
 photos=html.Element('aside',{'class':'member-photos','aria-label':'Group photos'})
 photos_heading=html.Element('h2');photos_heading.text='Group Photos';photos.append(photos_heading)
-seen=set()
-for image in source.xpath('//img[starts-with(@src,"/images/people/current/")]'):
-    src=image.get('src')
-    if src in seen:continue
-    seen.add(src)
-    figure=html.Element('figure');link=html.Element('a',href=src,attrib={'data-lightbox':'true'})
-    photo=html.Element('img',src=src,alt=image.get('alt','Group photo'),loading='lazy',decoding='async');link.append(photo);figure.append(link)
-    caption=html.Element('figcaption');caption.text=image.get('alt','');figure.append(caption);photos.append(figure)
+photo_data=json.loads((root/'data/group-photos.json').read_text(encoding='utf8'))
+for entry in photo_data:
+    src=entry['image']
+    figure=html.Element('figure');link=html.Element('a',href=src,attrib={'data-lightbox':'true','aria-label':'Enlarge '+entry['caption']+' — '+entry['date']})
+    photo=html.Element('img',src=src,alt=entry['caption'],loading='lazy',decoding='async');link.append(photo);figure.append(link)
+    caption=html.Element('figcaption');caption.text=entry['caption'];date=html.Element('span',{'class':'photo-date'});date.text=entry['date'];caption.append(date);figure.append(caption);photos.append(figure)
 body_layout.append(photos)
 main.append(html.fragment_fromstring('<footer class="members-footer">Mengdi Han Research Group · Peking University<br>Member publication lists were checked on 2026-10-14.</footer>'))
 page.xpath('//*[@id="s-content"]')[0].append(main)
@@ -101,4 +98,4 @@ if publish:
     formal.find('head/title').text='CURRENT - Mengdi Han Research Group'
     for node in formal.xpath('//meta[@name="robots"] | //*[@class="members-preview-note"]'):node.getparent().remove(node)
     (root/'current/index.html').write_bytes(html.tostring(formal,encoding='utf8',doctype='<!DOCTYPE html>'))
-print('Generated compact bilingual member cards, full publication metadata and '+str(len(seen))+' group photographs')
+print('Generated compact bilingual member cards, full publication metadata and '+str(len(photo_data))+' group photographs')
