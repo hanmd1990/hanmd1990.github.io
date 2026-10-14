@@ -152,3 +152,27 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-publications-page #s-content .s-footer-section{padding:24px 0!important}
 @media(max-width:800px){.lab-publications-page #s-content .s-section{padding-top:22px!important}.lab-publications-page #s-content .s-section>.container{width:calc(100% - 30px)!important}.lab-publications-page #s-content .lab-publication-body p{font-size:15px!important}.lab-publications-page #s-content .lab-publication-body .lab-content-year{font-size:22px!important}}
 :root body.lab-alumni-page #s-content :is(.lab-alumni-name,.lab-alumni-label),:root body.lab-alumni-page #s-content :is(.lab-alumni-name,.lab-alumni-label) *{color:var(--hmd-gold)!important}
+.lab-contact-profiles a{display:flex;align-items:center;gap:7px}
+.lab-contact-profiles img{width:18px!important;height:18px!important;object-fit:contain;flex:none;margin:0!important}
+.lab-citation-badge{display:inline-block;margin-left:10px;white-space:nowrap;vertical-align:baseline}
+:root body #s-content .lab-citation-badge,:root body #s-content .lab-citation-badge *,
+:root body.lab-publications-page #s-content .lab-publication-body p .lab-citation-badge,:root body.lab-publications-page #s-content .lab-publication-body p .lab-citation-badge *{font-size:12px!important;line-height:1.5!important;font-weight:400!important;font-style:normal!important}
+.lab-citation-link{display:inline-block;border:1px solid #142b5525;border-radius:4px;padding:1px 6px;text-decoration:none!important;background:var(--hmd-light-gray)}
+.lab-citation-link:hover{border-color:var(--hmd-gold);background:#f9df932e}
+.lab-citation-updated{grid-column:1/-1;text-align:right;font-size:11px;line-height:1.5;margin:0;color:var(--hmd-text)}
+.lab-covers-layout{max-width:1080px;margin:34px auto 50px;padding:0 22px}
+.lab-covers-layout>header{margin-bottom:28px}
+.lab-covers-layout h1{font-size:30px!important;line-height:1.3;margin:0 0 10px!important}
+.lab-covers-layout>header p{font-size:15px;line-height:1.6;margin:0}
+.lab-covers-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.lab-cover-card{border:1px solid var(--hmd-light-gray);border-radius:8px;overflow:hidden;background:white;display:flex;flex-direction:column}
+.lab-cover-image{display:flex;align-items:center;justify-content:center;background:var(--hmd-light-gray);padding:18px;aspect-ratio:4/5}
+.lab-cover-image img{display:block;max-width:100%;width:100%;height:100%;object-fit:contain;transition:transform .25s ease}
+.lab-cover-image:hover img{transform:scale(1.025)}
+.lab-cover-caption{padding:18px;display:flex;flex-direction:column;flex:1}
+.lab-cover-caption h2{font-size:17px!important;line-height:1.4;margin:0 0 5px!important}
+.lab-cover-year{font-size:13px;line-height:1.4;color:var(--hmd-gold);margin:0 0 10px}
+.lab-cover-title{font-size:13px;line-height:1.65;margin:0 0 15px;flex:1}
+.lab-cover-article{font-size:13px;font-weight:600;text-decoration:none}
+@media(max-width:800px){.lab-covers-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.lab-citation-updated{text-align:left}.lab-cover-caption{padding:14px}}
+@media(max-width:480px){.lab-covers-grid{grid-template-columns:1fr}.lab-covers-layout{padding:0 18px}.lab-citation-badge{margin-left:6px}}

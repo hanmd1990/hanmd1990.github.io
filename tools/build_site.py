@@ -1,14 +1,23 @@
 """Build archive navigation and full lists from editable year pages. No network."""
-import copy,datetime,hashlib,json,re,sys
+import copy,datetime,hashlib,json,re,sys,unicodedata
 from pathlib import Path
 from zoneinfo import ZoneInfo
-from urllib.parse import urlparse
+from urllib.parse import urlparse,quote
 from lxml import html
 
 ROOT=Path(sys.argv[1]).resolve()
 color_version=hashlib.sha256((ROOT/'static/hmd-color.css').read_bytes()).hexdigest()[:12]
 script_version=hashlib.sha256((ROOT/'static/site.js').read_bytes()).hexdigest()[:12]
 today=datetime.datetime.now(ZoneInfo('Asia/Shanghai')).year
+citations_path=ROOT/'data/scholar-citations.json'
+citations=json.loads(citations_path.read_text(encoding='utf-8')) if citations_path.exists() else {'records':{},'checked_on':None}
+def title_key(s):return ''.join(c for c in unicodedata.normalize('NFKC',s).casefold() if c.isalnum())
+def citation_record(link):
+    doi=re.search(r'10\.\d{4,9}/[^?#]+',link.get('href',''),re.I)
+    if doi:
+        found=citations['records'].get('doi:'+doi[0].rstrip('/').lower())
+        if found:return found
+    return citations['records'].get(title_key(text(link)))
 def read(path):return html.document_fromstring(path.read_text(encoding='utf-8'))
 def write(path,tree):
     path.parent.mkdir(parents=True,exist_ok=True)
@@ -17,6 +26,24 @@ def years(kind):
     return sorted([int(p.parent.name[len(kind):]) for p in ROOT.glob(kind+'*/index.html') if re.fullmatch(kind+r'\d{4}',p.parent.name)],reverse=True)
 pub_years=years('publications');news_years=years('news')
 assert pub_years and news_years,'Year pages are required'
+def paper_key(href):
+    doi=re.search(r'10\.\d{4,9}/[^?#]+',href,re.I)
+    return 'doi:'+doi[0].rstrip('/').lower() if doi else href.split('?')[0].rstrip('/')
+publication_index={}
+for year in pub_years:
+    for p in read(ROOT/f'publications{year}/index.html').xpath('//p'):
+        if not re.match(r'^\(\d+\)',p.text_content().strip()):continue
+        links=p.xpath('.//a[@href]')
+        if not links:continue
+        journal='';following=p.getnext()
+        for _ in range(3):
+            if following is None:break
+            for em in following.xpath('.//em'):
+                value=' '.join(em.text_content().split())
+                if value and not re.fullmatch(r'et\s*al\.?|\d+',value,re.I):journal=value;break
+            if journal:break
+            following=following.getnext()
+        publication_index[paper_key(links[0].get('href'))]={'title':' '.join(links[0].text_content().split()),'journal':journal,'year':year}
 def current(ys):return today if today in ys else next((y for y in ys if y<=today),ys[0])
 def text(e):return ' '.join(''.join(e.itertext()).split())
 def add_class(e,name):
@@ -114,11 +141,14 @@ def archive_nav(kind,active):
     nav.append(actions)
     if kind=='publications' and active!='covers':
         note=html.Element('p',{'class':'lab-publication-legend'});note.text='* Corresponding authors; ¹ Authors contributed equally';nav.append(note)
+        if citations.get('checked_on'):
+            note=html.Element('p',{'class':'lab-citation-updated'});note.text='Citation counts: Google Scholar · updated '+citations['checked_on'];nav.append(note)
     return nav
 
 for path in ROOT.rglob('index.html'):
     if any(p in path.relative_to(ROOT).parts for p in ('tools','work','outputs','.git','.github')):continue
     tree=read(path);route=path.parent.relative_to(ROOT).as_posix()
+    for old in tree.xpath('//*[contains(concat(" ",@class," ")," lab-citation-badge ")]'):old.getparent().remove(old)
     page_class={'.':'lab-home-page','current':'lab-current-page','alumni':'lab-alumni-page','bio':'lab-bio-page','contact':'lab-contact-page','join':'lab-join-page'}.get(route)
     if page_class:add_class(tree.find('body'),page_class)
     for link in tree.xpath('//a[@href]'):
@@ -185,9 +215,10 @@ for path in ROOT.rglob('index.html'):
             <section class="lab-contact-visit" aria-labelledby="contact-visit"><h2 id="contact-visit">Visit our lab</h2><figure class="lab-contact-map"><a href="/images/people/mengdi-han/contact-02.jpg" data-lightbox="true" aria-label="Enlarge laboratory location map"><img src="/images/people/mengdi-han/contact-02.jpg" alt="Peking University campus map and laboratory location"></a><figcaption>Campus map · Click to enlarge</figcaption></figure><nav class="lab-contact-map-links" aria-label="Map services"><a href="https://maps.app.goo.gl/XG2o6uWEqPignxYM8" target="_blank" rel="noopener noreferrer">Google Map ↗</a><a href="https://j.map.baidu.com/86/7Spi" target="_blank" rel="noopener noreferrer">百度地图 ↗</a><a href="https://surl.amap.com/4fO0iYusb3Nn" target="_blank" rel="noopener noreferrer">高德地图 ↗</a></nav><div class="lab-contact-travel"><section><h3>② Metro · ~350 m</h3><p>East Gate of Peking University, Exit B<br>北京大学东门站，B出口</p></section><section><h3>③ Bus · ~350 m</h3><p>Zhongguanyuan North<br>中关园北站</p></section><section class="lab-contact-driving"><h3>① Lab location / ④ Driving &amp; taxi</h3><p>No. 116 Zhongguancun North Street<br>中关村北大街116号，北京大学新奥工学大楼</p></section></div></section>
           </div></main>''')
         profile_nav=layout.xpath('.//nav[@class="lab-contact-profiles"]')[0]
-        for name in profile_names:
+        profile_icons=['contact-02.png','contact-03.png','contact.png','contact-06.png','contact-04.png','contact-05.png','contact-07.png','contact-08.png','contact-09.png']
+        for name,icon in zip(profile_names,profile_icons):
             if name in profile_links:
-                link=html.Element('a',href=profile_links[name]);link.text=name;profile_nav.append(link)
+                link=html.Element('a',href=profile_links[name]);link.append(html.Element('img',src='/images/people/mengdi-han/'+icon,alt='',attrib={'aria-hidden':'true','width':'18','height':'18'}));label=html.Element('span');label.text=name;link.append(label);profile_nav.append(link)
         layout.append(html.fragment_fromstring('<footer class="lab-contact-footer">Copyright © 2021 Mengdi Han Research Group - All Rights Reserved<br><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">京ICP备2021005752号-1</a></footer>'))
         contact.append(layout)
         # The platform snapshot nests the right column inside the left column.
@@ -201,6 +232,27 @@ for path in ROOT.rglob('index.html'):
                 image.set('alt','Peking University campus map and laboratory location');image.set('loading','eager')
                 if image.getparent().tag!='a':
                     parent=image.getparent();link=html.Element('a',href=image.get('src'),attrib={'data-lightbox':'true','aria-label':'Enlarge laboratory location map'});parent.replace(image,link);link.append(image)
+    if route=='covers':
+        content=tree.xpath('//*[@id="s-content"]')[0]
+        existing_cards=content.xpath('.//article[@class="lab-cover-card"]')
+        covers=[(card.xpath('.//img')[0].get('src'),card.xpath('.//a[@class="lab-cover-article"]')[0].get('href')) for card in existing_cards] if existing_cards else [(image.get('src'),image.getparent().get('href')) for image in content.xpath('.//img') if image.getparent().tag=='a']
+        content.clear();content.set('id','s-content')
+        gallery=html.fragment_fromstring('<main class="lab-covers-layout"><header><h1>Journal covers</h1><p>Explore the covers featuring our research.</p></header><div class="lab-covers-grid"></div></main>')
+        grid=gallery.xpath('.//div')[0]
+        covers.sort(key=lambda item:publication_index.get(paper_key(item[1]),{}).get('year',0),reverse=True)
+        for src,href in covers:
+            info=publication_index.get(paper_key(href),{})
+            card=html.Element('article',{'class':'lab-cover-card'})
+            image_link=html.Element('a',href=src,attrib={'data-lightbox':'true','class':'lab-cover-image','aria-label':'Enlarge '+info.get('journal','journal')+' cover'});image_link.append(html.Element('img',src=src,alt=info.get('journal','Journal')+' cover',loading='lazy'));card.append(image_link)
+            caption=html.Element('div',{'class':'lab-cover-caption'})
+            heading=html.Element('h2');heading.text=info.get('journal') or 'Journal cover';caption.append(heading)
+            if info.get('year'):
+                year=html.Element('p',{'class':'lab-cover-year'});year.text=str(info['year']);caption.append(year)
+            if info.get('title'):
+                title=html.Element('p',{'class':'lab-cover-title'});title.text=info['title'];caption.append(title)
+            article=html.Element('a',href=href,attrib={'target':'_blank','rel':'noopener noreferrer','class':'lab-cover-article'});article.text='View article ↗';caption.append(article);card.append(caption);grid.append(card)
+        gallery.append(html.fragment_fromstring('<footer class="lab-contact-footer">Copyright © 2021 Mengdi Han Research Group - All Rights Reserved<br><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">京ICP备2021005752号-1</a></footer>'))
+        content.append(gallery)
     for menu in tree.xpath('//header[contains(@class,"lab-header")]//details'):
         label=text(menu.find('summary')).replace('⌄','').strip().upper()
         if label not in ('PUBLICATIONS','NEWS'):continue
@@ -227,6 +279,23 @@ for path in ROOT.rglob('index.html'):
             if 'Corresponding authors' in text(note) and 'Authors contributed equally' in text(note):note.getparent().remove(note)
         for element in tree.xpath('//*[@id="s-content"]//h1|//*[@id="s-content"]//h2|//*[@id="s-content"]//h3|//*[@id="s-content"]//h4|//*[@id="s-content"]//h5|//*[@id="s-content"]//h6|//*[@id="s-content"]//p'):
             if re.fullmatch(r'\d{4}',text(element)):add_class(element,'lab-content-year')
+    if not route.startswith('news') and route!='covers':
+        for link in tree.xpath('//a[contains(concat(" ",@class," ")," lab-publication-link ")]'):
+            if not text(link):continue
+            paragraph=next((a for a in link.iterancestors() if a.tag=='p'),None)
+            if paragraph is None:continue
+            if (route in ('all','publications') or re.fullmatch(r'publications\d{4}',route)) and (not paper_id(paragraph) or paragraph.xpath('.//a[@href]')[0] is not link):continue
+            record=citation_record(link);count=record.get('count') if record else None
+            url=(record.get('cited_by') or record.get('scholar_article')) if record else 'https://scholar.google.com/scholar?hl=en&q='+quote('"'+text(link)+'"')
+            target=paragraph;next_element=paragraph.getnext()
+            for _ in range(3):
+                if next_element is None or paper_id(next_element):break
+                if next_element.tag=='p' and next_element.xpath('.//em[not(contains(@class,"lab-author-note"))]'):target=next_element
+                next_element=next_element.getnext()
+            if target.xpath('./span[contains(@class,"lab-citation-badge")]'):continue
+            badge=html.Element('span',{'class':'lab-citation-badge'})
+            anchor=html.Element('a',href=url,attrib={'class':'lab-citation-link','target':'_blank','rel':'noopener noreferrer','data-link-kind':'citation','title':('Google Scholar · checked '+record['checked_on'] if record else 'Not yet matched in Google Scholar; search by article title')})
+            anchor.text='Citations ('+(str(count)+('*' if record.get('estimated') else '') if count is not None else '—')+')';badge.append(anchor);target.append(badge)
     for stylesheet in tree.xpath('//link[starts-with(@href,"/static/hmd-color.css")]'):
         stylesheet.getparent().remove(stylesheet)
     tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css?v='+color_version))

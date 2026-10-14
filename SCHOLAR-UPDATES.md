@@ -1,5 +1,11 @@
 # 论文自动更新范围与核对规则
 
+## 全年份引用数量（2026-10-14 起）
+
+每周检查同时核对所有年份论文的 Google Scholar 引用数量及 Cited by 链接，只更新 `data/scholar-citations.json`，不改变 2025 年及以前的论文内容。年份页、Full List、Research 和 Alumni 共用该数据，由生成器按规范化标题或已验证 DOI 匹配。数据包含 title、count、estimated、cited_by、scholar_article、checked_on；未可靠获取的计数不能写成零，保留最后有效值。未匹配或没有可靠数量显示 `Citations (—)`，提供 Scholar 单篇详情或标题检索入口。网页注明核对日期；不能声称引用数实时更新。
+
+已有 3 个标题差异通过 Crossref DOI 元数据核验：10.1126/scitranslmed.abc4327、10.1002/adma.202102691、10.1038/s41586-022-05061-w。保留已核实的别名及 DOI 映射。检查完整列表，不直接改动 Scholar 账号里的文章。发布前验证每个编号论文只有一个引用入口，且 Full List 与各年份计数及链接完全一致。引用数变动或需要用户处理时通知，无变化保持安静。
+
 Google Scholar：https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en
 
 已在 Codex 当前网站对话配置每周一上午 09:00（北京时间）检查。检查后仅对核实的新增或信息变更更新网站并验证部署；没有更新时保持安静。用户手动提醒时也执行同样规则。
@@ -26,4 +32,3 @@ Google Scholar：https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en
 年份组标签为 2020s、2010s 等。卷号的数字斜体保持正文色；News 内容文字统一正文色。只有具体文章链接悬停为中蓝 #547DA6，规则适用于 Publications、Research、Alumni 等所有页面的具体论文链接；其它超链接（包括主导航、年份选择、Full List、Covers、Scholar 主页）悬停均为棕金 #A1662F。年份选择栏的布局和选中色保持，正文中的年份标题为棕金。作者说明统一放在年份导航下方的小字号注释中。
 
 文章链接按出版商/DOI 地址及论文条目结构识别；未知出版商或本地论文 PDF 可以在链接上使用 data-link-kind="article" 明确标记，避免把简历、招聘或普通新闻链接误判为文章。
-
