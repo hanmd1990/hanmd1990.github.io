@@ -36,7 +36,7 @@ def is_first_author(name,pid):
         if name_key(token.replace('¹','').replace('*',''))!=name_key(initials):continue
         if index==0 or '¹' in token:return True
     return False
-page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
+page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-inline-roles"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
 page.find('body').insert(0,copy.deepcopy(source.xpath('//header[contains(@class,"lab-header")]')[0]))
 main=html.fragment_fromstring('''<main class="members-layout"><header class="members-intro"><h1>Current Members</h1><p>Our team brings together electrical engineering, biomedical engineering, mechanical engineering, materials science, life science and medicine.</p><p class="members-preview-note">Layout preview. <a href="/current/">View the current page</a></p></header></main>''')
 groups=roster['groups']
@@ -45,7 +45,7 @@ main.append(grid)
 for section_id,label,chinese,people in groups:
     for name,zh,school in people:
         card=html.Element('article',{'class':'member-card','data-member':name})
-        title=html.Element('h3');title.text=name;role=html.Element('span',{'class':'member-role'});role.text=roster['member_roles'][name];title.append(role);card.append(title)
+        title=html.Element('h3');title.text=name+' ';role=html.Element('span',{'class':'member-role'});role.text=roster['member_roles'][name];title.append(role);card.append(title)
         if name==people[0][0]:card.set('id',section_id)
         chinese_name=html.Element('p',{'class':'member-chinese'});chinese_name.text=zh;card.append(chinese_name)
         if school:
