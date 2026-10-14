@@ -2,6 +2,7 @@ from pathlib import Path
 from lxml import html
 import ast,copy,json,re,sys,unicodedata
 root=Path(sys.argv[1] if len(sys.argv)>1 else 'work/design-preview')
+publish='--publish' in sys.argv
 roster=json.loads((root/'data/member-publications.json').read_text(encoding='utf8'))
 source=html.document_fromstring((root/'current/index.html').read_text(encoding='utf8'))
 papers={}
@@ -19,7 +20,11 @@ for path in root.glob('publications*/index.html'):
                 if value and not re.fullmatch(r'et\s*al\.?|\d+(?:\.\d+)?',value,re.I):journal=value;break
             if journal:break
             following=following.getnext()
-        papers[int(m[1])]={'title':' '.join(anchors[0].text_content().split()),'url':anchors[0].get('href'),'journal':journal,'year':year,'authors':[a.strip() for a in p.getnext().text_content().split(',')]}
+        metadata=copy.deepcopy(following) if journal and following is not None else html.Element('p')
+        for badge in metadata.xpath('.//*[contains(@class,"lab-citation-badge")]'):badge.getparent().remove(badge)
+        for node in metadata.iter():
+            node.attrib.pop('style',None);node.attrib.pop('class',None)
+        papers[int(m[1])]={'metadata':metadata,'title':' '.join(anchors[0].text_content().split()),'url':anchors[0].get('href'),'journal':journal,'year':year,'authors':[a.strip() for a in p.getnext().text_content().split(',')]}
 def name_key(s):return ''.join(c for c in unicodedata.normalize('NFKC',s).casefold() if c.isalnum())
 def is_first_author(name,pid):
     evidence=roster['evidence'].get(str(pid),{})
@@ -36,24 +41,27 @@ def is_first_author(name,pid):
         if name_key(token.replace('¹','').replace('*',''))!=name_key(initials):continue
         if index==0 or '¹' in token:return True
     return False
-page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-inline-roles"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
+page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-members-photos"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
 page.find('body').insert(0,copy.deepcopy(source.xpath('//header[contains(@class,"lab-header")]')[0]))
 main=html.fragment_fromstring('''<main class="members-layout"><header class="members-intro"><h1>Current Members</h1><p>Our team brings together electrical engineering, biomedical engineering, mechanical engineering, materials science, life science and medicine.</p><p class="members-preview-note">Layout preview. <a href="/current/">View the current page</a></p></header></main>''')
 groups=roster['groups']
 grid=html.Element('div',{'class':'members-grid'})
-main.append(grid)
+body_layout=html.Element('div',{'class':'members-body'})
+body_layout.append(grid);main.append(body_layout)
 for section_id,label,chinese,people in groups:
     for name,zh,school in people:
         card=html.Element('article',{'class':'member-card','data-member':name})
         title=html.Element('h3');title.text=name+' ';role=html.Element('span',{'class':'member-role'});role.text=roster['member_roles'][name];title.append(role);card.append(title)
         if name==people[0][0]:card.set('id',section_id)
-        chinese_name=html.Element('p',{'class':'member-chinese'});chinese_name.text=zh;card.append(chinese_name)
-        if school:
-            education=html.Element('p',{'class':'member-school'});education.text=school;card.append(education)
+        if name=='Mengdi Han':school='Peking University / 北京大学'
+        english_school,_,chinese_school=school.partition(' / ')
+        prefix={'postdoctoral-fellows':'Ph.D. school: ','phd-students':'Undergraduate school: '}.get(section_id,'')
+        education=html.Element('p',{'class':'member-school'});education.text=prefix+english_school;card.append(education)
+        chinese_name=html.Element('p',{'class':'member-chinese'});chinese_name.text=zh+(' · '+chinese_school if chinese_school else '');card.append(chinese_name)
         if name=='Mengdi Han':grid.append(card);continue
         ids=[pid for pid in roster['member_paper_ids'].get(name,[]) if pid in papers and str(pid) not in roster.get('excluded_representative_paper_ids',{}) and is_first_author(name,pid)]
         details=html.Element('details',{'class':'member-publications'})
-        summary=html.Element('summary');summary.text='Representative Publications'+(' ('+str(len(ids))+')' if ids else '');details.append(summary)
+        summary=html.Element('summary');summary.text='Selected Publications'+(' ('+str(len(ids))+')' if ids else '');details.append(summary)
         if ids:
             listing=html.Element('ol',{'class':'member-paper-list'})
             for pid in ids:
@@ -61,12 +69,36 @@ for section_id,label,chinese,people in groups:
                 if not paper:continue
                 item=html.Element('li',{'data-paper-id':str(pid)})
                 p=html.Element('p',{'class':'member-paper-title'});link=html.Element('a',href=paper['url'],attrib={'target':'_blank','rel':'noopener noreferrer','data-link-kind':'article'});link.text=paper['title'];p.append(link);item.append(p)
-                metadata=html.Element('p',{'class':'member-paper-meta'});em=html.Element('em');em.text=paper['journal'];metadata.append(em);em.tail=' '+str(paper['year']);item.append(metadata);listing.append(item)
+                metadata=html.Element('p',{'class':'member-paper-meta'})
+                authors=paper['authors'];cofirst=[a for a in authors if '¹' in a]
+                selected=cofirst or authors[:1]
+                metadata.text=', '.join(selected)+', '
+                etal=html.Element('em',{'class':'lab-author-note'});etal.text='et al.';etal.tail=', ';metadata.append(etal)
+                original=copy.deepcopy(paper['metadata'])
+                etal.tail+=original.text or ''
+                for child in list(original):metadata.append(child)
+                item.append(metadata);listing.append(item)
             details.append(listing)
         else:
             empty=html.Element('p',{'class':'member-paper-pending'});empty.text='No representative first / co-first author research paper or review has been confirmed in the lab publication list yet.';details.append(empty)
         card.append(details);grid.append(card)
+photos=html.Element('aside',{'class':'member-photos','aria-label':'Group photos'})
+photos_heading=html.Element('h2');photos_heading.text='Group Photos';photos.append(photos_heading)
+seen=set()
+for image in source.xpath('//img[starts-with(@src,"/images/people/current/")]'):
+    src=image.get('src')
+    if src in seen:continue
+    seen.add(src)
+    figure=html.Element('figure');link=html.Element('a',href=src,attrib={'data-lightbox':'true'})
+    photo=html.Element('img',src=src,alt=image.get('alt','Group photo'),loading='lazy',decoding='async');link.append(photo);figure.append(link)
+    caption=html.Element('figcaption');caption.text=image.get('alt','');figure.append(caption);photos.append(figure)
+body_layout.append(photos)
 main.append(html.fragment_fromstring('<footer class="members-footer">Mengdi Han Research Group · Peking University<br>Member publication lists were checked on 2026-10-14.</footer>'))
 page.xpath('//*[@id="s-content"]')[0].append(main)
 out=root/'preview/current-members/index.html';out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(html.tostring(page,encoding='utf8',doctype='<!DOCTYPE html>'))
-print('Generated 20 equal-weight text cards, visible schools and verified publication disclosures')
+if publish:
+    formal=copy.deepcopy(page)
+    formal.find('head/title').text='CURRENT - Mengdi Han Research Group'
+    for node in formal.xpath('//meta[@name="robots"] | //*[@class="members-preview-note"]'):node.getparent().remove(node)
+    (root/'current/index.html').write_bytes(html.tostring(formal,encoding='utf8',doctype='<!DOCTYPE html>'))
+print('Generated compact bilingual member cards, full publication metadata and '+str(len(seen))+' group photographs')

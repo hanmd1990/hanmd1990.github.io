@@ -10,7 +10,7 @@
         [
           "Mengdi Han",
           "韩梦迪",
-          "Huazhong University of Science and Technology (B.S.); Peking University (Ph.D.)"
+          "Peking University / 北京大学"
         ]
       ]
     ],
@@ -22,7 +22,7 @@
         [
           "Chong Zhang",
           "张翀",
-          "CUHK / 香港中文大学"
+          "The Chinese University of Hong Kong / 香港中文大学"
         ]
       ]
     ],
@@ -44,7 +44,7 @@
         [
           "Yaozheng Wang",
           "王耀正",
-          "NWPU / 西北工业大学"
+          "Northwestern Polytechnical University / 西北工业大学"
         ],
         [
           "Jingyan Zhang",
@@ -84,7 +84,7 @@
         [
           "Ning Sun",
           "孙宁",
-          "NJUPT / 南京邮电大学"
+          "Nanjing University of Posts and Telecommunications / 南京邮电大学"
         ],
         [
           "Chendong Yang",
@@ -932,7 +932,7 @@
     "104": "Editorial; excluded from member research paper and review selections at the user’s request."
   },
   "member_roles": {
-    "Mengdi Han": "PI",
+    "Mengdi Han": "Principle Investigator",
     "Chong Zhang": "Postdoc",
     "Yiran Wang": "Ph.D. Student",
     "Zhongyi Nie": "Ph.D. Student",
