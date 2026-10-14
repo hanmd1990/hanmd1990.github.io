@@ -239,15 +239,20 @@ for path in ROOT.rglob('index.html'):
         content.clear();content.set('id','s-content')
         gallery=html.fragment_fromstring('<main class="lab-covers-layout"><header><h1>Journal covers</h1><p>Explore the covers featuring our research.</p></header><div class="lab-covers-grid"></div></main>')
         grid=gallery.xpath('.//div')[0]
-        covers.sort(key=lambda item:publication_index.get(paper_key(item[1]),{}).get('year',0),reverse=True)
+        def cover_info(href):
+            info=publication_index.get(paper_key(href),{}).copy()
+            record=citations['records'].get(title_key(info.get('title','')))
+            if record and record.get('year'):info['year']=record['year']
+            return info
+        covers.sort(key=lambda item:cover_info(item[1]).get('year',0),reverse=True)
         for src,href in covers:
-            info=publication_index.get(paper_key(href),{})
+            info=cover_info(href)
             card=html.Element('article',{'class':'lab-cover-card'})
             image_link=html.Element('a',href=src,attrib={'data-lightbox':'true','class':'lab-cover-image','aria-label':'Enlarge '+info.get('journal','journal')+' cover'});image_link.append(html.Element('img',src=src,alt=info.get('journal','Journal')+' cover',loading='lazy'));card.append(image_link)
             caption=html.Element('div',{'class':'lab-cover-caption'})
             heading=html.Element('h2');heading.text=info.get('journal') or 'Journal cover';caption.append(heading)
             if info.get('year'):
-                year=html.Element('p',{'class':'lab-cover-year'});year.text=str(info['year']);caption.append(year)
+                year=html.Element('p',{'class':'lab-cover-year'});year.text='Publication · '+str(info['year']);caption.append(year)
             if info.get('title'):
                 title=html.Element('p',{'class':'lab-cover-title'});title.text=info['title'];caption.append(title)
             article=html.Element('a',href=href,attrib={'target':'_blank','rel':'noopener noreferrer','class':'lab-cover-article'});article.text='View article ↗';caption.append(article);card.append(caption);grid.append(card)
