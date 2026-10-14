@@ -322,6 +322,8 @@ for path in ROOT.rglob('index.html'):
                 next_element=next_element.getnext()
             if target.xpath('./span[contains(@class,"lab-citation-badge")]'):continue
             target.append(citation_badge(record,text(link)))
+    for stylesheet in tree.xpath('//link[starts-with(@href,"/static/member-preview.css")]'):
+        stylesheet.set('href','/static/member-preview.css?v='+hashlib.sha256((ROOT/'static/member-preview.css').read_bytes()).hexdigest()[:12])
     for stylesheet in tree.xpath('//link[starts-with(@href,"/static/hmd-color.css")]'):
         stylesheet.getparent().remove(stylesheet)
     tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css?v='+color_version))
