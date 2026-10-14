@@ -1,6 +1,6 @@
 {
   "checked_on": "2026-10-14",
-  "method": "Exact full-author-name matching to DOI metadata, using the lab publication list and Google Scholar records. Initials alone are never sufficient.",
+  "method": "Exact full-author-name matching to DOI metadata, with explicit user-confirmed per-paper identities where metadata abbreviates names. Initials alone are never sufficient.",
   "groups": [
     [
       "principal-investigator",
@@ -136,14 +136,17 @@
       126,
       125,
       124,
+      123,
       122,
       120,
       119,
       115,
+      114,
       113,
       112,
       110,
       109,
+      105,
       104,
       103,
       102,
@@ -163,13 +166,15 @@
       125,
       124,
       112,
-      110
+      110,
+      88
     ],
     "Zhongyi Nie": [
       126,
       125,
       124,
       120,
+      114,
       113,
       112,
       110
@@ -842,6 +847,85 @@
       "publisher_metadata": "https://api.crossref.org/works/10.1002/smtd.202501460",
       "scholar_article": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=rjC8MUQAAAAJ&cstart=100&pagesize=100&citation_for_view=rjC8MUQAAAAJ:5icHVeHT4IsC",
       "checked_on": "2026-10-14"
+    },
+    "105": {
+      "doi": "10.1002/brx2.47",
+      "full_authors": [
+        "Lianjie Zhou",
+        "Zhongyuan Wu",
+        "Mubai Sun",
+        "Jaejin Park",
+        "Mengdi Han",
+        "Ming Wang",
+        "Junsheng Yu",
+        "Zengfeng Di",
+        "Yongfeng Mei",
+        "Wubin Bai",
+        "Xinge Yu",
+        "Ki Jun Yu",
+        "Enming Song"
+      ],
+      "matched_members": [
+        "Mengdi Han"
+      ],
+      "publisher_metadata": "https://api.crossref.org/works/10.1002/brx2.47",
+      "scholar_article": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=rjC8MUQAAAAJ&pagesize=100&citation_for_view=rjC8MUQAAAAJ:nZcligLrVowC",
+      "checked_on": "2026-10-14"
+    },
+    "123": {
+      "doi": "10.1038/s41528-025-00518-0",
+      "full_authors": [
+        "Junhan Liu",
+        "Zhongyuan Wu",
+        "Lianjie Zhou",
+        "Yanran Shen",
+        "Xiaojun Wu",
+        "Junling Liang",
+        "Yuting Shao",
+        "Pengchuan Liu",
+        "Zhongzheng Li",
+        "Bofan Hu",
+        "Ming Wang",
+        "Zengfeng Di",
+        "Tianjun Cai",
+        "Fan Xu",
+        "Su Jiang",
+        "Mengdi Han",
+        "Ling Tao",
+        "Yongfeng Mei",
+        "Enming Song"
+      ],
+      "matched_members": [
+        "Mengdi Han"
+      ],
+      "publisher_metadata": "https://api.crossref.org/works/10.1038/s41528-025-00518-0",
+      "scholar_article": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=rjC8MUQAAAAJ&cstart=100&pagesize=100&citation_for_view=rjC8MUQAAAAJ:vDZJ-YLwNdEC",
+      "checked_on": "2026-10-14"
+    },
+    "114": {
+      "doi": "10.1002/adma.202205609",
+      "full_authors": [
+        "Zhongyi Nie",
+        "Jean Won Kwak",
+        "Mengdi Han",
+        "John A. Rogers"
+      ],
+      "matched_members": [
+        "Mengdi Han",
+        "Zhongyi Nie"
+      ],
+      "publisher_metadata": "https://api.crossref.org/works/10.1002/adma.202205609",
+      "scholar_article": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=rjC8MUQAAAAJ&pagesize=100&citation_for_view=rjC8MUQAAAAJ:OcBU2YAGkTUC",
+      "checked_on": "2026-10-14"
+    }
+  },
+  "confirmed_author_positions": {
+    "88": {
+      "Yiran Wang": {
+        "author_index": 0,
+        "source": "User explicitly confirmed on 2026-10-14 that Yiran Wang is first author of the Materials Today Physics paper.",
+        "checked_on": "2026-10-14"
+      }
     }
   }
 }

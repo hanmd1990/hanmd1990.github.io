@@ -24,6 +24,11 @@ def name_key(s):return ''.join(c for c in unicodedata.normalize('NFKC',s).casefo
 def is_first_author(name,pid):
     evidence=roster['evidence'].get(str(pid),{})
     full=evidence.get('full_authors',[]);tokens=papers[pid]['authors']
+    confirmation=roster.get('confirmed_author_positions',{}).get(str(pid),{}).get(name)
+    if confirmation:
+        index=confirmation['author_index'];words=name.split();initials=''.join(w[0] for w in words[:-1])+' '+words[-1]
+        if index<len(tokens) and name_key(tokens[index].replace('¹','').replace('*',''))==name_key(initials):
+            return index==0 or '¹' in tokens[index]
     for index,author in enumerate(full):
         if name_key(author)!=name_key(name) or index>=len(tokens):continue
         words=name.split();initials=''.join(w[0] for w in words[:-1])+' '+words[-1]
