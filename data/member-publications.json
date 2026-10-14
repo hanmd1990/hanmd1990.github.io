@@ -101,32 +101,32 @@
         [
           "Yujie Shang",
           "商宇杰",
-          ""
+          "Nanjing University of Aeronautics and Astronautics / 南京航空航天大学"
         ],
         [
           "Weixiang He",
           "赫伟翔",
-          ""
+          "Peking University / 北京大学"
         ],
         [
           "Kangle Li",
           "李康乐",
-          ""
+          "Peking University / 北京大学"
         ],
         [
           "Yanzhong Wang",
           "王言中",
-          ""
+          "Peking University / 北京大学"
         ],
         [
           "Yunling Li",
           "李云凌",
-          ""
+          "Peking University / 北京大学"
         ],
         [
           "Xiaowen Zhang",
           "张晓雯",
-          ""
+          "Peking University / 北京大学"
         ]
       ]
     ]
@@ -927,5 +927,30 @@
         "checked_on": "2026-10-14"
       }
     }
+  },
+  "excluded_representative_paper_ids": {
+    "104": "Editorial; excluded from member research paper and review selections at the user’s request."
+  },
+  "member_roles": {
+    "Mengdi Han": "PI",
+    "Chong Zhang": "Postdoc",
+    "Yiran Wang": "Ph.D. Student",
+    "Zhongyi Nie": "Ph.D. Student",
+    "Yaozheng Wang": "Ph.D. Student",
+    "Jingyan Zhang": "Ph.D. Student",
+    "Xiang Lin": "Ph.D. Student",
+    "Shaotong Zhang": "Ph.D. Student",
+    "Ruyue Zhong": "Ph.D. Student",
+    "Kedong Wu": "Ph.D. Student",
+    "Denghua Wu": "Ph.D. Student",
+    "Zixiang Wu": "Ph.D. Student",
+    "Ning Sun": "Ph.D. Student",
+    "Chendong Yang": "Ph.D. Student",
+    "Yujie Shang": "Visiting Student",
+    "Weixiang He": "Undergraduate",
+    "Kangle Li": "Undergraduate",
+    "Yanzhong Wang": "Undergraduate",
+    "Yunling Li": "Undergraduate",
+    "Xiaowen Zhang": "Undergraduate"
   }
 }

@@ -4,12 +4,7 @@
 .members-intro h1{font-size:34px!important;line-height:1.2;margin:0 0 16px!important}
 .members-intro>p{font-size:15px;line-height:1.75;margin:0 0 12px}
 .members-preview-note{font-size:12px!important;color:#666}
-.members-jump{display:flex;flex-wrap:wrap;gap:10px 24px;padding:18px 0;border-bottom:1px solid #EFF1F5;margin:20px 0 32px}
-.members-jump a{font-size:13px;text-decoration:none}
-.members-section{margin-top:34px;scroll-margin-top:24px}
-.lab-member-preview #s-content .members-section>h2{font-size:21px!important;line-height:1.4;margin:0 0 20px!important;padding-left:12px;border-left:3px solid #A1662F;color:#A1662F!important}
-.lab-member-preview #s-content .members-section>h2 span{display:inline-block;font-size:13px;font-weight:400;margin-left:12px;color:#252A34!important}
-.members-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 28px;align-items:start}
+.members-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;align-items:start;margin-top:30px}
 .member-card{padding:18px 0 0;border-top:1px solid #cbd3df;min-width:0}
 .member-card h3{font-size:18px!important;line-height:1.4;margin:0 0 4px!important}
 .member-chinese{font-size:14px;line-height:1.5;margin:0 0 12px;color:#252A34}
@@ -29,4 +24,7 @@
 .member-paper-pending{font-size:12px;line-height:1.7;color:#666;margin:12px 0}
 .members-footer{border-top:1px solid #EFF1F5;margin-top:40px;padding-top:20px;font-size:11px;line-height:1.8;color:#666;text-align:center}
 @media(max-width:800px){.members-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.members-layout{padding:0 18px;margin-top:28px}.members-intro h1{font-size:30px!important}}
-@media(max-width:520px){.members-grid{grid-template-columns:1fr;gap:24px}.members-section>h2 span{display:block!important;margin:5px 0 0!important}.member-school{min-height:0}.members-jump{gap:12px 18px}.member-paper-list{max-height:480px}}
+
+.lab-member-preview #s-content .member-card h3 .member-role{display:inline-block;margin-left:9px;font-size:12px!important;font-weight:400;line-height:1.6;color:#547DA6!important;vertical-align:middle}
+.member-card{scroll-margin-top:24px}
+@media(max-width:520px){.members-grid{grid-template-columns:1fr;gap:24px}.member-school{min-height:0}.member-paper-list{max-height:480px}}

@@ -38,22 +38,22 @@ def is_first_author(name,pid):
     return False
 page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css"><script src="/static/site.js" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
 page.find('body').insert(0,copy.deepcopy(source.xpath('//header[contains(@class,"lab-header")]')[0]))
-main=html.fragment_fromstring('''<main class="members-layout"><header class="members-intro"><h1>Current Members</h1><p>Our team brings together electrical engineering, biomedical engineering, mechanical engineering, materials science, life science and medicine.</p><p class="members-preview-note">Layout preview. <a href="/current/">View the current page</a></p></header><nav class="members-jump" aria-label="Member groups"><a href="#principal-investigator">Principal Investigator</a><a href="#postdoctoral-fellows">Postdoctoral Fellows</a><a href="#phd-students">Ph.D. Students</a><a href="#undergraduates">Undergraduates &amp; Visitors</a></nav></main>''')
+main=html.fragment_fromstring('''<main class="members-layout"><header class="members-intro"><h1>Current Members</h1><p>Our team brings together electrical engineering, biomedical engineering, mechanical engineering, materials science, life science and medicine.</p><p class="members-preview-note">Layout preview. <a href="/current/">View the current page</a></p></header></main>''')
 groups=roster['groups']
+grid=html.Element('div',{'class':'members-grid'})
+main.append(grid)
 for section_id,label,chinese,people in groups:
-    section=html.Element('section',id=section_id,attrib={'class':'members-section'})
-    heading=html.Element('h2');heading.text=label;cn=html.Element('span');cn.text=chinese;heading.append(cn);section.append(heading)
-    grid=html.Element('div',{'class':'members-grid'})
     for name,zh,school in people:
         card=html.Element('article',{'class':'member-card','data-member':name})
-        title=html.Element('h3');title.text=name;card.append(title)
+        title=html.Element('h3');title.text=name;role=html.Element('span',{'class':'member-role'});role.text=roster['member_roles'][name];title.append(role);card.append(title)
+        if name==people[0][0]:card.set('id',section_id)
         chinese_name=html.Element('p',{'class':'member-chinese'});chinese_name.text=zh;card.append(chinese_name)
         if school:
             education=html.Element('p',{'class':'member-school'});education.text=school;card.append(education)
         if name=='Mengdi Han':grid.append(card);continue
-        ids=[pid for pid in roster['member_paper_ids'].get(name,[]) if pid in papers and is_first_author(name,pid)]
+        ids=[pid for pid in roster['member_paper_ids'].get(name,[]) if pid in papers and str(pid) not in roster.get('excluded_representative_paper_ids',{}) and is_first_author(name,pid)]
         details=html.Element('details',{'class':'member-publications'})
-        summary=html.Element('summary');summary.text='First / co-first author papers'+(' ('+str(len(ids))+')' if ids else '');details.append(summary)
+        summary=html.Element('summary');summary.text='Representative Publications'+(' ('+str(len(ids))+')' if ids else '');details.append(summary)
         if ids:
             listing=html.Element('ol',{'class':'member-paper-list'})
             for pid in ids:
@@ -64,9 +64,8 @@ for section_id,label,chinese,people in groups:
                 metadata=html.Element('p',{'class':'member-paper-meta'});em=html.Element('em');em.text=paper['journal'];metadata.append(em);em.tail=' '+str(paper['year']);item.append(metadata);listing.append(item)
             details.append(listing)
         else:
-            empty=html.Element('p',{'class':'member-paper-pending'});empty.text='No first / co-first author entry has been confirmed in the lab publication list yet.';details.append(empty)
+            empty=html.Element('p',{'class':'member-paper-pending'});empty.text='No representative first / co-first author research paper or review has been confirmed in the lab publication list yet.';details.append(empty)
         card.append(details);grid.append(card)
-    section.append(grid);main.append(section)
 main.append(html.fragment_fromstring('<footer class="members-footer">Mengdi Han Research Group · Peking University<br>Member publication lists were checked on 2026-10-14.</footer>'))
 page.xpath('//*[@id="s-content"]')[0].append(main)
 out=root/'preview/current-members/index.html';out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(html.tostring(page,encoding='utf8',doctype='<!DOCTYPE html>'))
