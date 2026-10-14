@@ -300,7 +300,7 @@ for path in ROOT.rglob('index.html'):
             if 'Corresponding authors' in text(note) and 'Authors contributed equally' in text(note):note.getparent().remove(note)
         for element in tree.xpath('//*[@id="s-content"]//h1|//*[@id="s-content"]//h2|//*[@id="s-content"]//h3|//*[@id="s-content"]//h4|//*[@id="s-content"]//h5|//*[@id="s-content"]//h6|//*[@id="s-content"]//p'):
             if re.fullmatch(r'\d{4}',text(element)):add_class(element,'lab-content-year')
-    if not route.startswith('news') and route not in ('covers','overview','electronic-skins','wearable-devices','smart-implants'):
+    if not route.startswith('news') and route not in ('.','covers','overview','electronic-skins','wearable-devices','smart-implants'):
         for link in tree.xpath('//a[contains(concat(" ",@class," ")," lab-publication-link ")]'):
             if not text(link):
                 if route=='.':
