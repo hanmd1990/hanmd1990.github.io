@@ -54,12 +54,12 @@ An independent Alumni article not in the PI profile is explicitly matched: “A 
 An existing heartbeat automation named “每周更新 HMD Lab 论文”, id hmd-lab, is attached to the original local task and scheduled Mondays 09:00 Asia/Shanghai. Its instructions include weekly profile metrics, all-year citation counts and independent Alumni articles. New publication additions concern 2026 onward; preserve older entries and conference papers. Do not create a duplicate automation.
 That existing local automation has not been migrated to a cloud environment. Its local computer availability and any future migration must be considered separately; creating a cloud coding task does not migrate the schedule.
 
-## Remaining implementation task: private analytics
+## Remaining task: deploy and validate private analytics
 
 User requested a separate private login-protected dashboard with site total pageviews and visits, IP addresses, approximate country/region/city, timestamps, visited pages, per-browser visit number, trends, and export.
 Cloudflare was chosen for the backend; the public website stays on GitHub. No domain/DNS migration is authorized. No paid service may be enabled without cost approval.
-No Worker, database, Access application, dashboard, or tracker has been implemented or deployed yet. No historic visitor logs are available.
-Prepare the backend, dashboard, tests and reviewable deployment configuration. Use real server-side authorization; a secret URL or front-end password check is not enough. Keep visitor logs and secrets out of this public repository.
+The repository already contains an UNDEPLOYED analytics/ implementation: Worker, dashboard, tracker source, D1 migration, example Wrangler configuration, README and security tests. This was verified against current main. No production Worker, D1 database, Access application, or tracker integration has been deployed, and no historic visitor logs are available. Read analytics/README.md and preserve the existing implementation; do not build a duplicate from scratch.
+Review the existing backend/dashboard and run analytics npm ci, npm test and the documented Wrangler dry run. Then prepare any missing reviewable deployment configuration. Use real server-side authorization; a secret URL or front-end password check is not enough. Keep visitor logs and secrets out of this public repository.
 IP location is approximate, not a street address; an IP may be shared or change. Use anonymous browser identifiers/session rules for repeat visits, without pretending they uniquely identify a person. Counts start when tracking is enabled.
 The original local browser was logged in to Cloudflare, but its cookies and sign-ins must not be copied. Request an appropriate interactive login only if deployment needs it; never request passwords/OTP in chat.
 
