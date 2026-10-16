@@ -18,8 +18,8 @@ def rebuild_alumni(tree):
         for value in values[1:]:
             key,sep,text=value.partition(':')
             if sep:fields[' '.join(key.lower().split())]=text.strip()
-        details=html.Element('details',{'class':'alumni-member','data-member':name})
-        summary=html.Element('summary');profile=html.Element('div',{'class':'alumni-profile'})
+        details=html.Element('article',{'class':'alumni-member','data-member':name})
+        profile=html.Element('div',{'class':'alumni-profile'})
         nameplate=html.Element('div',{'class':'alumni-nameplate'})
         title=html.Element('h3');title.text=name;nameplate.append(title)
         chinese=html.Element('p',{'class':'alumni-chinese'});chinese.text=zh;nameplate.append(chinese);profile.append(nameplate)
@@ -42,7 +42,7 @@ def rebuild_alumni(tree):
         arrow=html.Element('span',{'class':'alumni-arrow','aria-hidden':'true'});arrow.text='→';stages.append(arrow)
         next_position=html.Element('div',{'class':'alumni-next'});label=html.Element('h2');label.text='Next position';next_position.append(label)
         destination=html.Element('p');destination.text=fields.get('next position','').replace('Postdoc at ','Postdoctoral Researcher at ').replace('Faculty at ','Faculty Member at ');next_position.append(destination);stages.append(next_position)
-        summary.append(profile)
+        details.append(profile)
         paragraphs=member.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure-content ")]//p')
         content=html.Element('div',{'class':'alumni-publications'})
         count=0
@@ -68,8 +68,9 @@ def rebuild_alumni(tree):
             content.append(clone)
         if not count:
             empty=html.Element('p',{'class':'alumni-paper-meta'});empty.text='-';content.append(empty)
-        toggle=html.Element('div',{'class':'alumni-publications-toggle'});toggle.text='Selected Publications'+(' ('+str(count)+')' if count else '');summary.append(toggle)
-        details.append(summary);details.append(content);grid.append(details)
+        disclosure=html.Element('details',{'class':'alumni-publication-disclosure'})
+        toggle=html.Element('summary',{'class':'alumni-publications-toggle'});toggle.text='Selected Publications'+(' ('+str(count)+')' if count else '')
+        disclosure.append(toggle);disclosure.append(content);details.append(disclosure);grid.append(details)
     target=tree.xpath('//*[@id="s-content"]')[0]
     for child in list(target):target.remove(child)
     target.append(main)
