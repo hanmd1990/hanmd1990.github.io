@@ -3,18 +3,6 @@
   "method": "Exact full-author-name matching to DOI metadata, with explicit user-confirmed per-paper identities where metadata abbreviates names. Initials alone are never sufficient.",
   "groups": [
     [
-      "principal-investigator",
-      "Principal Investigator",
-      "课题组长",
-      [
-        [
-          "Mengdi Han",
-          "韩梦迪",
-          "Peking University / 北京大学"
-        ]
-      ]
-    ],
-    [
       "postdoctoral-fellows",
       "Postdoctoral Fellows",
       "博士后研究员",
@@ -23,6 +11,18 @@
           "Chong Zhang",
           "张翀",
           "The Chinese University of Hong Kong / 香港中文大学"
+        ]
+      ]
+    ],
+    [
+      "additional-members",
+      "Members",
+      "成员",
+      [
+        [
+          "Wai Hong Chong",
+          "张伟鸿",
+          "Universiti Sains Malaysia / 马来西亚理科大学"
         ]
       ]
     ],
@@ -243,7 +243,8 @@
     "Yanzhong Wang": [],
     "Yunling Li": [],
     "Penglai Yao": [],
-    "Junjie Wang": []
+    "Junjie Wang": [],
+    "Wai Hong Chong": []
   },
   "evidence": {
     "85": {
@@ -958,6 +959,7 @@
     "Yanzhong Wang": "Undergraduate",
     "Yunling Li": "Undergraduate",
     "Penglai Yao": "Undergraduate",
-    "Junjie Wang": "Undergraduate"
+    "Junjie Wang": "Undergraduate",
+    "Wai Hong Chong": ""
   }
 }

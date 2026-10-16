@@ -56,7 +56,9 @@ body_layout.append(grid);main.append(body_layout)
 for section_id,label,chinese,people in groups:
     for name,zh,school in people:
         card=html.Element('article',{'class':'member-card','data-member':name})
-        title=html.Element('h3');title.text=name+' ';role=html.Element('span',{'class':'member-role'});role.text=roster['member_roles'][name];title.append(role);card.append(title)
+        title=html.Element('h3');title.text=name;card.append(title)
+        if roster['member_roles'].get(name):
+            role=html.Element('span',{'class':'member-role'});role.text=roster['member_roles'][name];title.append(role)
         if name==people[0][0]:card.set('id',section_id)
         if name=='Mengdi Han':school='Peking University / 北京大学'
         english_school,_,chinese_school=school.partition(' / ')
