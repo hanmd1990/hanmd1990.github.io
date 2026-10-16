@@ -23,8 +23,7 @@ def eligible_paper(name,title,records):
     words=name.split();member=''.join(w[0] for w in words[:-1])+' '+words[-1]
     return any(re.sub(r'[¹*]','',a).strip()==member and (i==0 or '¹' in a) for i,a in enumerate(authors))
 
-def rebuild_alumni(tree,root):
-    records=bibliography_authors(root)
+def rebuild_alumni(tree,records):
     old=tree.xpath('//details[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure ")]')
     if not old:return
     main=html.Element('main',{'class':'lab-alumni-layout'})

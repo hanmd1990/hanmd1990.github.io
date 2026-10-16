@@ -4,9 +4,10 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.parse import urlparse,quote
 from lxml import html
-from alumni_layout import rebuild_alumni
+from alumni_layout import rebuild_alumni,bibliography_authors
 
 ROOT=Path(sys.argv[1]).resolve()
+alumni_authors=bibliography_authors(ROOT)
 color_version=hashlib.sha256((ROOT/'static/hmd-color.css').read_bytes()).hexdigest()[:12]
 script_version=hashlib.sha256((ROOT/'static/site.js').read_bytes()).hexdigest()[:12]
 today=datetime.datetime.now(ZoneInfo('Asia/Shanghai')).year
@@ -218,7 +219,7 @@ for path in ROOT.rglob('index.html'):
         for index in range(len(slides_list)):
             dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
         carousel.append(dots)
-    if route=='alumni':rebuild_alumni(tree,ROOT)
+    if route=='alumni':rebuild_alumni(tree,alumni_authors)
     if route=='contact':
         contact=tree.xpath('//*[@id="s-content"]')[0]
         profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
