@@ -111,3 +111,16 @@ Alumni text spacing: Role title and years have zero flex gap and zero paragraph 
   It is **not activated**: no Maps token is available. The current campus map
   remains the fallback. Follow `docs/APPLE_MAPS.md` to authorize and verify the
   exact building marker, drag and zoom before claiming completion.
+
+## Alumni / photos / recruitment typography — 2026-10-16
+
+- Alumni retains two people per row, equal Prior/Next widths and a wider Role
+  column. Remove all inter-column arrows. A single shared direction arrow at
+  the bottom of the page explains Prior → Role → Next. Do not add blank lines
+  between role and years; spare height remains below content.
+- Current group-photo captions are centered and bold; dates are centered with
+  normal weight. The Group photos heading is bold.
+- Join Us category advertisements have no 01/02/03/04 numbering. Preserve
+  original source semantic emphasis: CV, transcripts, representative
+  publications and the four Ph.D. applicant attributes. Explicit scoped strong
+  styling restores these weights despite the legacy theme reset.

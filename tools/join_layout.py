@@ -31,7 +31,6 @@ def rebuild_join(tree, root):
         if index != 1:
             section.set('hidden', 'hidden')
         header = etree.SubElement(section, 'header', {'class': 'lab-join-role-heading'})
-        etree.SubElement(header, 'span', {'class': 'lab-join-number', 'aria-hidden': 'true'}).text = f'{index:02}'
         title = etree.SubElement(header, 'div')
         etree.SubElement(title, 'h2', id=role['id']+'-title').text = role['title']
         etree.SubElement(title, 'p').text = role['count']
