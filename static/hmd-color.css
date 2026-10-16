@@ -201,8 +201,12 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .alumni-publications-toggle{position:relative;max-width:230px;margin:9px auto 0;font-size:14px;line-height:1.6;color:#A1662F;padding:6px 22px 6px 0;border-bottom:1px solid #EFF1F5;text-align:left}
 .alumni-publications-toggle:after{content:'+';position:absolute;right:3px;font-size:17px}
 .alumni-member[open] .alumni-publications-toggle:after{content:'−'}
-.alumni-publications{max-width:900px;margin:18px auto 24px}
-.alumni-paper-title,.alumni-paper-meta{font-size:14px!important;line-height:1.7;margin:0 0 6px}
+.alumni-publications{max-width:900px;margin:18px auto 24px;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;line-height:1.6}
+.alumni-paper-title,.alumni-paper-meta{font-size:14px!important;font-weight:400;line-height:1.7;margin:0;color:#252A34}
+.alumni-paper-title{line-height:1.65;margin-bottom:5px}
+.alumni-paper-title a,.alumni-paper-meta :is(span,em){font-size:inherit;line-height:inherit}
+.alumni-paper-meta em{font-style:italic}
+.alumni-paper-meta .lab-citation-badge{display:block;margin:5px 0 0}
 .alumni-paper-title{margin-top:20px}
 .alumni-paper-title:first-child{margin-top:0}
 .alumni-paper-title a{font-weight:600;text-decoration:none}

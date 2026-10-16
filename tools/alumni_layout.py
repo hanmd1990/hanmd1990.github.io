@@ -42,9 +42,21 @@ def rebuild_alumni(tree):
             if not paragraph.text_content().strip() or 'Selected Publications:'==paragraph.text_content().strip():continue
             clone=copy.deepcopy(paragraph)
             title_link=clone.xpath('.//a[contains(@class,"lab-publication-link")]')
-            for node in clone.iter():node.attrib.pop('style',None)
+            for node in clone.iter():
+                node.attrib.pop('style',None)
+                classes=[value for value in node.get('class','').split() if value.startswith('lab-')]
+                if classes:node.set('class',' '.join(classes))
+                else:node.attrib.pop('class',None)
             clone.set('class','alumni-paper-title' if title_link else 'alumni-paper-meta')
-            if title_link:count+=1
+            if title_link:
+                link=copy.deepcopy(title_link[0])
+                title=link.text_content().strip()
+                for child in list(link):link.remove(child)
+                link.text=title;link.tail=None
+                clone.clear();clone.set('class','alumni-paper-title');clone.append(link)
+                count+=1
+            else:
+                for strong in clone.xpath('.//strong'):strong.drop_tag()
             content.append(clone)
         if not count:
             empty=html.Element('p',{'class':'alumni-paper-meta'});empty.text='No selected publications listed.';content.append(empty)

@@ -317,7 +317,7 @@ for path in ROOT.rglob('index.html'):
             record=citation_record(link)
             target=paragraph;next_element=paragraph.getnext()
             for _ in range(3):
-                if next_element is None or paper_id(next_element):break
+                if next_element is None or paper_id(next_element) or next_element.xpath('.//a[contains(@class,"lab-publication-link")]'):break
                 if next_element.tag=='p' and next_element.xpath('.//em[not(contains(@class,"lab-author-note"))]'):target=next_element
                 next_element=next_element.getnext()
             if target.xpath('./span[contains(@class,"lab-citation-badge")]'):continue
