@@ -218,7 +218,7 @@ for path in ROOT.rglob('index.html'):
         for index in range(len(slides_list)):
             dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
         carousel.append(dots)
-    if route=='alumni':rebuild_alumni(tree)
+    if route=='alumni':rebuild_alumni(tree,ROOT)
     if route=='contact':
         contact=tree.xpath('//*[@id="s-content"]')[0]
         profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']

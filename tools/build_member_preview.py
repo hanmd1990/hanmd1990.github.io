@@ -30,6 +30,7 @@ def name_key(s):return ''.join(c for c in unicodedata.normalize('NFKC',s).casefo
 def is_first_author(name,pid):
     evidence=roster['evidence'].get(str(pid),{})
     full=evidence.get('full_authors',[]);tokens=papers[pid]['authors']
+    if not any(re.fullmatch(r'M\s+Han[¹*\s]*',token) for token in tokens):return False
     confirmation=roster.get('confirmed_author_positions',{}).get(str(pid),{}).get(name)
     if confirmation:
         index=confirmation['author_index'];words=name.split();initials=''.join(w[0] for w in words[:-1])+' '+words[-1]

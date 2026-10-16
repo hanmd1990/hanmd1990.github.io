@@ -1,7 +1,30 @@
-import copy,re
+import copy,re,unicodedata
 from lxml import html
 
-def rebuild_alumni(tree):
+def title_key(value):
+    return ''.join(c for c in unicodedata.normalize('NFKC',value).casefold() if c.isalnum())
+
+def bibliography_authors(root):
+    records={}
+    for path in root.glob('publications[0-9]*/index.html'):
+        source=html.document_fromstring(path.read_bytes())
+        for paragraph in source.xpath('//p'):
+            if not re.match(r'^\(\d+\)',paragraph.text_content().strip()):continue
+            links=paragraph.xpath('.//a[@href]');following=paragraph.getnext()
+            if links and following is not None:
+                records[title_key(links[0].text_content())]=[a.strip() for a in following.text_content().split(',')]
+    return records
+
+def eligible_paper(name,title,records):
+    # The curated member selection supplies the identity; check its author position
+    # against the PI bibliography rather than allocating papers by initials alone.
+    authors=records.get(title_key(title),[])
+    if not any(re.fullmatch(r'M\s+Han[¹*\s]*',a) for a in authors):return False
+    words=name.split();member=''.join(w[0] for w in words[:-1])+' '+words[-1]
+    return any(re.sub(r'[¹*]','',a).strip()==member and (i==0 or '¹' in a) for i,a in enumerate(authors))
+
+def rebuild_alumni(tree,root):
+    records=bibliography_authors(root)
     old=tree.xpath('//details[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure ")]')
     if not old:return
     main=html.Element('main',{'class':'lab-alumni-layout'})
@@ -28,8 +51,9 @@ def rebuild_alumni(tree):
         prior=html.Element('div',{'class':'alumni-prior'});label=html.Element('h2');label.text='Prior education';prior.append(label)
         for key,value in fields.items():
             if key.endswith('school'):
-                degree='Ph.D.' if key.startswith('ph.d.') else 'Undergrad'
-                school=html.Element('p');school.text=degree+' at '+value;prior.append(school)
+                degree='Ph.D.' if key.startswith('ph.d.') else ('Master' if key.startswith('master') else 'Undergrad')
+                degree_line=html.Element('p',{'class':'alumni-stage-primary'});degree_line.text=degree;prior.append(degree_line)
+                school=html.Element('p',{'class':'alumni-stage-secondary'});school.text=value;prior.append(school)
             elif key.endswith('major'):
                 major=html.Element('p',{'class':'alumni-major'});major.text=value;prior.append(major)
         stages.append(prior)
@@ -41,15 +65,24 @@ def rebuild_alumni(tree):
         years=html.Element('p',{'class':'alumni-years'});years.text=fields.get('years in group','');tenure.append(years);stages.append(identity)
         arrow=html.Element('span',{'class':'alumni-arrow','aria-hidden':'true'});arrow.text='→';stages.append(arrow)
         next_position=html.Element('div',{'class':'alumni-next'});label=html.Element('h2');label.text='Next position';next_position.append(label)
-        destination=html.Element('p');destination.text=fields.get('next position','').replace('Postdoc at ','Postdoctoral Researcher at ').replace('Faculty at ','Faculty Member at ');next_position.append(destination);stages.append(next_position)
+        next_value=fields.get('next position','')
+        position_name,separator,institution=next_value.partition(' at ')
+        position_name={'Faculty Member':'Faculty','Postdoctoral Researcher':'Postdoc'}.get(position_name,position_name)
+        if not separator:institution=next_value;position_name=''
+        if position_name:
+            position_line=html.Element('p',{'class':'alumni-stage-primary'});position_line.text=position_name;next_position.append(position_line)
+        destination=html.Element('p',{'class':'alumni-stage-secondary'});destination.text=re.sub(r'^the ','',institution);next_position.append(destination);stages.append(next_position)
         details.append(profile)
         paragraphs=member.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure-content ")]//p')
         content=html.Element('div',{'class':'alumni-publications'})
         count=0
+        include=False
         for paragraph in paragraphs:
             if not paragraph.text_content().strip() or 'Selected Publications:'==paragraph.text_content().strip():continue
             clone=copy.deepcopy(paragraph)
             title_link=clone.xpath('.//a[contains(@class,"lab-publication-link")]')
+            if title_link:include=eligible_paper(name,title_link[0].text_content(),records)
+            if not include:continue
             for node in clone.iter():
                 node.attrib.pop('style',None)
                 classes=[value for value in node.get('class','').split() if value.startswith('lab-')]
