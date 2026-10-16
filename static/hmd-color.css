@@ -202,11 +202,11 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-alumni-page #s-content .alumni-identity h2{color:#142B55!important}
 .alumni-profile p{margin:0 0 5px;color:#252A34}
 .alumni-profile .alumni-major{font-size:12px!important;line-height:1.6;color:#656b74}
-.alumni-tenure{display:flex;flex-direction:column;gap:6px}
+.alumni-tenure{display:flex;flex-direction:column;gap:0}
 .alumni-tenure .alumni-role{color:#142B55;margin:0}
 .alumni-tenure .alumni-years{font-size:12px;line-height:1.6;color:#656b74;margin:0;font-variant-numeric:tabular-nums}
-.lab-alumni-page #s-content .alumni-stage-primary{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.6;font-weight:400;color:#142B55;margin:0 0 6px}
-.lab-alumni-page #s-content .alumni-stage-secondary{font-family:"Segoe UI",Arial,sans-serif;font-size:12px;line-height:1.6;font-weight:400;color:#656b74;margin:0 0 6px}
+.lab-alumni-page #s-content .alumni-stage-primary{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.6;font-weight:400;color:#142B55;margin:0}
+.lab-alumni-page #s-content .alumni-stage-secondary{font-family:"Segoe UI",Arial,sans-serif;font-size:12px;line-height:1.6;font-weight:400;color:#656b74;margin:0}
 .alumni-arrow{padding-top:43px;font-family:"Segoe UI",Arial,sans-serif;font-size:18px;line-height:1;color:#547DA6;text-align:center}
 .alumni-identity{display:flex;flex-direction:column}
 .alumni-identity .alumni-tenure{flex:none}

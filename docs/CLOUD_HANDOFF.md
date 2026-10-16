@@ -87,3 +87,5 @@ Alumni publications / Contact Email label (2026-10-16): Selected Publications is
 Alumni degree label uses Undergraduate (not Undergrad).
 
 Alumni spacing: All text flows naturally from the top. No minimum heights on headings or degree/position lines, and no flex expansion between tenure and the publication button. Any equal-height surplus remains below the content; retain shared card rows and the wider Role column.
+
+Alumni text spacing: Role title and years have zero flex gap and zero paragraph margins; Prior and Next primary/secondary lines also have zero paragraph margins. Keep normal line height only, e.g. Joint Ph.D. Student immediately followed by 2021–2025.
