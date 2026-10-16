@@ -132,3 +132,14 @@ Alumni text spacing: Role title and years have zero flex gap and zero paragraph 
   Keep using the actual Scholar cache check date; do not hard-code a newer date.
 - Contact PKU Profile points to the English faculty profile:
   https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm
+
+## Alumni reference layout — 2026-10-16 evening
+
+This supersedes earlier no-arrow instructions: the owner supplied a new visual
+reference. Each member now has three centered labels OUTSIDE the boxes, with
+one fine left-to-right arrow immediately below the labels and above the boxes.
+Prior/Next use equal-width white boxes with fine neutral borders; Role remains
+wider with a light-gray background and its Selected Publications control.
+Remove the thick blue dividers above/below members. Keep two members per row,
+compact role/year text without spacer lines, and full-width publication panels
+below all three boxes. There is no shared page-bottom arrow or legend.
