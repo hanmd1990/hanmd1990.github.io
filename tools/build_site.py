@@ -150,9 +150,9 @@ def archive_nav(kind,active):
         scholar=html.Element('a',href='https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en',target='_blank',rel='noopener noreferrer',attrib={'class':'lab-archive-feature lab-scholar-link'});scholar.text='Google Scholar Profile';secondary.append(scholar);actions.append(secondary)
     nav.append(actions)
     if kind=='publications' and active!='covers':
-        note=html.Element('p',{'class':'lab-publication-legend lab-publication-notes'});note.text='* Corresponding authors; ¹ Authors contributed equally'
+        note=html.Element('p',{'class':'lab-publication-legend lab-publication-notes'});note.text='*Corresponding authors; ¹ Authors contributed equally'
         if citations.get('checked_on'):
-            note.text+='; Citation counts: Google Scholar · automatically updated '+citations['checked_on']
+            note.text+='; Citation counts: Google Scholar; · Automatically updated '+citations['checked_on']
         nav.append(note)
     return nav
 
@@ -230,6 +230,7 @@ for path in ROOT.rglob('index.html'):
         contact=tree.xpath('//*[@id="s-content"]')[0]
         profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
         profile_links={text(a):a.get('href') for a in contact.xpath('.//a[@href]') if text(a) in profile_names}
+        profile_links['PKU Profile']='https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm'
         contact.clear();contact.set('id','s-content')
         layout=html.fragment_fromstring('''<main class="lab-contact-layout">
           <div class="lab-contact-grid">

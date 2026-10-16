@@ -234,7 +234,7 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-scholar-metrics span{font-size:13px;color:#656b74}
 @media(max-width:600px){.lab-scholar-metrics{gap:18px;flex-wrap:wrap}.lab-scholar-metrics>div{flex-direction:column;gap:1px}}
 
-.lab-publication-notes{white-space:nowrap}
+.lab-publication-notes{white-space:nowrap;text-align:center}
 @media(max-width:800px){.lab-publication-notes{white-space:normal}}
 
 /* Align all three stages and the publication footer within each pair of Alumni. */

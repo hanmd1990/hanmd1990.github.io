@@ -124,3 +124,11 @@ Alumni text spacing: Role title and years have zero flex gap and zero paragraph 
   original source semantic emphasis: CV, transcripts, representative
   publications and the four Ph.D. applicant attributes. Explicit scoped strong
   styling restores these weights despite the legacy theme reset.
+
+## Publication note and faculty link — 2026-10-16
+
+- Center the combined publication note at all screen widths. Exact wording:
+  `*Corresponding authors; ¹ Authors contributed equally; Citation counts: Google Scholar; · Automatically updated YYYY-MM-DD`.
+  Keep using the actual Scholar cache check date; do not hard-code a newer date.
+- Contact PKU Profile points to the English faculty profile:
+  https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm
