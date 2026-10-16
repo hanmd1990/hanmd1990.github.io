@@ -64,7 +64,7 @@ def rebuild_alumni(tree):
                 for strong in clone.xpath('.//strong'):strong.drop_tag()
             content.append(clone)
         if not count:
-            empty=html.Element('p',{'class':'alumni-paper-meta'});empty.text='No selected publications listed.';content.append(empty)
+            empty=html.Element('p',{'class':'alumni-paper-meta'});empty.text='-';content.append(empty)
         toggle=html.Element('div',{'class':'alumni-publications-toggle'});toggle.text='Selected Publications'+(' ('+str(count)+')' if count else '');summary.append(toggle)
         details.append(summary);details.append(content);grid.append(details)
     target=tree.xpath('//*[@id="s-content"]')[0]
