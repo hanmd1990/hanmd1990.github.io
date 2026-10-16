@@ -35,7 +35,7 @@ def rebuild_alumni(tree,records):
         match=re.match(r'(.+?)\s*\(([^)]+)\),\s*(.+)',values[0])
         if not match:continue
         name,zh,role=match.groups()
-        role={'Joint Ph.D.':'Joint PhD Student','Postdoc':'Postdoctoral Researcher'}.get(role,role)
+        role={'Joint Ph.D.':'Joint PhD Student','Postdoctoral Researcher':'Postdoc'}.get(role,role)
         fields={}
         for value in values[1:]:
             key,sep,text=value.partition(':')
@@ -52,9 +52,7 @@ def rebuild_alumni(tree,records):
             if key.endswith('school'):
                 degree='Ph.D.' if key.startswith('ph.d.') else ('Master' if key.startswith('master') else 'Undergrad')
                 degree_line=html.Element('p',{'class':'alumni-stage-primary'});degree_line.text=degree;prior.append(degree_line)
-                school=html.Element('p',{'class':'alumni-stage-secondary'});school.text=value;prior.append(school)
-            elif key.endswith('major'):
-                major=html.Element('p',{'class':'alumni-major'});major.text=value;prior.append(major)
+                school=html.Element('p',{'class':'alumni-stage-secondary'});school.text=value.replace(', CAS',', Chinese Academy of Sciences');prior.append(school)
         stages.append(prior)
         arrow=html.Element('span',{'class':'alumni-arrow','aria-hidden':'true'});arrow.text='→';stages.append(arrow)
         identity=html.Element('div',{'class':'alumni-identity'})
