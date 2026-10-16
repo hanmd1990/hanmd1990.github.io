@@ -109,7 +109,7 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-contact-layout h3{font-size:14px!important;font-weight:700;margin:0 0 10px!important;line-height:1.5}
 .lab-contact-layout p{font-size:14px;line-height:1.75;margin:0}
 .lab-contact-email{padding:16px 0;border-top:1px solid #142b5520;border-bottom:1px solid #142b5520;margin-bottom:22px}
-.lab-contact-email span{display:block;font-size:12px;color:var(--hmd-text);margin-bottom:5px}
+.lab-contact-email span{display:block;font-size:16px;font-weight:600;color:var(--hmd-navy);margin-bottom:5px}
 .lab-contact-email a{font-weight:600;font-size:17px}
 .lab-contact-profiles{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;margin-bottom:24px}
 .lab-contact-profiles a{font-size:13px;text-decoration:none;line-height:1.5}
@@ -208,14 +208,16 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-alumni-page #s-content .alumni-stage-primary{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;line-height:1.6;font-weight:400;color:#142B55;margin:0 0 6px}
 .lab-alumni-page #s-content .alumni-stage-secondary{font-family:"Segoe UI",Arial,sans-serif;font-size:12px;line-height:1.6;font-weight:400;color:#656b74;margin:0 0 6px}
 .alumni-arrow{padding-top:43px;font-family:"Segoe UI",Arial,sans-serif;font-size:18px;line-height:1;color:#547DA6;text-align:center}
-.alumni-publication-disclosure{margin-top:16px;border-top:1px solid #EFF1F5;border-bottom:1px solid #EFF1F5}
-.alumni-publications-toggle{position:relative;display:block;list-style:none;cursor:pointer;font-size:14px;line-height:1.6;color:#A1662F;padding:11px 28px 11px 0}
-.alumni-publications-toggle::-webkit-details-marker{display:none}
-.alumni-publications-toggle:after{content:'+';position:absolute;right:4px;top:10px;font-size:17px;color:#A1662F}
-.alumni-publication-disclosure[open]>.alumni-publications-toggle:after{content:'−'}
+.alumni-identity{display:flex;flex-direction:column}
+.alumni-identity .alumni-tenure{flex:1}
+.alumni-publications-toggle{position:relative;display:block;width:100%;text-align:left;appearance:none;cursor:pointer;background:transparent;border:0;border-top:1px solid #142b5520;border-radius:0;font:400 13px/1.6 "Segoe UI",Arial,sans-serif;color:#A1662F;padding:10px 18px 0 0;margin-top:16px}
+.alumni-publications-toggle:after{content:'+';position:absolute;right:0;top:9px;font-size:17px;color:#A1662F}
+.alumni-publications-toggle[aria-expanded=true]:after{content:'−'}
 .alumni-publications-toggle:is(:hover,:focus-visible){color:#142B55}
 .alumni-publications-toggle:focus-visible{outline:2px solid #A1662F;outline-offset:3px}
-.alumni-publications{padding:3px 0 14px;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;line-height:1.6}
+.alumni-identity:has(.alumni-publications-toggle[aria-expanded=true]){border-left-color:#A1662F}
+.alumni-publications{margin-top:16px;padding:16px 0 14px;border-top:1px solid #EFF1F5;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;line-height:1.6}
+.alumni-publications[hidden]{display:none!important}
 .alumni-paper-title,.alumni-paper-meta{font-family:"Segoe UI",Arial,sans-serif;font-size:14px!important;font-weight:400;line-height:1.7;margin:0;color:#252A34}
 .alumni-paper-title{line-height:1.65;margin:18px 0 5px}
 .alumni-paper-title:first-child{margin-top:0}

@@ -98,9 +98,12 @@ def rebuild_alumni(tree,records):
             content.append(clone)
         if not count:
             empty=html.Element('p',{'class':'alumni-paper-meta'});empty.text='-';content.append(empty)
-        disclosure=html.Element('details',{'class':'alumni-publication-disclosure'})
-        toggle=html.Element('summary',{'class':'alumni-publications-toggle'});toggle.text='Selected Publications'+(' ('+str(count)+')' if count else '')
-        disclosure.append(toggle);disclosure.append(content);details.append(disclosure);grid.append(details)
+        key=re.sub(r'[^a-z0-9]+','-',name.lower()).strip('-')
+        toggle=html.Element('button',{'class':'alumni-publications-toggle','type':'button','id':'alumni-toggle-'+key,'aria-expanded':'false','aria-controls':'alumni-papers-'+key})
+        toggle.text='Selected Publications'+(' ('+str(count)+')' if count else '')
+        identity.append(toggle)
+        content.set('id','alumni-papers-'+key);content.set('hidden','hidden');content.set('role','region');content.set('aria-labelledby',toggle.get('id'))
+        details.append(content);grid.append(details)
     target=tree.xpath('//*[@id="s-content"]')[0]
     for child in list(target):target.remove(child)
     target.append(main)

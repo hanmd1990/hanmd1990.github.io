@@ -215,7 +215,11 @@ for path in ROOT.rglob('index.html'):
         for index in range(len(slides_list)):
             dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
         carousel.append(dots)
-    if route=='alumni':rebuild_alumni(tree,alumni_authors)
+    if route=='alumni':
+        rebuild_alumni(tree,alumni_authors)
+        for old_script in tree.xpath('//script[starts-with(@src,"/static/alumni.js")]'):old_script.getparent().remove(old_script)
+        alumni_script_version=hashlib.sha256((ROOT/'static/alumni.js').read_bytes()).hexdigest()[:12]
+        tree.find('head').append(html.Element('script',src='/static/alumni.js?v='+alumni_script_version,defer='defer'))
     if route=='contact':
         contact=tree.xpath('//*[@id="s-content"]')[0]
         profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
