@@ -102,8 +102,6 @@ def rebuild_alumni(tree,records):
         identity.append(toggle)
         content.set('id','alumni-papers-'+key);content.set('hidden','hidden');content.set('role','region');content.set('aria-labelledby',toggle.get('id'))
         details.append(content);grid.append(details)
-    timeline=html.fragment_fromstring('<footer class="alumni-timeline" aria-label="Career progression from left to right"><div class="alumni-timeline-labels"><span>Prior education</span><span>Role in the group</span><span>Next position</span></div><div class="alumni-timeline-line" aria-hidden="true"></div></footer>')
-    main.append(timeline)
     target=tree.xpath('//*[@id="s-content"]')[0]
     for child in list(target):target.remove(child)
     target.append(main)

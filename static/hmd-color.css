@@ -277,13 +277,6 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-join-nav>button[aria-selected="true"] .lab-join-count{color:var(--hmd-white)}
 .lab-join-role[hidden]{display:none!important}
 
-/* One shared direction guide replaces repeated arrows inside every profile. */
-.alumni-timeline{margin:4px 0 0;padding:16px 0 0;color:#656b74}
-.alumni-timeline-labels{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:12px;font-size:12px;line-height:1.5}
-.alumni-timeline-labels span:nth-child(2){text-align:center;color:#142B55}
-.alumni-timeline-labels span:last-child{text-align:right}
-.alumni-timeline-line{height:1px;background:#547da680;position:relative;margin-top:12px;margin-right:2px}
-.alumni-timeline-line:after{content:'';position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid #547DA6;border-right:1px solid #547DA6;transform:rotate(45deg)}
 .lab-current-page #s-content .member-gallery figcaption{text-align:center;font-weight:700}
 .lab-current-page #s-content .member-gallery .photo-date{text-align:center;font-weight:400}
 .lab-current-page #s-content .member-photos h2{font-weight:700!important}

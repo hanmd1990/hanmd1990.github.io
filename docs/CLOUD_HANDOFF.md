@@ -115,8 +115,8 @@ Alumni text spacing: Role title and years have zero flex gap and zero paragraph 
 ## Alumni / photos / recruitment typography — 2026-10-16
 
 - Alumni retains two people per row, equal Prior/Next widths and a wider Role
-  column. Remove all inter-column arrows. A single shared direction arrow at
-  the bottom of the page explains Prior → Role → Next. Do not add blank lines
+  column. Remove all inter-column arrows. The owner subsequently removed the shared bottom arrow and its legend too.
+  Do not reintroduce arrows between columns or at the bottom. Do not add blank lines
   between role and years; spare height remains below content.
 - Current group-photo captions are centered and bold; dates are centered with
   normal weight. The Group photos heading is bold.
