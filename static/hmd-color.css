@@ -253,8 +253,8 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-join-email{display:inline-block;font-size:14px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--hmd-gold);padding-bottom:4px;margin-bottom:18px}
 .lab-join-intro .lab-join-updated{font-size:12px!important;color:#626b79!important;margin:0!important}
 .lab-join-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 42px}
-.lab-join-nav>a{display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:19px 17px;background:var(--hmd-light-gray);border:1px solid transparent;border-top:3px solid var(--hmd-navy);border-radius:3px;text-decoration:none!important;transition:border-color .18s,background .18s}
-.lab-join-nav>a:hover,.lab-join-nav>a:focus-visible{border-color:var(--hmd-gold);background:white;outline-offset:4px}
+.lab-join-nav>button{display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:19px 17px;background:var(--hmd-light-gray);border:1px solid transparent;border-top:3px solid var(--hmd-navy);border-radius:3px;text-decoration:none!important;transition:border-color .18s,background .18s}
+.lab-join-nav>button:hover,.lab-join-nav>button:focus-visible{border-color:var(--hmd-gold);background:white;outline-offset:4px}
 .lab-join-category{font-size:15px;line-height:1.4;font-weight:600;color:var(--hmd-navy)}
 .lab-join-count{font-size:12px;line-height:1.5;color:#626b79}
 .lab-join-role{display:grid;grid-template-columns:240px minmax(0,1fr);gap:35px;border-top:1px solid #142b5526;padding:32px 0 38px;scroll-margin-top:110px}
@@ -271,4 +271,10 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-contact-map [hidden]{display:none!important}
 .lab-contact-apple-map{width:100%;height:400px;min-height:320px}
 @media(max-width:800px){.lab-join-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-join-role{grid-template-columns:1fr;gap:22px}.lab-join-layout{padding:30px 22px 48px}.lab-contact-apple-map{height:340px}}
-@media(prefers-reduced-motion:reduce){.lab-join-nav>a{transition:none}}
+@media(prefers-reduced-motion:reduce){.lab-join-nav>button{transition:none}}
+
+.lab-join-nav>button{appearance:none;text-align:left;font-family:inherit;cursor:pointer;width:100%;min-width:0}
+.lab-join-nav>button[aria-selected="true"]{background:var(--hmd-navy);border-color:var(--hmd-navy)}
+.lab-join-nav>button[aria-selected="true"] .lab-join-category{color:var(--hmd-white)}
+.lab-join-nav>button[aria-selected="true"] .lab-join-count{color:var(--hmd-white)}
+.lab-join-role[hidden]{display:none!important}

@@ -218,6 +218,9 @@ for path in ROOT.rglob('index.html'):
         carousel.append(dots)
     if route=='join':
         rebuild_join(tree,ROOT)
+        for old_script in tree.xpath('//script[starts-with(@src,"/static/join.js")]'):old_script.getparent().remove(old_script)
+        join_version=hashlib.sha256((ROOT/'static/join.js').read_bytes()).hexdigest()[:12]
+        tree.find('head').append(html.Element('script',src='/static/join.js?v='+join_version,defer='defer'))
     if route=='alumni':
         rebuild_alumni(tree,alumni_authors)
         for old_script in tree.xpath('//script[starts-with(@src,"/static/alumni.js")]'):old_script.getparent().remove(old_script)

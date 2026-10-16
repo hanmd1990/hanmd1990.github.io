@@ -11,7 +11,6 @@ def rebuild_join(tree, root):
     content.set('id', 's-content')
     main = etree.SubElement(content, 'main', {'class': 'lab-join-layout'})
     intro = etree.SubElement(main, 'header', {'class': 'lab-join-intro'})
-    etree.SubElement(intro, 'h1').text = 'Join Us'
     etree.SubElement(intro, 'p').text = data['intro']
     email = etree.SubElement(intro, 'a', href='mailto:hmd@pku.edu.cn', attrib={'class': 'lab-join-email'})
     email.text = 'Contact Mengdi Han ↗'
@@ -22,13 +21,15 @@ def rebuild_join(tree, root):
         if prefix:
             dates[-1].tail = prefix
         etree.SubElement(dates, 'time', datetime=data[key]).text = data[key]
-    nav = etree.SubElement(main, 'nav', {'class': 'lab-join-nav', 'aria-label': 'Recruitment categories'})
+    nav = etree.SubElement(main, 'div', {'class': 'lab-join-nav', 'role': 'tablist', 'aria-label': 'Recruitment categories'})
     for index, role in enumerate(data['roles'], 1):
-        link = etree.SubElement(nav, 'a', href='#'+role['id'])
+        link = etree.SubElement(nav, 'button', {'type': 'button', 'role': 'tab', 'id': 'tab-'+role['id'], 'aria-controls': role['id'], 'aria-selected': 'true' if index == 1 else 'false', 'tabindex': '0' if index == 1 else '-1'})
         etree.SubElement(link, 'span', {'class': 'lab-join-category'}).text = role['label']
         etree.SubElement(link, 'span', {'class': 'lab-join-count'}).text = role['count']
     for index, role in enumerate(data['roles'], 1):
-        section = etree.SubElement(main, 'section', {'class': 'lab-join-role', 'id': role['id'], 'aria-labelledby': role['id']+'-title'})
+        section = etree.SubElement(main, 'section', {'class': 'lab-join-role', 'id': role['id'], 'role': 'tabpanel', 'aria-labelledby': 'tab-'+role['id'], 'tabindex': '0'})
+        if index != 1:
+            section.set('hidden', 'hidden')
         header = etree.SubElement(section, 'header', {'class': 'lab-join-role-heading'})
         etree.SubElement(header, 'span', {'class': 'lab-join-number', 'aria-hidden': 'true'}).text = f'{index:02}'
         title = etree.SubElement(header, 'div')

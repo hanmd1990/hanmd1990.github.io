@@ -95,8 +95,10 @@ Alumni text spacing: Role title and years have zero flex gap and zero paragraph 
 - The owner has now authorized the official `/join/` redesign. This supersedes
   the earlier instruction that only the Join Us preview could be changed.
   `tools/join_layout.py` renders the official page from `data/join-us.json`.
-  Four top category links show roles, counts and original years, followed by
-  open recruitment sections. Master applicants are a Ph.D. application route,
+  Four top category tabs show roles, counts and original years.
+  Clicking switches the single advertisement panel in place without scrolling.
+  The top Join Us heading was removed at the owner’s request.
+  `static/join.js` supports arrow/Home/End keys and category hash URLs. Master applicants are a Ph.D. application route,
   not a newly invented master's opening.
 - Owner explicitly chose to retain original counts/years: postdocs 2–3 in 2025,
   Ph.D. 1–2 for Fall 2026, undergraduates multiple, RA no positions in 2025.
