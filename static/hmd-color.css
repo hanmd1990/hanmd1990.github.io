@@ -188,16 +188,16 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 :is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-role,.alumni-role){font-size:13px!important;font-weight:400!important;line-height:1.6}
 .lab-alumni-layout{max-width:1180px;margin:30px auto 48px;padding:0 24px;font-family:"Segoe UI",Arial,sans-serif}
 .lab-alumni-layout>h1{font-weight:700!important;font-size:32px!important;line-height:1.2;margin:0 0 28px!important}
-.alumni-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 36px;align-items:start}
-.alumni-member{min-width:0;border-top:2px solid #547DA6;padding:18px 0 0;margin:0;background:#FFFFFF}
-.alumni-profile{display:flex;flex-direction:column;gap:20px}
-.alumni-nameplate{display:flex;align-items:baseline;gap:12px;min-width:0}
+.alumni-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px;align-items:stretch}
+.alumni-member{display:grid;grid-template-rows:subgrid;grid-row:span 3;min-width:0;border-top:2px solid #547DA6;padding:18px 0 0;margin:0 0 24px;background:#FFFFFF}
+.alumni-profile{display:contents}
+.alumni-nameplate{display:flex;align-items:baseline;gap:12px;min-width:0;margin-bottom:20px}
 .alumni-nameplate .alumni-chinese{margin:0;color:#656b74}
-.alumni-pathway{min-width:0}
-.alumni-stages{display:grid;grid-template-columns:minmax(0,1fr) 14px minmax(0,.92fr) 14px minmax(0,1.15fr);gap:6px;align-items:start}
+.alumni-pathway{display:flex;min-width:0}
+.alumni-stages{display:grid;width:100%;grid-template-columns:minmax(0,1fr) 14px minmax(0,1.4fr) 14px minmax(0,1fr);gap:6px;align-items:stretch}
 .alumni-stages>div{min-width:0;box-sizing:border-box;overflow-wrap:break-word}
 .alumni-prior,.alumni-next{padding:12px 0;background:#FFFFFF}
-.alumni-identity{padding:12px 10px 14px;background:#EFF1F5;border-left:2px solid #547DA6;border-radius:0 4px 4px 0}
+.alumni-identity{padding:12px 10px 14px;background:#EFF1F5;border-left:2px solid #547DA6;border-radius:0 4px 4px 0;transition:box-shadow .18s ease,border-color .18s ease,transform .18s ease}
 .lab-alumni-page #s-content .alumni-profile h2{font-family:"Segoe UI",Arial,sans-serif;font-size:13px!important;line-height:1.5;font-weight:600;margin:0 0 10px!important;color:#A1662F!important}
 .lab-alumni-page #s-content .alumni-identity h2{color:#142B55!important}
 .alumni-profile p{margin:0 0 5px;color:#252A34}
@@ -235,3 +235,11 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 
 .lab-publication-notes{white-space:nowrap}
 @media(max-width:800px){.lab-publication-notes{white-space:normal}}
+
+/* Align all three stages and the publication footer within each pair of Alumni. */
+.alumni-prior>.alumni-stage-primary,.alumni-next>.alumni-stage-primary,.alumni-tenure>.alumni-role{min-height:41.6px}
+@media(hover:hover){.alumni-identity:hover{border-left-color:#A1662F;box-shadow:0 4px 12px #142b551a;transform:translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){.alumni-identity{transition:none}.alumni-identity:hover{transform:none}}
+@media(max-width:960px){.alumni-grid{row-gap:0}.lab-alumni-page #s-content .alumni-profile h2{min-height:39px}}
+@media(max-width:760px){.alumni-grid{row-gap:0}}
+@supports not (grid-template-rows:subgrid){.alumni-member{display:block}.alumni-profile{display:flex;flex-direction:column}.alumni-nameplate{margin-bottom:0}.alumni-stages{min-height:180px}}
