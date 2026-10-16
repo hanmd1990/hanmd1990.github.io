@@ -191,7 +191,11 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .alumni-profile p{font-size:14px;line-height:1.65;margin:0 0 4px;color:#252A34}
 .lab-alumni-page #s-content .alumni-profile h2{font-size:14px!important;line-height:1.5;color:#A1662F!important;margin:0 0 8px!important;font-weight:600}
 .lab-alumni-page #s-content .alumni-profile h3{font-size:24px!important;font-weight:600!important;line-height:1.5;color:#142B55!important;margin:0 0 2px!important}
-.alumni-identity{text-align:left}
+.alumni-prior,.alumni-next,.alumni-identity{padding:14px 16px;border-radius:6px;box-sizing:border-box}
+.alumni-prior,.alumni-next{background:#FFFFFF}
+.alumni-identity{text-align:left;background:#EFF1F5}
+.lab-alumni-page #s-content .alumni-identity h2{color:#142B55!important}
+.alumni-profile .alumni-identity .alumni-role{color:#142B55;font-weight:600}
 .alumni-profile .alumni-role{font-size:13px;color:#547DA6}
 .alumni-profile .alumni-years,.alumni-profile .alumni-degree{font-size:13px;color:#656b74}
 .alumni-tenure{display:flex;gap:10px;align-items:baseline;justify-content:flex-start;flex-wrap:wrap;margin-top:0}

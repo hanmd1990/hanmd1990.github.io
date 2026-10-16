@@ -37,7 +37,7 @@ def rebuild_alumni(tree):
         tenure=html.Element('div',{'class':'alumni-tenure'});identity.append(tenure)
         position=html.Element('p',{'class':'alumni-role'});position.text=role;tenure.append(position)
         years=html.Element('p',{'class':'alumni-years'});years.text=fields.get('years in group','');tenure.append(years);profile.append(identity)
-        next_position=html.Element('div',{'class':'alumni-next'});label=html.Element('h2');label.text='After leaving the group';next_position.append(label)
+        next_position=html.Element('div',{'class':'alumni-next'});label=html.Element('h2');label.text='Next position';next_position.append(label)
         destination=html.Element('p');destination.text=fields.get('next position','').replace('Postdoc at ','Postdoctoral Researcher at ').replace('Faculty at ','Faculty Member at ');next_position.append(destination);profile.append(next_position)
         summary.append(profile)
         paragraphs=member.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure-content ")]//p')
