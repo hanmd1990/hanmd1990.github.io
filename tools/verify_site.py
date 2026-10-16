@@ -1,4 +1,4 @@
-"""Fail deployment on missing local assets or third-party runtime dependencies."""
+"""Fail on missing assets or unapproved third-party runtime dependencies."""
 import json,re,sys
 from pathlib import Path
 from urllib.parse import urljoin,urlparse,unquote
@@ -38,7 +38,12 @@ for f in ROOT.rglob('*'):
         for m in urls.finditer(s):check(m[2],f)
         if re.search(r'@import',s):errors.append(f'{f}: CSS import requires verification')
     elif f.suffix=='.js':
-        if re.search(r'fetch\s*\(|XMLHttpRequest|https?://',f.read_text(encoding='utf-8')):errors.append(f'{f}: remote script dependency')
+        script=f.read_text(encoding='utf-8')
+        # Requested Apple Maps enhancement; this is the sole approved remote SDK.
+        # The empty-token and failure paths retain the local campus map.
+        if f.relative_to(ROOT).as_posix()=='static/contact-map.js':
+            script=script.replace('https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js','')
+        if re.search(r'fetch\s*\(|XMLHttpRequest|https?://',script):errors.append(f'{f}: remote script dependency')
 report={'checked_html_pages':count,'errors':sorted(set(errors))}
 print(json.dumps(report,ensure_ascii=False,indent=2))
 sys.exit(bool(errors))

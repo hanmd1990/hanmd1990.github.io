@@ -5,6 +5,7 @@ from zoneinfo import ZoneInfo
 from urllib.parse import urlparse,quote
 from lxml import html
 from alumni_layout import rebuild_alumni,bibliography_authors
+from join_layout import rebuild_join
 
 ROOT=Path(sys.argv[1]).resolve()
 alumni_authors=bibliography_authors(ROOT)
@@ -215,6 +216,8 @@ for path in ROOT.rglob('index.html'):
         for index in range(len(slides_list)):
             dots.append(html.Element('button',{'class':'lab-carousel-dot','type':'button','data-slide':str(index),'aria-label':f'Show slide {index+1} of {len(slides_list)}','aria-pressed':'true' if index==0 else 'false'}))
         carousel.append(dots)
+    if route=='join':
+        rebuild_join(tree,ROOT)
     if route=='alumni':
         rebuild_alumni(tree,alumni_authors)
         for old_script in tree.xpath('//script[starts-with(@src,"/static/alumni.js")]'):old_script.getparent().remove(old_script)
@@ -236,6 +239,19 @@ for path in ROOT.rglob('index.html'):
             if name in profile_links:
                 link=html.Element('a',href=profile_links[name]);link.append(html.Element('img',src='/images/people/mengdi-han/'+icon,alt='',attrib={'aria-hidden':'true','width':'18','height':'18'}));label=html.Element('span');label.text=name;link.append(label);profile_nav.append(link)
         contact.append(layout)
+        map_figure=layout.xpath('.//figure[@class="lab-contact-map"]')[0]
+        map_figure.set('id','contact-map')
+        map_figure[0].set('class','lab-contact-map-fallback')
+        map_canvas=html.Element('div',id='contact-apple-map',attrib={'class':'lab-contact-apple-map','hidden':'hidden','role':'region','aria-label':'Apple Maps — 北京大学新奥工学大楼'})
+        map_figure.insert(0,map_canvas)
+        map_figure.xpath('./figcaption')[0].set('id','contact-map-caption')
+        map_nav=layout.xpath('.//nav[@class="lab-contact-map-links"]')[0]
+        apple_link=html.Element('a',href='https://maps.apple.com/?q='+quote('北京大学新奥工学大楼'),target='_blank',rel='noopener noreferrer')
+        apple_link.text='Apple Maps ↗';map_nav.insert(0,apple_link)
+        for name in ('apple-maps-config','contact-map'):
+            for old_script in tree.xpath('//script[starts-with(@src,"/static/'+name+'.js")]'):old_script.getparent().remove(old_script)
+            version=hashlib.sha256((ROOT/('static/'+name+'.js')).read_bytes()).hexdigest()[:12]
+            tree.find('head').append(html.Element('script',src='/static/'+name+'.js?v='+version,defer='defer'))
         # The platform snapshot nests the right column inside the left column.
         for right in tree.xpath('//div[contains(concat(" ",@class," ")," col-7 ")]'):
             rows=right.xpath('ancestor::div[contains(concat(" ",@class," ")," s-row-content ")]')

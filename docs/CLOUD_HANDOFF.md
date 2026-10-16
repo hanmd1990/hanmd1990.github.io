@@ -89,3 +89,23 @@ Alumni degree label uses Undergraduate (not Undergrad).
 Alumni spacing: All text flows naturally from the top. No minimum heights on headings or degree/position lines, and no flex expansion between tenure and the publication button. Any equal-height surplus remains below the content; retain shared card rows and the wider Role column.
 
 Alumni text spacing: Role title and years have zero flex gap and zero paragraph margins; Prior and Next primary/secondary lines also have zero paragraph margins. Keep normal line height only, e.g. Joint Ph.D. Student immediately followed by 2021–2025.
+
+## Recruitment and Apple Maps — 2026-10-16
+
+- The owner has now authorized the official `/join/` redesign. This supersedes
+  the earlier instruction that only the Join Us preview could be changed.
+  `tools/join_layout.py` renders the official page from `data/join-us.json`.
+  Four top category links show roles, counts and original years, followed by
+  open recruitment sections. Master applicants are a Ph.D. application route,
+  not a newly invented master's opening.
+- Owner explicitly chose to retain original counts/years: postdocs 2–3 in 2025,
+  Ph.D. 1–2 for Fall 2026, undergraduates multiple, RA no positions in 2025.
+  The page separately displays page update date and original notice 2025-01-24.
+  When recruitment content or page design changes, update `updated_on`; only
+  change `notice_updated_on` when the owner supplies a refreshed notice.
+  Do not advance dates on unrelated deployments.
+- Contact has an Apple Maps link and a prepared MapKit JS enhancement in
+  `static/contact-map.js`, configured by `static/apple-maps-config.js`.
+  It is **not activated**: no Maps token is available. The current campus map
+  remains the fallback. Follow `docs/APPLE_MAPS.md` to authorize and verify the
+  exact building marker, drag and zoom before claiming completion.
