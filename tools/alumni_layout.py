@@ -23,6 +23,8 @@ def rebuild_alumni(tree):
         nameplate=html.Element('div',{'class':'alumni-nameplate'})
         title=html.Element('h3');title.text=name;nameplate.append(title)
         chinese=html.Element('p',{'class':'alumni-chinese'});chinese.text=zh;nameplate.append(chinese);profile.append(nameplate)
+        pathway=html.Element('div',{'class':'alumni-pathway'})
+        stages=html.Element('div',{'class':'alumni-stages'});pathway.append(stages);profile.append(pathway)
         prior=html.Element('div',{'class':'alumni-prior'});label=html.Element('h2');label.text='Prior education';prior.append(label)
         for key,value in fields.items():
             if key.endswith('school'):
@@ -31,14 +33,16 @@ def rebuild_alumni(tree):
                 school=html.Element('p');school.text=value;prior.append(school)
             elif key.endswith('major'):
                 major=html.Element('p',{'class':'alumni-major'});major.text=value;prior.append(major)
-        profile.append(prior)
+        stages.append(prior)
+        arrow=html.Element('span',{'class':'alumni-arrow','aria-hidden':'true'});arrow.text='→';stages.append(arrow)
         identity=html.Element('div',{'class':'alumni-identity'})
         label=html.Element('h2');label.text='Role in the group';identity.append(label)
         tenure=html.Element('div',{'class':'alumni-tenure'});identity.append(tenure)
         position=html.Element('p',{'class':'alumni-role'});position.text=role;tenure.append(position)
-        years=html.Element('p',{'class':'alumni-years'});years.text=fields.get('years in group','');tenure.append(years);profile.append(identity)
+        years=html.Element('p',{'class':'alumni-years'});years.text=fields.get('years in group','');tenure.append(years);stages.append(identity)
+        arrow=html.Element('span',{'class':'alumni-arrow','aria-hidden':'true'});arrow.text='→';stages.append(arrow)
         next_position=html.Element('div',{'class':'alumni-next'});label=html.Element('h2');label.text='Next position';next_position.append(label)
-        destination=html.Element('p');destination.text=fields.get('next position','').replace('Postdoc at ','Postdoctoral Researcher at ').replace('Faculty at ','Faculty Member at ');next_position.append(destination);profile.append(next_position)
+        destination=html.Element('p');destination.text=fields.get('next position','').replace('Postdoc at ','Postdoctoral Researcher at ').replace('Faculty at ','Faculty Member at ');next_position.append(destination);stages.append(next_position)
         summary.append(profile)
         paragraphs=member.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure-content ")]//p')
         content=html.Element('div',{'class':'alumni-publications'})
