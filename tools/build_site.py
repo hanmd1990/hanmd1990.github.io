@@ -148,15 +148,11 @@ def archive_nav(kind,active):
         secondary=html.Element('div',{'class':'lab-archive-action-row'})
         scholar=html.Element('a',href='https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en',target='_blank',rel='noopener noreferrer',attrib={'class':'lab-archive-feature lab-scholar-link'});scholar.text='Google Scholar Profile';secondary.append(scholar);actions.append(secondary)
     nav.append(actions)
-    if kind=='publications' and citations.get('profile_metrics'):
-        metrics=citations['profile_metrics'];stats=html.Element('div',{'class':'lab-scholar-metrics','aria-label':'Google Scholar profile statistics'})
-        for label,key in [('Total citations','total_citations'),('h-index','h_index'),('i10-index','i10_index')]:
-            metric=html.Element('div');value=html.Element('strong');value.text=format(metrics[key],',');metric.append(value);caption=html.Element('span');caption.text=label;metric.append(caption);stats.append(metric)
-        nav.append(stats)
     if kind=='publications' and active!='covers':
-        note=html.Element('p',{'class':'lab-publication-legend'});note.text='* Corresponding authors; ¹ Authors contributed equally';nav.append(note)
+        note=html.Element('p',{'class':'lab-publication-legend lab-publication-notes'});note.text='* Corresponding authors; ¹ Authors contributed equally'
         if citations.get('checked_on'):
-            note=html.Element('p',{'class':'lab-citation-updated'});note.text='Citation counts: Google Scholar · automatically updated '+citations['checked_on'];nav.append(note)
+            note.text+='; Citation counts: Google Scholar · automatically updated '+citations['checked_on']
+        nav.append(note)
     return nav
 
 for path in ROOT.rglob('index.html'):
@@ -226,9 +222,8 @@ for path in ROOT.rglob('index.html'):
         profile_links={text(a):a.get('href') for a in contact.xpath('.//a[@href]') if text(a) in profile_names}
         contact.clear();contact.set('id','s-content')
         layout=html.fragment_fromstring('''<main class="lab-contact-layout">
-          <header class="lab-contact-intro"><p class="lab-contact-eyebrow">Mengdi Han Research Group</p><h1>Contact</h1><p>Department of Biomedical Engineering · Peking University</p></header>
           <div class="lab-contact-grid">
-            <section class="lab-contact-profile" aria-labelledby="contact-name"><div class="lab-contact-person"><div class="lab-contact-portrait"><img src="/images/people/mengdi-han/contact.jpg" alt="Mengdi Han"></div><div><h2 id="contact-name">Mengdi Han</h2><p>College of Future Technology<br>Peking University</p></div></div><div class="lab-contact-email"><span>Email</span><strong>hmd[at]pku.edu.cn</strong></div><h3>Profiles &amp; resources</h3><nav class="lab-contact-profiles" aria-label="Profiles and resources"></nav><div class="lab-contact-address"><p>Department of Biomedical Engineering<br>College of Future Technology<br>Peking University<br>Beijing 100871, China</p></div></section>
+            <section class="lab-contact-profile" aria-labelledby="contact-name"><div class="lab-contact-person"><div class="lab-contact-portrait"><img src="/images/people/mengdi-han/mengdi-han-portrait.jpg" alt="Mengdi Han"></div><div><h2 id="contact-name">Mengdi Han</h2><p>Assistant Professor of Biomedical Engineering<br>Associate Department Chair</p></div></div><div class="lab-contact-email"><span>Email</span><p>hmd[at]pku.edu.cn</p></div><nav class="lab-contact-profiles" aria-label="Profiles and resources"></nav><div class="lab-contact-address"><p>Department of Biomedical Engineering<br>College of Future Technology<br>Peking University<br>Beijing 100871, China</p></div></section>
             <section class="lab-contact-visit" aria-labelledby="contact-visit"><h2 id="contact-visit">Visit our lab</h2><figure class="lab-contact-map"><a href="/images/people/mengdi-han/contact-02.jpg" data-lightbox="true" aria-label="Enlarge laboratory location map"><img src="/images/people/mengdi-han/contact-02.jpg" alt="Peking University campus map and laboratory location"></a><figcaption>Campus map · Click to enlarge</figcaption></figure><nav class="lab-contact-map-links" aria-label="Map services"><a href="https://maps.app.goo.gl/XG2o6uWEqPignxYM8" target="_blank" rel="noopener noreferrer">Google Map ↗</a><a href="https://j.map.baidu.com/86/7Spi" target="_blank" rel="noopener noreferrer">百度地图 ↗</a><a href="https://surl.amap.com/4fO0iYusb3Nn" target="_blank" rel="noopener noreferrer">高德地图 ↗</a></nav><div class="lab-contact-travel"><section><h3>② Metro · ~350 m</h3><p>East Gate of Peking University, Exit B<br>北京大学东门站，B出口</p></section><section><h3>③ Bus · ~350 m</h3><p>Zhongguanyuan North<br>中关园北站</p></section><section class="lab-contact-driving"><h3>① Lab location / ④ Driving &amp; taxi</h3><p>No. 116 Zhongguancun North Street<br>中关村北大街116号，北京大学新奥工学大楼</p></section></div></section>
           </div></main>''')
         profile_nav=layout.xpath('.//nav[@class="lab-contact-profiles"]')[0]

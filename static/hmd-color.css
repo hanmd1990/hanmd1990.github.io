@@ -102,8 +102,8 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-contact-grid{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:32px;align-items:start}
 .lab-contact-profile{background:var(--hmd-light-gray);border-top:4px solid var(--hmd-navy);padding:24px;border-radius:8px}
 .lab-contact-person{display:flex;align-items:center;gap:18px;margin-bottom:22px}
-.lab-contact-portrait{width:108px;height:138px;flex-shrink:0;overflow:hidden;border-radius:6px;background:white}
-.lab-contact-portrait img{display:block;width:276px!important;max-width:none!important;height:138px;object-fit:cover;object-position:left}
+.lab-contact-portrait{width:108px;height:151px;flex-shrink:0;overflow:hidden;border-radius:6px;background:white}
+.lab-contact-portrait img{display:block;width:100%!important;max-width:100%!important;height:100%;object-fit:cover;object-position:center}
 .lab-contact-layout h2{font-size:22px!important;line-height:1.3;margin:0 0 12px!important}
 .lab-contact-person h2{font-size:20px!important}
 .lab-contact-layout h3{font-size:14px!important;font-weight:700;margin:0 0 10px!important;line-height:1.5}
@@ -178,7 +178,7 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 @media(max-width:800px){.lab-covers-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.lab-citation-updated{text-align:left}.lab-cover-caption{padding:14px}}
 @media(max-width:480px){.lab-covers-grid{grid-template-columns:1fr}.lab-covers-layout{padding:0 18px}.lab-citation-badge{margin-left:6px}}
 
-.lab-contact-email strong{display:block;font-weight:600;font-size:17px;color:var(--hmd-navy)}
+.lab-contact-email p{display:block;font-weight:400;font-size:14px;color:var(--hmd-text)}
 .lab-contact-profiles img{mix-blend-mode:multiply;background:transparent!important}
 
 /* Shared member typography: Current and Alumni use the same rules. */
@@ -232,3 +232,6 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-scholar-metrics strong{font-size:20px;color:#142B55;font-weight:600;font-variant-numeric:tabular-nums}
 .lab-scholar-metrics span{font-size:13px;color:#656b74}
 @media(max-width:600px){.lab-scholar-metrics{gap:18px;flex-wrap:wrap}.lab-scholar-metrics>div{flex-direction:column;gap:1px}}
+
+.lab-publication-notes{white-space:nowrap}
+@media(max-width:800px){.lab-publication-notes{white-space:normal}}
