@@ -35,7 +35,7 @@ def rebuild_alumni(tree,records):
         match=re.match(r'(.+?)\s*\(([^)]+)\),\s*(.+)',values[0])
         if not match:continue
         name,zh,role=match.groups()
-        role={'Joint Ph.D.':'Joint PhD Student','Postdoctoral Researcher':'Postdoc'}.get(role,role)
+        role={'Joint Ph.D.':'Joint Ph.D. Student','Postdoctoral Researcher':'Postdoc'}.get(role,role)
         fields={}
         for value in values[1:]:
             key,sep,text=value.partition(':')
