@@ -1,13 +1,19 @@
 """Build archive navigation and full lists from editable year pages. No network."""
-import copy,datetime,hashlib,json,re,sys,unicodedata
+import copy,datetime,hashlib,json,re,subprocess,sys,unicodedata
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.parse import urlparse,quote
 from lxml import html
 from alumni_layout import rebuild_alumni,bibliography_authors
 from join_layout import rebuild_join
+from member_publications import read_bibliography,add_alumni_publications
 
 ROOT=Path(sys.argv[1]).resolve()
+member_roster=json.loads((ROOT/'data/member-publications.json').read_text(encoding='utf8'))
+member_bibliography=read_bibliography(ROOT)
+# Rebuild selected papers on every deployment, including manually edited years.
+# Author identity evidence is cached in the roster; this build needs no network.
+subprocess.run([sys.executable,str(Path(__file__).with_name('build_member_preview.py')),str(ROOT),'--publish'],check=True)
 alumni_authors=bibliography_authors(ROOT)
 color_version=hashlib.sha256((ROOT/'static/hmd-color.css').read_bytes()).hexdigest()[:12]
 script_version=hashlib.sha256((ROOT/'static/site.js').read_bytes()).hexdigest()[:12]
@@ -241,6 +247,7 @@ for path in ROOT.rglob('index.html'):
         tree.find('head').append(html.Element('script',src='/static/join.js?v='+join_version,defer='defer'))
     if route=='alumni':
         rebuild_alumni(tree,alumni_authors)
+        add_alumni_publications(tree,member_bibliography,member_roster)
         for old_script in tree.xpath('//script[starts-with(@src,"/static/alumni.js")]'):old_script.getparent().remove(old_script)
         alumni_script_version=hashlib.sha256((ROOT/'static/alumni.js').read_bytes()).hexdigest()[:12]
         tree.find('head').append(html.Element('script',src='/static/alumni.js?v='+alumni_script_version,defer='defer'))

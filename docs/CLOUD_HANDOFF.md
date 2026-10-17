@@ -152,3 +152,38 @@ numbers in descending order, highest first, including articles in the same year.
 Title/author/journal/citation metadata stay together. `build_member_preview.py`
 also sorts numeric paper IDs descending for newly generated Current cards.
 Do not change article eligibility, membership, counts or visual layout to sort.
+
+## Automatic member publication synchronization — 2026-10-17
+
+Every website build now regenerates Current from the canonical year pages and
+adds all independently verified eligible articles to Alumni. The shared offline
+matcher is `tools/member_publications.py`. `build_member_preview.py` scans all
+bibliography IDs, not just the old manual `member_paper_ids`. `build_site.py`
+automatically invokes it for the output copy and adds Alumni selections before
+sorting/citation injection. Do not run the main builder against editable source.
+
+For every newly added or author-updated publication, the maintainer/Scholar task
+must verify the complete author list and first/co-first markers using the publisher
+or formal paper. Store full ordered names in `data/member-publications.json` under
+`evidence[paper_number]` with doi, full_authors, publisher_metadata and checked_on.
+Names are matched exactly after normalization, then checked against the abbreviated
+bibliography author at the same position. Explicit user-confirmed author positions
+remain valid. Matching initials alone is never enough. If a member identity or
+co-first status cannot be verified, report the affected article/member as pending;
+do not silently count it as checked or invent an attribution. Full unabbreviated
+author names in a bibliography entry can also provide direct identity evidence.
+
+Selection requires member first or marked co-first AND Mengdi Han as a coauthor.
+Respect `excluded_representative_paper_ids` and the removed independent Nano Energy
+article. Keep the curated Alumni identity evidence for existing selections; new
+additions require full-name evidence. Current/Alumni rosters and the published
+layouts remain authoritative. Sync both groups, not just Current. Keep descending
+bibliography numbering, selected-article counts, complete metadata/citations and
+empty `-` states. Avoid duplicates when running again.
+
+The existing cloud Scholar automation has been updated with these rules; its
+schedule is unchanged. Manual bibliography maintenance uses the same build path.
+`python tools/test_member_publications.py` checks first/co-first matching, false
+initial matches, missing PI, excluded articles, changed markers, duplicate handling,
+empty states and Current regeneration despite an empty old manual selection list.
+Run these regression checks before publishing changes to synchronization logic.
