@@ -46,10 +46,6 @@ def is_first_author(name,pid):
 page=html.document_fromstring('<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Current Members — Design Preview</title><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/hmd-color.css"><link rel="stylesheet" href="/static/member-preview.css?v=20261014-gallery-v2"><script src="/static/site.js" defer></script><script src="/static/member-gallery.js?v=20261014-gallery-v2" defer></script></head><body class="lab-member-preview"><div id="s-content"></div></body></html>')
 page.find('body').insert(0,copy.deepcopy(source.xpath('//header[contains(@class,"lab-header")]')[0]))
 main=html.fragment_fromstring('''<main class="members-layout"><header class="members-intro"><h1>Current Members</h1><p>Our group consists of a diverse mix of students, including people from electrical engineering, biomedical engineering, mechanical engineering, materials science and engineering, life science, and medicine.</p><p class="members-preview-note">Layout preview. <a href="/current/">View the current page</a></p></header></main>''')
-full_order={}
-for paragraph in html.document_fromstring((root/'all/index.html').read_text(encoding='utf8')).xpath('//p'):
-    match=re.match(r'^\((\d+)\)',paragraph.text_content().strip())
-    if match:full_order.setdefault(int(match[1]),len(full_order))
 groups=roster['groups']
 grid=html.Element('div',{'class':'members-grid'})
 body_layout=html.Element('div',{'class':'members-body'})
@@ -67,7 +63,7 @@ for section_id,label,chinese,people in groups:
         chinese_name=html.Element('p',{'class':'member-chinese'});chinese_name.text=zh+(' · '+chinese_school if chinese_school else '');card.append(chinese_name)
         if name=='Mengdi Han':grid.append(card);continue
         ids=[pid for pid in roster['member_paper_ids'].get(name,[]) if pid in papers and str(pid) not in roster.get('excluded_representative_paper_ids',{}) and is_first_author(name,pid)]
-        ids.sort(key=lambda pid:full_order.get(pid,len(full_order)+126-pid))
+        ids.sort(reverse=True)
         details=html.Element('details',{'class':'member-publications'})
         summary=html.Element('summary');summary.text='Selected Publications'+(' ('+str(len(ids))+')' if ids else '');details.append(summary)
         if ids:

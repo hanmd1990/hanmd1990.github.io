@@ -143,3 +143,12 @@ wider with a light-gray background and its Selected Publications control.
 Remove the thick blue dividers above/below members. Keep two members per row,
 compact role/year text without spacer lines, and full-width publication panels
 below all three boxes. There is no shared page-bottom arrow or legend.
+
+## Selected publication order — 2026-10-17
+
+Current and Alumni Selected Publications follow the main Publication bibliography
+numbers in descending order, highest first, including articles in the same year.
+`build_site.py` enforces ordering on both final routes on every deployment.
+Title/author/journal/citation metadata stay together. `build_member_preview.py`
+also sorts numeric paper IDs descending for newly generated Current cards.
+Do not change article eligibility, membership, counts or visual layout to sort.

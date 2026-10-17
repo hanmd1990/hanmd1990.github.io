@@ -46,7 +46,7 @@ for year in pub_years:
                 if value and not re.fullmatch(r'et\s*al\.?|\d+',value,re.I):journal=value;break
             if journal:break
             following=following.getnext()
-        publication_index[paper_key(links[0].get('href'))]={'title':' '.join(links[0].text_content().split()),'journal':journal,'year':year}
+        publication_index[paper_key(links[0].get('href'))]={'title':' '.join(links[0].text_content().split()),'journal':journal,'year':year,'number':int(re.match(r'^\((\d+)\)',p.text_content().strip())[1])}
 def current(ys):return today if today in ys else next((y for y in ys if y<=today),ys[0])
 def text(e):return ' '.join(''.join(e.itertext()).split())
 def citation_badge(record,title):
@@ -75,6 +75,24 @@ def article_link(href):
         ('academic.oup.com',r'/article/'),('pubs.aip.org',r'/article/')])
 def paper_id(e):
     m=re.match(r'^\((\d+)\)',text(e));return int(m[1]) if m else None
+def sort_member_publications(tree):
+    # Use the bibliography number, not year/title or the curated selection order.
+    # Keep each title and all of its metadata/citations together when moving it.
+    numbers={title_key(record['title']):record['number'] for record in publication_index.values()}
+    for listing in tree.xpath('//ol[@class="member-paper-list"]'):
+        for item in sorted(list(listing),key=lambda item:int(item.get('data-paper-id','-1')),reverse=True):
+            listing.append(item)
+    for listing in tree.xpath('//div[@class="alumni-publications"]'):
+        groups=[]
+        for node in list(listing):
+            if 'alumni-paper-title' in node.get('class','').split():
+                number=numbers.get(title_key(text(node)),-1)
+                if number>=0:node.set('data-paper-id',str(number))
+                groups.append((number,[node]))
+            elif groups:
+                groups[-1][1].append(node)
+        for number,nodes in sorted(groups,key=lambda group:group[0],reverse=True):
+            for node in nodes:listing.append(node)
 def paper_wrapper(tree):
     candidates=[e for e in tree.xpath('//div[contains(concat(" ",normalize-space(@class)," ")," s-rich-text-wrapper ")]') if any(paper_id(c) for c in e)]
     assert len(candidates)==1,'Expected one publication content block'
@@ -226,6 +244,8 @@ for path in ROOT.rglob('index.html'):
         for old_script in tree.xpath('//script[starts-with(@src,"/static/alumni.js")]'):old_script.getparent().remove(old_script)
         alumni_script_version=hashlib.sha256((ROOT/'static/alumni.js').read_bytes()).hexdigest()[:12]
         tree.find('head').append(html.Element('script',src='/static/alumni.js?v='+alumni_script_version,defer='defer'))
+    if route in ('current','alumni'):
+        sort_member_publications(tree)
     if route=='contact':
         contact=tree.xpath('//*[@id="s-content"]')[0]
         profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
