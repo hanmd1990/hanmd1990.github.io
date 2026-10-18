@@ -223,3 +223,12 @@ controls. Hover uses gold border, stronger shadow and a small lift (no lift for
 reduced motion). A click still only expands the publication control.
 Alumni heading includes `(in chronological order)` as 14px normal-weight text
 on the same line where space allows. Do not change member order for this note.
+
+## CAS abbreviation and menu hover — 2026-10-18
+
+Owner now requests `CAS` in Alumni's prior/next institutions, superseding the
+older full-name requirement for Chinese Academy of Sciences. Both fields use
+this abbreviation consistently. Research/Group menus open on actual mouse
+pointer entry without a primary-pointer hover media-query gate. They close on
+mouse exit unless a visible keyboard focus remains inside. Touch click, native
+keyboard toggle, outside click and Escape remain supported.

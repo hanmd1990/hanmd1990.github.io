@@ -57,7 +57,7 @@ def rebuild_alumni(tree,records):
             if key.endswith('school'):
                 degree='Ph.D. Student' if key.startswith('ph.d.') else ('Master' if key.startswith('master') else 'Undergraduate')
                 degree_line=html.Element('p',{'class':'alumni-stage-primary'});degree_line.text=degree;prior.append(degree_line)
-                school=html.Element('p',{'class':'alumni-stage-secondary'});school.text=value.replace(', CAS',', Chinese Academy of Sciences');prior.append(school)
+                school=html.Element('p',{'class':'alumni-stage-secondary'});school.text=value.replace('Chinese Academy of Sciences','CAS');prior.append(school)
         stages.append(prior)
         identity=html.Element('div',{'class':'alumni-identity','role':'group','aria-label':'Role in the group'})
         tenure=html.Element('div',{'class':'alumni-tenure'});identity.append(tenure)
@@ -70,7 +70,7 @@ def rebuild_alumni(tree,records):
         if not separator:institution=next_value;position_name=''
         if position_name:
             position_line=html.Element('p',{'class':'alumni-stage-primary'});position_line.text=position_name;next_position.append(position_line)
-        destination=html.Element('p',{'class':'alumni-stage-secondary'});destination.text=re.sub(r'^the ','',institution);next_position.append(destination);stages.append(next_position)
+        destination=html.Element('p',{'class':'alumni-stage-secondary'});destination.text=re.sub(r'^the ','',institution).replace('Chinese Academy of Sciences','CAS');next_position.append(destination);stages.append(next_position)
         details.append(profile)
         paragraphs=member.xpath('.//*[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure-content ")]//p')
         content=html.Element('div',{'class':'alumni-publications'})

@@ -3,8 +3,8 @@ const toggle=document.querySelector('.lab-menu-toggle');
 toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));document.querySelector('#lab-navigation').classList.toggle('is-open',open)});
 document.querySelectorAll('.lab-menu').forEach(menu=>{
  menu.addEventListener('toggle',()=>{if(menu.open)document.querySelectorAll('.lab-menu').forEach(other=>{if(other!==menu)other.open=false})});
- menu.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'&&matchMedia('(hover: hover)').matches)menu.open=true});
- menu.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&!menu.matches(':focus-within'))menu.open=false});
+ menu.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')menu.open=true});
+ menu.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&!menu.querySelector(':focus-visible'))menu.open=false});
  menu.addEventListener('focusout',event=>{if(!menu.contains(event.relatedTarget)&&!menu.matches(':hover'))menu.open=false});
 });
 document.addEventListener('click',event=>{if(!event.target.closest('.lab-menu'))document.querySelectorAll('.lab-menu').forEach(menu=>menu.open=false)});
