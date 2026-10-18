@@ -200,3 +200,16 @@ The per-person timeline arrow above the stages remains and is now 2px thick.
 Prior's Ph.D. text is now Ph.D. Student as explicitly annotated by the owner.
 Keep the existing member columns, typography, first/co-first/PI filtering,
 automatic synchronization and descending publication order.
+
+## Independent member cards and centered stages — 2026-10-18
+
+Alumni must use ordinary top-aligned cards, not shared row subgrids: opening
+one person's publications must not enlarge the neighboring person's outer card.
+Keep two columns on desktop. Current also keeps independent cards.
+All three Alumni stage areas use the same light-gray background and center
+content horizontally and vertically. Their three external headings share the
+same normal font weight; degree/job primary lines (including Role) are bold.
+Role, years and publication button use the same compact 4px item gap; tenure
+is display:contents, with no margin or padding before the publication control.
+Outer cards have a visible hover lift/shadow; no general card click action.
+Only publication controls expand. Keep reduced-motion support and keyboard focus.
