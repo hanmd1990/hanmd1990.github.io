@@ -286,10 +286,8 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-current-page #s-content .member-publications>summary,.lab-current-page #s-content .member-paper-list li{border:0}
 .lab-current-page #s-content .member-publications{margin-top:14px}
 .lab-alumni-page #s-content .alumni-stages>div{box-shadow:none;transform:none;transition:background-color .18s ease}
-@media(hover:hover){
-:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member):hover{box-shadow:0 7px 22px #142b5529;border-color:#547da680;transform:translateY(-2px)}
+:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member):hover{box-shadow:0 8px 24px #142b5530;border-color:#A1662F;transform:translateY(-3px)}
 .lab-alumni-page #s-content :is(.alumni-prior,.alumni-next,.alumni-identity):hover{background:#e7ebf2}
-}
 @media(max-width:960px){:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member){padding:18px 14px}}
 @media(max-width:420px){:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member){padding:16px 12px}.alumni-stages,.alumni-stage-labels{column-gap:6px}.alumni-prior,.alumni-next,.alumni-identity{padding-left:6px;padding-right:6px}}
 @media(prefers-reduced-motion:reduce){:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member),.lab-alumni-page #s-content .alumni-stages>div{transition:none}}
@@ -298,6 +296,7 @@ body a:is(:hover,:focus-visible){color:var(--hmd-gold)!important}
 .lab-alumni-page #s-content .alumni-stages>div{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#EFF1F5;gap:4px}
 .lab-alumni-page #s-content .alumni-tenure{display:contents}
 body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-weight:700!important}
-:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member):focus-within{box-shadow:0 7px 22px #142b5529;border-color:#547da680}
-@media(hover:hover){.lab-alumni-page #s-content .alumni-stages>div:hover{background:#e7ebf2}}
+.lab-alumni-page #s-content .alumni-stages>div:hover{background:#e7ebf2}
 @media(prefers-reduced-motion:reduce){:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member):hover{transform:none}}
+
+.lab-alumni-page #s-content .lab-alumni-layout>h1 .alumni-order-note{font-family:inherit;font-size:14px!important;font-weight:400!important;line-height:1.5;color:#656b74;display:inline-block;vertical-align:baseline;margin-left:6px}

@@ -27,7 +27,8 @@ def rebuild_alumni(tree,records):
     old=tree.xpath('//details[contains(concat(" ",normalize-space(@class)," ")," lab-disclosure ")]')
     if not old:return
     main=html.Element('main',{'class':'lab-alumni-layout'})
-    heading=html.Element('h1');heading.text='Alumni';main.append(heading)
+    heading=html.Element('h1');heading.text='Alumni '
+    order_note=html.Element('span',{'class':'alumni-order-note'});order_note.text='(in chronological order)';heading.append(order_note);main.append(heading)
     grid=html.Element('div',{'class':'alumni-grid'});main.append(grid)
     for member in old:
         values=[' '.join(p.text_content().split()) for p in member.xpath('./summary//p') if p.text_content().strip()]

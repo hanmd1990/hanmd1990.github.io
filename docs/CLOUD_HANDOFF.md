@@ -213,3 +213,13 @@ Role, years and publication button use the same compact 4px item gap; tenure
 is display:contents, with no margin or padding before the publication control.
 Outer cards have a visible hover lift/shadow; no general card click action.
 Only publication controls expand. Keep reduced-motion support and keyboard focus.
+
+## Pointer hover clarification — 2026-10-18
+
+Member frame emphasis must activate immediately with CSS :hover, without any
+click/focus dependency or a primary-pointer hover media gate. Remove outer-card
+:focus-within shadow persistence; retain visible keyboard focus on publication
+controls. Hover uses gold border, stronger shadow and a small lift (no lift for
+reduced motion). A click still only expands the publication control.
+Alumni heading includes `(in chronological order)` as 14px normal-weight text
+on the same line where space allows. Do not change member order for this note.
