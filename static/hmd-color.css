@@ -31,7 +31,7 @@ body{background:var(--hmd-white);color:var(--hmd-text)}
 .lab-archive-nav a:hover{background:var(--hmd-yellow);color:var(--hmd-navy)!important;border-color:var(--hmd-gold)}
 .lab-archive-nav a[aria-current=page]{background:var(--hmd-navy);color:var(--hmd-white)!important;font-weight:700}
 .lab-archive-action-row{display:flex;gap:8px;min-height:38px}
-.lab-archive-nav .lab-archive-feature{flex:1;text-align:center;white-space:nowrap;font-weight:700;background:var(--hmd-yellow);border-color:var(--hmd-gold);color:var(--hmd-navy)!important}
+.lab-archive-nav .lab-archive-feature{display:flex;align-items:center;justify-content:center;box-sizing:border-box;flex:1;text-align:center!important;white-space:nowrap;font-weight:700;background:var(--hmd-yellow);border-color:var(--hmd-gold);color:var(--hmd-navy)!important}
 .lab-archive-nav .lab-scholar-link{background:var(--hmd-light-gray);border-color:var(--hmd-blue);font-size:13px}
 .lab-archive-nav .lab-archive-feature:hover,.lab-archive-nav .lab-archive-feature[aria-current=page]{color:var(--hmd-white)!important;background:var(--hmd-navy);border-color:var(--hmd-navy)}
 .lab-archive-nav a:focus-visible{outline:2px solid var(--hmd-gold);outline-offset:3px}
@@ -300,3 +300,11 @@ body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-wei
 @media(prefers-reduced-motion:reduce){:is(.lab-current-page,.lab-alumni-page) #s-content :is(.member-card,.alumni-member):hover{transform:none}}
 
 .lab-alumni-page #s-content .lab-alumni-layout>h1 .alumni-order-note{font-family:inherit;font-size:14px!important;font-weight:400!important;line-height:1.5;color:#656b74;display:inline-block;vertical-align:baseline;margin-left:6px}
+
+/* Match the member/content typography; legacy theme headings must not override it. */
+.lab-contact-page #s-content,.lab-contact-page #s-content :is(h1,h2,h3,h4,p,span,a,figcaption){font-family:"Segoe UI",Arial,sans-serif!important}
+@media(max-width:800px){
+ .lab-archive-action-row{max-width:100%;align-items:stretch}
+ .lab-archive-nav .lab-archive-feature{min-height:36px;min-width:0;text-indent:0}
+ .lab-news-page .lab-archive-action-row{width:111px}
+}

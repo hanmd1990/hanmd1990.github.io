@@ -232,3 +232,13 @@ this abbreviation consistently. Research/Group menus open on actual mouse
 pointer entry without a primary-pointer hover media-query gate. They close on
 mouse exit unless a visible keyboard focus remains inside. Touch click, native
 keyboard toggle, outside click and Escape remain supported.
+
+## Mobile archive buttons and Contact font — 2026-10-18
+
+Full List, Covers and Google Scholar Profile action links use flex alignment to
+center text horizontally and vertically, with border-box sizing. On screens up
+to 800px, News Full List uses a compact 111px row (same width as one of the two
+Publication action buttons), instead of stretching across the old 230px row.
+Action rows never exceed their available container width. Contact content and
+headings use Segoe UI / Arial, consistent with Current, Alumni and Join Us;
+keep existing font sizes, weights, icons, portrait and layout hierarchy.
