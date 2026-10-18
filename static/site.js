@@ -4,10 +4,11 @@ toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expan
 document.querySelectorAll('.lab-menu').forEach(menu=>{
  menu.addEventListener('toggle',()=>{if(menu.open)document.querySelectorAll('.lab-menu').forEach(other=>{if(other!==menu)other.open=false})});
  menu.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')menu.open=true});
+ menu.addEventListener('pointermove',event=>{if(event.pointerType==='mouse'&&!menu.open)menu.open=true});
  menu.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&!menu.querySelector(':focus-visible'))menu.open=false});
  menu.addEventListener('focusout',event=>{if(!menu.contains(event.relatedTarget)&&!menu.matches(':hover'))menu.open=false});
 });
-document.addEventListener('click',event=>{if(!event.target.closest('.lab-menu'))document.querySelectorAll('.lab-menu').forEach(menu=>menu.open=false)});
+document.addEventListener('click',event=>{if(!event.target.closest('.lab-menu')&&!document.querySelector('.lab-menu:hover'))document.querySelectorAll('.lab-menu').forEach(menu=>menu.open=false)});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')document.querySelectorAll('.lab-menu').forEach(menu=>menu.open=false)});
 document.querySelectorAll('.lab-carousel').forEach(carousel=>{
  const slides=[...carousel.querySelectorAll('.lab-carousel-slide')],dots=[...carousel.querySelectorAll('[data-slide]')],motion=matchMedia('(prefers-reduced-motion: reduce)');let index=0,timer;
