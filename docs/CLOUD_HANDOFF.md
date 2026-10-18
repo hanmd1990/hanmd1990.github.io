@@ -187,3 +187,16 @@ schedule is unchanged. Manual bibliography maintenance uses the same build path.
 initial matches, missing PI, excluded articles, changed markers, duplicate handling,
 empty states and Current regeneration despite an empty old manual selection list.
 Run these regression checks before publishing changes to synchronization logic.
+
+## Member outer cards — 2026-10-18
+
+Owner supplied a new annotated reference. Current and Alumni each person now
+uses one white rounded outer frame with subtle exterior shadow and hover
+emphasis. Cards themselves have no click handler or pointer cursor; only
+Selected Publications expands. Remove internal dividers, inner shadows and
+Alumni Role's blue left border. Preserve Alumni's three color areas and make
+Prior/Next content vertically centered; each area has background-only hover.
+The per-person timeline arrow above the stages remains and is now 2px thick.
+Prior's Ph.D. text is now Ph.D. Student as explicitly annotated by the owner.
+Keep the existing member columns, typography, first/co-first/PI filtering,
+automatic synchronization and descending publication order.

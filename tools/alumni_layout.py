@@ -54,7 +54,7 @@ def rebuild_alumni(tree,records):
         prior=html.Element('div',{'class':'alumni-prior','role':'group','aria-label':'Prior education'})
         for key,value in fields.items():
             if key.endswith('school'):
-                degree='Ph.D.' if key.startswith('ph.d.') else ('Master' if key.startswith('master') else 'Undergraduate')
+                degree='Ph.D. Student' if key.startswith('ph.d.') else ('Master' if key.startswith('master') else 'Undergraduate')
                 degree_line=html.Element('p',{'class':'alumni-stage-primary'});degree_line.text=degree;prior.append(degree_line)
                 school=html.Element('p',{'class':'alumni-stage-secondary'});school.text=value.replace(', CAS',', Chinese Academy of Sciences');prior.append(school)
         stages.append(prior)
