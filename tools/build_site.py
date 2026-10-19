@@ -377,6 +377,9 @@ for path in ROOT.rglob('index.html'):
     for script in tree.xpath('//script[starts-with(@src,"/static/site.js")]'):script.set('src','/static/site.js?v='+script_version)
     write(path,tree)
 
-report={'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}
+from archive_layout import rebuild_archives
+archive_details=rebuild_archives(ROOT,member_bibliography,citations,today)
+
+report={'archive_design':'clean-academic',**archive_details,'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}
 (ROOT/'archive-build-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
 print(json.dumps(report))

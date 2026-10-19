@@ -28,6 +28,7 @@ jobs:
           git archive HEAD | tar -x -C outputs/hmd-lab-site --exclude='.github' --exclude='work' --exclude='tools' --exclude='.gitignore' --exclude='README.md'
           python tools/build_site.py outputs/hmd-lab-site
           python tools/verify_site.py outputs/hmd-lab-site
+          node tools/check_archive_ui.cjs outputs/hmd-lab-site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

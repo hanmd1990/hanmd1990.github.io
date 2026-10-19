@@ -1,5 +1,17 @@
 # HMD Lab website — cloud handoff, updated 2026-10-16
 
+## Published academic archives (2026-10-19; supersedes earlier archive designs)
+
+Publications and News now use the approved clean academic preview design on the official GitHub Pages site. Preserve the original shared lab header/navigation. Do not add the preview theme selector, brand, page heading or introductory description: Publications starts with the centered author/Scholar note; News starts with the year selector. Home, Research, Current, Alumni, Contact and Join are unchanged.
+
+`tools/archive_layout.py` runs at the end of `tools/build_site.py`. It reads the editable year pages plus the shared Scholar cache, and generates all existing publication/news entry, year and full-list routes, Covers, and `/selected-publications/`. Do not overwrite the editable year sources with generated archive pages. `static/archive.css` and `static/archive.js` own the archive layout and interactions. Both `/publications/` and `/news/` default to Latest: the current and preceding calendar years. The year selector has Full List and individual years only; Latest is a button and displays the current year in the selector. Search always switches to Full List and searches title, full author name and journal across all years. Covers always opens all years. News has no categories; retain its original hyperlinks and year-specific right-hand image galleries (114 links, 66 pictures at this revision).
+
+Publications use full names with superscript 1/co-first and */corresponding markers, without special bolding for Mengdi Han. `data/publication-full-authors.json` stores the 126 verified lists and per-paper sources; only reuse a cached entry when its title still matches the numbered paper. For new/updated papers, verify full names in the PI's Scholar article detail, use publisher metadata when unavailable, retain markers from the editable bibliography, and update this cache. Do not infer identities from initials alone. The top note is `*Corresponding authors; ¹ Authors contributed equally; Citation counts: Google Scholar; · Automatically updated YYYY-MM-DD`; use the real `data/scholar-citations.json` checked date, never the deployment date. All article counts/links use the same Scholar cache as other pages. Only the journal name uses HMD gold #A1662F; year, volume, pages/article number and surrounding metadata use black. Retain functional Cover, bioRxiv and Supplementary Movies links.
+
+Selected Publications is an intentionally empty entry until the user provides the selection. Store approved bibliography numbers in `data/selected-publications.json` (`paper_ids`); do not choose papers on the user's behalf.
+
+Verification: build into a fresh copied/archive output, run `python tools/verify_site.py OUTPUT`, `node tools/check_archive_ui.cjs OUTPUT`, and relevant member-publication tests. The official build now checks 44 HTML pages. The separate private Sites design preview remains independent; its project is appgprj_6ad5a83ac2d081919939eb25eadbba38, with source at /workspace/sites/hmd-lab-design-preview and URL https://hmd-lab-design-preview.hanmd1990.chatgpt.site. Do not change the original hmd-lab.com domain or DNS.
+
 Repository: https://github.com/hanmd1990/hanmd1990.github.io
 Website: https://hanmd1990.github.io/
 Latest website implementation before this documentation update: adbeff28d3f255e147050b3dfe6ede843154b7f5.
