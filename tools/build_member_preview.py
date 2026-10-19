@@ -41,7 +41,7 @@ for section_id,label,chinese,people in groups:
                 item=html.Element('li',{'data-paper-id':str(pid)})
                 p=html.Element('p',{'class':'member-paper-title'});link=html.Element('a',href=paper['url'],attrib={'target':'_blank','rel':'noopener noreferrer','data-link-kind':'article'});link.text=paper['title'];p.append(link);item.append(p)
                 metadata=html.Element('p',{'class':'member-paper-meta'})
-                authors=paper['authors'];cofirst=[a for a in authors if '¹' in a]
+                authors=paper.get('display_authors',paper['authors']);cofirst=[a for a in authors if '¹' in a]
                 selected=cofirst or authors[:1]
                 metadata.text=', '.join(selected)+', '
                 etal=html.Element('em',{'class':'lab-author-note'});etal.text='et al.';etal.tail=', ';metadata.append(etal)

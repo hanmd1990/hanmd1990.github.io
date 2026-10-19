@@ -1,5 +1,6 @@
 """Offline author matching and Alumni additions from the canonical bibliography."""
 import copy
+import json
 import re
 import unicodedata
 from lxml import html
@@ -11,6 +12,8 @@ def name_key(value):
 
 def read_bibliography(root):
     papers = {}
+    cache_path = root / "data/publication-full-authors.json"
+    full_names = json.loads(cache_path.read_text(encoding="utf8"))["records"] if cache_path.exists() else {}
     for path in root.glob('publications[0-9]*/index.html'):
         if not re.fullmatch(r'publications\d{4}', path.parent.name):
             continue
@@ -43,6 +46,10 @@ def read_bibliography(root):
                 node.attrib.pop('class', None)
             papers[int(match[1])] = dict(metadata=metadata, title=' '.join(links[0].text_content().split()),
                 url=links[0].get('href'), journal=journal, year=int(path.parent.name[-4:]), authors=authors)
+    for pid, paper in papers.items():
+        cached = full_names.get(str(pid), {})
+        paper["display_authors"] = ([a.strip() for a in cached["authors"].split(",")]
+            if name_key(cached.get("title", "")) == name_key(paper["title"]) else paper["authors"])
     return papers
 
 
@@ -97,7 +104,7 @@ def add_alumni_publications(tree, papers, roster):
                 attrib={'class': 'lab-publication-link', 'data-link-kind': 'article'})
             link.text = paper['title']; title.append(link); panel.append(title)
             metadata = html.Element('p', {'class': 'alumni-paper-meta'})
-            authors = [a for a in paper['authors'] if '¹' in a] or paper['authors'][:1]
+            authors = [a for a in paper.get('display_authors', paper['authors']) if '¹' in a] or paper.get('display_authors', paper['authors'])[:1]
             metadata.text = ', '.join(authors) + ', '
             note = html.Element('em', {'class': 'lab-author-note'})
             note.text = 'et al.'; note.tail = ', ' + (paper['metadata'].text or '')
@@ -107,6 +114,21 @@ def add_alumni_publications(tree, papers, roster):
             panel.append(metadata)
             existing.add(name_key(paper['title']))
             additions.append({'member': name, 'paper_id': pid})
+        # Refresh curated selections too, without changing their eligibility or order.
+        by_title = {name_key(p['title']): p for p in papers.values()}
+        for title in panel.xpath('./p[@class="alumni-paper-title"]'):
+            paper = by_title.get(name_key(title.text_content()))
+            metadata = title.getnext()
+            if paper is None or metadata is None or metadata.get('class') != 'alumni-paper-meta':
+                continue
+            metadata.clear(); metadata.set('class', 'alumni-paper-meta')
+            names = paper.get('display_authors', paper['authors'])
+            metadata.text = ', '.join([a for a in names if '¹' in a] or names[:1]) + ', '
+            note = html.Element('em', {'class': 'lab-author-note'})
+            note.text = 'et al.'; note.tail = ', ' + (paper['metadata'].text or '')
+            metadata.append(note)
+            for child in paper['metadata']:
+                metadata.append(copy.deepcopy(child))
         toggle = card.xpath('.//button[@class="alumni-publications-toggle"]')[0]
         toggle.text = 'Selected Publications' + (' ('+str(len(existing))+')' if existing else '')
     return additions
