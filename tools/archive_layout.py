@@ -44,7 +44,7 @@ def rebuild_archives(root,bibliography,scholar,today):
         item=dict(id=number,title=paper['title'],url=paper['url'],year=paper['year'],authors=full,journal=paper['journal'],meta=' '.join(meta.text_content().split()),meta_html=meta_html)
         item['citation']=citation(item);item['citation_search']='https://scholar.google.com/scholar?hl=en&q='+quote('"'+item['title']+'"');papers.append(item)
     covers=[];images={}
-    cover_tree=html.document_fromstring((root/'covers/index.html').read_bytes())
+    cover_tree=html.document_fromstring((root/'covers/index.html').read_text(encoding='utf-8'))
     for i,card in enumerate(cover_tree.xpath('//article[@class="lab-cover-card"]')):
         key='cover-'+str(i);images[key]=card.xpath('.//img/@src')[0]
         item=dict(image=key,journal=card.xpath('string(.//h2)'),year=int(re.search(r'20\d\d',card.xpath('string(.//p[@class="lab-cover-year"])'))[0]),title=card.xpath('string(.//p[@class="lab-cover-title"])'),url=card.xpath('.//a[@class="lab-cover-article"]/@href')[0])
@@ -52,7 +52,7 @@ def rebuild_archives(root,bibliography,scholar,today):
     news=[];news_images={}
     for path in sorted(root.glob('news[0-9]*/index.html'),reverse=True):
         if not re.fullmatch(r'news\d{4}',path.parent.name):continue
-        tree=html.document_fromstring(path.read_bytes());year=int(path.parent.name[-4:]);gallery=[]
+        tree=html.document_fromstring(path.read_text(encoding='utf-8'));year=int(path.parent.name[-4:]);gallery=[]
         for i,image in enumerate(tree.xpath('//*[@id="s-content"]//img')):
             src=image.get('src','')
             if not (root/src.lstrip('/')).is_file():raise ValueError('Missing News image '+src)
@@ -63,7 +63,7 @@ def rebuild_archives(root,bibliography,scholar,today):
             if not match:continue
             y,month=int(match[1]),int(match[2]);news.append(dict(date=f'{y} / {month:02}',year=y,month=month,text=match[3],html=news_inline(p)))
     data=dict(papers=papers,covers=covers,news=news,newsImages=news_images,images=images,selectedPaperIds=json.loads((root/'data/selected-publications.json').read_text())['paper_ids'],scholar=dict(source=scholar['source'],profile=scholar['profile'],checked_on=scholar['checked_on']))
-    header=copy.deepcopy(html.document_fromstring((root/'publications/index.html').read_bytes()).xpath('//header[contains(@class,"lab-header")]')[0])
+    header=copy.deepcopy(html.document_fromstring((root/'publications/index.html').read_text(encoding='utf-8')).xpath('//header[contains(@class,"lab-header")]')[0])
     def badge(item):
         record=item.get('citation');count=record.get('count') if record else None
         url=(record.get('cited_by') or record.get('scholar_article')) if record else item['citation_search']
@@ -76,7 +76,7 @@ def rebuild_archives(root,bibliography,scholar,today):
         return f'<select id="{kind}-year" aria-label="{("Publication" if kind=="pub" else "News")} year">{options}</select>'
     def controls(kind,mode,view):
         result='<div class="archive-tools'+(' news-years' if kind=='news' else '')+'">'
-        if kind=='pub':result+='<input id="search" aria-label="Search publications" placeholder="Search Full List: title, author or journal" value="">'
+        if kind=='pub':result+='<input id="archive-search" aria-label="Search publications" placeholder="Search Full List: title, author or journal" value="">'
         result+=year_select(kind,mode,[i['year'] for i in (papers if kind=='pub' else news)])
         for key,label in [('all','Full List'),('latest','Latest')]:result+=f'<button data-{kind}-range="{key}" class="'+('active' if view=='list' and mode==key else '')+f'" aria-pressed="{str(view=="list" and mode==key).lower()}">{label}</button>'
         if kind=='pub':
