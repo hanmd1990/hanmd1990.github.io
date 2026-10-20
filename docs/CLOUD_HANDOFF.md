@@ -16,6 +16,10 @@ Member bibliography metadata preserves the lab-volume class on numeric emphasis 
 
 Visit our lab has four separate numbered sections, in order: ① Location of our lab (four map-service links), ② Nearest metro station (~350 m), ③ Nearest bus station (~350 m), ④ Driving & taxi navigation (full English/Chinese address). Do not combine ① and ④. Display the four sections in a compact two-column grid below the map (one column on small phones). Desktop Contact columns stretch to the same natural row height; the left address stays at the bottom of its card. Mobile columns retain natural heights. Preserve the portrait, exact Assistant Professor / Associate Department Chair roles, plain email, profiles, map and click-to-enlarge behavior.
 
+## Recruitment availability — 2026-10-20
+
+Join Us availability: Postdocs 1–2 positions in 2027; Ph.D. students 1–2 positions for Fall 2028, no positions in 2027; Undergraduates unchanged; Research Assistants no positions in 2027 (including body text). Page updated is 2026-10-20, the actual edit date. Keep intro text and this date centered. Remove the separate Contact Mengdi Han mailto CTA. Recruitment notice is permanently removed from data and renderer; never append it in future updates. Keep application instructions and their existing email links inside the recruitment ads. Preserve tab switching and no large Join Us title.
+
 ## Published academic archives (2026-10-19; supersedes earlier archive designs)
 
 Publications and News now use the approved clean academic preview design on the official GitHub Pages site. Preserve the original shared lab header/navigation. Do not add the preview theme selector, brand, page heading or introductory description: Publications starts with the centered author/Scholar note; News starts with the year selector. Home, Research, Current, Alumni, Contact and Join are unchanged.

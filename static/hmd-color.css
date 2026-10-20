@@ -322,3 +322,6 @@ body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-wei
 .lab-contact-travel .lab-contact-driving{grid-column:auto;border-top:0;padding-top:0}
 @media(max-width:800px){.lab-contact-grid{align-items:start}.lab-contact-profile .lab-contact-address{margin-top:0}}
 @media(max-width:560px){.lab-contact-travel{grid-template-columns:1fr}}
+
+/* Center the recruitment introduction and its single page-update date. */
+.lab-join-intro{max-width:820px;margin:0 auto 30px;text-align:center}

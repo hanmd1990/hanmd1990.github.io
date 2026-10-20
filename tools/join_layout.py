@@ -12,15 +12,10 @@ def rebuild_join(tree, root):
     main = etree.SubElement(content, 'main', {'class': 'lab-join-layout'})
     intro = etree.SubElement(main, 'header', {'class': 'lab-join-intro'})
     etree.SubElement(intro, 'p').text = data['intro']
-    email = etree.SubElement(intro, 'a', href='mailto:hmd@pku.edu.cn', attrib={'class': 'lab-join-email'})
-    email.text = 'Contact Mengdi Han ↗'
     dates = etree.SubElement(intro, 'p', {'class': 'lab-join-updated'})
     dates.text = 'Page updated: '
-    for key, prefix in [('updated_on', ''), ('notice_updated_on', ' · Recruitment notice: ')]:
-        datetime.date.fromisoformat(data[key])
-        if prefix:
-            dates[-1].tail = prefix
-        etree.SubElement(dates, 'time', datetime=data[key]).text = data[key]
+    datetime.date.fromisoformat(data['updated_on'])
+    etree.SubElement(dates, 'time', datetime=data['updated_on']).text = data['updated_on']
     nav = etree.SubElement(main, 'div', {'class': 'lab-join-nav', 'role': 'tablist', 'aria-label': 'Recruitment categories'})
     for index, role in enumerate(data['roles'], 1):
         link = etree.SubElement(nav, 'button', {'type': 'button', 'role': 'tab', 'id': 'tab-'+role['id'], 'aria-controls': role['id'], 'aria-selected': 'true' if index == 1 else 'false', 'tabindex': '0' if index == 1 else '-1'})
