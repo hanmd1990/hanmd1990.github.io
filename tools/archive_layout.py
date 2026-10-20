@@ -91,7 +91,6 @@ def rebuild_archives(root,bibliography,scholar,today):
             result=f'<p class="paper-note publication-top-note">*Corresponding authors; <sup>1</sup> Authors contributed equally; Citation counts: <a href="{escape(scholar["profile"],quote=True)}" target="_blank" rel="noopener noreferrer">Google Scholar</a>; · Automatically updated {escape(scholar["checked_on"])}</p>'+controls('pub',mode,view)
             if view=='selected' and not data['selectedPaperIds']:return result+'<section class="selected-placeholder"><h2>Selected Publications</h2><p>The selected publication list will be added here.</p></section>'
             if view=='covers':
-                result=controls('pub',mode,view)
                 result+='<div class="cover-grid">'
                 for c in covers:result+=f'<figure><a class="cover-tile" href="{escape(c["url"],quote=True)}" target="_blank" rel="noopener noreferrer" aria-label="Read article: {escape(c["title"],quote=True)}">{image(c["image"],c["journal"]+" cover")}</a></figure>'
                 return result+'</div>'
