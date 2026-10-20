@@ -329,3 +329,6 @@ body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-wei
 /* Map services form two equal-width, aligned rows. */
 .lab-contact-travel .lab-contact-map-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:100%}
 .lab-contact-travel .lab-contact-map-links a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:36px;width:100%;text-align:center;white-space:nowrap}
+
+/* Respect explicit availability lines in both tabs and recruitment headings. */
+.lab-join-count,.lab-join-role-heading p{white-space:pre-line}
