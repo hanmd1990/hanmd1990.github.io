@@ -25,7 +25,8 @@ def news_inline(paragraph):
             elif tag=='br':content='<br>'+content
             result+=content+text(child.tail)
         return result
-    return inline(paragraph).strip()
+    # Ignore editor-inserted blank lines at the boundaries of a news entry.
+    return re.sub(r"^(?:\s*<br>)+|(?:<br>\s*)+$", "", inline(paragraph).strip()).strip()
 
 def rebuild_archives(root,bibliography,scholar,today):
     authors=json.loads((root/'data/publication-full-authors.json').read_text())['records']
