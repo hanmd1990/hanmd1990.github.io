@@ -115,13 +115,13 @@ def rebuild_archives(root,bibliography,scholar,today):
     routes=[('publications','publication','latest','list'),('all','publication','all','list'),('covers','publication','all','covers'),('selected-publications','publication','all','selected'),('news','news','latest','list'),('news-all','news','all','list')]
     routes += [('publications'+str(y),'publication',str(y),'list') for y in sorted({p['year'] for p in papers},reverse=True)]
     routes += [('news'+str(y),'news',str(y),'list') for y in sorted({n['year'] for n in news},reverse=True)]
-    versions={name:hashlib.sha256((root/'static'/name).read_bytes()).hexdigest()[:12] for name in ('site.css','hmd-color.css','archive.css','site.js','archive.js')}
+    versions={name:hashlib.sha256((root/'static'/name).read_bytes()).hexdigest()[:12] for name in ('site.css','hmd-color.css','archive.css','site.js','archive.js','analytics.js')}
     for route,kind,mode,view in routes:
         tree=html.document_fromstring('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head><body class="lab-modern-archive"></body></html>');head=tree.find('head');body=tree.find('body')
         title=html.Element('title');title.text=('Publications' if kind=='publication' else 'News')+' — '+('Latest' if mode=='latest' else 'Full List' if mode=='all' else mode)+' — Mengdi Han Research Group';head.append(title)
         head.append(html.Element('link',rel='canonical',href='https://hanmd1990.github.io/'+route+'/'));head.append(html.Element('link',rel='icon',href='/images/brand/site-icon.png'))
         for name in ('site.css','hmd-color.css','archive.css'):head.append(html.Element('link',rel='stylesheet',href='/static/'+name+'?v='+versions[name]))
-        for name in ('site.js','archive.js'):head.append(html.Element('script',src='/static/'+name+'?v='+versions[name],defer='defer'))
+        for name in ('site.js','archive.js','analytics.js'):head.append(html.Element('script',src='/static/'+name+'?v='+versions[name],defer='defer'))
         nav=copy.deepcopy(header)
         for a in nav.xpath('.//a[@href="/'+('publications' if kind=='publication' else 'news')+'/"]'):a.set('aria-current','page')
         body.append(nav);main=html.Element('main',{'id':'s-content','class':'hmd-archive','data-kind':kind,'data-range':mode,'data-mode':view})

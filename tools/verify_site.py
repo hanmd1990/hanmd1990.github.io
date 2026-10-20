@@ -43,6 +43,11 @@ for f in ROOT.rglob('*'):
         # The empty-token and failure paths retain the local campus map.
         if f.relative_to(ROOT).as_posix()=='static/contact-map.js':
             script=script.replace('https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js','')
+        # Owner-authorized GA4; remote tag is loaded only after visitor consent.
+        if f.relative_to(ROOT).as_posix()=='static/analytics.js':
+            for approved in ('https://www.googletagmanager.com/gtag/js?id=',
+                             'https://policies.google.com/technologies/partner-sites'):
+                script=script.replace(approved,'')
         if re.search(r'fetch\s*\(|XMLHttpRequest|https?://',script):errors.append(f'{f}: remote script dependency')
 report={'checked_html_pages':count,'errors':sorted(set(errors))}
 print(json.dumps(report,ensure_ascii=False,indent=2))

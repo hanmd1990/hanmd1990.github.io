@@ -372,6 +372,10 @@ for path in ROOT.rglob('index.html'):
         stylesheet.getparent().remove(stylesheet)
     tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/hmd-color.css?v='+color_version))
     for script in tree.xpath('//script[starts-with(@src,"/static/site.js")]'):script.set('src','/static/site.js?v='+script_version)
+    for old_script in tree.xpath('//script[starts-with(@src,"/static/analytics.js")]'):
+        old_script.getparent().remove(old_script)
+    analytics_version=hashlib.sha256((ROOT/'static/analytics.js').read_bytes()).hexdigest()[:12]
+    tree.find('head').append(html.Element('script',src='/static/analytics.js?v='+analytics_version,defer='defer'))
     write(path,tree)
 
 from archive_layout import rebuild_archives

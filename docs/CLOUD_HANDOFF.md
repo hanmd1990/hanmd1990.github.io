@@ -282,3 +282,12 @@ Publication action buttons), instead of stretching across the old 230px row.
 Action rows never exceed their available container width. Contact content and
 headings use Segoe UI / Arial, consistent with Current, Alumni and Join Us;
 keep existing font sizes, weights, icons, portrait and layout hierarchy.
+
+
+## Google Analytics — 2026-10-20
+- Owner chose GA4 country/region/city reports instead of storing visitor IPs. Cloudflare analytics remains undeployed and must not be enabled.
+- Account: HMD Lab; property: HMD Lab Website; stream: HMD Lab Official Website, https://hanmd1990.github.io; measurement ID: G-WPKN8C626L. Owner: hanmd1990@gmail.com; timezone Asia/Shanghai.
+- Optional account sharing disabled during setup. No additional users or advertising integrations added.
+- Main and archive builders load static/analytics.js on all 44 generated pages. Production hostname only; analytics loads after explicit consent; DNT/GPC opt-out honored. Privacy & analytics control allows withdrawal. Google signals and ad personalization disabled. Query strings/fragments stripped from page_location/referrer.
+- Consent/blocked requests reduce counts. Reports start after deployment, cannot recover past visits; city is approximate.
+- Keep measurement ID in source (public by design); never add account credentials or API secrets.
