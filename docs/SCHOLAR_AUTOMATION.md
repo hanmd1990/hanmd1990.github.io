@@ -14,7 +14,7 @@
 
 2. 对所有已有 2026 年及以后条目重新检查，不仅看新增文章。主动核对出版商官网的正式引文/元数据及 Crossref；Scholar 暂未补齐但出版商已提供完整卷号与页码/文章编号时，也据此更新并将来源和核对日期保存到 data/publication-metadata-evidence.json，不能只等 Scholar 更新。出版商与 Scholar 冲突时以已核实的正式出版元数据为准并报告差异。保留标题、完整作者及标记、期刊、年份；当卷号与页码/文章编号尚未齐全时，出版信息统一显示“YEAR, accepted.”，不得猜测卷页，也不展示半套卷页。Scholar 或出版商官网后续提供完整卷号与页码或文章编号时，在原条目更新为“YEAR, VOLUME, PAGE/ARTICLE_NUMBER.”，不另建重复论文，不写期号。期刊名称继续保留；完整格式为标题、作者名单、期刊名、年份、卷号、页码/文章编号。仅期刊名使用棕金；卷号黑色斜体，年份及页码黑色。保留已核实 DOI、链接与补充资源。Scholar 年份和正式卷期年份有冲突时核查出版商并报告，不静默迁移或覆盖。
 
-3. 修改所属年份的可编辑 publicationsYYYY/index.html；新年份需建立对应源页面。保持已有编号稳定，新论文使用全站未使用的下一编号，展示时编号大的在前。生成器 tools/build_site.py 自动生成年份页、Full List、Latest（本年及前一年）及搜索数据，不手写多个副本。更新 data/publication-full-authors.json，按编号及规范化标题校验，保存完整姓名、共一/通讯标记、来源和核对日期，不特别加粗 Mengdi Han。不要自动填充尚待用户提供列表的 Selected Publications 主页面。
+3. 修改所属年份的可编辑 publicationsYYYY/index.html；新年份需建立对应源页面。保持已有编号稳定，新论文使用全站未使用的下一编号，展示时编号大的在前。生成器 tools/build_site.py 自动生成年份页、Full List、Latest（本年及前一年）及搜索数据，不手写多个副本。更新 data/publication-full-authors.json，按编号及规范化标题校验，保存完整姓名、共一/通讯标记、来源和核对日期，不特别加粗 Mengdi Han。保留用户已确认的 Selected Publications 主页面名单（data/selected-publications.json，9 篇）；同步其出版信息和引用数，但未经用户指定不要自动增删选文。
 
 4. 每当论文新增或更新时，检查全部第一作者和明确标记 1/¹ 的共同第一作者是否位于 Group > Current 或 Alumni。以 data/member-publications.json 和最新 Alumni 名单为准；成员为一作/共一且 Mengdi Han 为共同作者时，加入该成员 Selected Publications，所有符合成员都要同步。将必要的完整有序姓名及核查证据写入 data/member-publications.json 的 evidence，保留明确确认和排除项。只列一作或共一，不加入普通合作者论文；姓名有歧义先查 Scholar 详情，再查出版商/PDF，不猜测。已移除的 Ji Wan Nano Energy 2020 独立文章不得恢复。两页选文使用同一份最新标题、完整一作/共一姓名（之后 et al.）、期刊、accepted/卷页及引用数，按全站编号降序；无论文展开仅显示 -。保留当前成员名单、双列卡片、独立展开和悬停效果。
 
