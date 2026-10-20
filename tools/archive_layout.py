@@ -92,7 +92,7 @@ def rebuild_archives(root,bibliography,scholar,today):
             if view=='covers':
                 result=controls('pub',mode,view)
                 result+='<div class="cover-grid">'
-                for c in covers:result+=f'<figure><a class="cover-tile" href="{escape(images[c["image"]],quote=True)}" data-lightbox="true" aria-label="Enlarge {escape(c["journal"],quote=True)} cover">{image(c["image"],c["journal"]+" cover")}</a></figure>'
+                for c in covers:result+=f'<figure><a class="cover-tile" href="{escape(c["url"],quote=True)}" target="_blank" rel="noopener noreferrer" aria-label="Read article: {escape(c["title"],quote=True)}">{image(c["image"],c["journal"]+" cover")}</a></figure>'
                 return result+'</div>'
             ps=[p for p in papers if in_range(p['year'],mode) and (view!='selected' or p['id'] in data['selectedPaperIds'])]
             result+=f'<p class="archive-summary">{len(ps)} articles {label(mode)}</p>'

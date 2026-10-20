@@ -291,3 +291,7 @@ keep existing font sizes, weights, icons, portrait and layout hierarchy.
 - Main and archive builders load static/analytics.js on all 44 generated pages. Production hostname only; analytics loads after explicit consent; DNT/GPC opt-out honored. Privacy & analytics control allows withdrawal. Google signals and ad personalization disabled. Query strings/fragments stripped from page_location/referrer.
 - Consent/blocked requests reduce counts. Reports start after deployment, cannot recover past visits; city is approximate.
 - Keep measurement ID in source (public by design); never add account credentials or API secrets.
+
+
+## Covers click behavior — 2026-10-20
+- All cover tiles open the corresponding research article URL in a new tab. No cover lightbox. Keep image-only grid and hover styling. Applies both to server-rendered /covers/ and dynamic Covers tab.

@@ -307,7 +307,7 @@ for path in ROOT.rglob('index.html'):
         for src,href in covers:
             info=cover_info(href)
             card=html.Element('article',{'class':'lab-cover-card'})
-            image_link=html.Element('a',href=src,attrib={'data-lightbox':'true','class':'lab-cover-image','aria-label':'Enlarge '+info.get('journal','journal')+' cover'});image_link.append(html.Element('img',src=src,alt=info.get('journal','Journal')+' cover',loading='lazy'));card.append(image_link)
+            image_link=html.Element('a',href=href,attrib={'target':'_blank','rel':'noopener noreferrer','class':'lab-cover-image','aria-label':'Read article: '+info.get('title','Journal cover')});image_link.append(html.Element('img',src=src,alt=info.get('journal','Journal')+' cover',loading='lazy'));card.append(image_link)
             caption=html.Element('div',{'class':'lab-cover-caption'})
             heading=html.Element('h2');heading.text=info.get('journal') or 'Journal cover';caption.append(heading)
             if info.get('year'):
