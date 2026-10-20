@@ -96,8 +96,10 @@ def rebuild_archives(root,bibliography,scholar,today):
                 return result+'</div>'
             ps=[p for p in papers if in_range(p['year'],mode) and (view!='selected' or p['id'] in data['selectedPaperIds'])]
             result+=f'<p class="archive-summary">{len(ps)} articles {label(mode)}</p>'
-            for year in sorted({p['year'] for p in ps},reverse=True):
-                subset=[p for p in ps if p['year']==year];result+=f'<section class="paper-layout"><aside class="year-rail"><strong>{year}</strong><p>{len(subset)} articles</p></aside><div>'
+            groups=[None] if view=='selected' else sorted({p['year'] for p in ps},reverse=True)
+            for year in groups:
+                subset=ps if year is None else [p for p in ps if p['year']==year]
+                result+='<section class="selected-papers"><div>' if year is None else f'<section class="paper-layout"><aside class="year-rail"><strong>{year}</strong><p>{len(subset)} articles</p></aside><div>'
                 for p in subset:
                     names=escape(p['authors']).replace('¹','<sup>1</sup>').replace('*','<sup>*</sup>')
                     result+=f'<article class="paper-row"><span class="paper-number">{p["id"]}</span><div><a class="paper-title" href="{escape(p["url"],quote=True)}" target="_blank" rel="noopener noreferrer">{escape(p["title"])}</a><p class="authors">{names}</p><div class="journal-row"><p class="journal">{p["meta_html"]}</p>{badge(p)}</div></div></article>'
