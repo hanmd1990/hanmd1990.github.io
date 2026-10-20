@@ -23,3 +23,10 @@
 6. 在新的隔离输出副本构建，不把 tools/build_site.py 用于可编辑源目录。运行 build_site.py、verify_site.py、node tools/check_archive_ui.cjs 和 tools/test_member_publications.py；核对新增文章的年份/Full List/Latest、全部符合成员的选文、完整姓名/标记、排序、accepted/卷页和引用数，检查实际 Cited by 链接。用 GitHub 连接器提交，更新 main 时使用最新 expected_sha，避免覆盖并行变更；检查 GitHub Pages 部署成功后才称为上线。保持现有设计、News 图片/链接、Contact 和招聘页；不改 hmd-lab.com 域名、DNS、仓库可见性。
 
 云端执行中若缺少联网、GitHub 或构建能力，保存可核实结果并明确报告具体阻碍，不虚称完成。没有新增或有意义变更时保持安静；完成更新后简要报告新增论文、卷页补全、成员同步和引用变化，附来源及网站链接；失败或待核实问题也需报告。
+
+## 用户固定维护规则（2026-10-20 22:50 确认）
+
+- 每周五北京时间 03:30 检索 Mengdi Han 的 Google Scholar；自动新增 2026 年及之后论文，排除专利和 Wiley 独立期刊封面记录。
+- 没有完整卷号与页码/文章编号时统一标注 accepted；后续补齐时更新原条目。保持标题、作者名单、期刊名、年份、卷号、页码/文章编号顺序；期刊名沿用现有格式，不省略。
+- 新增/修改须同步所属年份列表和 Full List，并核对第一作者及所有以 1/¹ 标记的共同第一作者。若其位于 Group → Current 或 Alumni，须同步至每一位匹配成员的 Selected Publications；每人只列自己一作/共一文章，不列普通合作论文。成员选文不按年份分组，按全站编号降序。
+- 同一时间从 Google Scholar 更新所有已收录论文的 citation，并同步 Publications 各列表以及 Current/Alumni Selected Publications。读取失败时保留旧值，不能用零覆盖。
