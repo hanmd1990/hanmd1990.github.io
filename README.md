@@ -21,3 +21,7 @@
 
 `tools/independent.py` 仅记录一次性迁移过程，日常发布不执行抓取。原平台版本可从 Git 历史恢复。
 
+
+## Publication metadata convention
+
+For journal articles without final volume and page or article numbers, display `accepted` after the year. Do not display a DOI in the citation. Keep the article title linked to its original publisher page. Apply this convention to year pages and all generated publication lists.
