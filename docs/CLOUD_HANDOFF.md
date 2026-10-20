@@ -300,3 +300,9 @@ keep existing font sizes, weights, icons, portrait and layout hierarchy.
 ## Cover cursor and analytics prompt — 2026-10-20
 - Cover tiles use a pointer cursor for article links.
 - Analytics preference panel no longer opens automatically; footer Privacy & analytics opens it on request. Existing accepted consent continues collecting; new visitors remain untracked until they explicitly opt in. DNT/GPC and decline still respected.
+
+
+## Automatic analytics — 2026-10-20, supersedes previous prompt behavior
+- Owner explicitly requested removal of Privacy & analytics control and automatic visit measurement.
+- No popup or preferences button; GA tag loads automatically on production, except DNT/GPC or an existing explicit declined preference. No consent state is fabricated or stored on behalf of visitors.
+- Noninteractive footer disclosure links to Google data-use information. Google signals/ad personalization stay disabled; sanitized URLs, owner-only reports, and country/region/city collection remain.
