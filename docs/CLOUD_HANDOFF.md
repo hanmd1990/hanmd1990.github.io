@@ -306,3 +306,5 @@ keep existing font sizes, weights, icons, portrait and layout hierarchy.
 - Owner explicitly requested removal of Privacy & analytics control and automatic visit measurement.
 - No popup or preferences button; GA tag loads automatically on production, except DNT/GPC or an existing explicit declined preference. No consent state is fabricated or stored on behalf of visitors.
 - Noninteractive footer disclosure links to Google data-use information. Google signals/ad personalization stay disabled; sanitized URLs, owner-only reports, and country/region/city collection remain.
+
+- Follow-up owner request: remove the footer data-use sentence as well. Analytics injects no visible UI; automatic collection and opt-outs remain as above.
