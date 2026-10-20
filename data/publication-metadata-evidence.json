@@ -1,0 +1,20 @@
+{
+  "records": {
+    "126": {
+      "year": 2026,
+      "volume": "17",
+      "article_number": "8690",
+      "source": "https://www.nature.com/articles/s41467-026-75632-2",
+      "checked_on": "2026-10-20",
+      "title": "Stretchable multimodal deformation sensor with self-mode recognition by a single Hall sensor"
+    },
+    "125": {
+      "year": 2026,
+      "volume": "22",
+      "article_number": "e74405",
+      "source": "https://onlinelibrary.wiley.com/doi/10.1002/smll.74405",
+      "checked_on": "2026-10-20",
+      "title": "Reluctance modulation of structured magnetorheological elastomers for wireless biomechanical sensing"
+    }
+  }
+}
