@@ -311,3 +311,14 @@ body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-wei
 
 /* Numeric publication volumes remain black after member metadata regeneration. */
 :root body #s-content :is(.alumni-paper-meta,.member-paper-meta) em.lab-volume,:root body #s-content :is(.alumni-paper-meta,.member-paper-meta) em.lab-volume *{color:#000!important;font-style:italic;font-weight:400}
+
+/* Four independent directions, with equal-height desktop contact columns. */
+.lab-contact-grid{align-items:stretch}
+.lab-contact-profile{display:flex;flex-direction:column;box-sizing:border-box}
+.lab-contact-profile .lab-contact-address{margin-top:auto}
+.lab-contact-travel{margin-top:22px;gap:22px 26px;align-items:start}
+.lab-contact-travel .lab-contact-map-links{margin:0;gap:8px}
+.lab-contact-travel .lab-contact-map-links a{padding:6px 9px;font-size:12px}
+.lab-contact-travel .lab-contact-driving{grid-column:auto;border-top:0;padding-top:0}
+@media(max-width:800px){.lab-contact-grid{align-items:start}.lab-contact-profile .lab-contact-address{margin-top:0}}
+@media(max-width:560px){.lab-contact-travel{grid-template-columns:1fr}}
