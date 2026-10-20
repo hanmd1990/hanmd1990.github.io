@@ -332,3 +332,7 @@ body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-wei
 
 /* Respect explicit availability lines in both tabs and recruitment headings. */
 .lab-join-count,.lab-join-role-heading p{white-space:pre-line}
+
+/* Align archive, contact and recruitment content with Current and Alumni. */
+body .hmd-archive,.lab-contact-layout,.lab-join-layout{box-sizing:content-box;max-width:1180px;padding-left:24px;padding-right:24px}
+@media(max-width:760px){body .hmd-archive,.lab-contact-layout,.lab-join-layout{padding-left:18px;padding-right:18px}}
