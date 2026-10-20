@@ -24,6 +24,10 @@ Join Us availability: Postdocs 1–2 positions in 2027; Ph.D. students 1–2 pos
 
 The three map-service buttons (Google Map, 百度地图, 高德地图) form one equal-width row, with matching button height and centered text. Do not render an Apple Maps button. All nine profile/resource links (CV, Biography, PKU Profile, Scholar, ResearcherID, ORCID, X, LinkedIn, ResearchGate) open in a new tab with target=_blank and rel=noopener noreferrer, including the local Biography page. PKU Profile is exactly https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm . Preserve the four separate directions and desktop equal-height columns.
 
+## Recruitment tab wording — 2026-10-20 latest
+
+The four tab labels are Postdoc, Ph.D., Undergrad, RA. Availability wording is exactly: Postdoc “2027: 1–2 positions”; Ph.D. two lines “Fall 2028: 1–2 positions” then “Fall 2027: no positions”; Undergrad “Multiple positions”; RA “No positions” (no year). Panel availability matches tab availability. RA body has no year. Preserve the undergraduate advertisement text and all existing application instructions. This supersedes older count wording in this document; data/join-us.json is canonical.
+
 ## Published academic archives (2026-10-19; supersedes earlier archive designs)
 
 Publications and News now use the approved clean academic preview design on the official GitHub Pages site. Preserve the original shared lab header/navigation. Do not add the preview theme selector, brand, page heading or introductory description: Publications starts with the centered author/Scholar note; News starts with the year selector. Home, Research, Current, Alumni, Contact and Join are unchanged.
