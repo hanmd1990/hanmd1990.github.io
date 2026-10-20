@@ -1,4 +1,10 @@
-# HMD Lab website — cloud handoff, updated 2026-10-16
+# HMD Lab website — cloud handoff, updated 2026-10-20
+
+## Scholar automation rules — 2026-10-20 (supersedes older automation notes)
+
+Read [SCHOLAR_AUTOMATION.md](SCHOLAR_AUTOMATION.md) before every maintenance run. The existing cloud task is enabled at Friday 03:30 Asia/Shanghai, starting 2026-10-23. New/updated publication metadata is restricted to 2026 onward; citations refresh for all listed years. Exclude patents and independent Wiley cover records, while preserving real articles’ Cover links. Incomplete volume/page metadata displays YEAR, accepted.; replace it in-place when Scholar provides both volume and pages/article number. Update complete author names and explicit co-first markers, both member groups, and shared citation data. Use the isolated build and verify deployment before claiming publication. The task is an agent-based cloud automation, not a scheduled Scholar scraper in GitHub Actions; publish.yml deploys on main pushes.
+
+Current/Alumni now display verified full first/co-first author names from data/publication-full-authors.json (followed by et al.). Keep the raw author tokens for identity/position matching. News journal mentions use normal text color and italic where marked, including Soft Science; its gallery is capped at 180px. Publication volumes are black italic. Title font is still 18px; the suggested 16px change was not authorized or applied.
 
 ## Published academic archives (2026-10-19; supersedes earlier archive designs)
 
@@ -62,11 +68,11 @@ Build member pages before the main builder so shared citation data is injected. 
 ## Scholar data and existing weekly automation
 
 Scholar profile: https://scholar.google.com/citations?user=rjC8MUQAAAAJ&hl=en
-data/scholar-citations.json is the shared data cache. Its profile_metrics, verified on 2026-10-14, contains total_citations 15699, h_index 64, i10_index 120. Render the actual Google Scholar All-column totals, not a sum of listed papers.
+data/scholar-citations.json is the shared data cache. Its profile_metrics, verified on 2026-10-14, contains total_citations 15699, h_index 64, i10_index 120. These cached totals are not displayed. Never substitute a sum of listed papers for Scholar profile metrics.
 Publication statistics caption is “Citation counts: Google Scholar · automatically updated YYYY-MM-DD”. Do not advance the date after an unsuccessful check.
 Citations are displayed on Publications, Full List, Current, Alumni and Covers, but never on Home or Research.
-An independent Alumni article not in the PI profile is explicitly matched: “A flexible hybridized electromagnetic-triboelectric nanogenerator and its application for 3D trajectory sensing”, Nano Energy 2020, 74, 104878. Google Scholar cluster/cites ID 2204454159587458542; verified 85 citations on 2026-10-14. Keep that article’s own Scholar count/link and do not replace it with another database’s count. It is also listed in data/scholar-extra-articles.json.
-An existing enabled cloud automation named “更新 HMD Lab Scholar”, id 6ad18f879bc08190b1957f23e877be83, was confirmed and updated through the Automations connector on 2026-10-16. Its current schedule is Fridays 03:30 Asia/Shanghai. Preserve this cloud schedule rather than the older local Monday schedule. It reads latest main through the GitHub connector and includes profile metrics, all-year citation counts, 2026-onward publication metadata and independent Alumni articles. Its instructions preserve the latest Alumni layout from this document and gray Role in the group section. Do not create a duplicate. The enabled configuration is confirmed; no successful cloud execution is claimed from that configuration alone. Do not rely on or restart the older local heartbeat; if it remains configured on the original computer, disable it there to avoid duplicate runs.
+The independent Ji Wan Nano Energy 2020 article has been removed and must not be restored or tracked. data/scholar-extra-articles.json is empty.
+The existing enabled cloud task is named “更新 HMD Lab Scholar”, id 6ad18f879bc08190b1957f23e877be83. Its 2026-10-20 instructions and exact Friday 03:30 Asia/Shanghai schedule are documented in SCHOLAR_AUTOMATION.md. Do not create a duplicate or restart the older local heartbeat. Configuration success alone does not establish successful execution.
 
 ## Remaining task: deploy and validate private analytics
 
