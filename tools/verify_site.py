@@ -43,10 +43,11 @@ for f in ROOT.rglob('*'):
         # The empty-token and failure paths retain the local campus map.
         if f.relative_to(ROOT).as_posix()=='static/contact-map.js':
             script=script.replace('https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js','')
-        # Owner-authorized GA4; production host only, browser opt-outs respected.
+        # Owner-authorized GA4 and Baidu tags; production host only, opt-outs respected.
         if f.relative_to(ROOT).as_posix()=='static/analytics.js':
             for approved in ('https://www.googletagmanager.com/gtag/js?id=',
-                             'https://policies.google.com/technologies/partner-sites'):
+                             'https://policies.google.com/technologies/partner-sites',
+                             'https://hm.baidu.com/hm.js?e387d8beff78853986f3b7b31860f890'):
                 script=script.replace(approved,'')
         if re.search(r'fetch\s*\(|XMLHttpRequest|https?://',script):errors.append(f'{f}: remote script dependency')
 report={'checked_html_pages':count,'errors':sorted(set(errors))}

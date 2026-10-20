@@ -308,3 +308,9 @@ keep existing font sizes, weights, icons, portrait and layout hierarchy.
 - Noninteractive footer disclosure links to Google data-use information. Google signals/ad personalization stay disabled; sanitized URLs, owner-only reports, and country/region/city collection remain.
 
 - Follow-up owner request: remove the footer data-use sentence as well. Analytics injects no visible UI; automatic collection and opt-outs remain as above.
+
+
+## Baidu Tongji — 2026-10-20
+- Owner supplied screenshot of site-specific tracking installation page for hanmd1990.github.io. Tracking ID e387d8beff78853986f3b7b31860f890 (public identifier).
+- Shared static/analytics.js initializes window._hmt and asynchronously loads the exact hm.baidu.com/hm.js URL on all generated pages, alongside GA4. No visible UI. Production hostname only; existing explicit refusal and DNT/GPC respected for both providers; duplicate tags avoided.
+- Do not claim Baidu dashboard has received data until verified there. Installation screenshot says reports generally appear about 20 minutes after installation.
