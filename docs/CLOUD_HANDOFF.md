@@ -26,7 +26,7 @@ The three map-service buttons (Google Map, 百度地图, 高德地图) form one 
 
 ## Recruitment tab wording — 2026-10-20 latest
 
-The four tab labels are Postdoc, Ph.D., Undergrad, RA. Availability wording is exactly: Postdoc “2027: 1–2 positions”; Ph.D. two lines “Fall 2028: 1–2 positions” then “Fall 2027: no positions”; Undergrad “Multiple positions”; RA “No positions” (no year). Panel availability matches tab availability. RA body has no year. Preserve the undergraduate advertisement text and all existing application instructions. This supersedes older count wording in this document; data/join-us.json is canonical.
+The four tab labels are Postdocs, Ph.D. Students, Undergraduates, Research Assistants (restored to full names at the user’s request). Availability wording is exactly: Postdoc “2027: 1–2 positions”; Ph.D. two lines “Fall 2028: 1–2 positions” then “Fall 2027: no positions”; Undergrad “Multiple positions”; RA “No positions” (no year). Panel availability matches tab availability. RA body has no year. Preserve the undergraduate advertisement text and all existing application instructions. This supersedes older count wording in this document; data/join-us.json is canonical.
 
 ## Published academic archives (2026-10-19; supersedes earlier archive designs)
 
