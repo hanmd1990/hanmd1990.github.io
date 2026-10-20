@@ -1663,6 +1663,31 @@
         "checked_on": "2026-10-18",
         "doi": "10.1021/nl3045684"
       }
+    },
+    "127": {
+      "title": "Design strategies for liquid metal-based soft electronics",
+      "url": "https://www.nature.com/articles/s44287-026-00335-1",
+      "authors": "Chengfeng Pan¹*, Chong Zhang¹, Jiarui Wang¹, Mengdi Han, Wai Yan Philip Chiu, Peng Zhao*, Michael D. Dickey*",
+      "evidence": {
+        "id": 127,
+        "title": "Design strategies for liquid metal-based soft electronics",
+        "publisher_title": "Design strategies for liquid metal-based soft electronics",
+        "authors": "Chengfeng Pan, Chong Zhang, Jiarui Wang, Mengdi Han, Wai Yan Philip CHIU, Peng Zhao, Michael D. Dickey",
+        "source": "https://www.nature.com/articles/s44287-026-00335-1",
+        "checked_on": "2026-10-20",
+        "doi": "10.1038/s44287-026-00335-1",
+        "published": "2026-10-01",
+        "equal_contributors": [
+          "Chengfeng Pan",
+          "Chong Zhang",
+          "Jiarui Wang"
+        ],
+        "corresponding_authors": [
+          "Chengfeng Pan",
+          "Peng Zhao",
+          "Michael D. Dickey"
+        ]
+      }
     }
   }
 }
