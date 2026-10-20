@@ -295,3 +295,8 @@ keep existing font sizes, weights, icons, portrait and layout hierarchy.
 
 ## Covers click behavior — 2026-10-20
 - All cover tiles open the corresponding research article URL in a new tab. No cover lightbox. Keep image-only grid and hover styling. Applies both to server-rendered /covers/ and dynamic Covers tab.
+
+
+## Cover cursor and analytics prompt — 2026-10-20
+- Cover tiles use a pointer cursor for article links.
+- Analytics preference panel no longer opens automatically; footer Privacy & analytics opens it on request. Existing accepted consent continues collecting; new visitors remain untracked until they explicitly opt in. DNT/GPC and decline still respected.

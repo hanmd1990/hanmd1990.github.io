@@ -60,7 +60,8 @@
   settings.addEventListener('click', () => { panel.hidden = false; close.hidden = false; panel.querySelector('button').focus(); });
   document.body.append(settings, panel);
   const saved = read();
-  panel.hidden = saved !== null || disabled;
+  // Preferences open only when the visitor clicks the footer control.
+  panel.hidden = true;
   if (disabled) {
     panel.querySelector('p').textContent = 'Analytics is disabled because your browser sends a privacy preference. No Google Analytics script is loaded.';
     panel.querySelector('[data-choice="accepted"]').disabled = true;

@@ -11,7 +11,7 @@ html{background:#fff}body.lab-modern-archive{margin:0;background:#fff;color:#252
 :root body.lab-modern-archive #s-content.hmd-archive .journal em,:root body.lab-modern-archive #s-content.hmd-archive .journal em *{color:#000!important;font-weight:400;font-style:italic}
 :root body.lab-modern-archive #s-content.hmd-archive .journal em.archive-journal,:root body.lab-modern-archive #s-content.hmd-archive .journal em.archive-journal *{color:#A1662F!important}
 
-.hmd-archive .cover-tile{display:block;aspect-ratio:3/4;background:#fff;box-shadow:0 3px 12px #142b551a;transition:transform .2s ease,box-shadow .2s ease;cursor:zoom-in}
+.hmd-archive .cover-tile{display:block;aspect-ratio:3/4;background:#fff;box-shadow:0 3px 12px #142b551a;transition:transform .2s ease,box-shadow .2s ease;cursor:pointer}
 @media(hover:hover){.hmd-archive .cover-tile:hover{transform:translateY(-5px) scale(1.025);box-shadow:0 12px 24px #142b5533}}
 .hmd-archive .cover-tile:focus-visible{outline:3px solid #A1662F;outline-offset:5px}
 @media(max-width:480px){.hmd-archive .cover-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}}
