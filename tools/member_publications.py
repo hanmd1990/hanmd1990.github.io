@@ -44,6 +44,9 @@ def read_bibliography(root):
             for node in metadata.iter():
                 node.attrib.pop('style', None)
                 node.attrib.pop('class', None)
+            for em in metadata.xpath('.//em'):
+                if re.fullmatch(r'\d+(?:[.\-–]\d+)?', ' '.join(em.text_content().split())):
+                    em.set('class', 'lab-volume')
             papers[int(match[1])] = dict(metadata=metadata, title=' '.join(links[0].text_content().split()),
                 url=links[0].get('href'), journal=journal, year=int(path.parent.name[-4:]), authors=authors)
     for pid, paper in papers.items():

@@ -308,3 +308,6 @@ body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-wei
  .lab-archive-nav .lab-archive-feature{min-height:36px;min-width:0;text-indent:0}
  .lab-news-page .lab-archive-action-row{width:111px}
 }
+
+/* Numeric publication volumes remain black after member metadata regeneration. */
+:root body #s-content :is(.alumni-paper-meta,.member-paper-meta) em.lab-volume,:root body #s-content :is(.alumni-paper-meta,.member-paper-meta) em.lab-volume *{color:#000!important;font-style:italic;font-weight:400}

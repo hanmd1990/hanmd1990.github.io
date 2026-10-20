@@ -6,6 +6,12 @@ Read [SCHOLAR_AUTOMATION.md](SCHOLAR_AUTOMATION.md) before every maintenance run
 
 Current/Alumni now display verified full first/co-first author names from data/publication-full-authors.json (followed by et al.). Keep the raw author tokens for identity/position matching. News journal mentions use normal text color and italic where marked, including Soft Science; its gallery is capped at 180px. Publication volumes are black italic. Title font is still 18px; the suggested 16px change was not authorized or applied.
 
+## Cover gallery and member volume colors — 2026-10-20
+
+Covers displays only the 14 cover images below the archive controls: no journal/title/year captions, citation badges, counts or author/Scholar legend. The images remain accessible with descriptive alt/aria labels and click-to-enlarge. Use 5 columns on desktop, 3 at tablet widths, 2 on phones; preserve natural images without cropping. Hover/focus gives a subtle lift/zoom and stronger shadow, with reduced-motion support. Both server-generated and client-rendered galleries must match. Underlying cover metadata may remain in the archive data for lookup, but is not rendered.
+
+Member bibliography metadata preserves the lab-volume class on numeric emphasis tags before cloning into Current/Alumni. The shared stylesheet forces these volumes to black italic; only journal names retain gold. Do not strip the numeric volume marker during regeneration.
+
 ## Published academic archives (2026-10-19; supersedes earlier archive designs)
 
 Publications and News now use the approved clean academic preview design on the official GitHub Pages site. Preserve the original shared lab header/navigation. Do not add the preview theme selector, brand, page heading or introductory description: Publications starts with the centered author/Scholar note; News starts with the year selector. Home, Research, Current, Alumni, Contact and Join are unchanged.

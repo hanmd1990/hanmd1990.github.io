@@ -205,7 +205,7 @@ for path in ROOT.rglob('index.html'):
     for em in tree.xpath('//*[@id="s-content"]//p//em'):
         if re.fullmatch(r'et\s*al\.?',text(em),re.I):add_class(em,'lab-author-note')
         if re.fullmatch(r'\d+(?:[.\-–]\d+)?',text(em)):
-            em.set('class',(em.get('class','')+' lab-volume').strip())
+            add_class(em,'lab-volume')
     if route=='.':
         for heading in tree.xpath('//h1|//h2|//h3|//h4|//h5|//h6'):
             if text(heading).lower() in ('our mission','open positions','recent highlights'):add_class(heading,'lab-section-accent')

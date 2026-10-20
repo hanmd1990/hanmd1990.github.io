@@ -90,8 +90,9 @@ def rebuild_archives(root,bibliography,scholar,today):
             result=f'<p class="paper-note publication-top-note">*Corresponding authors; <sup>1</sup> Authors contributed equally; Citation counts: <a href="{escape(scholar["profile"],quote=True)}" target="_blank" rel="noopener noreferrer">Google Scholar</a>; · Automatically updated {escape(scholar["checked_on"])}</p>'+controls('pub',mode,view)
             if view=='selected' and not data['selectedPaperIds']:return result+'<section class="selected-placeholder"><h2>Selected Publications</h2><p>The selected publication list will be added here.</p></section>'
             if view=='covers':
-                result+=f'<p class="archive-summary">{len(covers)} covers across all years</p><div class="cover-grid">'
-                for c in covers:result+=f'<figure><a href="{escape(images[c["image"]],quote=True)}" data-lightbox="true">{image(c["image"],c["journal"]+" cover")}</a><a href="{escape(c["url"],quote=True)}" target="_blank" rel="noopener noreferrer"><figcaption><p>{escape(c["journal"])} · {c["year"]}</p><p class="cover-title">{escape(c["title"])}</p></figcaption></a>{badge(c)}</figure>'
+                result=controls('pub',mode,view)
+                result+='<div class="cover-grid">'
+                for c in covers:result+=f'<figure><a class="cover-tile" href="{escape(images[c["image"]],quote=True)}" data-lightbox="true" aria-label="Enlarge {escape(c["journal"],quote=True)} cover">{image(c["image"],c["journal"]+" cover")}</a></figure>'
                 return result+'</div>'
             ps=[p for p in papers if in_range(p['year'],mode) and (view!='selected' or p['id'] in data['selectedPaperIds'])]
             result+=f'<p class="archive-summary">{len(ps)} articles {label(mode)}</p>'
