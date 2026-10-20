@@ -20,6 +20,10 @@ Visit our lab has four separate numbered sections, in order: ① Location of our
 
 Join Us availability: Postdocs 1–2 positions in 2027; Ph.D. students 1–2 positions for Fall 2028, no positions in 2027; Undergraduates unchanged; Research Assistants no positions in 2027 (including body text). Page updated is 2026-10-20, the actual edit date. Keep intro text and this date centered. Remove the separate Contact Mengdi Han mailto CTA. Recruitment notice is permanently removed from data and renderer; never append it in future updates. Keep application instructions and their existing email links inside the recruitment ads. Preserve tab switching and no large Join Us title.
 
+## Contact link behavior — 2026-10-20
+
+The four map-service buttons form exactly two equal-width columns and two rows, with matching button height and centered text. All nine profile/resource links (CV, Biography, PKU Profile, Scholar, ResearcherID, ORCID, X, LinkedIn, ResearchGate) open in a new tab with target=_blank and rel=noopener noreferrer, including the local Biography page. PKU Profile is exactly https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm . Preserve the four separate directions and desktop equal-height columns.
+
 ## Published academic archives (2026-10-19; supersedes earlier archive designs)
 
 Publications and News now use the approved clean academic preview design on the official GitHub Pages site. Preserve the original shared lab header/navigation. Do not add the preview theme selector, brand, page heading or introductory description: Publications starts with the centered author/Scholar note; News starts with the year selector. Home, Research, Current, Alumni, Contact and Join are unchanged.

@@ -268,7 +268,7 @@ for path in ROOT.rglob('index.html'):
         profile_icons=['contact-02.png','contact-03.png','contact.png','contact-06.png','contact-04.png','contact-05.png','contact-07.png','contact-08.png','contact-09.png']
         for name,icon in zip(profile_names,profile_icons):
             if name in profile_links:
-                link=html.Element('a',href=profile_links[name]);link.append(html.Element('img',src='/images/people/mengdi-han/'+icon,alt='',attrib={'aria-hidden':'true','width':'18','height':'18'}));label=html.Element('span');label.text=name;link.append(label);profile_nav.append(link)
+                link=html.Element('a',href=profile_links[name],target='_blank',rel='noopener noreferrer');link.append(html.Element('img',src='/images/people/mengdi-han/'+icon,alt='',attrib={'aria-hidden':'true','width':'18','height':'18'}));label=html.Element('span');label.text=name;link.append(label);profile_nav.append(link)
         contact.append(layout)
         map_figure=layout.xpath('.//figure[@class="lab-contact-map"]')[0]
         map_figure.set('id','contact-map')
