@@ -276,9 +276,6 @@ for path in ROOT.rglob('index.html'):
         map_canvas=html.Element('div',id='contact-apple-map',attrib={'class':'lab-contact-apple-map','hidden':'hidden','role':'region','aria-label':'Apple Maps — 北京大学新奥工学大楼'})
         map_figure.insert(0,map_canvas)
         map_figure.xpath('./figcaption')[0].set('id','contact-map-caption')
-        map_nav=layout.xpath('.//nav[@class="lab-contact-map-links"]')[0]
-        apple_link=html.Element('a',href='https://maps.apple.com/?q='+quote('北京大学新奥工学大楼'),target='_blank',rel='noopener noreferrer')
-        apple_link.text='Apple Maps ↗';map_nav.insert(0,apple_link)
         for name in ('apple-maps-config','contact-map'):
             for old_script in tree.xpath('//script[starts-with(@src,"/static/'+name+'.js")]'):old_script.getparent().remove(old_script)
             version=hashlib.sha256((ROOT/('static/'+name+'.js')).read_bytes()).hexdigest()[:12]

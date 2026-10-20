@@ -14,7 +14,7 @@ Member bibliography metadata preserves the lab-volume class on numeric emphasis 
 
 ## Contact directions — 2026-10-20
 
-Visit our lab has four separate numbered sections, in order: ① Location of our lab (four map-service links), ② Nearest metro station (~350 m), ③ Nearest bus station (~350 m), ④ Driving & taxi navigation (full English/Chinese address). Do not combine ① and ④. Display the four sections in a compact two-column grid below the map (one column on small phones). Desktop Contact columns stretch to the same natural row height; the left address stays at the bottom of its card. Mobile columns retain natural heights. Preserve the portrait, exact Assistant Professor / Associate Department Chair roles, plain email, profiles, map and click-to-enlarge behavior.
+Visit our lab has four separate numbered sections, in order: ① Location of our lab (Google, Baidu and Amap links), ② Nearest metro station (~350 m), ③ Nearest bus station (~350 m), ④ Driving & taxi navigation (full English/Chinese address). Do not combine ① and ④. Display the four sections in a compact two-column grid below the map (one column on small phones). Desktop Contact columns stretch to the same natural row height; the left address stays at the bottom of its card. Mobile columns retain natural heights. Preserve the portrait, exact Assistant Professor / Associate Department Chair roles, plain email, profiles, map and click-to-enlarge behavior.
 
 ## Recruitment availability — 2026-10-20
 
@@ -22,7 +22,7 @@ Join Us availability: Postdocs 1–2 positions in 2027; Ph.D. students 1–2 pos
 
 ## Contact link behavior — 2026-10-20
 
-The four map-service buttons form exactly two equal-width columns and two rows, with matching button height and centered text. All nine profile/resource links (CV, Biography, PKU Profile, Scholar, ResearcherID, ORCID, X, LinkedIn, ResearchGate) open in a new tab with target=_blank and rel=noopener noreferrer, including the local Biography page. PKU Profile is exactly https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm . Preserve the four separate directions and desktop equal-height columns.
+The three map-service buttons (Google Map, 百度地图, 高德地图) form one equal-width row, with matching button height and centered text. Do not render an Apple Maps button. All nine profile/resource links (CV, Biography, PKU Profile, Scholar, ResearcherID, ORCID, X, LinkedIn, ResearchGate) open in a new tab with target=_blank and rel=noopener noreferrer, including the local Biography page. PKU Profile is exactly https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm . Preserve the four separate directions and desktop equal-height columns.
 
 ## Published academic archives (2026-10-19; supersedes earlier archive designs)
 
