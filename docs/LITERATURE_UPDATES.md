@@ -17,10 +17,12 @@ The first public edition is 2026-10-23: 43 related entries (41 direct/method-tra
 
 ## Portal design revision — 2026-10-23
 
-The portal is now **DeepBioelectronics Beta**. Put its prominent navy badge beside the Mengdi Han Research Group identity on every shared page; remove LITERATURE from the existing menu. Keep the `/literature/` URL.
+The portal is now **DeepBioE Beta**. Put its prominent navy badge beside the Mengdi Han Research Group identity on every shared page; remove LITERATURE from the existing menu. Keep the `/literature/` URL.
 
 Journals included opens an accessible modal with searchable checkboxes for every surveyed journal and preprint source, including those with no selected papers this edition. Support multiple choices, Select all/Clear all, Apply and Cancel. Topic categories should be generated during each weekly editorial update from recent actual reader preferences/feedback and selected literature; do not claim feedback exists when none was recorded. The public taxonomy is shared; per-account recommendations are not yet implemented.
 
 Show the automatic weekly update schedule at the top in Beijing, New York and London time. The authoritative schedule is Friday 03:30 Asia/Shanghai. Compute upcoming corresponding weekday/time using IANA zones America/New_York and Europe/London so daylight saving is handled; do not hardcode a year-round offset. Article metadata rows display only journal and date. Keep type metadata internally and preserve correction/preprint context in the summary, but do not render Article or section-unverified badges. The latter meant the publisher's precise section/type was unconfirmed, not that peer review failed.
 
 The public portal currently has no shared feedback or sign-in service. Do not create nonfunctional voting/login buttons or claim public feedback is being saved. The owner is considering account-based Useful / More like this / Not relevant feedback; authentication and backend selection remain a separate decision.
+
+2026-10-23 naming refinement: use DeepBioE Beta in the shared header badge, page title and portal heading. Remove the visible daylight-saving explanatory sentence, while preserving IANA-zone time conversion.
