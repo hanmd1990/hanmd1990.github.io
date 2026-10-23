@@ -324,8 +324,48 @@
       "title": "Function-based Deep Learning Autoencoder for Passive Shimming in a Portable MRI Magnet with Enhanced Field Homogeneity",
       "first_delivered_edition": "2026-10-23",
       "delivery_confirmed_on": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-10823611/v1",
+      "doi": "10.21203/rs.3.rs-10823611/v1",
+      "title": "A single-wire, large-area, super-resolution electromagnetic skin enabling human-level spatial acuity",
+      "first_delivered_edition": "2026-10-23",
+      "delivery_confirmed_on": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-10804825/v1",
+      "doi": "10.21203/rs.3.rs-10804825/v1",
+      "title": "Overcoming conventional trade-offs in strain sensing with physics-guided inverse design of aperiodic architected nanocomposites",
+      "first_delivered_edition": "2026-10-23",
+      "delivery_confirmed_on": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-11204203/v1",
+      "doi": "10.21203/rs.3.rs-11204203/v1",
+      "title": "Intrinsic Vectorial Gradiometry via Quantum Control of a Spin-based Sensor",
+      "first_delivered_edition": "2026-10-23",
+      "delivery_confirmed_on": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-10726871/v1",
+      "doi": "10.21203/rs.3.rs-10726871/v1",
+      "title": "Multiparametric quantification of dynamic force adaptation in living cells by atomic force microscopy",
+      "first_delivered_edition": "2026-10-23",
+      "delivery_confirmed_on": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-11017633/v1",
+      "doi": "10.21203/rs.3.rs-11017633/v1",
+      "title": "An acoustic coupling fluid improves intraoperative ultrasound image quality during glioma surgery: Results of a Pivotal Multicenter Study (NCT04734444)",
+      "first_delivered_edition": "2026-10-23",
+      "delivery_confirmed_on": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-11149224/v1",
+      "doi": "10.21203/rs.3.rs-11149224/v1",
+      "title": "Thermal-history encoding through ionic-state programming in a monolithic organic thermosynapse",
+      "first_delivered_edition": "2026-10-23",
+      "delivery_confirmed_on": "2026-10-23"
     }
-  ],
-  "baseline_started_on": "2026-10-23",
-  "baseline_status": "Delivery ledger initialized from confirmed public editions; review and deliver relevant undated candidates before adding them"
+  ]
 }
