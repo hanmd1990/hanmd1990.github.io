@@ -56,8 +56,7 @@
     byId('lit-count').textContent=items.length+' of '+e.articles.length+' selected articles';
     byId('lit-empty').hidden=items.length!==0;
     byId('lit-window').textContent=e.start+' – '+e.end+' (Beijing time)';
-    byId('lit-note').textContent=e.note;
-    byId('lit-coverage-list').replaceChildren(...e.coverage.map(c=>node('p','',sourceName(c.journal)+': '+c.status+(c.detail?' — '+c.detail:''))));
+    byId('lit-coverage-list').textContent=sources.join('; ')+'.';
     document.querySelectorAll('.lit-topics button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.topic===topic)));
     journalOpen.textContent=journals.size===sources.length?'All '+sources.length+' sources':journals.size+' selected';
   }
@@ -110,6 +109,8 @@
     journals=new Set(sources);topic='';const topics=['',...[...new Set(e.articles.flatMap(a=>a.topics))].sort()];
     document.querySelector('.lit-topics').replaceChildren(...topics.map(t=>{const b=node('button','',t||'All topics');b.type='button';b.dataset.topic=t;b.setAttribute('aria-pressed',String(!t));b.addEventListener('click',()=>{topic=t;render();});return b;}));render();
   }
+  const sourcesToggle=byId('lit-sources-toggle'),sourcesPanel=byId('lit-sources-panel');
+  sourcesToggle.addEventListener('click',()=>{const open=sourcesToggle.getAttribute('aria-expanded')!=='true';sourcesToggle.setAttribute('aria-expanded',String(open));sourcesPanel.hidden=!open;});
   journalOpen.addEventListener('click',()=>{draft=new Set(journals);journalSearch.value='';paintJournals();dialog.showModal();});
   journalSearch.addEventListener('input',paintJournals);
   byId('lit-journals-all').addEventListener('click',()=>{draft=new Set(sources);paintJournals();});
