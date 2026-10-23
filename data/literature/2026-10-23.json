@@ -1166,28 +1166,178 @@
         "Magnetic systems"
       ],
       "type": "Preprint"
+    },
+    {
+      "id": "10.1016/j.bios.2026.119348",
+      "doi": "10.1016/j.bios.2026.119348",
+      "title": "Dual-MOF encapsulated smart gel electrolyte for plant-wearable electrochemical detection of organophosphate pesticides",
+      "journal": "Biosensors and Bioelectronics",
+      "date": "2026-10-19",
+      "authors": [
+        "Yue Cao",
+        "Yiru Sheng",
+        "Xinyu Weng",
+        "Yingzhen Zhuang",
+        "Ru Wu",
+        "Ruchuan Cao",
+        "Shichao Ding",
+        "Wenlei Zhu",
+        "Yang Zhou"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1016/j.bios.2026.119348",
+      "relevance": 2,
+      "summary": "A plant-wearable electrochemical patch uses acid-responsive ZIF-8 nanocontainers to separate an enzyme from its substrate until activation. A conformal MXene hydrogel supports leaf attachment. The reported phoxim detection limit is 2.8 ng/mL; the material-controlled activation method may inform other flexible biochemical sensors.",
+      "topics": [
+        "Wearables & e-skins",
+        "Methods & fabrication"
+      ],
+      "type": "Article",
+      "metadataSources": [
+        "https://europepmc.org/article/MED/42906308"
+      ],
+      "addedAfterMetadataRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.1016/j.neuron.2026.09.030",
+      "doi": "10.1016/j.neuron.2026.09.030",
+      "title": "Distinct patterns of whole-body coding in human motor cortex and posterior parietal cortex",
+      "journal": "Neuron",
+      "date": "2026-10-19",
+      "authors": [
+        "Kelly Kadlec",
+        "Jorge Gamez",
+        "Tyson Aflalo",
+        "Charles Guan",
+        "Emily R Rosario",
+        "Kelsie Pejsa",
+        "Ausaf Bari",
+        "Nader Pouratian",
+        "Richard A Andersen"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1016/j.neuron.2026.09.030",
+      "relevance": 1,
+      "summary": "Single-neuron recordings in people with tetraplegia reveal different patterns of body-part representation in motor and posterior parietal cortex. The distinction offers adjacent context for the choice of neural recording sites and signals in brain–machine interfaces.",
+      "topics": [
+        "Bioelectronics"
+      ],
+      "type": "Article",
+      "metadataSources": [
+        "https://europepmc.org/article/MED/42896556"
+      ],
+      "addedAfterMetadataRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.1109/tbme.2026.3745751",
+      "doi": "10.1109/tbme.2026.3745751",
+      "title": "A Sensitive BLE-Enabled Wearable fNIRS Biosensor for Real-Time Monitoring and Mapping of Task-Evoked Oxygen Influxes During On-Screen Cognitive Tasks",
+      "journal": "IEEE Transactions on Biomedical Engineering",
+      "date": "2026-10-21",
+      "authors": [
+        "Rajesh Mandal",
+        "Gayathri Sai Prabhakaran",
+        "Arjun V Kowshik",
+        "Bhargav Makam Balaji",
+        "Balaji Jayaprakash"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1109/tbme.2026.3745751",
+      "relevance": 2,
+      "summary": "A four-channel wearable fNIRS device combines optical acquisition with Bluetooth Low Energy transmission for cable-free hemodynamic recording. Vascular, breath-hold and cognitive tasks validate its responses. The work also proposes a task-evoked oxygenation metric, with potential relevance to wearable measurements of cognitive engagement.",
+      "topics": [
+        "Wearables & e-skins",
+        "Longitudinal physiology"
+      ],
+      "type": "Article",
+      "metadataSources": [
+        "https://europepmc.org/article/MED/42905589"
+      ],
+      "addedAfterMetadataRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.1109/tbme.2026.3745757",
+      "doi": "10.1109/tbme.2026.3745757",
+      "title": "An Improved Fabrication Method for Flexible COC-Based Implantable Neural Probes with Reliability Validation",
+      "journal": "IEEE Transactions on Biomedical Engineering",
+      "date": "2026-10-21",
+      "authors": [
+        "Taekyung Lee",
+        "Joowon Lee",
+        "Seoyoung Hwang",
+        "Jisung Kim",
+        "Sang Beom Jun",
+        "Changhoon Baek",
+        "Jongmo Seo"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1109/tbme.2026.3745757",
+      "relevance": 2,
+      "summary": "Flexible neural probes combine T-die-cast cyclic olefin copolymer films, femtosecond laser machining and iridium oxide electrodes. The study reports 681.04 ohms impedance at 1 kHz and insulation leakage below 1 nA after 320 days of accelerated soaking at 75 °C. These results concern fabrication and accelerated reliability, rather than long-term clinical validation.",
+      "topics": [
+        "Methods & fabrication",
+        "Bioelectronics"
+      ],
+      "type": "Article",
+      "metadataSources": [
+        "https://europepmc.org/article/MED/42905590"
+      ],
+      "addedAfterMetadataRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.1109/tbme.2026.3745374",
+      "doi": "10.1109/tbme.2026.3745374",
+      "title": "Function-based Deep Learning Autoencoder for Passive Shimming in a Portable MRI Magnet with Enhanced Field Homogeneity",
+      "journal": "IEEE Transactions on Biomedical Engineering",
+      "date": "2026-10-20",
+      "authors": [
+        "Jiannan Zhou",
+        "Xia Xiao",
+        "Guoquan Chen",
+        "Pengfei Zhao",
+        "Yanwei Pang",
+        "Zhenchang Wang"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1109/tbme.2026.3745374",
+      "relevance": 2,
+      "summary": "A self-supervised autoencoder optimizes the distribution of passive ferromagnetic shims in a portable MRI magnet. The study reports an improvement in field homogeneity from 4,873 to 547 ppm. The optimization method offers a transferable reference for magnetic-field design, although the demonstrated application is MRI.",
+      "topics": [
+        "Magnetic systems",
+        "Methods & fabrication"
+      ],
+      "type": "Article",
+      "metadataSources": [
+        "https://europepmc.org/article/MED/42900604"
+      ],
+      "addedAfterMetadataRecovery": "2026-10-23"
     }
   ],
   "coverage": [
     {
       "journal": "Science",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Cell",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Nature",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Science Robotics",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Science Translational Medicine",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Nature Biomedical Engineering",
@@ -1219,7 +1369,8 @@
     },
     {
       "journal": "Nature Medicine",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Nature Methods",
@@ -1231,7 +1382,8 @@
     },
     {
       "journal": "Nature Neuroscience",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Nature Photonics",
@@ -1255,23 +1407,28 @@
     },
     {
       "journal": "Science Advances",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Nature Communications",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Proceedings of the National Academy of Sciences",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Matter",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Neuron",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Nature Protocols",
@@ -1279,23 +1436,28 @@
     },
     {
       "journal": "Advanced Materials",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "ACS Nano",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Nano Letters",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Device",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Biosensors and Bioelectronics",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Microsystems & Nanoengineering",
@@ -1303,7 +1465,8 @@
     },
     {
       "journal": "npj Digital Medicine",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "npj Flexible Electronics",
@@ -1311,35 +1474,43 @@
     },
     {
       "journal": "Advanced Functional Materials",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Advanced Healthcare Materials",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Small",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Sensors and Actuators A: Physical",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Sensors and Actuators B: Chemical",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "IEEE Transactions on Biomedical Engineering",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Journal of Microelectromechanical Systems",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "Journal of Micromechanics and Microengineering",
-      "status": "partial"
+      "status": "partial",
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
     },
     {
       "journal": "arXiv · Applied Physics",
@@ -1351,8 +1522,9 @@
     },
     {
       "journal": "Research Square - Nature Portfolio",
-      "status": "unavailable"
+      "status": "partial",
+      "detail": "Public preprint metadata is accessible. Nature Portfolio membership remains unverified; the platform-wide count is not a count of Nature submissions."
     }
   ],
-  "note": "Selected literature from the weekly journal survey. Coverage is partial: some publisher lists were inaccessible or limited, and some article sections remain unverified. Dates are reported at day resolution where exact publication times were unavailable; records on the weekly boundary may fall outside the 03:30 cutoff."
+  "note": "Selected literature from the weekly journal survey, with five verified entries added after metadata recovery on 23 October 2026. Public metadata fallbacks now provide records for all nine sources previously marked unavailable. Coverage remains partial: metadata indexing can lag, some first-online dates and Science editor credits remain unverified, and Research Square metadata does not establish Nature Portfolio membership. Day-only records on a weekly boundary cannot establish the exact 03:30 cutoff."
 }

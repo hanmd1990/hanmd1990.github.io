@@ -63,7 +63,7 @@ def rebuild_literature(root):
     main.get_element_by_id('lit-note').text=latest['note']
     coverage=main.get_element_by_id('lit-coverage-list')
     for c in latest['coverage']:
-        p=html.Element('p');p.text=c['journal']+': '+c['status'];coverage.append(p)
+        p=html.Element('p');p.text=c['journal']+': '+c['status']+(' — '+c['detail'] if c.get('detail') else '');coverage.append(p)
     payload=html.Element('template',id='lit-data')
     payload.text=json.dumps({'latest':index['latest'],'editions':editions},ensure_ascii=False,separators=(',',':')).replace('<','\\u003c')
     body.append(payload)

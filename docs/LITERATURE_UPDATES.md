@@ -32,3 +32,7 @@ The public portal currently has no shared feedback or sign-in service. Do not cr
 2026-10-23 author visibility: display the entire verified author list directly below each linked article title, without truncation or a disclosure control. Do not render a DOI line; retain DOI internally for matching/deduplication and the title's original-source link. Both server and browser renderers must agree. Preserve missing-author qualifications where necessary.
 
 2026-10-23 compact selector: use BioE Radar as the portal name. The desktop journal selector should display all 46 sources at once in a wide, compact publisher grid without an internal scrolling list; keep readable mobile scrolling where a single screen cannot fit the names. Preserve search, individual/group checkboxes and Apply/Cancel.
+
+## Metadata recovery — 2026-10-23
+
+Read `docs/LITERATURE_RETRIEVAL.md` and use `tools/collect_literature_metadata.py` whenever a publisher catalogue is blocked, empty, truncated or only partly accessible. `data/literature-sources.json` maps the affected journals to ISSNs; reconcile it with the live read-only Drive Journal list. Never equate HTTP 200, zero indexed results or an exhausted metadata API with complete publisher coverage. The collector produces review candidates and a source-health report, not a ready-to-publish weekly edition. First-online dates, abstracts/results, author names, relevance and Science editor credits require the checks in the retrieval guide.

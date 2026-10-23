@@ -28,7 +28,7 @@
     byId('lit-empty').hidden=items.length!==0;
     byId('lit-window').textContent=e.start+' – '+e.end+' (Beijing time)';
     byId('lit-note').textContent=e.note;
-    byId('lit-coverage-list').replaceChildren(...e.coverage.map(c=>node('p','',sourceName(c.journal)+': '+c.status)));
+    byId('lit-coverage-list').replaceChildren(...e.coverage.map(c=>node('p','',sourceName(c.journal)+': '+c.status+(c.detail?' — '+c.detail:''))));
     document.querySelectorAll('.lit-topics button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.topic===topic)));
     journalOpen.textContent=journals.size===sources.length?'All '+sources.length+' sources':journals.size+' selected';
   }
