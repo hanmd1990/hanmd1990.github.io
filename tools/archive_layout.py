@@ -88,7 +88,7 @@ def rebuild_archives(root,bibliography,scholar,today):
     def server_content(kind,mode,view):
         result=''
         if kind=='publication':
-            result=f'<p class="paper-note publication-top-note">*Corresponding authors; <sup>1</sup> Authors contributed equally; Citation counts: <a href="{escape(scholar["profile"],quote=True)}" target="_blank" rel="noopener noreferrer">Google Scholar</a>; · Automatically updated {escape(scholar["checked_on"])}</p>'+controls('pub',mode,view)
+            result=f'<p class="paper-note publication-top-note">*Corresponding authors; <sup>1</sup> Authors contributed equally; Citations: <a href="{escape(scholar["profile"],quote=True)}" target="_blank" rel="noopener noreferrer">Google Scholar</a>; · Automatically updated {escape(scholar["checked_on"])}</p>'+controls('pub',mode,view)
             if view=='selected' and not data['selectedPaperIds']:return result+'<section class="selected-placeholder"><h2>Selected Publications</h2><p>The selected publication list will be added here.</p></section>'
             if view=='covers':
                 result+='<div class="cover-grid">'

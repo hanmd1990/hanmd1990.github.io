@@ -176,7 +176,7 @@ def archive_nav(kind,active):
     if kind=='publications' and active!='covers':
         note=html.Element('p',{'class':'lab-publication-legend lab-publication-notes'});note.text='*Corresponding authors; ¹ Authors contributed equally'
         if citations.get('checked_on'):
-            note.text+='; Citation counts: Google Scholar; · Automatically updated '+citations['checked_on']
+            note.text+='; Citations: Google Scholar; · Automatically updated '+citations['checked_on']
         nav.append(note)
     return nav
 

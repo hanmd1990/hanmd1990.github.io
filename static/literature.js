@@ -5,7 +5,7 @@
   const data=JSON.parse(payload.content.textContent);
   const byId=id=>document.getElementById(id);
   const search=byId('lit-search'),edition=byId('lit-edition'),sort=byId('lit-sort'),results=byId('lit-results');
-  const dialog=byId('lit-journals-dialog'),journalOpen=byId('lit-journals-open'),journalSearch=byId('lit-journals-search');
+  const dialog=byId('lit-journals-dialog'),journalOpen=byId('lit-journals-open');
   let topic='',journals=new Set(),draft=new Set(),sources=[];
   const node=(tag,cls,value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=value;return el;};
   const feedbackKey='bioe-radar-feedback-v1';
@@ -74,12 +74,11 @@
     return 'Other journals';
   }
   function paintJournals(){
-    const query=journalSearch.value.trim().toLocaleLowerCase();
     const e=selected(),coverage=new Map(e.coverage.map(c=>[sourceName(c.journal),c])),counts=new Map();e.articles.forEach(a=>{const j=sourceName(a.journal);counts.set(j,(counts.get(j)||0)+1);});
     const order=['Nature Portfolio','Science journals','Cell Press','Wiley','ACS','Elsevier','IOP Publishing','IEEE','PNAS','Preprints','Other journals'];
     const sections=order.map(group=>{
       const all=sources.filter(j=>journalGroup(j)===group);
-      const visible=all.filter(j=>!query||j.toLocaleLowerCase().includes(query)||group.toLocaleLowerCase().includes(query));
+      const visible=all;
       if(!visible.length)return null;
       const section=node('section','lit-publisher-group');section.dataset.publisher=group;
       const heading=node('div','lit-publisher-heading'),label=node('label','lit-publisher-toggle'),toggle=node('input');
@@ -111,8 +110,7 @@
   }
   const sourcesToggle=byId('lit-sources-toggle'),sourcesPanel=byId('lit-sources-panel');
   sourcesToggle.addEventListener('click',()=>{const open=sourcesToggle.getAttribute('aria-expanded')!=='true';sourcesToggle.setAttribute('aria-expanded',String(open));sourcesPanel.hidden=!open;});
-  journalOpen.addEventListener('click',()=>{draft=new Set(journals);journalSearch.value='';paintJournals();dialog.showModal();});
-  journalSearch.addEventListener('input',paintJournals);
+  journalOpen.addEventListener('click',()=>{draft=new Set(journals);paintJournals();dialog.showModal();});
   byId('lit-journals-all').addEventListener('click',()=>{draft=new Set(sources);paintJournals();});
   byId('lit-journals-none').addEventListener('click',()=>{draft.clear();paintJournals();});
   byId('lit-journals-apply').addEventListener('click',()=>{journals=new Set(draft);render();dialog.close();});
