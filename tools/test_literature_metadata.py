@@ -21,13 +21,13 @@ def paper(doi="10.test/a", journal="Device"):
 
 
 class MetadataTests(unittest.TestCase):
-    def test_read_count_deduplicates_and_excludes_cutoff_days(self):
+    def test_read_count_includes_undated_baseline_records_and_deduplicates(self):
         records = [{"doi": "10.test/a", "journal": "Device", "online_date": "2026-10-20"},
                    {"doi": "10.test/a", "journal": "Device", "online_date": "2026-10-20"},
                    {"doi": "10.test/b", "journal": "Device", "online_date": "2026-10-23"},
                    {"doi": "10.test/c", "journal": "Device", "reported_date": "2026-10"}]
         count = weekly_read_counts(records, "Device", "2026-10-16", "2026-10-23")
-        self.assertEqual(count["readCount"], 1)
+        self.assertEqual(count["readCount"], 3)
         self.assertEqual(count["readCountDatePending"], 2)
 
     def test_platform_count_is_not_a_portfolio_count(self):

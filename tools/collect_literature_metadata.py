@@ -13,6 +13,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+from literature_delivery import unseen_candidates
 
 
 def clean(value):
@@ -174,7 +175,7 @@ def eligibility(record, first, last):
 
 
 def weekly_read_counts(records, journal, first, last):
-    """Count retrieved, dated metadata, not a journal's total published output.
+    """Count metadata inspected for this edition, including undated records.
 
     Cutoff days remain uncertain without time-of-day evidence. Records from an
     unverified Research Square portfolio are never attributed to that portfolio.
@@ -182,22 +183,21 @@ def weekly_read_counts(records, journal, first, last):
     if journal == "Research Square - Nature Portfolio":
         return {"readCount": None, "readCountIsLowerBound": False,
                 "readCountBasis": "Nature Portfolio membership not verified"}
-    dated, pending = set(), set()
+    examined, pending = set(), set()
     for record in records:
         if record.get("journal") != journal:
             continue
         identity = record.get("doi") or record.get("url")
         if not identity:
             continue
+        examined.add(identity)
         date = (record.get("online_date") or record.get("first_publication_date")
                 or record.get("posted_date") or record.get("reported_date"))
         if not date or len(date) != 10 or date in (first, last) or record.get("date_conflict"):
             pending.add(identity)
-        elif first < date < last:
-            dated.add(identity)
-    return {"readCount": len(dated) if dated or not pending else None, "readCountIsLowerBound": bool(dated and pending),
+    return {"readCount": len(examined), "readCountIsLowerBound": False,
             "readCountDatePending": len(pending),
-            "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded"}
+            "readCountBasis": "Unique metadata inspected in this run, including baseline/backfill; not a publication total"}
 
 
 def collect(client, source, first, last, lookback=21):
@@ -233,7 +233,10 @@ def collect(client, source, first, last, lookback=21):
         if source.get("prefix"):
             record["preprint"] = True
             record["portfolio_membership"] = "unverified; prefix is not a Nature Portfolio filter"
-        record["eligibility"] = eligibility(record, first, last)
+        record["date_status"] = eligibility(record, first, last)
+        record["eligibility"] = record["date_status"]  # Compatibility: date evidence, NOT a delivery gate.
+        record["date_blocks_delivery"] = False
+        record["discovery_checked_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
         record["editor_check"] = ("metadata_available_requires_official_confirmation"
                                   if record["editors"] else "not_available_in_metadata")
     health = {"journal": source["journal"], "issn": source.get("issn"),
@@ -257,10 +260,13 @@ def main():
     parser.add_argument("--output", type=Path, required=True, help="Private/intermediate candidate file, never publish raw abstracts")
     parser.add_argument("--health-output", type=Path, required=True)
     parser.add_argument("--lookback", type=int, default=21)
+    parser.add_argument("--delivered-ledger", type=Path,
+                        default=Path(__file__).resolve().parents[1]/"data/literature/delivered.json")
     args = parser.parse_args()
     if dt.date.fromisoformat(args.start) >= dt.date.fromisoformat(args.end):
         parser.error("end must follow start")
     sources = json.loads(args.sources.read_text())["journals"]
+    ledger = json.loads(args.delivered_ledger.read_text()) if args.delivered_ledger.exists() else {"entries": []}
     if args.journal:
         unknown = set(args.journal) - {s["journal"] for s in sources}
         if unknown:
@@ -273,6 +279,9 @@ def main():
     for source in sources:
         candidates, status = collect(Client(), source, args.start, args.end, args.lookback)
         output["candidates"].extend(candidates)
+        output["unseen_candidate_ids"] = [r.get("doi") or r.get("id") or r.get("url")
+                                          for r in unseen_candidates(output["candidates"], ledger)]
+        output["delivery_ledger_history_scope"] = ledger.get("history_scope", "No delivered ledger available")
         health["sources"].append(status)
         # Checkpoint after every source so a later failure cannot erase progress.
         for path, value in [(args.output, output), (args.health_output, health)]:

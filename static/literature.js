@@ -13,7 +13,7 @@
   function row(a){
     const card=node('article','lit-paper');card.dataset.id=a.id;
     const meta=node('p','lit-meta');meta.append(node('span','lit-journal',a.journal));
-    const date=node('time','',a.date);date.dateTime=a.date;meta.append(date);
+    const date=node(a.date?'time':'span','',a.dateLabel||a.date||'Publication date unverified');if(a.date)date.dateTime=a.date;meta.append(date);
     const heading=node('h2'),link=node('a','',a.title);link.href=a.url;link.target='_blank';link.rel='noopener noreferrer';heading.append(link);
     const bottom=node('div','lit-paper-bottom');bottom.append(node('p','lit-tags',a.topics.join(' / ')));
     const authors=node('p','lit-author-line',(a.authors.length?a.authors.join(', '):'Author list unavailable.')+(a.authorsComplete?'':' (Complete author list not verified.)'));
@@ -22,7 +22,7 @@
   function render(){
     const e=selected(),q=search.value.trim().toLocaleLowerCase();
     const items=e.articles.filter(a=>(!topic||a.topics.includes(topic))&&journals.has(sourceName(a.journal))&&(!q||[a.title,a.journal,a.summary,a.doi,...a.authors,...a.topics].join(' ').toLocaleLowerCase().includes(q)));
-    items.sort((a,b)=>sort.value==='date'?b.date.localeCompare(a.date)||a.title.localeCompare(b.title):sort.value==='journal'?a.journal.localeCompare(b.journal)||b.date.localeCompare(a.date):b.relevance-a.relevance||a.journal.localeCompare(b.journal)||a.title.localeCompare(b.title));
+    items.sort((a,b)=>sort.value==='date'?String(b.date||'').localeCompare(String(a.date||''))||a.title.localeCompare(b.title):sort.value==='journal'?a.journal.localeCompare(b.journal)||String(b.date||'').localeCompare(String(a.date||'')):b.relevance-a.relevance||a.journal.localeCompare(b.journal)||a.title.localeCompare(b.title));
     results.replaceChildren(...items.map(row));
     byId('lit-count').textContent=items.length+' of '+e.articles.length+' selected articles';
     byId('lit-empty').hidden=items.length!==0;
