@@ -17,7 +17,7 @@ The first public edition is 2026-10-23: 43 related entries (41 direct/method-tra
 
 ## Portal design revision — 2026-10-23
 
-The portal is now **DeepBioE Beta**. Put its prominent navy badge beside the Mengdi Han Research Group identity on every shared page; remove LITERATURE from the existing menu. Keep the `/literature/` URL.
+The portal is now **BioE Radar Beta**. Put its prominent navy badge beside the Mengdi Han Research Group identity on every shared page; remove LITERATURE from the existing menu. Keep the `/literature/` URL.
 
 Journals included opens an accessible modal with searchable checkboxes for every surveyed journal and preprint source, including those with no selected papers this edition. Support multiple choices, Select all/Clear all, Apply and Cancel. Topic categories should be generated during each weekly editorial update from recent actual reader preferences/feedback and selected literature; do not claim feedback exists when none was recorded. The public taxonomy is shared; per-account recommendations are not yet implemented.
 
@@ -25,8 +25,10 @@ Show the automatic weekly update schedule at the top in Beijing, New York and Lo
 
 The public portal currently has no shared feedback or sign-in service. Do not create nonfunctional voting/login buttons or claim public feedback is being saved. The owner is considering account-based Useful / More like this / Not relevant feedback; authentication and backend selection remain a separate decision.
 
-2026-10-23 naming refinement: use DeepBioE Beta in the shared header badge, page title and portal heading. Remove the visible daylight-saving explanatory sentence, while preserving IANA-zone time conversion.
+2026-10-23 naming refinement: use BioE Radar Beta in the shared header badge, page title and portal heading. Remove the visible daylight-saving explanatory sentence, while preserving IANA-zone time conversion.
 
 2026-10-23 journal-selector grouping: group the checkbox list by Nature Portfolio, Science journals, Cell Press, Wiley, ACS, Elsevier, IOP Publishing, IEEE, PNAS and Preprints. Nature/npj/Microsystems belong to Nature Portfolio; Cell/Neuron/Matter/Device belong to Cell Press rather than the separate Elsevier group. Biosensors and Bioelectronics and Sensors and Actuators A/B belong to Elsevier. Use the correct spellings IOP and Elsevier. Each group has a checkbox to select its entire family, including an indeterminate state; retain individual choices, global select/clear, publisher or journal search and Apply/Cancel. Keep all monitored sources listed, even with no papers in the current edition. Extend the mapping for newly monitored journals rather than silently assigning an incorrect publisher.
 
 2026-10-23 author visibility: display the entire verified author list directly below each linked article title, without truncation or a disclosure control. Do not render a DOI line; retain DOI internally for matching/deduplication and the title's original-source link. Both server and browser renderers must agree. Preserve missing-author qualifications where necessary.
+
+2026-10-23 compact selector: use BioE Radar as the portal name. The desktop journal selector should display all 46 sources at once in a wide, compact publisher grid without an internal scrolling list; keep readable mobile scrolling where a single screen cannot fit the names. Preserve search, individual/group checkboxes and Apply/Cancel.

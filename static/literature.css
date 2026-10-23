@@ -17,3 +17,18 @@
 #lit-journals-options{display:block}.lit-publisher-group{margin:0 0 18px}.lit-publisher-group:last-child{margin-bottom:0}.lit-publisher-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #d8dde5;padding:8px 2px;margin-bottom:9px;color:var(--hmd-navy)}.lit-publisher-toggle{display:flex;align-items:center;gap:9px;font-weight:600;cursor:pointer}.lit-publisher-toggle input{accent-color:var(--hmd-navy);margin:0}.lit-publisher-count{font-size:11px;color:#626a75;white-space:nowrap}.lit-publisher-journals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.lit-journal-no-match{color:#626a75;padding:16px 0}@media(max-width:600px){.lit-publisher-journals{grid-template-columns:1fr}}
 
 .lit-author-line{font-size:13px;line-height:1.7;color:#626a75;margin:0 0 12px;max-width:960px;overflow-wrap:anywhere}.lit-paper h2{margin-bottom:5px}
+
+/* Wide source directory: all monitored journals visible together on desktop. */
+@media(min-width:1050px){
+ #lit-journals-dialog{width:min(1320px,calc(100% - 36px));max-height:calc(100vh - 28px);padding:18px 22px;overflow-y:auto}
+ .lit-dialog-heading h2{font-size:22px}.lit-dialog-heading p{margin:4px 0 10px;font-size:12px}
+ .lit-journal-search{display:flex;align-items:center;gap:14px}.lit-journal-search input{flex:1;height:34px;margin:0}
+ .lit-dialog-actions{margin:10px 0;gap:10px}.lit-dialog-actions button,.lit-dialog-footer button{padding:6px 11px}
+ #lit-journals-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px 20px;max-height:none;overflow:visible;padding:0;align-items:start}
+ .lit-publisher-group{margin:0;min-width:0}.lit-publisher-group[data-publisher="Nature Portfolio"]{grid-column:span 2;grid-row:span 3}
+ .lit-publisher-heading{gap:6px;padding:3px 0;margin-bottom:5px}.lit-publisher-toggle{font-size:12px;gap:6px}.lit-publisher-count{font-size:10px}
+ .lit-publisher-journals{grid-template-columns:1fr;gap:2px}.lit-publisher-group[data-publisher="Nature Portfolio"] .lit-publisher-journals{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px}
+ .lit-journal-option{border:0;border-radius:3px;padding:3px 4px;gap:7px;font-size:12px;line-height:1.35;min-height:22px;box-sizing:border-box}
+ .lit-journal-option input{margin:2px 0 0;flex:none}.lit-journal-option small{display:none}
+ .lit-dialog-footer{margin-top:12px;padding-top:10px}
+}

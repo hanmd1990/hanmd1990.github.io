@@ -53,7 +53,7 @@
       const all=sources.filter(j=>journalGroup(j)===group);
       const visible=all.filter(j=>!query||j.toLocaleLowerCase().includes(query)||group.toLocaleLowerCase().includes(query));
       if(!visible.length)return null;
-      const section=node('section','lit-publisher-group');
+      const section=node('section','lit-publisher-group');section.dataset.publisher=group;
       const heading=node('div','lit-publisher-heading'),label=node('label','lit-publisher-toggle'),toggle=node('input');
       toggle.type='checkbox';toggle.checked=all.every(j=>draft.has(j));toggle.indeterminate=!toggle.checked&&all.some(j=>draft.has(j));toggle.setAttribute('aria-label','Select all '+group+' sources');
       toggle.addEventListener('change',()=>{all.forEach(j=>toggle.checked?draft.add(j):draft.delete(j));paintJournals();});
