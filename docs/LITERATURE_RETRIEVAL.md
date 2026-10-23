@@ -36,3 +36,11 @@ Repeat `--journal 'Device'` to select sources. Dates above are examples, not a f
 - PubMed date fields and API limits: https://www.ncbi.nlm.nih.gov/books/NBK25499/
 
 This is a public-metadata fallback, not a subscription full-text downloader. No new paid service, user login or private report API is needed.
+
+## Reading-count audit and source overrides — 2026-10-23
+
+The registry now covers the monitored journal sources plus Research Square; arXiv and bioRxiv use their own public APIs. Small is excluded by owner instruction, even if still present in the read-only Drive sheet. The journal selector shows reads and selected entries separately. Use `weekly_read_counts` on deduplicated recovery candidates. Count only retrieved records with a day-resolved publication field in the edition window; retain online/first-publication versus reported issue-date evidence and do not turn a count into permission to publish an unverified first-online date. Day-only cutoff records and month-only records remain pending. Existing verified selected entries establish a lower bound, not a complete survey. Preserve per-source read-count evidence and update counters every run.
+
+arXiv API queries use the precise converted UTC cutoff and verify every entry's published timestamp. bioRxiv's `details/biorxiv/START/END/CURSOR/json?category=bioengineering` endpoint was tested with category verification and pagination (30 records per page in this response). Filter version 1 and deduplicate DOI; exclude uncertain cutoff-day records or retain an explicit lower bound. Category totals include updated versions, so do not treat `total` as a new-paper count. Nature Protocols is 1750-2799 online (1754-2189 print); its monitored official path is `/nprot/`, not `/nphoton/`.
+
+The Research Square Nature Portfolio filtered URL returned HTTP 403 on 2026-10-23; the connected-browser attempt timed out. Platform Crossref records remain usable for discovery, but the filtered count is unverified and must be shown as —. Do not claim the filtered browse page was read successfully.

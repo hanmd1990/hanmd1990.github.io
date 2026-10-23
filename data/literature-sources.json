@@ -103,11 +103,6 @@
       "publisher_family": "wiley"
     },
     {
-      "journal": "Small",
-      "issn": "1613-6810",
-      "publisher_family": "wiley"
-    },
-    {
       "journal": "Sensors and Actuators A: Physical",
       "issn": "0924-4247",
       "publisher_family": "elsevier"
@@ -137,6 +132,94 @@
       "prefix": "10.21203",
       "publisher_family": "preprints",
       "portfolio_verification_required": true
+    },
+    {
+      "journal": "Nature Biomedical Engineering",
+      "issn": "2157-846X",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Biotechnology",
+      "issn": "1087-0156",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Cardiovascular Research",
+      "issn": "2731-0590",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Electronics",
+      "issn": "2520-1131",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Machine Intelligence",
+      "issn": "2522-5839",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Materials",
+      "issn": "1476-1122",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Methods",
+      "issn": "1548-7091",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Nanotechnology",
+      "issn": "1748-3387",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Photonics",
+      "issn": "1749-4885",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Sensors",
+      "issn": "3059-4499",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Reviews Bioengineering",
+      "issn": "2731-6092",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Reviews Electrical Engineering",
+      "issn": "2948-1201",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Reviews Materials",
+      "issn": "2058-8437",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "npj Flexible Electronics",
+      "issn": "2397-4621",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Protocols",
+      "issn": "1750-2799",
+      "publisher_family": "nature",
+      "alternate_issns": [
+        "1754-2189"
+      ]
+    },
+    {
+      "journal": "Microsystems & Nanoengineering",
+      "issn": "2055-7434",
+      "publisher_family": "nature"
+    },
+    {
+      "journal": "Nature Mechanical Engineering",
+      "issn": "3091-5244",
+      "publisher_family": "nature"
     }
   ]
 }

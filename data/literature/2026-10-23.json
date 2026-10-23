@@ -1023,54 +1023,6 @@
       "type": "Article (section unverified)"
     },
     {
-      "id": "10.1002/smll.76359",
-      "doi": "10.1002/smll.76359",
-      "title": "Self‐Powered, Neural Network‐Inspired Mechanical Intelligence Driven by Triboelectric Nanogenerators",
-      "journal": "Small",
-      "date": "2026-10-18",
-      "authors": [
-        "Xinke Yu",
-        "Xin Zhang",
-        "Wenpo Li",
-        "Juan Wang",
-        "Taoqiang Ling",
-        "Hengyu Guo",
-        "Chenguo Hu"
-      ],
-      "authorsComplete": true,
-      "url": "https://doi.org/10.1002/smll.76359",
-      "relevance": 2,
-      "summary": "Triboelectric nanogenerators support a self-powered mechanical-intelligence system. The architecture may inform local encoding and low-power processing in distributed tactile nodes.",
-      "topics": [
-        "Wearables & e-skins"
-      ],
-      "type": "Article (section unverified)"
-    },
-    {
-      "id": "10.1002/smll.76299",
-      "doi": "10.1002/smll.76299",
-      "title": "Decoupling Gauge Factor and Baseline Resistance Through Crack–Percolation Hybrid Design for Flexible Multimodal Strain Sensors",
-      "journal": "Small",
-      "date": "2026-10-22",
-      "authors": [
-        "Seungyeob Kim",
-        "Hyeon Bin Jo",
-        "Seongyeop Kim",
-        "Won Young Lee",
-        "Sanghun Jeon",
-        "Sung Hun Jin"
-      ],
-      "authorsComplete": true,
-      "url": "https://doi.org/10.1002/smll.76299",
-      "relevance": 3,
-      "summary": "A crack–percolation hybrid design decouples gauge factor from baseline resistance in flexible strain sensors. The design addresses independent tuning of sensitivity and electrical readout.",
-      "topics": [
-        "Wearables & e-skins",
-        "Methods & fabrication"
-      ],
-      "type": "Article (section unverified)"
-    },
-    {
       "id": "10.1088/1361-6439/aeb680",
       "doi": "10.1088/1361-6439/aeb680",
       "title": "Property-level analysis of environment-dependent piezoelectric resonant microcantilever mass sensors: Multi-metric sensitivity and Pareto screening",
@@ -1317,214 +1269,433 @@
     {
       "journal": "Science",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 40,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 1
     },
     {
       "journal": "Cell",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 9,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 28,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 80,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 12,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 4
     },
     {
       "journal": "Science Robotics",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 3,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Science Translational Medicine",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 8,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Biomedical Engineering",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 1,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 4,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Biotechnology",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 7,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Cardiovascular Research",
-      "status": "complete"
+      "status": "complete",
+      "readCount": null,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 4,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Electronics",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 1,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Mechanical Engineering",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 0,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Machine Intelligence",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 5,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 3,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 1
     },
     {
       "journal": "Nature Materials",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 5,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 1
     },
     {
       "journal": "Nature Medicine",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 10,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 9,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Methods",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 4,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 3,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Nanotechnology",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 2,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 2,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 1
     },
     {
       "journal": "Nature Neuroscience",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 8,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 2,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Photonics",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 5,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 1,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Sensors",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 1,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Reviews Bioengineering",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 1,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Reviews Electrical Engineering",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 1,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 1,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Nature Reviews Materials",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 2,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 1,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Science Advances",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 44,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 127,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 7
     },
     {
       "journal": "Nature Communications",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 165,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 61,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 2
     },
     {
       "journal": "Proceedings of the National Academy of Sciences",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 89,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 35,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 2
     },
     {
       "journal": "Matter",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": null,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 58,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Neuron",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 4,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 27,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 1
     },
     {
       "journal": "Nature Protocols",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 0,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Advanced Materials",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 59,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 24,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 4
     },
     {
       "journal": "ACS Nano",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 48,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 9,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 2
     },
     {
       "journal": "Nano Letters",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 50,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 6,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 2
     },
     {
       "journal": "Device",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": null,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 25,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Biosensors and Bioelectronics",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 3,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 65,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 1
     },
     {
       "journal": "Microsystems & Nanoengineering",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 4,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 3
     },
     {
       "journal": "npj Digital Medicine",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 17,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 9,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "npj Flexible Electronics",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 3,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 2
     },
     {
       "journal": "Advanced Functional Materials",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 117,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 36,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 3
     },
     {
       "journal": "Advanced Healthcare Materials",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
-    },
-    {
-      "journal": "Small",
-      "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 18,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 13,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 2
     },
     {
       "journal": "Sensors and Actuators A: Physical",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": null,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 323,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Sensors and Actuators B: Chemical",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": null,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 264,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "IEEE Transactions on Biomedical Engineering",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 7,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 15,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 3
     },
     {
       "journal": "Journal of Microelectromechanical Systems",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": null,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 36,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 0
     },
     {
       "journal": "Journal of Micromechanics and Microengineering",
       "status": "partial",
-      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified."
+      "detail": "Public metadata recovery tested on 23 October 2026; the full publisher catalogue and first-online dates are not completely verified.",
+      "readCount": 5,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 1,
+      "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded",
+      "selectedCount": 1
     },
     {
       "journal": "arXiv · Applied Physics",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 50,
+      "readCountIsLowerBound": false,
+      "readCountDatePending": 0,
+      "readCountBasis": "arXiv API; exact UTC cutoff query, all returned first-publication timestamps checked",
+      "selectedCount": 1
     },
     {
       "journal": "bioRxiv - Bioengineering",
-      "status": "complete"
+      "status": "complete",
+      "readCount": 49,
+      "readCountIsLowerBound": true,
+      "readCountDatePending": 0,
+      "readCountBasis": "bioRxiv Bioengineering API, all 76 version records paginated; unique version-1 DOIs strictly between cutoff days",
+      "selectedCount": 0
     },
     {
       "journal": "Research Square - Nature Portfolio",
       "status": "partial",
-      "detail": "Public preprint metadata is accessible. Nature Portfolio membership remains unverified; the platform-wide count is not a count of Nature submissions."
+      "detail": "Platform metadata is readable. The Nature Portfolio filtered browse page returned HTTP 403 during this check; its filtered count is not verified.",
+      "readCount": null,
+      "readCountIsLowerBound": false,
+      "readCountBasis": "Nature Portfolio membership not verified",
+      "selectedCount": 0
     }
   ],
-  "note": "Selected literature from the weekly journal survey, with five verified entries added after metadata recovery on 23 October 2026. Public metadata fallbacks now provide records for all nine sources previously marked unavailable. Coverage remains partial: metadata indexing can lag, some first-online dates and Science editor credits remain unverified, and Research Square metadata does not establish Nature Portfolio membership. Day-only records on a weekly boundary cannot establish the exact 03:30 cutoff."
+  "note": "Selected literature from the weekly journal survey, with five verified entries added after metadata recovery on 23 October 2026. Public metadata fallbacks now provide records for all nine sources previously marked unavailable. Coverage remains partial: metadata indexing can lag, some first-online dates and Science editor credits remain unverified, and Research Square metadata does not establish Nature Portfolio membership. Day-only records on a weekly boundary cannot establish the exact 03:30 cutoff. Per-source read counts refer to retrieved metadata dated within the edition, not the journal's total output; incomplete counts are marked ≥. Small was removed at the owner's request on 23 October 2026."
 }

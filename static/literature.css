@@ -32,3 +32,19 @@
  .lit-journal-option input{margin:2px 0 0;flex:none}.lit-journal-option small{display:none}
  .lit-dialog-footer{margin-top:12px;padding-top:10px}
 }
+
+/* Clear publisher separation and visible per-journal reading counts. */
+.lit-publisher-group{padding:10px 12px;border:1px solid #d8dfe8;border-radius:7px;background:#fff;margin-bottom:24px}
+.lit-publisher-heading{padding:5px 0 8px;margin-bottom:8px;border-bottom:1px solid #d8dfe8}
+.lit-reading-note{margin:8px 0 14px;color:#626a75;font-size:11px;line-height:1.5}
+.lit-journal-option small{display:block;color:#626a75;font-size:10.5px;line-height:1.4;margin-top:2px}
+@media(min-width:1050px){
+ #lit-journals-dialog{width:min(1440px,calc(100% - 36px))}
+ #lit-journals-options{gap:20px 28px}
+ .lit-publisher-group{padding:8px 10px;margin:0}
+ .lit-publisher-heading{padding:3px 0 7px;margin-bottom:7px}
+ .lit-publisher-journals{gap:4px}
+ .lit-journal-option{padding:3px 4px}
+ .lit-journal-option small{display:block}
+ .lit-reading-note{margin:7px 0 10px}
+}

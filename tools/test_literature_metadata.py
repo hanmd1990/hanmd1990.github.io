@@ -1,6 +1,6 @@
 """Offline checks for the failure modes that can silently drop new articles."""
 import unittest
-from collect_literature_metadata import crossref, date_value, eligibility, from_crossref, merge_epmc
+from collect_literature_metadata import crossref, date_value, eligibility, from_crossref, merge_epmc, weekly_read_counts
 
 
 class FakeClient:
@@ -21,6 +21,19 @@ def paper(doi="10.test/a", journal="Device"):
 
 
 class MetadataTests(unittest.TestCase):
+    def test_read_count_deduplicates_and_excludes_cutoff_days(self):
+        records = [{"doi": "10.test/a", "journal": "Device", "online_date": "2026-10-20"},
+                   {"doi": "10.test/a", "journal": "Device", "online_date": "2026-10-20"},
+                   {"doi": "10.test/b", "journal": "Device", "online_date": "2026-10-23"},
+                   {"doi": "10.test/c", "journal": "Device", "reported_date": "2026-10"}]
+        count = weekly_read_counts(records, "Device", "2026-10-16", "2026-10-23")
+        self.assertEqual(count["readCount"], 1)
+        self.assertEqual(count["readCountDatePending"], 2)
+
+    def test_platform_count_is_not_a_portfolio_count(self):
+        self.assertIsNone(weekly_read_counts([], "Research Square - Nature Portfolio",
+                                            "2026-10-16", "2026-10-23")["readCount"])
+
     def test_month_only_is_not_made_into_a_day(self):
         record = from_crossref(paper(), "https://api.crossref.org/", "Device")
         self.assertEqual(record["reported_date"], "2026-10")

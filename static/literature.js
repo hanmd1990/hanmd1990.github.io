@@ -36,7 +36,7 @@
     if(/^Nature\b|^npj\b|^Microsystems & Nanoengineering$/.test(j))return 'Nature Portfolio';
     if(/^Science(?:$| )/.test(j))return 'Science journals';
     if(['Cell','Neuron','Matter','Device'].includes(j))return 'Cell Press';
-    if(/^Advanced |^Small$/.test(j))return 'Wiley';
+    if(/^Advanced /.test(j))return 'Wiley';
     if(/^ACS |^Nano Letters$/.test(j))return 'ACS';
     if(/^Biosensors and Bioelectronics$|^Sensors and Actuators/.test(j))return 'Elsevier';
     if(j==='Journal of Micromechanics and Microengineering')return 'IOP Publishing';
@@ -47,7 +47,7 @@
   }
   function paintJournals(){
     const query=journalSearch.value.trim().toLocaleLowerCase();
-    const e=selected(),counts=new Map();e.articles.forEach(a=>{const j=sourceName(a.journal);counts.set(j,(counts.get(j)||0)+1);});
+    const e=selected(),coverage=new Map(e.coverage.map(c=>[sourceName(c.journal),c])),counts=new Map();e.articles.forEach(a=>{const j=sourceName(a.journal);counts.set(j,(counts.get(j)||0)+1);});
     const order=['Nature Portfolio','Science journals','Cell Press','Wiley','ACS','Elsevier','IOP Publishing','IEEE','PNAS','Preprints','Other journals'];
     const sections=order.map(group=>{
       const all=sources.filter(j=>journalGroup(j)===group);
@@ -66,7 +66,8 @@
         input.addEventListener('change',()=>{input.checked?draft.add(j):draft.delete(j);selectionCount();
           toggle.checked=all.every(name=>draft.has(name));toggle.indeterminate=!toggle.checked&&all.some(name=>draft.has(name));
           heading.querySelector('.lit-publisher-count').textContent=all.filter(name=>draft.has(name)).length+' / '+all.length+' selected';});
-        const text=node('span','',j);text.append(node('small','',(counts.get(j)||0)+' articles in this edition'));label.append(input,text);return label;
+        const record=coverage.get(j),read=Number.isInteger(record?.readCount)?(record.readCountIsLowerBound?'≥':'')+record.readCount:'—';
+        const text=node('span','',j);text.append(node('small','',read+' read · '+(counts.get(j)||0)+' selected'));label.append(input,text);return label;
       }));
       section.append(heading,grid);return section;
     }).filter(Boolean);
@@ -76,7 +77,7 @@
   }
   function selectionCount(){byId('lit-journals-selection').textContent=draft.size+' of '+sources.length+' selected';}
   function setup(){
-    const e=selected();sources=[...new Set([...e.coverage.map(c=>sourceName(c.journal)),...e.articles.map(a=>sourceName(a.journal))])].sort();
+    const e=selected();sources=[...new Set([...e.coverage.map(c=>sourceName(c.journal)),...e.articles.map(a=>sourceName(a.journal))])].filter(j=>j!=='Small').sort();
     journals=new Set(sources);topic='';const topics=['',...[...new Set(e.articles.flatMap(a=>a.topics))].sort()];
     document.querySelector('.lit-topics').replaceChildren(...topics.map(t=>{const b=node('button','',t||'All topics');b.type='button';b.dataset.topic=t;b.setAttribute('aria-pressed',String(!t));b.addEventListener('click',()=>{topic=t;render();});return b;}));render();
   }

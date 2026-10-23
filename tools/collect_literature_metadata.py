@@ -173,6 +173,33 @@ def eligibility(record, first, last):
     return "in_window_day_verified" if first < online < last else "outside_window"
 
 
+def weekly_read_counts(records, journal, first, last):
+    """Count retrieved, dated metadata, not a journal's total published output.
+
+    Cutoff days remain uncertain without time-of-day evidence. Records from an
+    unverified Research Square portfolio are never attributed to that portfolio.
+    """
+    if journal == "Research Square - Nature Portfolio":
+        return {"readCount": None, "readCountIsLowerBound": False,
+                "readCountBasis": "Nature Portfolio membership not verified"}
+    dated, pending = set(), set()
+    for record in records:
+        if record.get("journal") != journal:
+            continue
+        identity = record.get("doi") or record.get("url")
+        if not identity:
+            continue
+        date = (record.get("online_date") or record.get("first_publication_date")
+                or record.get("posted_date") or record.get("reported_date"))
+        if not date or len(date) != 10 or date in (first, last) or record.get("date_conflict"):
+            pending.add(identity)
+        elif first < date < last:
+            dated.add(identity)
+    return {"readCount": len(dated) if dated or not pending else None, "readCountIsLowerBound": bool(dated and pending),
+            "readCountDatePending": len(pending),
+            "readCountBasis": "Retrieved metadata dated strictly between cutoff days; date-only boundary records excluded"}
+
+
 def collect(client, source, first, last, lookback=21):
     records, attempts = {}, []
     discovery_start = (dt.date.fromisoformat(first) - dt.timedelta(days=lookback)).isoformat()
@@ -216,6 +243,7 @@ def collect(client, source, first, last, lookback=21):
               "in_window_day_verified": sum(r["eligibility"] == "in_window_day_verified" for r in records.values()),
               "attempts": attempts,
               "detail": "Metadata discovery only; publisher completeness, first-online dates, editor credits and indexing delays still require review."}
+    health.update(weekly_read_counts(list(records.values()), source["journal"], first, last))
     # A zero-result indexed query never proves the journal published no new work.
     return list(records.values()), health
 

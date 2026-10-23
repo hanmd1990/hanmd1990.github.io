@@ -36,3 +36,9 @@ The public portal currently has no shared feedback or sign-in service. Do not cr
 ## Metadata recovery — 2026-10-23
 
 Read `docs/LITERATURE_RETRIEVAL.md` and use `tools/collect_literature_metadata.py` whenever a publisher catalogue is blocked, empty, truncated or only partly accessible. `data/literature-sources.json` maps the affected journals to ISSNs; reconcile it with the live read-only Drive Journal list. Never equate HTTP 200, zero indexed results or an exhausted metadata API with complete publisher coverage. The collector produces review candidates and a source-health report, not a ready-to-publish weekly edition. First-online dates, abstracts/results, author names, relevance and Science editor credits require the checks in the retrieval guide.
+
+## Publisher groups and reading counts — 2026-10-23
+
+Increase separation between publisher groups with larger grid gaps and individual neutral borders. Show per-journal counts directly in the selector: `N read · M selected`. Read means unique retrieved article metadata dated within the reporting window, not full-text downloads or the journal's total output. Store `readCount` (integer or null), `readCountIsLowerBound`, `readCountDatePending`, `readCountBasis` and `selectedCount` in each coverage entry. Preserve source evidence. Use ≥ for a confirmed lower bound and — for an unverified count; never substitute selected count as a claimed complete read count. Zero retrieved records is not proof of zero publications. Do not hide count lines on desktop. Nature Portfolio membership is required before counting Research Square candidates in that subset; platform-wide records are not a substitute.
+
+Small is explicitly excluded from future retrieval and the public selector/content, overriding its presence in the read-only Drive list. Do not edit the Drive sheet. Other Wiley titles remain included. All 45 retained sources remain visible in the selector even when no paper is selected.
