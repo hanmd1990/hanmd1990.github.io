@@ -95,7 +95,7 @@
         input.addEventListener('change',()=>{input.checked?draft.add(j):draft.delete(j);selectionCount();
           toggle.checked=all.every(name=>draft.has(name));toggle.indeterminate=!toggle.checked&&all.some(name=>draft.has(name));
           heading.querySelector('.lit-publisher-count').textContent=all.filter(name=>draft.has(name)).length+' / '+all.length+' selected';});
-        const record=coverage.get(j),read=Number.isInteger(record?.readCount)?(record.readCountIsLowerBound?'≥':'')+record.readCount:'—';
+        const record=coverage.get(j),read=Number.isInteger(record?.readCount)&&record.readCount>=0?record.readCount:0;
         const text=node('span','',j);text.append(node('small','',read+' articles, '+(counts.get(j)||0)+' selected'));label.append(input,text);return label;
       }));
       section.append(heading,grid);return section;
