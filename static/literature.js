@@ -33,15 +33,47 @@
     document.querySelectorAll('.lit-topics button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.topic===topic)));
     journalOpen.textContent=journals.size===sources.length?'All '+sources.length+' sources':journals.size+' selected';
   }
+  function journalGroup(j){
+    if(/^Nature\b|^npj\b|^Microsystems & Nanoengineering$/.test(j))return 'Nature Portfolio';
+    if(/^Science(?:$| )/.test(j))return 'Science journals';
+    if(['Cell','Neuron','Matter','Device'].includes(j))return 'Cell Press';
+    if(/^Advanced |^Small$/.test(j))return 'Wiley';
+    if(/^ACS |^Nano Letters$/.test(j))return 'ACS';
+    if(/^Biosensors and Bioelectronics$|^Sensors and Actuators/.test(j))return 'Elsevier';
+    if(j==='Journal of Micromechanics and Microengineering')return 'IOP Publishing';
+    if(/^IEEE |^Journal of Microelectromechanical Systems$/.test(j))return 'IEEE';
+    if(j==='Proceedings of the National Academy of Sciences')return 'PNAS';
+    if(/arXiv|bioRxiv|Research Square/.test(j))return 'Preprints';
+    return 'Other journals';
+  }
   function paintJournals(){
     const query=journalSearch.value.trim().toLocaleLowerCase();
     const e=selected(),counts=new Map();e.articles.forEach(a=>{const j=sourceName(a.journal);counts.set(j,(counts.get(j)||0)+1);});
-    byId('lit-journals-options').replaceChildren(...sources.map(j=>{
-      const label=node('label','lit-journal-option');label.hidden=!!query&&!j.toLocaleLowerCase().includes(query);
-      const input=node('input');input.type='checkbox';input.value=j;input.checked=draft.has(j);
-      input.addEventListener('change',()=>{input.checked?draft.add(j):draft.delete(j);selectionCount();});
-      const text=node('span','',j);text.append(node('small','',(counts.get(j)||0)+' articles in this edition'));label.append(input,text);return label;
-    }));selectionCount();
+    const order=['Nature Portfolio','Science journals','Cell Press','Wiley','ACS','Elsevier','IOP Publishing','IEEE','PNAS','Preprints','Other journals'];
+    const sections=order.map(group=>{
+      const all=sources.filter(j=>journalGroup(j)===group);
+      const visible=all.filter(j=>!query||j.toLocaleLowerCase().includes(query)||group.toLocaleLowerCase().includes(query));
+      if(!visible.length)return null;
+      const section=node('section','lit-publisher-group');
+      const heading=node('div','lit-publisher-heading'),label=node('label','lit-publisher-toggle'),toggle=node('input');
+      toggle.type='checkbox';toggle.checked=all.every(j=>draft.has(j));toggle.indeterminate=!toggle.checked&&all.some(j=>draft.has(j));toggle.setAttribute('aria-label','Select all '+group+' sources');
+      toggle.addEventListener('change',()=>{all.forEach(j=>toggle.checked?draft.add(j):draft.delete(j));paintJournals();});
+      const title=node('span','',group);label.append(toggle,title);
+      heading.append(label,node('span','lit-publisher-count',all.filter(j=>draft.has(j)).length+' / '+all.length+' selected'));
+      const grid=node('div','lit-publisher-journals');
+      grid.append(...visible.map(j=>{
+        const label=node('label','lit-journal-option');
+        const input=node('input');input.type='checkbox';input.value=j;input.checked=draft.has(j);
+        input.addEventListener('change',()=>{input.checked?draft.add(j):draft.delete(j);selectionCount();
+          toggle.checked=all.every(name=>draft.has(name));toggle.indeterminate=!toggle.checked&&all.some(name=>draft.has(name));
+          heading.querySelector('.lit-publisher-count').textContent=all.filter(name=>draft.has(name)).length+' / '+all.length+' selected';});
+        const text=node('span','',j);text.append(node('small','',(counts.get(j)||0)+' articles in this edition'));label.append(input,text);return label;
+      }));
+      section.append(heading,grid);return section;
+    }).filter(Boolean);
+    byId('lit-journals-options').replaceChildren(...sections);
+    if(!sections.length)byId('lit-journals-options').append(node('p','lit-journal-no-match','No matching journals or publishers.'));
+    selectionCount();
   }
   function selectionCount(){byId('lit-journals-selection').textContent=draft.size+' of '+sources.length+' selected';}
   function setup(){
