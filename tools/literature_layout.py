@@ -82,8 +82,8 @@ def rebuild_literature(root):
             if b.getparent().get('class')=='lab-title-row':row=b.getparent()
             else:
                 row=html.Element('div',{'class':'lab-title-row'});b.getparent().replace(b,row);row.append(b)
-            a=html.Element('a',href='/literature/',attrib={'class':'lab-radar-link','aria-label':'BioE Radar Beta — weekly literature'})
-            a.text='BioE Radar ';beta=html.Element('span');beta.text='Beta';a.append(beta)
+            a=html.Element('a',href='/literature/',attrib={'class':'lab-radar-link','aria-label':'BioE Radar — weekly literature'})
+            a.text='BioE Radar'
             if path.parent.name=='literature':a.set('aria-current','page')
             row.append(a)
         path.write_bytes(html.tostring(t,encoding='utf-8',doctype='<!doctype html>'))
