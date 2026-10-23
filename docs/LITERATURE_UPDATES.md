@@ -1,0 +1,16 @@
+# Public literature updates
+
+The owner authorized an all-English public literature page on 2026-10-23. URL: https://hanmd1990.github.io/literature/ . This is a native GitHub Pages page with the shared lab header, fonts and HMD palette. `tools/literature_layout.py` builds it after the other page generators and adds LITERATURE before CONTACT in all shared navigation menus.
+
+## Weekly publication
+
+The existing literature task still runs on Fridays at 03:30 Asia/Shanghai. Keep the private Chinese full journal report, its full collection rules and its feedback private. In addition, export **all relevant articles** (relevance 1–3) to this public English page. Do not publish personal feedback, interest scores, private notes, credentials, unpublished research plans, private Drive links or site authentication data. Do not make the original private report public.
+
+1. Read the latest main and this file. Check the existing archive and weekly DOI/ID deduplication.
+2. Add `data/literature/YYYY-MM-DD.json`; preserve prior public editions. Fields: `id`, `start`, `end` (Beijing time), `updated`, `note`, `articles`, `coverage`. Each article: `id`, optional `doi`, `title` (original English), `journal`, `date`, full `authors` array as verified, `authorsComplete`, HTTPS `url`, `relevance` (1–3), `summary` (concise original English), `topics` (English array), `type` (English, explicitly label corrections and preprints; retain section-unverified status if applicable). Coverage: journal and complete/partial/unavailable status; `note` must explain meaningful coverage limitations in English.
+3. Translate summaries for a public research audience. Remove private comparisons to unpublished lab work and personal feedback. Preserve quantities and evidence limits; distinguish demonstrated results from possible applications. Never invent missing author names or results. Preprints must be explicitly identified as not peer reviewed. No copied full abstracts, full-text PDFs or unlicensed figures.
+4. Update `data/literature/index.json`: `latest` is the new edition ID; `editions` lists every public edition, newest first. Only mark delivered content as published after successful deployment.
+5. Build in an isolated output copy; never run the main builder against editable sources. Run `python tools/build_site.py OUTPUT`, `python tools/verify_site.py OUTPUT`, `node tools/check_archive_ui.cjs OUTPUT`, and `node --check static/literature.js`. Check English-only public data, DOI uniqueness, all relevant entries retained, working filters/sorting/edition selection and original-source links. Generated HTML includes full article content even without JavaScript.
+6. Commit only public data and intended source changes through the GitHub connector to latest main with expected_sha; do not overwrite concurrent edits. Verify Pages deployment before reporting the new public edition live. If publication fails, preserve the previous public edition and accurately report the blocker.
+
+The first public edition is 2026-10-23: 43 related entries (41 direct/method-transferable plus 2 adjacent). Figures remain at their publisher links. No external data connection, private API or iframe is needed for visitors. Feedback from the private report is not exposed or collected by this public page.

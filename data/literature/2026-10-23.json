@@ -1,0 +1,1358 @@
+{
+  "id": "2026-10-23",
+  "start": "2026-10-16 03:30",
+  "end": "2026-10-23 03:30",
+  "updated": "2026-10-23",
+  "articles": [
+    {
+      "id": "10.1126/science.ady8560",
+      "doi": "10.1126/science.ady8560",
+      "title": "Wireless electrocatalytic closed-loop system for drug-free management of diabesity",
+      "journal": "Science",
+      "date": "2026-10-22",
+      "authors": [
+        "Debasis Maity",
+        "Preetam Guha Ray",
+        "Peter Buchmann",
+        "Ghislaine Charpin-El Hamri",
+        "Martin Fussenegger"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/science.ady8560",
+      "relevance": 3,
+      "summary": "The wireless ECHO implant uses electrocatalysis for glucose control and can interface with a commercial continuous glucose monitor. The study reports glucose normalization within 1 h in diabetic mice and six weeks of treatment. Its closed-loop architecture offers a reference for wireless therapeutic systems.",
+      "topics": [
+        "Wireless implants",
+        "Bioelectronics"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41586-026-11293-x",
+      "doi": "10.1038/s41586-026-11293-x",
+      "title": "Cortex-wide imaging in naturally behaving mice with 1-gram wireless mesoscopes",
+      "journal": "Nature",
+      "date": "2026-10-19",
+      "authors": [
+        "Yuanlong Zhang",
+        "Angran Li",
+        "Lekang Yuan",
+        "Mingrui Wang",
+        "Weihao Zhao",
+        "Zhenbo Wang",
+        "Boyang Zang",
+        "Yangxuan Zhou",
+        "Tao Yu",
+        "Lin Gao",
+        "Yu Wu",
+        "Rongkang Zhu",
+        "Mengyi Tian",
+        "Kun Li",
+        "Jiamin Wu",
+        "Pu Dai",
+        "Qionghai Dai"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41586-026-11293-x",
+      "relevance": 3,
+      "summary": "The 1.0 g Airscope records more than 8,500 neurons per animal across a 6 mm field of view at 12.5 Hz. Demonstrations include swimming and simultaneous recordings from multiple animals or brain and spinal cord, with relevance to monitoring during natural behaviour.",
+      "topics": [
+        "Wireless implants",
+        "Longitudinal physiology"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/d41586-026-03359-7",
+      "doi": "10.1038/d41586-026-03359-7",
+      "title": "Body-clock disruptions contribute to one in four cases of depression, suggests large study",
+      "journal": "Nature",
+      "date": "2026-10-20",
+      "authors": [
+        "Rachel Fieldhouse"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/d41586-026-03359-7",
+      "relevance": 1,
+      "summary": "This Nature news report discusses population-level associations between circadian disruption and depression. It provides context for longitudinal physiological monitoring rather than a new sensing technology.",
+      "topics": [
+        "Longitudinal physiology"
+      ],
+      "type": "News / commentary"
+    },
+    {
+      "id": "10.1038/d41586-026-03064-5",
+      "doi": "10.1038/d41586-026-03064-5",
+      "title": "Fabric user interface can be worn on your sleeve — and machine-washed",
+      "journal": "Nature",
+      "date": "2026-10-21",
+      "authors": [
+        "Shanshan Yao"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/d41586-026-03064-5",
+      "relevance": 2,
+      "summary": "This Nature commentary discusses a machine-washable textile interface that integrates display, touch sensing and wireless interaction. The associated research article is also included in this edition.",
+      "topics": [
+        "Wearables & e-skins"
+      ],
+      "type": "News / commentary"
+    },
+    {
+      "id": "10.1038/s41586-026-11128-9",
+      "doi": "10.1038/s41586-026-11128-9",
+      "title": "Touch-sensing digital pixel fibre enables interactive garment GUI",
+      "journal": "Nature",
+      "date": "2026-10-21",
+      "authors": [
+        "Heng Fu",
+        "Ziang Li",
+        "Swetika Chaturvedi",
+        "Xiaoyu Zhang",
+        "Xiaolong Li",
+        "Qianyi Li",
+        "Tural Khudiyev"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41586-026-11128-9",
+      "relevance": 3,
+      "summary": "Digital pixel fibres integrate display, touch localization, computation and multimodal input/output. A sleeve prototype provides 96 × 54 pixels at 30 fps with 8-bit colour, alongside flexibility, breathability and washability.",
+      "topics": [
+        "Wearables & e-skins"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s42256-026-01325-6",
+      "doi": "10.1038/s42256-026-01325-6",
+      "title": "Large-scale iontronic skins with neural-hierarchical processing architecture",
+      "journal": "Nature Machine Intelligence",
+      "date": "2026-10-16",
+      "authors": [
+        "Zhibin Li",
+        "Bingxu Da",
+        "Junli Shi",
+        "Taihong Wang",
+        "Wenlong Si",
+        "Bowen Li",
+        "Hanxiang He",
+        "Zelong Liao",
+        "Tianyu Wu",
+        "Xudong Han",
+        "Longyi Bai",
+        "He Kong",
+        "Chaoyang Song",
+        "Chuan Fei Guo"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s42256-026-01325-6",
+      "relevance": 3,
+      "summary": "A hierarchical iontronic skin combines more than 10,000 sensing units, a density of 1,110 units cm⁻² and parallel readout at 100 fps. Frequency-position encoding and hierarchical compression address crosstalk and bandwidth; a robot resolves 300 μm surface features.",
+      "topics": [
+        "Wearables & e-skins"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41563-026-02759-4",
+      "doi": "10.1038/s41563-026-02759-4",
+      "title": "Bioresorbable metal-free molecular magnets enable untethered organ monitoring",
+      "journal": "Nature Materials",
+      "date": "2026-10-19",
+      "authors": [
+        "Yizhang Wu",
+        "Zhang Yue",
+        "Sicheng Xing",
+        "Dingyi Yang",
+        "Jie Wang",
+        "Yihan Liu",
+        "Harrison Cohen",
+        "Lucy Liu",
+        "Qizhang Jiao",
+        "Zifeng Li",
+        "Hanad Ali",
+        "Chaya Perera",
+        "Torsten Peter Vahl",
+        "Lauren Sharan Ranard",
+        "Zhibo Zhang",
+        "Andrew J. Einstein",
+        "Anran Zhang",
+        "Stephen Dashnaw",
+        "Yiwen Huang",
+        "William Pak",
+        "Ziheng Guo",
+        "Gongkai Yuan",
+        "Siyuan Liu",
+        "Alexander Romanov",
+        "Sen Yang",
+        "X. S. Wu",
+        "Yong Wang",
+        "Ke Cheng",
+        "Wubin Bai"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41563-026-02759-4",
+      "relevance": 3,
+      "summary": "Bioresorbable metal-free molecular magnets based on modified graphitic carbon nitride are integrated into epicardial patches or injectable hydrogels. External Hall arrays support organ readout with motion-artifact suppression; a porcine study tracks ejection fraction over four weeks. The material and readout approach is relevant to resorbable magnetic implants.",
+      "topics": [
+        "Magnetic systems"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41565-026-02289-9",
+      "doi": "10.1038/s41565-026-02289-9",
+      "title": "Millisecond phonon lifetimes in piezoelectric nanomechanical resonators",
+      "journal": "Nature Nanotechnology",
+      "date": "2026-10-16",
+      "authors": [
+        "Oliver A. Hitchcock",
+        "Matthew P. Maksymowych",
+        "Kaveh Pezeshki",
+        "Takuma Makihara",
+        "Erik Szakiel",
+        "Chou-Wei Kiang",
+        "Daniel Rugar",
+        "Amir H. Safavi-Naeini"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41565-026-02289-9",
+      "relevance": 2,
+      "summary": "Surface repair after ion milling and shadow-mask metallization reduce losses in lithium-niobate nanomechanical resonators. The study reports phonon lifetimes up to 21 ms at 3.6 GHz and quality factors above 4 × 10⁸, with fabrication lessons for resonant sensors.",
+      "topics": [
+        "Mechanics & resonators",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1126/sciadv.aei0002",
+      "doi": "10.1126/sciadv.aei0002",
+      "title": "Bioinspired supramolecular thermistor for resolving subtle temperature variations",
+      "journal": "Science Advances",
+      "date": "2026-10-16",
+      "authors": [
+        "Yangtao Yu",
+        "Yahui Li",
+        "Dongyuan Zhang",
+        "Haoqi Han",
+        "Xinyu Ren",
+        "Kaiqi Gao",
+        "Haozhe Wen",
+        "Jiaxiang Wang",
+        "Zhiyuan Hu",
+        "Han Ren",
+        "Sicheng Chen",
+        "Ruiqing Ge",
+        "Yu Chang",
+        "Mingyi Chen",
+        "Hesheng Wang",
+        "Zhuoqing Yang",
+        "Yuanjin Zheng"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/sciadv.aei0002",
+      "relevance": 2,
+      "summary": "A bioinspired supramolecular thermistor resolves subtle temperature changes. Its material design offers a reference for temperature channels and compensation in multimodal soft sensors.",
+      "topics": [
+        "Wearables & e-skins"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1126/sciadv.aei5334",
+      "doi": "10.1126/sciadv.aei5334",
+      "title": "Extended field-of-view two-photon imaging in the deep brain of freely behaving mice using lightweight microfabricated corrective optics",
+      "journal": "Science Advances",
+      "date": "2026-10-16",
+      "authors": [
+        "Chiara Nardin",
+        "Andrea Sattin",
+        "Sebastiano Curreli",
+        "Giorgio Letti",
+        "Laura Maddalena",
+        "Leonardo Nacci",
+        "Tommaso Fellin"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/sciadv.aei5334",
+      "relevance": 2,
+      "summary": "Lightweight microfabricated corrective optics extend the field of view for deep-brain two-photon imaging in freely behaving mice. The approach offers hardware-design lessons for readout during natural movement.",
+      "topics": [
+        "Wireless implants",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1126/sciadv.aed1014",
+      "doi": "10.1126/sciadv.aed1014",
+      "title": "Local control of Cre-regulated genetic modeling in vivo using wireless implantable optoelectronics",
+      "journal": "Science Advances",
+      "date": "2026-10-16",
+      "authors": [
+        "Trisha Bansal",
+        "Min-Kyu Lee",
+        "Courtney Coleman",
+        "Young-Mee Kim",
+        "Dane Hintermueller",
+        "Yaner Chen",
+        "Varsha Sreekanth",
+        "Chad R. Haney",
+        "Olga A. Karginova",
+        "Raudel Avila",
+        "Jacob Matsche",
+        "Shaluah Vijeth",
+        "Farah Yousef",
+        "Kento Yamagishi",
+        "Jiheon Kang",
+        "Kaitlyn Mowry",
+        "Minsung Kim",
+        "Sophianne Loh",
+        "Sachin Clark",
+        "Huong Huynh",
+        "Youngdo Kim",
+        "Kaiqing Zhang",
+        "Haohui Zhang",
+        "Shupeng Li",
+        "Yuanting Wei",
+        "Steve Seung-Young Lee",
+        "Yuru Liu",
+        "Anthony R. Banks",
+        "Odile David",
+        "Peter T. Toth",
+        "Yonggang Huang",
+        "Ameen Salahudeen",
+        "Cameron H. Good",
+        "Jalees Rehman",
+        "John A. Rogers",
+        "Andrei V. Karginov"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/sciadv.aed1014",
+      "relevance": 3,
+      "summary": "Wireless implantable optoelectronics provide local control of Cre-regulated genetic models in vivo. Device miniaturization, wireless power and local stimulation are relevant to battery-free implantable systems.",
+      "topics": [
+        "Wireless implants",
+        "Bioelectronics"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1126/sciadv.aeh6700",
+      "doi": "10.1126/sciadv.aeh6700",
+      "title": "Magnetically gated millimeter-scale capsule power system for leadless electrotherapy",
+      "journal": "Science Advances",
+      "date": "2026-10-16",
+      "authors": [
+        "Feiyao Yang",
+        "Yu Tian",
+        "Enyi Zhang",
+        "Lixue Yang",
+        "Ziyue You",
+        "Puguang Peng",
+        "Han Qian",
+        "Yan Du",
+        "Haiwei Li",
+        "Yongquan Wu",
+        "Houfang Liu",
+        "Anfu Zhou",
+        "Tian-Ling Ren",
+        "Weiping Sun",
+        "Zhong Lin Wang",
+        "Di Wei"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/sciadv.aeh6700",
+      "relevance": 3,
+      "summary": "A millimetre-scale capsule uses a reed switch for magnetically gated power delivery and demonstrates cardiac pacing in large animals. The system offers an approach to leadless electrotherapy and externally triggered implants.",
+      "topics": [
+        "Wireless implants"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1126/sciadv.aef4338",
+      "doi": "10.1126/sciadv.aef4338",
+      "title": "Magneto-mechano-electrochemical fiber for deformation-resilient and smart electronic textiles",
+      "journal": "Science Advances",
+      "date": "2026-10-16",
+      "authors": [
+        "Xiao Xiao",
+        "Chang Liu",
+        "Zimo Wang",
+        "Xiao Xiao",
+        "He Wang",
+        "Chengyue Lu",
+        "Xinru Wu",
+        "Junyi Yin",
+        "Xiao Li",
+        "Wei Zhang",
+        "Gang Ge",
+        "Wenbo Ding",
+        "Guangmin Zhou",
+        "Patrick Chia",
+        "Lei Shen",
+        "Chun Zhang",
+        "Zhiqun Lin",
+        "Yiliang Lin",
+        "Benjamin C. K. Tee",
+        "John S. Ho",
+        "Zhuangjian Liu",
+        "Ghim Wei Ho",
+        "Changsheng Wu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/sciadv.aef4338",
+      "relevance": 3,
+      "summary": "A magneto-mechano-electrochemical fibre regulates ion transport and combines motion-energy harvesting with magnetoelastic sensing. In its undeformed state, the study reports battery-lifetime and capacity increases of (374 ± 79)% and (61 ± 20)%, respectively, at 1.0 A g⁻¹.",
+      "topics": [
+        "Magnetic systems",
+        "Wearables & e-skins"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1126/sciadv.aef5042",
+      "doi": "10.1126/sciadv.aef5042",
+      "title": "Mechanoadaptive nanowire viscoplastic composites with strain-enhanced conductivity for reprocessable bioelectronic interfaces",
+      "journal": "Science Advances",
+      "date": "2026-10-16",
+      "authors": [
+        "Ran Huo",
+        "Shengyun Huang",
+        "Dixiang Gong",
+        "Xin Zhou",
+        "Heng Zhu",
+        "Pengyun Zhang",
+        "Hideaki Okuyama",
+        "Guangyu Bao",
+        "Xuan Li",
+        "Aram Bahmani",
+        "Lisa Martignetti",
+        "Zixin Zhang",
+        "Hongyu Hou",
+        "Changhong Cao",
+        "Yixun Cheng",
+        "Wei Gao",
+        "Dongling Ma",
+        "Nicole Y. K. Li-Jessen",
+        "Jianyu Li"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/sciadv.aef5042",
+      "relevance": 2,
+      "summary": "Mechanoadaptive nanowire viscoplastic composites show strain-enhanced conductivity and can be reprocessed into bioelectronic interfaces. The work offers material-design ideas for electrodes and interconnects under repeated deformation.",
+      "topics": [
+        "Wearables & e-skins",
+        "Bioelectronics"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1126/sciadv.aeg5408",
+      "doi": "10.1126/sciadv.aeg5408",
+      "title": "Ultrasound-driven electronically programmable microbubbles",
+      "journal": "Science Advances",
+      "date": "2026-10-16",
+      "authors": [
+        "Zhiyuan Zhang",
+        "Jinsong Zhang",
+        "Alyosha C. Molnar",
+        "Itai Cohen"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1126/sciadv.aeg5408",
+      "relevance": 2,
+      "summary": "Ultrasound-driven microbubbles with electronic programmability offer a route to remote acoustic actuation and local responses. The concept may inform wireless systems for access to deep tissue.",
+      "topics": [
+        "Bioelectronics"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41467-026-78619-1",
+      "doi": "10.1038/s41467-026-78619-1",
+      "title": "Regenerable, closed-loop, nonenzymatic continuous glucose monitoring enabled by in situ electrochemical interfacial alkalinization",
+      "journal": "Nature Communications",
+      "date": "2026-10-16",
+      "authors": [
+        "Qiang Zeng",
+        "Liangjun Xia",
+        "Junyao Gong",
+        "Jieyao Qin",
+        "Sijie Zhou",
+        "Zhuan Fu",
+        "Jiajing Zhang",
+        "Ke Lin",
+        "Chunhua Zhang",
+        "Wei Zhang",
+        "Weilin Xu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41467-026-78619-1",
+      "relevance": 3,
+      "summary": "A wrist-worn hollow-microneedle system extracts interstitial fluid and uses electrochemical interfacial alkalinization for nonenzymatic glucose measurement. Demonstrations include quasi-continuous monitoring in rats and an initial test in one person. A removable sensor cartridge addresses maintenance of the skin interface.",
+      "topics": [
+        "Wearables & e-skins",
+        "Bioelectronics",
+        "Longitudinal physiology"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41467-026-78963-2",
+      "doi": "10.1038/s41467-026-78963-2",
+      "title": "Author Correction: Coaxially printed magnetic mechanical electrical hybrid structures with actuation and sensing functionalities",
+      "journal": "Nature Communications",
+      "date": "2026-10-22",
+      "authors": [
+        "Yuanxi Zhang",
+        "Chengfeng Pan",
+        "Pengfei Liu",
+        "Lelun Peng",
+        "Zhouming Liu",
+        "Yuanyuan Li",
+        "Qingyuan Wang",
+        "Tong Wu",
+        "Zhe Li",
+        "Carmel Majidi",
+        "Lelun Jiang"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41467-026-78963-2",
+      "relevance": 1,
+      "summary": "This author correction concerns printed magnetic–mechanical–electrical hybrid structures with combined actuation and sensing. It is retained as a correction, not as a report of new experimental results.",
+      "topics": [
+        "Magnetic systems"
+      ],
+      "type": "Author correction"
+    },
+    {
+      "id": "10.1073/pnas.2610816123",
+      "doi": "10.1073/pnas.2610816123",
+      "title": "mechanoLight: A genetically encoded fluorescent biosensor for visualizing 5-HT2AR mechanotransduction in live cells",
+      "journal": "Proceedings of the National Academy of Sciences",
+      "date": "2026-10-19",
+      "authors": [
+        "In-Yeop Baek",
+        "Hyunbin Kim",
+        "Duwan Kwon",
+        "Hahnbeom Park",
+        "Jihye Seong"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1073/pnas.2610816123",
+      "relevance": 2,
+      "summary": "The genetically encoded fluorescent biosensor mechanoLight visualizes 5-HT2AR mechanotransduction in living cells. The approach provides a reference for optical interrogation of biochemical and mechanical signal transduction.",
+      "topics": [
+        "Mechanics & resonators",
+        "Bioelectronics"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1073/pnas.2606732123",
+      "doi": "10.1073/pnas.2606732123",
+      "title": "First-principles channel model and capacity-achieving transmission scheme in thermal noise backscatter links",
+      "journal": "Proceedings of the National Academy of Sciences",
+      "date": "2026-10-20",
+      "authors": [
+        "Geneva Ecola",
+        "Jida Zhang",
+        "Joseph M. Kahn",
+        "Zerina Kapetanovic"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1073/pnas.2606732123",
+      "relevance": 2,
+      "summary": "A first-principles channel model and capacity-achieving scheme address backscatter transmission in thermal noise. The analysis is relevant to link budgets and decoding at low signal-to-noise ratios in passive wireless readout.",
+      "topics": [
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adma.75437",
+      "doi": "10.1002/adma.75437",
+      "title": "Biodegradable Capacitive‐Coupling Bioelectronics for Wireless Electrical Stimulation and Longitudinal Electrophysiological Monitoring of Peripheral Nerve Regeneration",
+      "journal": "Advanced Materials",
+      "date": "2026-10-21",
+      "authors": [
+        "Yunjie Jin",
+        "Renyuan Sun",
+        "Wenliang Liu",
+        "Xianzhen Dong",
+        "Yiru Yang",
+        "Shicong Chen",
+        "Chunlin Wen",
+        "Kun Yang",
+        "Weilin Xu",
+        "Chao Xu",
+        "Zhiqiang Luo",
+        "Hongjun Yang"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adma.75437",
+      "relevance": 3,
+      "summary": "Biodegradable capacitive-coupling bioelectronics combine wireless electrical stimulation, nerve guidance and longitudinal compound-action-potential recording. A rat sciatic-nerve model demonstrates recovery trends consistent with wired electrophysiology, with relevance to resorbable implants and external coupling.",
+      "topics": [
+        "Wireless implants",
+        "Bioelectronics",
+        "Longitudinal physiology"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adma.75235",
+      "doi": "10.1002/adma.75235",
+      "title": "Bridging Biosensing and Hardware‐Level Data Security With a Conjugated Radical Polymer",
+      "journal": "Advanced Materials",
+      "date": "2026-10-21",
+      "authors": [
+        "Hoyeon Lee",
+        "Jaehyoung Ko",
+        "Dinh Cung Tien Nguyen",
+        "Yeong Kwon Kim",
+        "Daeun Kim",
+        "Soo Jin Cho",
+        "Sung Gap Im",
+        "Byung Chul Jang",
+        "Byung Joon Moon",
+        "Yongho Joo"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adma.75235",
+      "relevance": 2,
+      "summary": "A conjugated radical polymer connects biosensing with hardware-level data security. The concept offers a potential route to secure encoding in distributed wearable or implantable nodes.",
+      "topics": [
+        "Bioelectronics",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adma.75421",
+      "doi": "10.1002/adma.75421",
+      "title": "Minimally Invasive In Vivo Fabrication of Multiscale Biohybrid Systems",
+      "journal": "Advanced Materials",
+      "date": "2026-10-21",
+      "authors": [
+        "Zhixing Ge",
+        "Yuji Gao",
+        "Elgene Chng Junyuan",
+        "Truong‐Son Dinh Le",
+        "Lanfeng Liang",
+        "Yu Zhang",
+        "Chwee Teck Lim"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adma.75421",
+      "relevance": 2,
+      "summary": "Minimally invasive in vivo fabrication offers a material and integration route to multiscale biohybrid systems. The approach may inform in situ formation and delivery of complex implants.",
+      "topics": [
+        "Bioelectronics",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adma.75360",
+      "doi": "10.1002/adma.75360",
+      "title": "Strain‐Insensitive Conductors for Stretchable Electronics",
+      "journal": "Advanced Materials",
+      "date": "2026-10-21",
+      "authors": [
+        "Tong Zheng",
+        "Shengxin Xiang",
+        "Jianqiang Gao",
+        "Qiongfeng Shi",
+        "Xinkai Xie",
+        "La Li",
+        "Guozhen Shen",
+        "Jun Wu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adma.75360",
+      "relevance": 2,
+      "summary": "This work examines structural strategies for strain-insensitive conductors in stretchable electronics. These strategies are relevant to interconnect stability, fatigue and suppression of deformation-related readout changes.",
+      "topics": [
+        "Wearables & e-skins",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1021/acsnano.6c14428",
+      "doi": "10.1021/acsnano.6c14428",
+      "title": "Nanomesh Bioelectronics Inspired by Basement Membrane for In Situ Monitoring of Oxidative Stress at the Alveolar-Capillary Barrier",
+      "journal": "ACS Nano",
+      "date": "2026-10-20",
+      "authors": [
+        "Yi Zhao",
+        "Wen-Ting Fan",
+        "Meng-Yuan Sun",
+        "Yu-Jun Zhang",
+        "Rong-Rong Xiao",
+        "Wei-Hua Huang",
+        "Yan-Ling Liu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1021/acsnano.6c14428",
+      "relevance": 3,
+      "summary": "Basement-membrane-inspired nanomesh bioelectronics monitor oxidative stress at the alveolar–capillary barrier. The ultrathin interface offers a reference for conformal bioelectronics and local chemical sensing.",
+      "topics": [
+        "Bioelectronics",
+        "Longitudinal physiology"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1021/acsnano.6c14521",
+      "doi": "10.1021/acsnano.6c14521",
+      "title": "Nanoedge-Regulated Impedance Sensing for Sensitive Cardiomyocyte Mechanophysiological Investigation and Functional Drug Assessment",
+      "journal": "ACS Nano",
+      "date": "2026-10-22",
+      "authors": [
+        "Chengyun Wang",
+        "Jiaru Fang",
+        "Hao Wang",
+        "Zhekun Jia",
+        "Tao Liang",
+        "Dongxin Xu",
+        "Ning Hu",
+        "Zhen Wang"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1021/acsnano.6c14521",
+      "relevance": 3,
+      "summary": "Nanoedge-regulated impedance sensing tracks cardiomyocyte mechanophysiology and supports functional drug assessment. The approach links cellular mechanical states to continuous electrical readout.",
+      "topics": [
+        "Mechanics & resonators",
+        "Bioelectronics"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1021/acs.nanolett.6c03896",
+      "doi": "10.1021/acs.nanolett.6c03896",
+      "title": "Flexible Microlaser Emitter for Mechanical Sensing and Pulse Mapping",
+      "journal": "Nano Letters",
+      "date": "2026-10-20",
+      "authors": [
+        "Ningyuan Nie",
+        "Zhiyi Yuan",
+        "Tian Zhou",
+        "Guocheng Fang",
+        "Bowen Fu",
+        "Xiyu Sun",
+        "Po-Hao Tseng",
+        "Yu-Cheng Chen"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1021/acs.nanolett.6c03896",
+      "relevance": 3,
+      "summary": "A flexible microlaser emitter supports mechanical sensing and pulse mapping. The optical readout offers a complementary route to flexible biomechanical monitoring.",
+      "topics": [
+        "Wearables & e-skins",
+        "Mechanics & resonators"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1021/acs.nanolett.6c04011",
+      "doi": "10.1021/acs.nanolett.6c04011",
+      "title": "Unveiling the Creep Recovery Behavior of Pseudo-Free-Standing Polymer Thin Films for Wearable Electronics",
+      "journal": "Nano Letters",
+      "date": "2026-10-21",
+      "authors": [
+        "Eun Sung Oh",
+        "Dong Jun Kim",
+        "Won Choi",
+        "Taek-Soo Kim"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1021/acs.nanolett.6c04011",
+      "relevance": 2,
+      "summary": "This study examines creep recovery in pseudo-free-standing polymer thin films. Its findings are relevant to long-term drift, fatigue and mechanical stability of wearable substrates and packaging.",
+      "topics": [
+        "Wearables & e-skins",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41378-026-01470-3",
+      "doi": "10.1038/s41378-026-01470-3",
+      "title": "A fabrication-aware vectorized generative representation for topology optimization of path-defined MEMS microstructures",
+      "journal": "Microsystems & Nanoengineering",
+      "date": "2026-10-19",
+      "authors": [
+        "Gong-Zeng Liu",
+        "Lin-Feng Zhao",
+        "Jie Zhang",
+        "Xiang Liu",
+        "Yi-Meng Lv",
+        "Tian-Yu Geng",
+        "Zai-Fa Zhou"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41378-026-01470-3",
+      "relevance": 2,
+      "summary": "A vectorized design representation embeds linewidth, spacing and smoothness constraints into MEMS topology optimization. Reported examples reduce microheater temperature variation from 4.04% to 1.22% and increase microspring displacement by 30.6% with a 16.3% reduction in peak stress.",
+      "topics": [
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41378-026-01474-z",
+      "doi": "10.1038/s41378-026-01474-z",
+      "title": "Focusing and weighing microanalytes in liquid enabled by higher-order piezoelectric resonant membranes",
+      "journal": "Microsystems & Nanoengineering",
+      "date": "2026-10-19",
+      "authors": [
+        "Jingui Qian",
+        "Wenqi Fan",
+        "Sheng Tang",
+        "Cheng Guo",
+        "Xiangyang Wang",
+        "Mengyu Huang",
+        "Guoqiang Wu",
+        "Joshua E.-Y. Lee"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41378-026-01474-z",
+      "relevance": 3,
+      "summary": "Higher-order piezoelectric resonant membranes focus particles in droplets near regions of maximum vibration and then weigh them by resonance. The integrated actuation–sensing platform is relevant to liquid-phase mass sensing, fluid damping and mechanical biochemical readout.",
+      "topics": [
+        "Mechanics & resonators",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41378-026-01464-1",
+      "doi": "10.1038/s41378-026-01464-1",
+      "title": "Towards advanced motion control systems for micro-scale magnetic drillers inside viscoelastic media",
+      "journal": "Microsystems & Nanoengineering",
+      "date": "2026-10-19",
+      "authors": [
+        "Emmett Z. Freeman",
+        "Pranjal Chatterjee",
+        "Tony H. Wang",
+        "Kimberly Hoang",
+        "Azadeh Ansari"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41378-026-01464-1",
+      "relevance": 3,
+      "summary": "An eight-solenoid field generator controls 250 × 250 × 1,250 μm magnetic microdrillers within a 20 × 20 × 20 cm³ workspace. In 0.6 wt% agarose, the study reports speeds up to 155 μm s⁻¹ and steering errors below 3°, with relevance to actuation in viscoelastic media.",
+      "topics": [
+        "Magnetic systems",
+        "Mechanics & resonators"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1038/s41528-026-00654-1",
+      "doi": "10.1038/s41528-026-00654-1",
+      "title": "Multiplexed sensor arrays for high-spatiotemporal decoding of complex physiological networks",
+      "journal": "npj Flexible Electronics",
+      "date": "2026-10-19",
+      "authors": [
+        "Jinze Li",
+        "Hongcheng Gu",
+        "Huicheng Ouyang",
+        "Yijun Guo",
+        "Zhongze Gu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41528-026-00654-1",
+      "relevance": 3,
+      "summary": "This review compares temporal, frequency, spatial, optical, code and hybrid multiplexing. It discusses signal integrity, calibration, materials, mechanics, power and data processing for distributed physiological sensing arrays.",
+      "topics": [
+        "Bioelectronics",
+        "Methods & fabrication",
+        "Longitudinal physiology"
+      ],
+      "type": "Review"
+    },
+    {
+      "id": "10.1038/s41528-026-00656-z",
+      "doi": "10.1038/s41528-026-00656-z",
+      "title": "Machine learning–driven structural optimization of zigzag silk fibroin ionic conductors for spatially resolved wearable motion detection",
+      "journal": "npj Flexible Electronics",
+      "date": "2026-10-22",
+      "authors": [
+        "Yunhao Yang",
+        "Sijia Sun",
+        "Cheng Xu",
+        "Jing Ren",
+        "Shengjie Ling"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1038/s41528-026-00656-z",
+      "relevance": 2,
+      "summary": "A surrogate model trained on 3,000 zigzag silk-fibroin conductor geometries guides structural optimization. A ten-channel device retains spatial fingerprints during joint bending, with Spearman correlations of 0.75–0.84; the workflow may transfer to flexible-array design.",
+      "topics": [
+        "Wearables & e-skins",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adfm.79109",
+      "doi": "10.1002/adfm.79109",
+      "title": "A Starfish‐Inspired Hierarchical Multimodal Flexible Sensor for Decoupled Thumb Motion Perception and Virtual Human–Machine Interaction",
+      "journal": "Advanced Functional Materials",
+      "date": "2026-10-16",
+      "authors": [
+        "Lu Liu",
+        "Zengbai Ouyang",
+        "Mengze Zhang",
+        "Jiantao Yao",
+        "Xiaoli Jia",
+        "Peng Zhang",
+        "Bo Han",
+        "Yu Gu",
+        "Yundou Xu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adfm.79109",
+      "relevance": 3,
+      "summary": "A starfish-inspired sensor separates radial strain channels from isolated pressure nodes to decouple global deformation and local touch. The study reports 99.27% test accuracy for six thumb motions, with relevance to wearable human–machine interfaces.",
+      "topics": [
+        "Wearables & e-skins"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adfm.79135",
+      "doi": "10.1002/adfm.79135",
+      "title": "Bio‐Derived Polyurethane Ionoelastomers With Hierarchical Dynamic Networks for Ultrawide‐Range Iontronic Pressure Sensing",
+      "journal": "Advanced Functional Materials",
+      "date": "2026-10-18",
+      "authors": [
+        "Chen‐Yu Wang",
+        "Hai‐Sen Yang",
+        "Wen‐Tao Wang",
+        "Xue Feng",
+        "Xin‐Yu Lin",
+        "Jia‐Hao Guo",
+        "Ze‐Xu Yang",
+        "Ruo‐Yu Sun",
+        "Ke‐Zheng Chen",
+        "Tingrui Pan",
+        "Sheng‐Lin Qiao"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adfm.79135",
+      "relevance": 2,
+      "summary": "Bio-derived polyurethane ionoelastomers use hierarchical dynamic networks for wide-range iontronic pressure sensing. The material strategy may inform the balance between sensing range and sensitivity in soft tactile devices.",
+      "topics": [
+        "Wearables & e-skins"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adfm.79013",
+      "doi": "10.1002/adfm.79013",
+      "title": "Flexible Neuromorphic Softness Sensory System",
+      "journal": "Advanced Functional Materials",
+      "date": "2026-10-22",
+      "authors": [
+        "Ruotao Yu",
+        "Jiarui Zhang",
+        "Qianbo Yu",
+        "Yu Cheng",
+        "Wentao Xu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adfm.79013",
+      "relevance": 2,
+      "summary": "A flexible neuromorphic system distinguishes softness. The approach offers a reference for array-level processing of tactile and tissue-mechanics signals.",
+      "topics": [
+        "Wearables & e-skins",
+        "Mechanics & resonators"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adhm.71865",
+      "doi": "10.1002/adhm.71865",
+      "title": "A Standardized Chewable Conductive Hydrogel Sensor for Direct Monitoring of Masticatory Dynamics",
+      "journal": "Advanced Healthcare Materials",
+      "date": "2026-10-16",
+      "authors": [
+        "Xiaoxuan Xue",
+        "Zhan Gao",
+        "Jun Wang",
+        "Yizhang Yang",
+        "Kewei Zhang",
+        "Chao Yang"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adhm.71865",
+      "relevance": 3,
+      "summary": "A standardized chewable conductive-hydrogel sensor directly records masticatory dynamics. It provides a reference for intraoral mechanical monitoring and durable soft sensing interfaces.",
+      "topics": [
+        "Wearables & e-skins",
+        "Mechanics & resonators"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/adhm.71844",
+      "doi": "10.1002/adhm.71844",
+      "title": "Macrophage–Fibroblast Crosstalk Governs Tumor Mechanics, as Revealed by Spatiotemporal Force Mapping in 3D Spheroids",
+      "journal": "Advanced Healthcare Materials",
+      "date": "2026-10-16",
+      "authors": [
+        "Kunal P. Pednekar",
+        "Daan Vorselen",
+        "Jai Prakash"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/adhm.71844",
+      "relevance": 2,
+      "summary": "Spatiotemporal force mapping in three-dimensional spheroids reveals how macrophage–fibroblast interactions affect tumour mechanics. The method offers a reference for quantitative studies of tissue mechanics and the mechanical microenvironment.",
+      "topics": [
+        "Mechanics & resonators"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/smll.76359",
+      "doi": "10.1002/smll.76359",
+      "title": "Self‐Powered, Neural Network‐Inspired Mechanical Intelligence Driven by Triboelectric Nanogenerators",
+      "journal": "Small",
+      "date": "2026-10-18",
+      "authors": [
+        "Xinke Yu",
+        "Xin Zhang",
+        "Wenpo Li",
+        "Juan Wang",
+        "Taoqiang Ling",
+        "Hengyu Guo",
+        "Chenguo Hu"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/smll.76359",
+      "relevance": 2,
+      "summary": "Triboelectric nanogenerators support a self-powered mechanical-intelligence system. The architecture may inform local encoding and low-power processing in distributed tactile nodes.",
+      "topics": [
+        "Wearables & e-skins"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1002/smll.76299",
+      "doi": "10.1002/smll.76299",
+      "title": "Decoupling Gauge Factor and Baseline Resistance Through Crack–Percolation Hybrid Design for Flexible Multimodal Strain Sensors",
+      "journal": "Small",
+      "date": "2026-10-22",
+      "authors": [
+        "Seungyeob Kim",
+        "Hyeon Bin Jo",
+        "Seongyeop Kim",
+        "Won Young Lee",
+        "Sanghun Jeon",
+        "Sung Hun Jin"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1002/smll.76299",
+      "relevance": 3,
+      "summary": "A crack–percolation hybrid design decouples gauge factor from baseline resistance in flexible strain sensors. The design addresses independent tuning of sensitivity and electrical readout.",
+      "topics": [
+        "Wearables & e-skins",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.1088/1361-6439/aeb680",
+      "doi": "10.1088/1361-6439/aeb680",
+      "title": "Property-level analysis of environment-dependent piezoelectric resonant microcantilever mass sensors: Multi-metric sensitivity and Pareto screening",
+      "journal": "Journal of Micromechanics and Microengineering",
+      "date": "2026-10-20",
+      "authors": [
+        "Reza Ghaderi"
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.1088/1361-6439/aeb680",
+      "relevance": 3,
+      "summary": "An analysis of 25 piezoelectric microcantilever material combinations compares performance in air and water. Reported AlN–SiC sensitivities are 1.10 and 0.025 Hz pg⁻¹, respectively; Sobol and Pareto analyses show that material selection depends on the medium and readout metric.",
+      "topics": [
+        "Mechanics & resonators",
+        "Methods & fabrication"
+      ],
+      "type": "Article (section unverified)"
+    },
+    {
+      "id": "10.48550/arxiv.2610.26317",
+      "doi": "10.48550/arxiv.2610.26317",
+      "title": "Leaky-Wave Antenna for Non-Invasive Continuous Glucose Monitoring",
+      "journal": "arXiv · Applied Physics",
+      "date": "2026-10-19",
+      "authors": [
+        "Huan Wang",
+        "Han Xiao",
+        "Yi Zhang",
+        "Zhi Hua Ren",
+        "Yang Gao"
+      ],
+      "authorsComplete": true,
+      "url": "https://arxiv.org/abs/2610.26317v1",
+      "relevance": 3,
+      "summary": "This preprint uses fixed-frequency phase measurements from a leaky-wave antenna to estimate glucose-dependent dielectric changes. Tests in two participants report correlations of 0.939 and 0.906 against reference glucose values. This is an early proof of concept and has not been peer reviewed.",
+      "topics": [
+        "Wearables & e-skins",
+        "Bioelectronics",
+        "Longitudinal physiology"
+      ],
+      "type": "Preprint"
+    },
+    {
+      "id": "10.64898/2026.10.19.760203",
+      "doi": "10.64898/2026.10.19.760203",
+      "title": "Microrobot and Cellbot Locomotion in Confined Hydrogels and Cardiac Tissue Surfaces",
+      "journal": "bioRxiv · Bioengineering",
+      "date": "2026-10-20",
+      "authors": [
+        "Kirmizitas, F. C.",
+        "Mallick, S.",
+        "Cherukumilli, S.",
+        "Lee, Z. D.",
+        "Zhao, Y.",
+        "Dutta, A.",
+        "Liu, Y.",
+        "Das, S."
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.64898/2026.10.19.760203",
+      "relevance": 2,
+      "summary": "This preprint compares magnetic microrobot and cellbot locomotion in dishes, hydrogels and ex vivo cardiac tissue. Rotating-field frequency, fibre orientation and cell adhesion affect trajectories and speed. The work has not been peer reviewed.",
+      "topics": [
+        "Magnetic systems"
+      ],
+      "type": "Preprint"
+    },
+    {
+      "id": "10.64898/2026.10.19.760169",
+      "doi": "10.64898/2026.10.19.760169",
+      "title": "Ultra-high-efficacy Wireless Neuromodulation Using a Conductive Ring Interface",
+      "journal": "bioRxiv · Bioengineering",
+      "date": "2026-10-20",
+      "authors": [
+        "Tian, J.",
+        "Chen, S.",
+        "Shotbolt, M.",
+        "Nandakumar, B.",
+        "Andre, V.",
+        "Abdel-Mottaleb, M.",
+        "Zhu, E.",
+        "Liang, P.",
+        "Zhang, E.",
+        "Ganzer, P.",
+        "Khizroev, S."
+      ],
+      "authorsComplete": true,
+      "url": "https://doi.org/10.64898/2026.10.19.760169",
+      "relevance": 3,
+      "summary": "This theoretical and COMSOL preprint proposes a conductive-ring implant for magnetic neuromodulation. At 10 kHz and 1 kA m⁻¹, the model predicts a local field of ~50 V m⁻¹ across a gap. Experimental validation is still required; the work has not been peer reviewed.",
+      "topics": [
+        "Wireless implants",
+        "Magnetic systems"
+      ],
+      "type": "Preprint"
+    }
+  ],
+  "coverage": [
+    {
+      "journal": "Science",
+      "status": "partial"
+    },
+    {
+      "journal": "Cell",
+      "status": "partial"
+    },
+    {
+      "journal": "Nature",
+      "status": "partial"
+    },
+    {
+      "journal": "Science Robotics",
+      "status": "partial"
+    },
+    {
+      "journal": "Science Translational Medicine",
+      "status": "partial"
+    },
+    {
+      "journal": "Nature Biomedical Engineering",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Biotechnology",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Cardiovascular Research",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Electronics",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Mechanical Engineering",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Machine Intelligence",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Materials",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Medicine",
+      "status": "partial"
+    },
+    {
+      "journal": "Nature Methods",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Nanotechnology",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Neuroscience",
+      "status": "partial"
+    },
+    {
+      "journal": "Nature Photonics",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Sensors",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Reviews Bioengineering",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Reviews Electrical Engineering",
+      "status": "complete"
+    },
+    {
+      "journal": "Nature Reviews Materials",
+      "status": "complete"
+    },
+    {
+      "journal": "Science Advances",
+      "status": "partial"
+    },
+    {
+      "journal": "Nature Communications",
+      "status": "partial"
+    },
+    {
+      "journal": "Proceedings of the National Academy of Sciences",
+      "status": "partial"
+    },
+    {
+      "journal": "Matter",
+      "status": "unavailable"
+    },
+    {
+      "journal": "Neuron",
+      "status": "unavailable"
+    },
+    {
+      "journal": "Nature Protocols",
+      "status": "complete"
+    },
+    {
+      "journal": "Advanced Materials",
+      "status": "partial"
+    },
+    {
+      "journal": "ACS Nano",
+      "status": "partial"
+    },
+    {
+      "journal": "Nano Letters",
+      "status": "partial"
+    },
+    {
+      "journal": "Device",
+      "status": "unavailable"
+    },
+    {
+      "journal": "Biosensors and Bioelectronics",
+      "status": "unavailable"
+    },
+    {
+      "journal": "Microsystems & Nanoengineering",
+      "status": "complete"
+    },
+    {
+      "journal": "npj Digital Medicine",
+      "status": "partial"
+    },
+    {
+      "journal": "npj Flexible Electronics",
+      "status": "complete"
+    },
+    {
+      "journal": "Advanced Functional Materials",
+      "status": "partial"
+    },
+    {
+      "journal": "Advanced Healthcare Materials",
+      "status": "partial"
+    },
+    {
+      "journal": "Small",
+      "status": "partial"
+    },
+    {
+      "journal": "Sensors and Actuators A: Physical",
+      "status": "unavailable"
+    },
+    {
+      "journal": "Sensors and Actuators B: Chemical",
+      "status": "unavailable"
+    },
+    {
+      "journal": "IEEE Transactions on Biomedical Engineering",
+      "status": "unavailable"
+    },
+    {
+      "journal": "Journal of Microelectromechanical Systems",
+      "status": "unavailable"
+    },
+    {
+      "journal": "Journal of Micromechanics and Microengineering",
+      "status": "partial"
+    },
+    {
+      "journal": "arXiv · Applied Physics",
+      "status": "complete"
+    },
+    {
+      "journal": "bioRxiv - Bioengineering",
+      "status": "complete"
+    },
+    {
+      "journal": "Research Square - Nature Portfolio",
+      "status": "unavailable"
+    }
+  ],
+  "note": "Selected literature from the weekly journal survey. Coverage is partial: some publisher lists were inaccessible or limited, and some article sections remain unverified. Dates are reported at day resolution where exact publication times were unavailable; records on the weekly boundary may fall outside the 03:30 cutoff."
+}
