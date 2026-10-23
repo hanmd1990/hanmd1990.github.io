@@ -108,8 +108,6 @@
     journals=new Set(sources);topic='';const topics=['',...[...new Set(e.articles.flatMap(a=>a.topics))].sort()];
     document.querySelector('.lit-topics').replaceChildren(...topics.map(t=>{const b=node('button','',t||'All topics');b.type='button';b.dataset.topic=t;b.setAttribute('aria-pressed',String(!t));b.addEventListener('click',()=>{topic=t;render();});return b;}));render();
   }
-  const sourcesToggle=byId('lit-sources-toggle'),sourcesPanel=byId('lit-sources-panel');
-  sourcesToggle.addEventListener('click',()=>{const open=sourcesToggle.getAttribute('aria-expanded')!=='true';sourcesToggle.setAttribute('aria-expanded',String(open));sourcesPanel.hidden=!open;});
   journalOpen.addEventListener('click',()=>{draft=new Set(journals);paintJournals();dialog.showModal();});
   byId('lit-journals-all').addEventListener('click',()=>{draft=new Set(sources);paintJournals();});
   byId('lit-journals-none').addEventListener('click',()=>{draft.clear();paintJournals();});
