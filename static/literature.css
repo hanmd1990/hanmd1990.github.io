@@ -18,33 +18,34 @@
 
 .lit-author-line{font-size:13px;line-height:1.7;color:#626a75;margin:0 0 12px;max-width:960px;overflow-wrap:anywhere}.lit-paper h2{margin-bottom:5px}
 
-/* Wide source directory: all monitored journals visible together on desktop. */
+/* Publisher cards retain visible separation on narrow screens. */
+.lit-publisher-group{padding:10px 12px;border:1px solid #d8dfe8;border-radius:7px;background:#fff;margin-bottom:20px}
+.lit-publisher-heading{padding:5px 0 8px;margin-bottom:8px;border-bottom:1px solid #d8dfe8}
+.lit-reading-note{margin:8px 0 12px;color:#626a75;font-size:11px;line-height:1.4}
+.lit-journal-option small{display:block;color:#626a75;font-size:10.5px;line-height:1.3;margin-top:2px}
+/* Laptop directory: Nature on the left, other publishers in a compact grid. */
 @media(min-width:1050px){
- #lit-journals-dialog{width:min(1320px,calc(100% - 36px));max-height:calc(100vh - 28px);padding:18px 22px;overflow-y:auto}
- .lit-dialog-heading h2{font-size:22px}.lit-dialog-heading p{margin:4px 0 10px;font-size:12px}
- .lit-journal-search{display:flex;align-items:center;gap:14px}.lit-journal-search input{flex:1;height:34px;margin:0}
- .lit-dialog-actions{margin:10px 0;gap:10px}.lit-dialog-actions button,.lit-dialog-footer button{padding:6px 11px}
- #lit-journals-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px 20px;max-height:none;overflow:visible;padding:0;align-items:start}
- .lit-publisher-group{margin:0;min-width:0}.lit-publisher-group[data-publisher="Nature Portfolio"]{grid-column:span 2;grid-row:span 3}
- .lit-publisher-heading{gap:6px;padding:3px 0;margin-bottom:5px}.lit-publisher-toggle{font-size:12px;gap:6px}.lit-publisher-count{font-size:10px}
- .lit-publisher-journals{grid-template-columns:1fr;gap:2px}.lit-publisher-group[data-publisher="Nature Portfolio"] .lit-publisher-journals{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12px}
- .lit-journal-option{border:0;border-radius:3px;padding:3px 4px;gap:7px;font-size:12px;line-height:1.35;min-height:22px;box-sizing:border-box}
- .lit-journal-option input{margin:2px 0 0;flex:none}.lit-journal-option small{display:none}
- .lit-dialog-footer{margin-top:12px;padding-top:10px}
+ #lit-journals-dialog{width:min(1500px,calc(100% - 24px));max-height:calc(100dvh - 24px);padding:10px 14px;overflow-y:auto}
+ .lit-dialog-heading{align-items:center;gap:12px}.lit-dialog-heading h2{font-size:20px}.lit-dialog-heading p{display:none}
+ .lit-dialog-heading>button{line-height:1;padding:0 4px}
+ .lit-journal-search{display:flex;align-items:center;gap:12px;margin-top:8px}.lit-journal-search input{flex:1;height:30px;margin:0;padding:4px 10px;font-size:12px}
+ .lit-dialog-actions{margin:5px 0;gap:8px}.lit-dialog-actions button,.lit-dialog-footer button{padding:5px 10px;font-size:12px}
+ .lit-reading-note{margin:4px 0 7px;font-size:10px}
+ #lit-journals-options{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px 12px;max-height:none;overflow:visible;padding:0;align-items:stretch}
+ .lit-publisher-group{padding:5px 6px;margin:0;min-width:0}
+ .lit-publisher-group[data-publisher="Nature Portfolio"]{grid-column:span 2;grid-row:span 3}
+ .lit-publisher-heading{gap:4px;padding:0 0 5px;margin-bottom:4px}.lit-publisher-toggle{font-size:11.5px;gap:5px}.lit-publisher-count{font-size:9px}
+ .lit-publisher-journals{grid-template-columns:1fr;gap:1px}
+ .lit-publisher-group[data-publisher="Nature Portfolio"] .lit-publisher-journals{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px}
+ .lit-journal-option{border:0;border-radius:3px;padding:1px 2px;gap:4px;font-size:11px;line-height:1.18;min-height:26px;box-sizing:border-box}
+ .lit-journal-option input{margin:1px 0 0;flex:none;width:13px;height:13px}.lit-journal-option>span{min-width:0}
+ .lit-journal-option small{display:block;font-size:9.5px;line-height:1.15;margin-top:1px}
+ .lit-dialog-footer{margin-top:6px;padding-top:6px}
 }
 
-/* Clear publisher separation and visible per-journal reading counts. */
-.lit-publisher-group{padding:10px 12px;border:1px solid #d8dfe8;border-radius:7px;background:#fff;margin-bottom:24px}
-.lit-publisher-heading{padding:5px 0 8px;margin-bottom:8px;border-bottom:1px solid #d8dfe8}
-.lit-reading-note{margin:8px 0 14px;color:#626a75;font-size:11px;line-height:1.5}
-.lit-journal-option small{display:block;color:#626a75;font-size:10.5px;line-height:1.4;margin-top:2px}
-@media(min-width:1050px){
- #lit-journals-dialog{width:min(1440px,calc(100% - 36px))}
- #lit-journals-options{gap:20px 28px}
- .lit-publisher-group{padding:8px 10px;margin:0}
- .lit-publisher-heading{padding:3px 0 7px;margin-bottom:7px}
- .lit-publisher-journals{gap:4px}
- .lit-journal-option{padding:3px 4px}
- .lit-journal-option small{display:block}
- .lit-reading-note{margin:7px 0 10px}
-}
+.lit-feedback-panel{margin:16px 0 0;padding:12px 14px;border:1px solid #d8dfe8;border-radius:6px;font-size:12px;color:#626a75}
+.lit-feedback-panel>summary{cursor:pointer;color:var(--hmd-navy);font-weight:600}.lit-feedback-panel p{margin:8px 0}
+.lit-feedback-tools{display:flex;align-items:end;gap:10px;flex-wrap:wrap}.lit-feedback-tools label{display:flex;align-items:center;gap:8px}
+.lit-feedback-tools :is(button,select),.lit-feedback-buttons button{font:12px/1.4 'Segoe UI',Arial,sans-serif;color:var(--hmd-navy);background:#fff;border:1px solid #c7cdd6;border-radius:4px;padding:5px 9px;cursor:pointer}
+.lit-feedback{display:flex;align-items:start;gap:12px;flex-wrap:wrap;margin-top:12px}.lit-feedback-buttons{display:flex;gap:7px;flex-wrap:wrap}.lit-feedback-buttons button[aria-pressed=true]{color:#fff;background:var(--hmd-navy);border-color:var(--hmd-navy)}
+.lit-feedback-note{font-size:12px;color:#626a75}.lit-feedback-note summary{cursor:pointer;padding:5px 0}.lit-feedback-note textarea{display:block;box-sizing:border-box;width:min(400px,75vw);padding:8px;border:1px solid #c7cdd6;border-radius:4px;font:13px/1.5 'Segoe UI',Arial,sans-serif}
