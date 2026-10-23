@@ -131,7 +131,14 @@
       "journal": "Research Square - Nature Portfolio",
       "prefix": "10.21203",
       "publisher_family": "preprints",
-      "portfolio_verification_required": true
+      "portfolio_verification_required": true,
+      "preferred_method": "visible_browser_filter",
+      "browse_url": "https://www.researchsquare.com/browse",
+      "selector_label": "Journals & Platforms",
+      "exact_option": "Nature Portfolio",
+      "submit": "Search",
+      "last_filter_verified": "2026-10-23",
+      "prefix_scope": "Platform discovery fallback only; prefix does not establish Nature Portfolio membership"
     },
     {
       "journal": "Nature Biomedical Engineering",

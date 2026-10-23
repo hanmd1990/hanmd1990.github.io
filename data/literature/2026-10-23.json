@@ -1263,6 +1263,185 @@
         "https://europepmc.org/article/MED/42900604"
       ],
       "addedAfterMetadataRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-10823611/v1",
+      "doi": "10.21203/rs.3.rs-10823611/v1",
+      "title": "A single-wire, large-area, super-resolution electromagnetic skin enabling human-level spatial acuity",
+      "journal": "Research Square - Nature Portfolio",
+      "date": "2026-10-21",
+      "authors": [
+        "Arindam Basu",
+        "Gaishan Li",
+        "Jiachen Du",
+        "Yiqing Sun",
+        "Shuai Dong",
+        "Chiara Bartolozzi",
+        "Geng-Bo Wu"
+      ],
+      "authorsComplete": true,
+      "url": "https://www.researchsquare.com/article/rs-10823611/v1",
+      "relevance": 3,
+      "summary": "A meandering spoof surface plasmon polariton transmission line combines frequency-diverse sensing with neural reconstruction to localize touch using a single wire. The authors report a super-resolution factor above 10,000 across skin areas of 2,500–28,800 mm², with demonstrations in dynamic touch and object recognition. The architecture is relevant to reducing wiring in large-area tactile interfaces. Preprint; not peer reviewed.",
+      "topics": [
+        "Wearables & e-skins",
+        "Bioelectronics"
+      ],
+      "type": "Preprint",
+      "metadataSources": [
+        "https://www.researchsquare.com/article/rs-10823611/v1"
+      ],
+      "sourceFilter": "Nature Portfolio (Browse > Journals & Platforms)",
+      "addedAfterSourceRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-10804825/v1",
+      "doi": "10.21203/rs.3.rs-10804825/v1",
+      "title": "Overcoming conventional trade-offs in strain sensing with physics-guided inverse design of aperiodic architected nanocomposites",
+      "journal": "Research Square - Nature Portfolio",
+      "date": "2026-10-21",
+      "authors": [
+        "Francisco Molina-Lopez",
+        "Viktor Naenen",
+        "Stijn De Smedt",
+        "Altynay Kaidarova",
+        "Ruth Cardinaels"
+      ],
+      "authorsComplete": true,
+      "url": "https://www.researchsquare.com/article/rs-10804825/v1",
+      "relevance": 3,
+      "summary": "Physics-guided inverse design arranges printed carbon-nanotube/PDMS cells into aperiodic strain-sensing architectures. One design achieves a gauge factor of 1.55 with R² above 0.98 over 30% strain, improving sensitivity relative to its most linear constituent. Respiratory monitoring illustrates a wearable application. The method offers a route to tailoring sensor response through architecture rather than filler composition alone. Preprint; not peer reviewed.",
+      "topics": [
+        "Wearables & e-skins",
+        "Methods & fabrication"
+      ],
+      "type": "Preprint",
+      "metadataSources": [
+        "https://www.researchsquare.com/article/rs-10804825/v1"
+      ],
+      "sourceFilter": "Nature Portfolio (Browse > Journals & Platforms)",
+      "addedAfterSourceRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-11204203/v1",
+      "doi": "10.21203/rs.3.rs-11204203/v1",
+      "title": "Intrinsic Vectorial Gradiometry via Quantum Control of a Spin-based Sensor",
+      "journal": "Research Square - Nature Portfolio",
+      "date": "2026-10-22",
+      "authors": [
+        "Jaime García Oliván",
+        "Pablo Acedo",
+        "Oliver T. Whaites",
+        "Jorge Casanova"
+      ],
+      "authorsComplete": true,
+      "url": "https://www.researchsquare.com/article/rs-11204203/v1",
+      "relevance": 2,
+      "summary": "Quantum-control sequences extract temporal and spatial magnetic-field derivatives from a single spin-based sensor. The proposed implementation combines nitrogen-vacancy diamond sensing, nuclear-spin memory and controlled motion. Numerical simulations explore magnetic-anomaly detection and neuronal action-potential sensing; these are not biological recording experiments. The approach may inform compact magnetic-gradient readout and background rejection for biosensing systems. Preprint; not peer reviewed.",
+      "topics": [
+        "Magnetic systems",
+        "Methods & fabrication"
+      ],
+      "type": "Preprint",
+      "metadataSources": [
+        "https://www.researchsquare.com/article/rs-11204203/v1"
+      ],
+      "sourceFilter": "Nature Portfolio (Browse > Journals & Platforms)",
+      "addedAfterSourceRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-10726871/v1",
+      "doi": "10.21203/rs.3.rs-10726871/v1",
+      "title": "Multiparametric quantification of dynamic force adaptation in living cells by atomic force microscopy",
+      "journal": "Research Square - Nature Portfolio",
+      "date": "2026-10-20",
+      "authors": [
+        "Hermann Schillers",
+        "Tristan Claus",
+        "Dominika Ciechańska"
+      ],
+      "authorsComplete": true,
+      "url": "https://www.researchsquare.com/article/rs-10726871/v1",
+      "relevance": 2,
+      "summary": "Time-Resolved Mechanical Response analysis uses constant-load atomic force microscopy to quantify bidirectional displacement, work, power and mechanical balance in living cells. Endothelial-cell experiments probe responses to cytoskeletal, mechanosensitive and inflammatory perturbations. The model-independent workflow uses conventional AFM hardware and may help distinguish dynamic force adaptation from static elasticity measurements when designing mechanobiological sensing experiments. Preprint; not peer reviewed.",
+      "topics": [
+        "Mechanics & resonators",
+        "Methods & fabrication"
+      ],
+      "type": "Preprint",
+      "metadataSources": [
+        "https://www.researchsquare.com/article/rs-10726871/v1"
+      ],
+      "sourceFilter": "Nature Portfolio (Browse > Journals & Platforms)",
+      "addedAfterSourceRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-11017633/v1",
+      "doi": "10.21203/rs.3.rs-11017633/v1",
+      "title": "An acoustic coupling fluid improves intraoperative ultrasound image quality during glioma surgery: Results of a Pivotal Multicenter Study (NCT04734444)",
+      "journal": "Research Square - Nature Portfolio",
+      "date": "2026-10-21",
+      "authors": [
+        "Francesco DiMeco",
+        "Massimiliano Del Bene",
+        "Giovanni Carone",
+        "Annica Piccardi",
+        "Jan Coburger",
+        "Andrej Steno",
+        "Rainer Ritz",
+        "Benjamin Sass",
+        "SonoClear® ACF Investigators"
+      ],
+      "authorsComplete": true,
+      "url": "https://www.researchsquare.com/article/rs-11017633/v1",
+      "relevance": 2,
+      "summary": "A prospective, nonrandomized five-centre study evaluates a tissue-mimicking acoustic coupling fluid during glioma surgery. Among 44 patients, 40 paired comparisons show improved ultrasound image ratings and reduced artefacts below the resection cavity. The reported improvement concerns image quality; benefits for resection extent or patient outcomes remain unproven. Acoustic-medium engineering may be useful for intraoperative sensing systems. Preprint; not peer reviewed.",
+      "topics": [
+        "Methods & fabrication",
+        "Bioelectronics"
+      ],
+      "type": "Preprint",
+      "metadataSources": [
+        "https://www.researchsquare.com/article/rs-11017633/v1"
+      ],
+      "sourceFilter": "Nature Portfolio (Browse > Journals & Platforms)",
+      "addedAfterSourceRecovery": "2026-10-23"
+    },
+    {
+      "id": "10.21203/rs.3.rs-11149224/v1",
+      "doi": "10.21203/rs.3.rs-11149224/v1",
+      "title": "Thermal-history encoding through ionic-state programming in a monolithic organic thermosynapse",
+      "journal": "Research Square - Nature Portfolio",
+      "date": "2026-10-18",
+      "authors": [
+        "Do Hwan Kim",
+        "Zhengyang Kong",
+        "Jin Han Kwon",
+        "Ji Hong Kim",
+        "Hanbin Choi",
+        "Jonghyun Yun",
+        "Seonghwan Yun",
+        "Hyeon Woo Yang",
+        "Hyun Joon Shin",
+        "So Young Kim",
+        "Yong Min Kim",
+        "Hong Chul Moon"
+      ],
+      "authorsComplete": true,
+      "url": "https://www.researchsquare.com/article/rs-11149224/v1",
+      "relevance": 2,
+      "summary": "A zwitterionic temperature-responsive gel enables an organic electrochemical transistor to encode thermal exposure through ionic-state programming. Heating regulates ion confinement and release, linking temperature history to retained device response. A robotic demonstration uses this state to control recontact and limit cumulative heating and drift in a colocated pressure sensor. The concept connects material memory with adaptive tactile interfaces. Preprint; not peer reviewed.",
+      "topics": [
+        "Wearables & e-skins",
+        "Bioelectronics",
+        "Methods & fabrication"
+      ],
+      "type": "Preprint",
+      "metadataSources": [
+        "https://www.researchsquare.com/article/rs-11149224/v1"
+      ],
+      "sourceFilter": "Nature Portfolio (Browse > Journals & Platforms)",
+      "addedAfterSourceRecovery": "2026-10-23"
     }
   ],
   "coverage": [
@@ -1690,12 +1869,13 @@
     {
       "journal": "Research Square - Nature Portfolio",
       "status": "partial",
-      "detail": "Platform metadata is readable. The Nature Portfolio filtered browse page returned HTTP 403 during this check; its filtered count is not verified.",
-      "readCount": null,
+      "detail": "Nature Portfolio filter verified in Browse on 23 October 2026. 100 recent records inspected; 6 relevant preprints selected. The 5,814 search results are the whole filtered catalogue, not this edition. Preprints are not peer reviewed.",
+      "readCount": 100,
       "readCountIsLowerBound": false,
-      "readCountBasis": "Nature Portfolio membership not verified",
-      "selectedCount": 0
+      "readCountBasis": "100 latest records actually inspected with the visible Nature Portfolio filter, including baseline/backfill; not a weekly publication total",
+      "selectedCount": 6,
+      "readCountDatePending": 0
     }
   ],
-  "note": "Selected literature from the weekly journal survey, with five verified entries added after metadata recovery on 23 October 2026. Public metadata fallbacks now provide records for all nine sources previously marked unavailable. Coverage remains partial: metadata indexing can lag, some first-online dates and Science editor credits remain unverified, and Research Square metadata does not establish Nature Portfolio membership. Day-only records on a weekly boundary cannot establish the exact 03:30 cutoff. Per-source read counts refer to retrieved metadata dated within the edition, not the journal's total output; incomplete counts are marked ≥. Small was removed at the owner's request on 23 October 2026."
+  "note": "Selected literature from the journal survey, including metadata-recovery additions and six Research Square preprints verified through the Nature Portfolio browse filter on 23 October 2026. Coverage remains partial: indexing can lag, some first-online dates and Science editor credits remain unverified. Read counts describe actual inspected records; the Research Square count includes baseline/backfill and is not a weekly publication total. Incomplete counts are marked ≥. Unverified dates do not prevent baseline inclusion; subsequent delivery is deduplicated against confirmed delivered records. Small was removed at the owner’s request."
 }

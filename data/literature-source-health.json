@@ -1084,9 +1084,8 @@
       "journal": "Research Square - Nature Portfolio",
       "issn": null,
       "status": "partial",
-      "access": "metadata_recovered",
-      "records_recovered": 2601,
-      "in_window_day_verified": 2054,
+      "access": "browser_filter_verified",
+      "records_recovered": 100,
       "attempts": [
         {
           "service": "Crossref",
@@ -1096,11 +1095,16 @@
           "pagination_exhausted": true
         }
       ],
-      "detail": "Metadata discovery only; publisher completeness, first-online dates, editor credits and indexing delays still require review.",
-      "readCount": null,
+      "detail": "Nature Portfolio selected in the visible Journals & Platforms control on /browse; inspected the latest 100 records dated 14–22 October 2026. Six relevant preprints verified on detail pages. Catalogue not exhaustively scanned.",
+      "readCount": 100,
       "readCountIsLowerBound": false,
-      "readCountBasis": "Nature Portfolio membership not verified",
-      "selectedCount": 0
+      "readCountBasis": "Actual inspected filtered records, including baseline/backfill",
+      "selectedCount": 6,
+      "platform_metadata_records_previously_recovered": 2601,
+      "filtered_catalogue_total": 5814,
+      "scanned_pages": 10,
+      "checked_on": "2026-10-23",
+      "evidence": "data/research-square-nature-portfolio-audit.json"
     },
     {
       "journal": "Nature Biotechnology",
