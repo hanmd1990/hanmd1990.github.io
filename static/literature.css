@@ -15,3 +15,5 @@
 @media(max-width:600px){#lit-journals-dialog{padding:18px}#lit-journals-options{grid-template-columns:1fr}.lit-dialog-actions{gap:8px}.lit-schedule p{line-height:1.9}}
 /* Journal selection follows publisher families and series. */
 #lit-journals-options{display:block}.lit-publisher-group{margin:0 0 18px}.lit-publisher-group:last-child{margin-bottom:0}.lit-publisher-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #d8dde5;padding:8px 2px;margin-bottom:9px;color:var(--hmd-navy)}.lit-publisher-toggle{display:flex;align-items:center;gap:9px;font-weight:600;cursor:pointer}.lit-publisher-toggle input{accent-color:var(--hmd-navy);margin:0}.lit-publisher-count{font-size:11px;color:#626a75;white-space:nowrap}.lit-publisher-journals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.lit-journal-no-match{color:#626a75;padding:16px 0}@media(max-width:600px){.lit-publisher-journals{grid-template-columns:1fr}}
+
+.lit-author-line{font-size:13px;line-height:1.7;color:#626a75;margin:0 0 12px;max-width:960px;overflow-wrap:anywhere}.lit-paper h2{margin-bottom:5px}

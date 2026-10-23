@@ -51,13 +51,11 @@ def rebuild_literature(root):
         summ=html.Element('p',{'class':'lit-summary'});summ.text=a['summary'];card.append(summ)
         bottom=html.Element('div',{'class':'lit-paper-bottom'})
         tags=html.Element('p',{'class':'lit-tags'});tags.text=' / '.join(a['topics']);bottom.append(tags)
-        authors=html.Element('details',{'class':'lit-authors'});s=html.Element('summary');s.text='Authors and DOI';authors.append(s)
-        p=html.Element('p');p.text='; '.join(a['authors']) if a['authors'] else 'Author list unavailable.'
-        if not a.get('authorsComplete'):p.text+=' (Complete author list not verified.)'
-        authors.append(p)
-        if a.get('doi'):
-            p=html.Element('p');p.text='DOI: '+a['doi'];authors.append(p)
-        bottom.append(authors);card.append(bottom);return card
+        authors=html.Element('p',{'class':'lit-author-line'})
+        authors.text=', '.join(a['authors']) if a['authors'] else 'Author list unavailable.'
+        if not a.get('authorsComplete'):authors.text+=' (Complete author list not verified.)'
+        card.insert(2,authors)
+        card.append(bottom);return card
     listing=main.get_element_by_id('lit-results')
     for a in sorted(latest['articles'],key=lambda a:(-a['relevance'],a['journal'],a['title'])):listing.append(article(a))
     main.get_element_by_id('lit-count').text=f"{len(latest['articles'])} selected articles"

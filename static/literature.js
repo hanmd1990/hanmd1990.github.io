@@ -16,9 +16,8 @@
     const date=node('time','',a.date);date.dateTime=a.date;meta.append(date);
     const heading=node('h2'),link=node('a','',a.title);link.href=a.url;link.target='_blank';link.rel='noopener noreferrer';heading.append(link);
     const bottom=node('div','lit-paper-bottom');bottom.append(node('p','lit-tags',a.topics.join(' / ')));
-    const authors=node('details','lit-authors');authors.append(node('summary','','Authors and DOI'),node('p','',(a.authors.length?a.authors.join('; '):'Author list unavailable.')+(a.authorsComplete?'':' (Complete author list not verified.)')));
-    if(a.doi)authors.append(node('p','','DOI: '+a.doi));bottom.append(authors);
-    card.append(meta,heading,node('p','lit-summary',a.summary),bottom);return card;
+    const authors=node('p','lit-author-line',(a.authors.length?a.authors.join(', '):'Author list unavailable.')+(a.authorsComplete?'':' (Complete author list not verified.)'));
+    card.append(meta,heading,authors,node('p','lit-summary',a.summary),bottom);return card;
   }
   function render(){
     const e=selected(),q=search.value.trim().toLocaleLowerCase();
