@@ -1,0 +1,34 @@
+// Private reader feedback. Ownership is fixed by the UID in the path.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() { return request.auth != null; }
+    function isOwner(uid) { return isAuthenticated() && request.auth.uid == uid; }
+    function uidUnchanged(uid) { return request.auth.uid == uid; }
+    function uidNotModified(uid) { return request.auth.uid == uid; }
+    function bounded(value, limit) { return value is string && value.size() <= limit; }
+    function validFeedback(d) {
+      return d.keys().hasAll(['key','id','doi','title','journal','signals','note','updatedAt'])
+        && d.keys().hasOnly(['key','id','doi','title','journal','signals','note','updatedAt'])
+        && bounded(d.key,1000) && d.key.size()>0 && bounded(d.id,1000) && d.id.size()>0
+        && bounded(d.doi,1000) && bounded(d.title,2000) && d.title.size()>0
+        && bounded(d.journal,300) && bounded(d.note,2000)
+        && d.signals is list && d.signals.size() <= 2
+        && d.signals.toSet().size()==d.signals.size()
+        && d.signals.hasOnly(['useful','more','irrelevant'])
+        && (!d.signals.hasAny(['irrelevant']) || d.signals.size()==1)
+        && d.updatedAt is timestamp && d.updatedAt==request.time;
+    }
+    match /readers/{uid}/feedback/{article} {
+      allow read: if isOwner(uid);
+      allow create: if isOwner(uid) && uidUnchanged(uid)
+        && article.matches('^[a-f0-9]{64}$') && validFeedback(request.resource.data);
+      allow update: if isOwner(uid) && uidNotModified(uid)
+        && validFeedback(request.resource.data)
+        && request.resource.data.key == resource.data.key
+        && request.resource.data.id == resource.data.id;
+      allow delete: if false;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

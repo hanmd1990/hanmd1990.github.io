@@ -39,7 +39,7 @@ for f in ROOT.rglob('*'):
         if re.search(r'@import',s):errors.append(f'{f}: CSS import requires verification')
     elif f.suffix=='.js':
         script=f.read_text(encoding='utf-8')
-        # Requested Apple Maps enhancement; this is the sole approved remote SDK.
+        # Requested Apple Maps enhancement; an explicitly approved remote SDK.
         # The empty-token and failure paths retain the local campus map.
         if f.relative_to(ROOT).as_posix()=='static/contact-map.js':
             script=script.replace('https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js','')
@@ -49,6 +49,9 @@ for f in ROOT.rglob('*'):
                              'https://policies.google.com/technologies/partner-sites',
                              'https://hm.baidu.com/hm.js?e387d8beff78853986f3b7b31860f890'):
                 script=script.replace(approved,'')
+        # Owner-requested account login and private sync; official version-pinned SDK.
+        if f.relative_to(ROOT).as_posix()=='static/literature-account.js':
+            script=script.replace('https://www.gstatic.com/firebasejs/13.1.0/','')
         if re.search(r'fetch\s*\(|XMLHttpRequest|https?://',script):errors.append(f'{f}: remote script dependency')
 report={'checked_html_pages':count,'errors':sorted(set(errors))}
 print(json.dumps(report,ensure_ascii=False,indent=2))
