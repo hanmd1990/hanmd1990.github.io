@@ -302,6 +302,8 @@ for path in ROOT.rglob('index.html'):
         for name in ('apple-maps-config','contact-map'):
             for old_script in tree.xpath('//script[starts-with(@src,"/static/'+name+'.js")]'):
                 old_script.getparent().remove(old_script)
+        map_version=hashlib.sha256((ROOT/'static/contact-map.js').read_bytes()).hexdigest()[:12]
+        tree.find('head').append(html.Element('script',src='/static/contact-map.js?v='+map_version,defer='defer'))
         # The platform snapshot nests the right column inside the left column.
         for right in tree.xpath('//div[contains(concat(" ",@class," ")," col-7 ")]'):
             rows=right.xpath('ancestor::div[contains(concat(" ",@class," ")," s-row-content ")]')
@@ -409,3 +411,4 @@ rebuild_literature(ROOT)
 report={'archive_design':'clean-academic',**archive_details,'current_year':today,'publications_entry_year':current(pub_years),'news_entry_year':current(news_years),'publication_years':pub_years,'news_years':news_years,'publication_counts':counts,'total_publications':len(paper_ids)}
 (ROOT/'archive-build-report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
 print(json.dumps(report))
+

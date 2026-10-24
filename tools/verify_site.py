@@ -1,5 +1,5 @@
 """Fail on missing assets or unapproved third-party runtime dependencies."""
-import json,re,sys
+import hashlib,json,re,sys
 from pathlib import Path
 from urllib.parse import urljoin,urlparse,unquote
 from lxml import html
@@ -48,6 +48,16 @@ for f in ROOT.rglob('*'):
         if re.search(r'@import',s):errors.append(f'{f}: CSS import requires verification')
     elif f.suffix=='.js':
         script=f.read_text(encoding='utf-8')
+        # Official Leaflet 1.9.4 distribution, pinned to the published release.
+        if f.relative_to(ROOT).as_posix()=='static/vendor/leaflet/leaflet.js':
+            if hashlib.sha256(f.read_bytes()).hexdigest()!='db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a':
+                errors.append(f'{f}: unexpected Leaflet version')
+            continue
+        # Only the requested raster map's tile service and attribution.
+        if f.relative_to(ROOT).as_posix()=='static/contact-map-raster.js':
+            for approved in ('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                             'https://www.openstreetmap.org/copyright'):
+                script=script.replace(approved,'')
         # Requested Apple Maps enhancement; an explicitly approved remote SDK.
         # The empty-token and failure paths retain the local campus map.
         if f.relative_to(ROOT).as_posix()=='static/contact-map.js':
@@ -65,3 +75,4 @@ for f in ROOT.rglob('*'):
 report={'checked_html_pages':count,'errors':sorted(set(errors))}
 print(json.dumps(report,ensure_ascii=False,indent=2))
 sys.exit(bool(errors))
+
