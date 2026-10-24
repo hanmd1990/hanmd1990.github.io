@@ -151,3 +151,25 @@
 
 /* Align the recommendations link beneath the account area. */
 .lit-intro-details .lit-personalization-help>.lit-detail-toggle{justify-self:end;text-align:right}
+.lit-account-panel{max-width:540px}
+.lit-account-actions{display:flex;align-items:center;gap:6px}
+.lit-account-actions #lit-email-open{background:white;color:var(--hmd-navy);border-color:#c7cdd6}
+.lit-account-actions #lit-email-open:hover{border-color:var(--hmd-navy);background:var(--hmd-light-gray)}
+#lit-email-dialog{box-sizing:border-box;width:min(420px,calc(100% - 28px));max-height:90dvh;overflow:auto;padding:26px;border:1px solid #d8dfe8;border-radius:12px;background:white;color:var(--hmd-text);font:14px/1.6 'Segoe UI',Arial,sans-serif;box-shadow:0 22px 80px #142b5533}
+#lit-email-dialog::backdrop{background:#142b5577}
+.lit-email-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}
+.lit-email-heading h2{margin:0;color:var(--hmd-navy);font-size:22px;line-height:1.3}
+#lit-email-close{border:0;background:none;font-size:26px;line-height:1;color:var(--hmd-navy);cursor:pointer}
+.lit-email-modes{display:flex;gap:6px;padding:3px;margin-bottom:18px;background:var(--hmd-light-gray);border-radius:6px}
+.lit-email-modes button{flex:1;padding:7px 10px;border:0;border-radius:4px;color:var(--hmd-navy);background:transparent;font:13px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.lit-email-modes button[aria-pressed=true]{background:white;box-shadow:0 1px 4px #142b5517;font-weight:600}
+#lit-email-form label{display:block;margin:14px 0;color:var(--hmd-navy);font-size:12px;font-weight:600}
+#lit-email-form input{display:block;box-sizing:border-box;width:100%;height:42px;margin-top:5px;padding:8px 11px;border:1px solid #c7cdd6;border-radius:5px;background:white;color:var(--hmd-text);font:14px 'Segoe UI',Arial,sans-serif}
+#lit-email-status,#lit-email-privacy{font-size:12px;line-height:1.65;color:#626a75;margin:12px 0}
+#lit-email-status:empty{display:none}
+#lit-email-submit{width:100%;min-height:42px;margin-top:5px;border:1px solid var(--hmd-navy);border-radius:6px;background:var(--hmd-navy);color:white;font:600 13px 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.lit-email-secondary{margin-top:15px;text-align:center}.lit-email-secondary button{border:0;background:none;color:var(--hmd-blue);font:12px 'Segoe UI',Arial,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#lit-email-dialog [hidden]{display:none!important}
+#lit-email-dialog button:disabled{opacity:.5;cursor:wait}
+#lit-email-dialog :is(input,button):focus-visible{outline:2px solid var(--hmd-gold);outline-offset:3px}
+@media(max-width:600px){.lit-account-actions button{padding:8px 10px;font-size:11px}.lit-account-identity{flex:1 1 90px}.lit-account-actions{flex:none}#lit-email-dialog{padding:22px}}

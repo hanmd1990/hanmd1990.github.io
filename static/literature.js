@@ -121,8 +121,9 @@
     byId('lit-account-name').textContent=state.user?state.user.displayName:'Your reading account';
     document.querySelector('.lit-account-panel').dataset.state=state.status;
     byId('lit-account-signin').hidden=!!state.user;byId('lit-account-signin').disabled=['loading','error'].includes(state.status);
+    byId('lit-email-open').hidden=!!state.user;byId('lit-email-open').disabled=['loading','error'].includes(state.status);
     byId('lit-account-signout').hidden=!state.user;
-    byId('lit-account-note').textContent=state.user?'Reactions show your name to signed-in readers. Notes remain private.':'Sign in with Google to save reactions and private notes across devices.';
+    byId('lit-account-note').textContent=state.user?'Reactions show your name to signed-in readers. Notes remain private.':'Sign in with Google or email to sync your reactions and private notes.';
     byId('lit-feedback-status').textContent=state.status==='signed-out'?'Private preferences, across devices':state.message==='Synced across your devices.'?'Preferences synced':state.message;
     if(prior!==state.user?.uid){version=state.user?'personal':'community';sort.value='personal';byId('lit-feedback-filter').value='all';}
     if(edition.value&&(prior!==state.user?.uid||document.activeElement?.tagName!=='TEXTAREA'))render();

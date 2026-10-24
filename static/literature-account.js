@@ -9,7 +9,17 @@
     'auth/popup-blocked':'Allow the Google sign-in popup, then try again.',
     'auth/popup-closed-by-user':'Sign-in was closed. You can try again.',
     'auth/unauthorized-domain':'This website is not yet authorized for Google sign-in.',
-    'auth/network-request-failed':'Google sign-in could not connect. Check your network and retry.',
+    'auth/network-request-failed':'Sign-in could not connect. Check your network and retry.',
+    'auth/invalid-email':'Enter a valid email address.',
+    'auth/invalid-credential':'Email or password is incorrect. If you previously used Google, choose Google sign-in.',
+    'auth/wrong-password':'Email or password is incorrect.',
+    'auth/user-not-found':'Email or password is incorrect.',
+    'auth/email-already-in-use':'This email already has an account. Sign in, reset your password, or use Google.',
+    'auth/weak-password':'Choose a password with at least 8 characters.',
+    'auth/password-does-not-meet-requirements':'This password does not meet the account password requirements.',
+    'auth/too-many-requests':'Too many attempts. Please wait and try again.',
+    'auth/operation-not-allowed':'Email sign-in is not enabled yet. Please use Google for now.',
+    'auth/user-disabled':'This account is disabled. Contact the site owner.',
     'permission-denied':'Could not access your private feedback. Please sign out and sign in again.'
   }[error.code]||'Could not connect to your account. Check your network and reload.');
   const ready=(async()=>{
@@ -43,6 +53,30 @@
     getState:()=>state,
     async signIn(){if(!await ready)return;try{const provider=new sdk.A.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await sdk.A.signInWithPopup(auth,provider);}catch(error){emit({message:explain(error)});}},
     async signOut(){if(!await ready)return;try{await sdk.A.signOut(auth);}catch(error){emit({message:explain(error)});}},
+    async signInEmail(email,password){
+      if(!await ready)return {ok:false,message:state.message};
+      try{await sdk.A.signInWithEmailAndPassword(auth,email.trim(),password);return {ok:true};}
+      catch(error){return {ok:false,message:explain(error)};}
+    },
+    async registerEmail(email,password,displayName){
+      if(!await ready)return {ok:false,message:state.message};
+      const name=displayName.trim();
+      if(!name||name.length>100||name.includes('@'))return {ok:false,message:'Enter a display name of 1–100 characters, rather than an email address.'};
+      if(password.length<8)return {ok:false,message:'Choose a password with at least 8 characters.'};
+      try{
+        const {user}=await sdk.A.createUserWithEmailAndPassword(auth,email.trim(),password);
+        await sdk.A.updateProfile(user,{displayName:name});
+        // Refresh the name claim before a named reaction is written to Firestore.
+        await user.getIdToken(true);
+        if(auth.currentUser?.uid===user.uid)emit({user:{uid:user.uid,displayName:name}});
+        return {ok:true};
+      }catch(error){return {ok:false,message:explain(error)};}
+    },
+    async resetEmailPassword(email){
+      if(!await ready)return {ok:false,message:state.message};
+      try{await sdk.A.sendPasswordResetEmail(auth,email.trim());return {ok:true,message:'If this address has a password account, a reset email has been sent. Check your inbox and spam folder.'};}
+      catch(error){if(error.code==='auth/user-not-found')return {ok:true,message:'If this address has a password account, a reset email has been sent. Check your inbox and spam folder.'};return {ok:false,message:explain(error)};}
+    },
     async save(entry){
       if(state.status!=='signed-in'||!auth.currentUser)return false;
       const user=auth.currentUser.uid,current=generation;

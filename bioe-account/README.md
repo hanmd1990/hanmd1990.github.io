@@ -1,5 +1,13 @@
 # BioE Radar accounts
 
+## Email and password (24 October 2026)
+
+Email/password is enabled alongside Google in Firebase Authentication. The Email button opens a native dialog with sign-in, account creation and password reset modes. New readers choose a public display name and a password of at least eight characters. The profile name is saved and the Firebase ID token is refreshed before named reactions are written, preserving the existing name-claim validation. Email addresses and passwords are never stored in Firestore, public reaction records, GitHub, or application logs. Firebase manages credentials and reset emails. The reset response is intentionally generic.
+
+The dialog form uses `method="dialog"`: credentials are never sent as a URL query or posted to GitHub Pages. The client prevents the native submit and calls the official Firebase SDK; password inputs are cleared after submission and on close. The existing Google flow, UID-scoped preferences, edition cutoffs, community averaging and sync remain in place. WeChat is deferred; no certification purchase or billing upgrade is needed for this change.
+
+The production adapter passed local Auth emulator registration, name-claim refresh, sign-out/sign-in, wrong-password, duplicate-address, reset and separate-account checks. UI checks cover mode transitions, reset feedback, password clearing, and 1366/390/320px layouts. Run the Auth test with `firebase emulators:exec --only auth --project demo-bioe-email --config bioe-account/email-emulator.json 'node --test bioe-account/test/email-auth.cjs'`, with Firebase SDK dependencies installed. `email-ui.cjs` uses Playwright and the same local preview conventions as `account-ui.cjs`.
+
 ## Named reactions and edition versions (24 October 2026)
 
 Buttons are Like, Useful and Not relevant. The existing internal `more` signal now labels Like; legacy records need no migration. Notes remain owner-only. New signal changes atomically update private feedback, a signed-in-readable `communityReactions/{uid}_{articleSHA}` document (verified display name, no notes/email), and an immutable `reactionEvents/{autoID}`. Legacy private feedback is never automatically published. Undo clears the current shared signal; historical events are retained for edition snapshots.
