@@ -282,10 +282,10 @@ for path in ROOT.rglob('index.html'):
         tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/archive.css?v='+version))
     if route=='contact':
         contact=tree.xpath('//*[@id="s-content"]')[0]
-        profile_names=['Curriculum Vitae','Biography','pku profile [CN]','pku profile [EN]','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
+        profile_names=['Curriculum Vitae','Biography','PKU Profile [CN]','PKU Profile [EN]','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
         profile_links={text(a):a.get('href') for a in contact.xpath('.//a[@href]') if text(a) in profile_names}
-        profile_links['pku profile [CN]']='https://future.pku.edu.cn/szll/jyxln/9a4bd0e17e044037b0228a4dbcaf3875.htm'
-        profile_links['pku profile [EN]']='https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm'
+        profile_links['PKU Profile [CN]']='https://future.pku.edu.cn/szll/jyxln/9a4bd0e17e044037b0228a4dbcaf3875.htm'
+        profile_links['PKU Profile [EN]']='https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm'
         contact.clear();contact.set('id','s-content')
         layout=html.fragment_fromstring('''<main class="lab-contact-layout">
           <div class="lab-contact-grid">
