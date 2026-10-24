@@ -153,8 +153,8 @@
 .lit-intro-details .lit-personalization-help>.lit-detail-toggle{justify-self:end;text-align:right}
 .lit-account-panel{max-width:540px}
 .lit-account-actions{display:flex;align-items:center;gap:6px}
-.lit-account-actions #lit-email-open{background:white;color:var(--hmd-navy);border-color:#c7cdd6}
-.lit-account-actions #lit-email-open:hover{border-color:var(--hmd-navy);background:var(--hmd-light-gray)}
+.lit-account-actions #lit-email-open{background:var(--hmd-navy);color:white;border-color:var(--hmd-navy)}
+.lit-account-actions #lit-email-open:hover{border-color:var(--hmd-blue);background:var(--hmd-blue)}
 #lit-email-dialog{box-sizing:border-box;width:min(420px,calc(100% - 28px));max-height:90dvh;overflow:auto;padding:26px;border:1px solid #d8dfe8;border-radius:12px;background:white;color:var(--hmd-text);font:14px/1.6 'Segoe UI',Arial,sans-serif;box-shadow:0 22px 80px #142b5533}
 #lit-email-dialog::backdrop{background:#142b5577}
 .lit-email-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}
@@ -173,3 +173,8 @@
 #lit-email-dialog button:disabled{opacity:.5;cursor:wait}
 #lit-email-dialog :is(input,button):focus-visible{outline:2px solid var(--hmd-gold);outline-offset:3px}
 @media(max-width:600px){.lit-account-actions button{padding:8px 10px;font-size:11px}.lit-account-identity{flex:1 1 90px}.lit-account-actions{flex:none}#lit-email-dialog{padding:22px}}
+
+.lit-google-login{width:100%;padding:11px 16px;border:1px solid #c7cdd6;border-radius:6px;background:white;color:var(--hmd-navy);font:600 14px Segoe UI,Arial,sans-serif;cursor:pointer}
+.lit-google-login:hover{background:var(--hmd-light-gray);border-color:var(--hmd-navy)}
+.lit-login-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:#697586;font-size:12px}
+.lit-login-divider::before,.lit-login-divider::after{content:"";height:1px;background:#e0e5eb;flex:1}

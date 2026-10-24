@@ -10,13 +10,14 @@
     byId('lit-email-name-row').hidden=!signup;name.required=signup;name.disabled=!signup;
     byId('lit-email-password-row').hidden=reset;password.required=!reset;password.disabled=reset;password.minLength=signup?8:1;
     password.autocomplete=signup?'new-password':'current-password';
-    byId('lit-email-title').textContent=reset?'Reset your password':signup?'Create your reading account':'Sign in with email';
+    byId('lit-email-title').textContent=reset?'Reset your password':signup?'Create your reading account':'Log in';
     submit.textContent=reset?'Send reset email':signup?'Create account':'Sign in';
     byId('lit-email-forgot').hidden=reset;byId('lit-email-back').hidden=!reset;
     byId('lit-email-privacy').hidden=!signup;
     dialog.querySelectorAll('[data-email-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.emailMode===mode)));
   };
   byId('lit-email-open').addEventListener('click',()=>{setMode('signin');dialog.showModal();email.focus();});
+  window.BioERadarAccount.subscribe(state=>{if(state.user&&dialog.open)dialog.close();});
   byId('lit-email-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('cancel',event=>{if(busy)event.preventDefault();});
   dialog.addEventListener('close',()=>{form.reset();password.value='';status.textContent='';});
