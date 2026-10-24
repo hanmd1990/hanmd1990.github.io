@@ -20,7 +20,7 @@ def rebuild_literature(root):
     header=copy.deepcopy(html.document_fromstring((root/'publications/index.html').read_bytes()).xpath('//header[contains(@class,"lab-header")]')[0])
     tree=html.document_fromstring('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BioE Radar Beta — Mengdi Han Research Group</title><meta name="description" content="Weekly literature on wireless implants, magnetic systems, wearable devices, bioelectronics and micromechanical sensing."></head><body class="lab-literature-page"></body></html>')
     head=tree.find('head');body=tree.find('body');body.append(header)
-    head.append(html.Element('link',rel='canonical',href='https://hanmd1990.github.io/literature/'))
+    head.append(html.Element('link',rel='canonical',href='https://hanmd1990.github.io/BioE_Radar/'))
     head.append(html.Element('link',rel='icon',href='/images/brand/site-icon.png'))
     for name in ('site.css','hmd-color.css','literature.css'):
         v=hashlib.sha256((root/'static'/name).read_bytes()).hexdigest()[:12]
@@ -65,13 +65,16 @@ def rebuild_literature(root):
     payload=html.Element('template',id='lit-data')
     payload.text=json.dumps({'latest':index['latest'],'editions':editions},ensure_ascii=False,separators=(',',':')).replace('<','\\u003c')
     body.append(payload)
-    path=root/'literature/index.html';path.parent.mkdir(exist_ok=True);path.write_bytes(html.tostring(tree,encoding='utf-8',doctype='<!doctype html>'))
+    path=root/'BioE_Radar/index.html';path.parent.mkdir(exist_ok=True);path.write_bytes(html.tostring(tree,encoding='utf-8',doctype='<!doctype html>'))
+    # Preserve bookmarks to the original archive URL.
+    legacy=root/'literature/index.html';legacy.parent.mkdir(exist_ok=True)
+    legacy.write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BioE Radar</title><link rel="canonical" href="https://hanmd1990.github.io/BioE_Radar/"><meta http-equiv="refresh" content="0;url=/BioE_Radar/"></head><body><p>BioE Radar has moved. <a href="/BioE_Radar/">Open BioE Radar</a>.</p></body></html>',encoding='utf-8')
     # Add the public page to shared navigation after all other generators finish.
     for path in root.rglob('index.html'):
         if any(p in path.relative_to(root).parts for p in ('tools','work','outputs','.git','.github')):continue
         t=html.document_fromstring(path.read_bytes())
         for nav in t.xpath('//header[contains(@class,"lab-header")]//nav[@id="lab-navigation"]'):
-            for old in nav.xpath('./a[@href="/literature/"]'):nav.remove(old)
+            for old in nav.xpath('./a[@href="/literature/" or @href="/BioE_Radar/"]'):nav.remove(old)
         for h in t.xpath('//header[contains(@class,"lab-header")]'):
             brand=h.xpath('.//a[contains(concat(" ",normalize-space(@class)," ")," lab-brand ")]')
             if not brand:continue
@@ -80,9 +83,9 @@ def rebuild_literature(root):
             if b.getparent().get('class')=='lab-title-row':row=b.getparent()
             else:
                 row=html.Element('div',{'class':'lab-title-row'});b.getparent().replace(b,row);row.append(b)
-            a=html.Element('a',href='/literature/',attrib={'class':'lab-radar-link','aria-label':'BioE Radar — weekly literature'})
+            a=html.Element('a',href='/BioE_Radar/',attrib={'class':'lab-radar-link','aria-label':'BioE Radar — weekly literature'})
             a.text='BioE Radar'
-            if path.parent.name=='literature':a.set('aria-current','page')
+            if path.parent.name=='BioE_Radar':a.set('aria-current','page')
             row.append(a)
         path.write_bytes(html.tostring(t,encoding='utf-8',doctype='<!doctype html>'))
     print('Literature archive:',len(editions),'edition(s),',len(latest['articles']),'selected articles')

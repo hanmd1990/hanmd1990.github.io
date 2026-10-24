@@ -10,7 +10,7 @@ test('sign-in, feedback, undo and clearing private UI on sign-out',async()=>{
  try{
   const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/static/literature-account.js*',route=>route.fulfill({contentType:'application/javascript',body:`(()=>{let state={status:'signed-out',user:null,feedback:{},message:'Signed out'},listeners=[];const emit=()=>listeners.forEach(fn=>fn(state));window.BioERadarAccount={subscribe(fn){listeners.push(fn);fn(state)},signIn(){state={status:'signed-in',user:{uid:'alice',displayName:'Alice'},feedback:{},message:'Synced'};emit()},signOut(){state={status:'signed-out',user:null,feedback:{},message:'Signed out'};emit()},async save(entry){state.feedback={...state.feedback,[entry.key]:entry};state.reactions=[{key:entry.key,uid:'alice',name:'Alice',signals:entry.signals}];state.events=[...(state.events||[]),{key:entry.key,uid:'alice',signals:entry.signals,createdAt:Date.now()}];emit();return true},getState(){return state}}})();`}));
-  await page.goto('http://127.0.0.1:'+server.address().port+'/literature/');
+  await page.goto('http://127.0.0.1:'+server.address().port+'/BioE_Radar/');
   await page.getByRole('button',{name:'Sign in with Google',exact:true}).waitFor();
   assert.equal(await page.locator('.lit-paper').count(),52);
   assert.equal(await page.getByRole('button',{name:'Useful',exact:true}).first().isEnabled(),false);

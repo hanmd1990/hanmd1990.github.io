@@ -1,6 +1,6 @@
 # Public literature updates
 
-The owner authorized an all-English public literature page on 2026-10-23. URL: https://hanmd1990.github.io/literature/ . This is a native GitHub Pages page with the shared lab header, fonts and HMD palette. `tools/literature_layout.py` builds it after the other page generators and adds LITERATURE before CONTACT in all shared navigation menus.
+The owner authorized an all-English public literature page on 2026-10-23. URL: https://hanmd1990.github.io/BioE_Radar/ . This is a native GitHub Pages page with the shared lab header, fonts and HMD palette. `tools/literature_layout.py` builds it after the other page generators and adds LITERATURE before CONTACT in all shared navigation menus.
 
 ## Weekly publication
 
@@ -17,7 +17,7 @@ The first public edition is 2026-10-23: 43 related entries (41 direct/method-tra
 
 ## Portal design revision — 2026-10-23
 
-The portal is now **BioE Radar Beta**. Put its prominent navy badge beside the Mengdi Han Research Group identity on every shared page; remove LITERATURE from the existing menu. Keep the `/literature/` URL.
+The portal is now **BioE Radar Beta**. Put its prominent navy badge beside the Mengdi Han Research Group identity on every shared page; remove LITERATURE from the existing menu. Use `/BioE_Radar/`; the legacy `/literature/` address redirects to it.
 
 Journals included opens an accessible modal with searchable checkboxes for every surveyed journal and preprint source, including those with no selected papers this edition. Support multiple choices, Select all/Clear all, Apply and Cancel. Topic categories should be generated during each weekly editorial update from recent actual reader preferences/feedback and selected literature; do not claim feedback exists when none was recorded. The public taxonomy is shared; per-account recommendations are not yet implemented.
 
