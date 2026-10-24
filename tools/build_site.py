@@ -262,9 +262,7 @@ for path in ROOT.rglob('index.html'):
         link=html.Element('a',href=paper['url'],target='_blank',rel='noopener noreferrer');link.text=paper['title'];title.append(link)
         authors.clear();authors.set('class','authors')
         full=json.loads((ROOT/'data/publication-full-authors.json').read_text())['records']['89']['authors']
-        names=html.fragment_fromstring('<p>'+full.replace('*','<sup>*</sup>')+'</p>')
-        authors.text=names.text
-        for child in list(names):authors.append(child)
+        authors.text=full
         metadata.clear();metadata.set('class','journal')
         meta=copy.deepcopy(paper['metadata'])
         # This is the movie page itself; omit the duplicate parenthetical self-link.
