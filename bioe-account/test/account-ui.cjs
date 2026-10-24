@@ -16,7 +16,7 @@ test('sign-in, feedback, undo and clearing private UI on sign-out',async()=>{
   assert.equal(await page.getByRole('button',{name:'Useful',exact:true}).first().isEnabled(),false);
   await page.getByRole('button',{name:'Sign in with Google',exact:true}).click();
   assert.equal(await page.locator('#lit-sort').inputValue(),'personal');
-  const summary=page.locator('.lit-personalization-help>summary');
+  const summary=page.locator('#lit-recommendations-toggle');
   const position=()=>summary.evaluate(e=>({x:e.getBoundingClientRect().x,y:e.getBoundingClientRect().y+scrollY}));
   const initialPosition=await position();await summary.click();assert.deepEqual(await position(),initialPosition);await summary.click();
   const order=await page.locator('.lit-paper').evaluateAll(es=>es.map(e=>e.dataset.id));

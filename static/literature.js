@@ -45,7 +45,8 @@
     tooltipIndex=0;results.replaceChildren(...items.map(row));
     if(focusedArticle&&focusedSignal)Array.from(results.children).find(card=>card.dataset.id===focusedArticle)?.querySelector('button[data-signal="'+focusedSignal+'"]')?.focus({preventScroll:true});
     document.querySelectorAll('[data-reading-version]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.readingVersion===version));b.disabled=b.dataset.readingVersion==='personal'&&!accountState.user;});
-    byId('lit-version-note').textContent=!accountState.user?'Sign in for personal recommendations, community averages and reader reactions.':accountState.communityStatus==='error'?'Community feedback is temporarily unavailable. Your private notes remain available.':(version==='personal'?'Personal version':'Community average version')+' · Order fixed for this edition. Reactions inform future editions.';
+    byId('lit-version-note').textContent=!accountState.user?'Sign in for personal recommendations, community averages and reader reactions.':accountState.communityStatus==='error'?'Community feedback is temporarily unavailable. Your private notes remain available.':'';
+    byId('lit-version-note').hidden=!byId('lit-version-note').textContent;
     byId('lit-count').textContent=items.length+' of '+e.articles.length+' selected articles';
     byId('lit-empty').hidden=items.length!==0;
     byId('lit-window').textContent=e.start+' – '+e.end+' (Beijing time)';
@@ -110,6 +111,9 @@
   byId('lit-reset').addEventListener('click',()=>{search.value='';sort.value='relevance';byId('lit-feedback-filter').value='all';setup();search.focus();});
   byId('lit-feedback-filter').addEventListener('change',render);
   document.querySelectorAll('[data-reading-version]').forEach(b=>b.addEventListener('click',()=>{version=b.dataset.readingVersion;sort.value='personal';render();}));
+  for(const [toggleId,panelId] of [['lit-sources-toggle','lit-sources-body'],['lit-recommendations-toggle','lit-recommendations-body']]){
+    const toggle=byId(toggleId),panel=byId(panelId);toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));panel.hidden=open;});
+  }
   byId('lit-account-signin').addEventListener('click',()=>account.signIn());
   byId('lit-account-signout').addEventListener('click',()=>account.signOut());
   account.subscribe(state=>{

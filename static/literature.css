@@ -116,3 +116,35 @@
 .lit-reaction-tip{position:absolute;bottom:calc(100% + 8px);left:0;z-index:5;display:none;box-sizing:border-box;width:max-content;max-width:min(240px,72vw);padding:8px 11px;border-radius:6px;background:var(--hmd-navy);color:white;font-size:11px;line-height:1.6;box-shadow:0 4px 12px #142b5520;overflow-wrap:anywhere;pointer-events:none}
 .lit-reaction-wrap:hover .lit-reaction-tip,.lit-reaction-wrap:focus-within .lit-reaction-tip{display:block}
 @media(max-width:600px){.lit-reader-tools{gap:12px}.lit-version-switch button{padding:6px 10px}}
+
+/* Keep the two disclosures beside the introduction, with full-width content below. */
+.lit-intro-details{display:grid;grid-template-columns:max-content max-content minmax(0,1fr);align-items:baseline;justify-content:start;gap:12px 18px}
+.literature-intro .lit-intro-details>.lit-intro-sentence{margin:0;grid-column:1;grid-row:1}
+.literature-intro .lit-intro-details>.lit-sources-disclosure,.literature-intro .lit-intro-details>.lit-personalization-help{display:contents}
+.lit-intro-details #lit-sources-panel>.lit-detail-toggle{grid-column:2;grid-row:1}
+.lit-intro-details .lit-personalization-help>.lit-detail-toggle{grid-column:3;grid-row:1}
+.lit-intro-details .lit-detail-toggle{display:block;width:max-content;max-width:100%;margin:0;padding:0;border:0;background:transparent;text-align:left;cursor:pointer;font:600 13px/1.65 'Segoe UI',Arial,sans-serif;color:var(--hmd-navy)}
+
+.lit-intro-details .lit-sources-toggle{margin-left:0}
+.lit-intro-details #lit-recommendations-toggle::before{content:'▸';display:inline-block;margin-right:5px}
+.lit-intro-details #lit-recommendations-toggle[aria-expanded=true]::before{content:'▾'}
+.lit-intro-details .lit-sources-body,.lit-intro-details .lit-help-body{grid-column:1/-1;grid-row:2;box-sizing:border-box;margin:0}
+.lit-intro-details:has(#lit-sources-toggle[aria-expanded=true]) .lit-help-body{grid-row:3}
+.lit-intro-details [hidden]{display:none!important}
+.lit-version-option{position:relative;display:inline-flex}
+.lit-context-tip,.lit-reaction-tip{position:absolute;bottom:calc(100% + 10px);left:0;z-index:10;display:none;box-sizing:border-box;width:max-content;max-width:min(260px,72vw);padding:11px 14px;border:1px solid #d9e0e9;border-radius:8px;background:#fff;color:#354357;font-size:12px;font-weight:400;line-height:1.65;text-align:left;white-space:normal;box-shadow:0 8px 24px #142b551a;overflow-wrap:anywhere;pointer-events:none}
+.lit-context-tip::after,.lit-reaction-tip::after{content:'';position:absolute;bottom:-5px;left:18px;width:8px;height:8px;transform:rotate(45deg);background:#fff;border-right:1px solid #d9e0e9;border-bottom:1px solid #d9e0e9}
+.lit-reaction-tip::before{content:'Readers';display:block;margin-bottom:3px;color:#737f90;font-size:10px;font-weight:600}
+.lit-version-option:last-child .lit-context-tip{left:auto;right:0}
+.lit-version-option:last-child .lit-context-tip::after{left:auto;right:22px}
+.lit-version-option:hover .lit-context-tip,.lit-version-option:focus-within .lit-context-tip{display:block}
+@media(max-width:760px){
+ .lit-intro-details{grid-template-columns:max-content minmax(0,1fr);gap:10px 18px}
+ .literature-intro .lit-intro-details>.lit-intro-sentence{grid-column:1/-1;grid-row:1}
+ .lit-intro-details #lit-sources-panel>.lit-detail-toggle{grid-column:1;grid-row:2}
+ .lit-intro-details .lit-personalization-help>.lit-detail-toggle{grid-column:2;grid-row:2}
+ .lit-intro-details .lit-sources-body,.lit-intro-details .lit-help-body{grid-column:1/-1;grid-row:3}
+ .lit-intro-details:has(#lit-sources-toggle[aria-expanded=true]) .lit-help-body{grid-row:4}
+}
+
+.lit-intro-details #lit-sources-toggle[aria-expanded=true] .lit-sources-toggle::before{content:'▾'}
