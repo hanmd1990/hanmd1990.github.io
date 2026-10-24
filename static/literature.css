@@ -148,3 +148,6 @@
 }
 
 .lit-intro-details #lit-sources-toggle[aria-expanded=true] .lit-sources-toggle::before{content:'▾'}
+
+/* Align the recommendations link beneath the account area. */
+.lit-intro-details .lit-personalization-help>.lit-detail-toggle{justify-self:end;text-align:right}
