@@ -16,7 +16,7 @@
     const key=feedbackId(a),box=node('div','lit-feedback'),buttons=node('div','lit-feedback-buttons');
     const current=()=>feedback[key]||{key,id:a.id,doi:a.doi||'',title:a.title,journal:a.journal,signals:[],note:''};
     const update=async entry=>{await account.save(entry);};
-    for(const [signal,title] of [['useful','Useful'],['more','Like'],['irrelevant','Not relevant']]){
+    for(const [signal,title] of [['more','Like'],['useful','Useful'],['irrelevant','Not relevant']]){
       const voters=(accountState.reactions||[]).filter(r=>r.key===key&&r.signals.includes(signal));
       const names=[...new Map(voters.map(r=>[r.uid,r.name])).values()].sort((a,b)=>a.localeCompare(b));
       const wrap=node('span','lit-reaction-wrap'),tip=node('span','lit-reaction-tip',names.length?names.join(', '):accountState.user?'No reactions yet':'Sign in to see reader reactions');tip.id='lit-reaction-tip-'+(++tooltipIndex);tip.setAttribute('role','tooltip');
@@ -37,11 +37,13 @@
     card.append(meta,heading,authors,node('p','lit-summary',a.summary),bottom,feedbackControls(a));return card;
   }
   function render(){
+    const focused=document.activeElement,focusedArticle=focused?.closest('.lit-paper')?.dataset.id,focusedSignal=focused?.dataset.signal;
     const e=selected(),q=search.value.trim().toLocaleLowerCase();
     const feedbackFilter=byId('lit-feedback-filter').value;
     const items=e.articles.filter(a=>(feedbackFilter==='all'||(feedbackFilter==='marked'?hasFeedback(a):feedback[feedbackId(a)]?.signals.includes(feedbackFilter)))&&(!topic||a.topics.includes(topic))&&journals.has(sourceName(a.journal))&&(!q||[a.title,a.journal,a.summary,a.doi,...a.authors,...a.topics].join(' ').toLocaleLowerCase().includes(q)));
     if(sort.value==='personal'){const baseline=personalization.beforeEdition(accountState.events||[],e,version==='personal'?accountState.user?.uid:undefined,version==='personal'?feedback:{});const ranked=personalization.rank(items,baseline,data.editions.flatMap(report=>report.articles));items.splice(0,items.length,...ranked);}else items.sort((a,b)=>sort.value==='date'?String(b.date||'').localeCompare(String(a.date||''))||a.title.localeCompare(b.title):sort.value==='journal'?a.journal.localeCompare(b.journal)||String(b.date||'').localeCompare(String(a.date||'')):b.relevance-a.relevance||a.journal.localeCompare(b.journal)||a.title.localeCompare(b.title));
     tooltipIndex=0;results.replaceChildren(...items.map(row));
+    if(focusedArticle&&focusedSignal)Array.from(results.children).find(card=>card.dataset.id===focusedArticle)?.querySelector('button[data-signal="'+focusedSignal+'"]')?.focus({preventScroll:true});
     document.querySelectorAll('[data-reading-version]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.readingVersion===version));b.disabled=b.dataset.readingVersion==='personal'&&!accountState.user;});
     byId('lit-version-note').textContent=!accountState.user?'Sign in for personal recommendations, community averages and reader reactions.':accountState.communityStatus==='error'?'Community feedback is temporarily unavailable. Your private notes remain available.':(version==='personal'?'Personal version':'Community average version')+' · Order fixed for this edition. Reactions inform future editions.';
     byId('lit-count').textContent=items.length+' of '+e.articles.length+' selected articles';
