@@ -106,11 +106,12 @@
   byId('lit-account-signout').addEventListener('click',()=>account.signOut());
   account.subscribe(state=>{
     const prior=accountState.user?.uid;accountState=state;feedback=state.feedback;
-    byId('lit-account-name').textContent=state.user?state.user.displayName+' · Personal recommendations':'Personal recommendations';
+    byId('lit-account-name').textContent=state.user?state.user.displayName:'Your reading account';
+    document.querySelector('.lit-account-panel').dataset.state=state.status;
     byId('lit-account-signin').hidden=!!state.user;byId('lit-account-signin').disabled=['loading','error'].includes(state.status);
     byId('lit-account-signout').hidden=!state.user;
-    byId('lit-account-note').textContent=state.user?'Your feedback is private to this account and syncs automatically.':'Sign in to save private feedback and sync across devices. WeChat sign-in is pending.';
-    byId('lit-feedback-status').textContent=state.message;
+    byId('lit-account-note').textContent=state.user?'Your feedback is private to this account and syncs automatically.':'Sign in with Google to save private feedback and sync across devices.';
+    byId('lit-feedback-status').textContent=state.status==='signed-out'?'Private preferences, across devices':state.message==='Synced across your devices.'?'Preferences synced':state.message;
     if(prior!==state.user?.uid){sort.value=state.user?'personal':'relevance';byId('lit-feedback-filter').value='all';}
     if(edition.value&&(prior!==state.user?.uid||document.activeElement?.tagName!=='TEXTAREA'))render();
   });
