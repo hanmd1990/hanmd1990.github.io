@@ -346,3 +346,7 @@ body .hmd-archive,.lab-contact-layout,.lab-join-layout{box-sizing:content-box;ma
 .lab-contact-map figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left}
 .lab-contact-map figcaption a{display:inline;width:auto;height:auto;flex:none;font-size:12px;line-height:1.5}
 @media(max-width:767px){.lab-contact-map-frame{height:260px}}
+
+/* One concise bilingual driving address beneath the interactive location map. */
+.lab-contact-page #s-content .lab-contact-directions{margin:18px 0 0!important;font-size:14px;line-height:1.8}
+.lab-contact-page #s-content .lab-contact-directions strong{font-weight:700!important;color:var(--hmd-navy)}
