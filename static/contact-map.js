@@ -11,7 +11,7 @@
     context?.getExtension('WEBGL_lose_context')?.loseContext();
   } catch (_) {}
   if (!supported) {
-    frame.src = '/static/contact-map-fallback.html';
+    frame.src = '/static/contact-map-fallback.html?v=20261024-2';
     frame.title = 'Interactive map — 北京大学新奥工学大楼';
   }
 })();
