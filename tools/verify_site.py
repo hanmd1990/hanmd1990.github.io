@@ -24,7 +24,15 @@ for f in ROOT.rglob('*'):
         for e in t.iter():
             if not isinstance(e.tag,str):continue
             for a in ('src','poster','data','background'):
-                if e.get(a):check(e.get(a),f)
+                if e.get(a):
+                    # Owner-requested Bing consumer embed, scoped to this one iframe.
+                    if (a=='src' and e.tag=='iframe' and
+                        f.relative_to(ROOT).as_posix()=='contact/index.html' and
+                        urlparse(e.get(a)).scheme=='https' and
+                        urlparse(e.get(a)).netloc=='www.bing.com' and
+                        urlparse(e.get(a)).path=='/maps/embed'):
+                        continue
+                    check(e.get(a),f)
             if e.get('srcset'):errors.append(f'{f}: srcset needs explicit verification')
             if e.tag=='link' and e.get('rel')!='canonical':check(e.get('href'),f)
             if e.tag=='a':check(e.get('href'),f,'link')
