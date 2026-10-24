@@ -55,3 +55,15 @@
 
 /* Weekly timing has the same quiet hierarchy as publication metadata. */
 .literature-intro .lit-update-note{margin:12px 0 0;padding:0;border:0;background:none;font-size:12px;font-weight:400;line-height:1.8;color:#68717f;text-align:center;max-width:none}@media(max-width:600px){.literature-intro .lit-update-note{font-size:11px}}
+
+/* Keep the intro sentence and Sources together; expand into the original gray panel. */
+.literature-intro .lit-sources-disclosure{margin:0;text-align:left}
+.lit-sources-disclosure>summary{display:block;list-style:none;font-weight:400;font-size:16px;color:#545c68;cursor:pointer}
+.lit-sources-disclosure>summary::-webkit-details-marker{display:none}
+.lit-sources-toggle{display:inline-block;white-space:nowrap;margin-left:12px;font-size:13px;font-weight:600;color:var(--hmd-navy)}
+.lit-sources-toggle::before{content:'▸';display:inline-block;margin-right:5px}
+.lit-sources-disclosure[open] .lit-sources-toggle::before{content:'▾'}
+.lit-sources-body{margin:14px 0 20px;padding:18px 20px}
+.literature-intro .lit-sources-body>p:first-child{margin-top:0}
+.literature-intro .lit-sources-body>p:last-child{margin-bottom:0}
+@media(max-width:600px){.lit-sources-disclosure>summary{font-size:14px}.lit-sources-toggle{margin-left:8px}}

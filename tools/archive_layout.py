@@ -28,6 +28,8 @@ def news_inline(paragraph):
     # Ignore editor-inserted blank lines at the boundaries of a news entry.
     return re.sub(r"^(?:\s*<br>)+|(?:<br>\s*)+$", "", inline(paragraph).strip()).strip()
 
+from selected_publications import selected_paper_ids
+
 def rebuild_archives(root,bibliography,scholar,today):
     authors=json.loads((root/'data/publication-full-authors.json').read_text())['records']
     def citation(item):
@@ -63,7 +65,7 @@ def rebuild_archives(root,bibliography,scholar,today):
             value=' '.join(p.text_content().split());match=re.match(r'(20\d\d)/(\d+):\s*(.*)',value)
             if not match:continue
             y,month=int(match[1]),int(match[2]);news.append(dict(date=f'{y} / {month:02}',year=y,month=month,text=match[3],html=news_inline(p)))
-    data=dict(papers=papers,covers=covers,news=news,newsImages=news_images,images=images,selectedPaperIds=json.loads((root/'data/selected-publications.json').read_text())['paper_ids'],scholar=dict(source=scholar['source'],profile=scholar['profile'],checked_on=scholar['checked_on']))
+    data=dict(papers=papers,covers=covers,news=news,newsImages=news_images,images=images,selectedPaperIds=selected_paper_ids(papers,json.loads((root/'data/selected-publications.json').read_text())),scholar=dict(source=scholar['source'],profile=scholar['profile'],checked_on=scholar['checked_on']))
     header=copy.deepcopy(html.document_fromstring((root/'publications/index.html').read_text(encoding='utf-8')).xpath('//header[contains(@class,"lab-header")]')[0])
     def badge(item):
         record=item.get('citation');count=record.get('count') if record else None

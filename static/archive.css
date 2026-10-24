@@ -16,3 +16,8 @@ html{background:#fff}body.lab-modern-archive{margin:0;background:#fff;color:#252
 .hmd-archive .cover-tile:focus-visible{outline:3px solid #A1662F;outline-offset:5px}
 @media(max-width:480px){.hmd-archive .cover-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}}
 @media(prefers-reduced-motion:reduce){.hmd-archive .cover-tile{transition:none}.hmd-archive .cover-tile:hover{transform:none}}
+
+/* Article video page shares the publication title, full author and journal styles. */
+.hmd-archive.microrobot-citation{max-width:none;margin:0;padding:0}
+.microrobot-citation .paper-title a{color:inherit}
+.hmd-archive.microrobot-citation .paper-note{text-align:left;margin:10px 0 0}
