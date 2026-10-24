@@ -103,7 +103,7 @@ def rebuild_archives(root,bibliography,scholar,today):
                 subset=ps if year is None else [p for p in ps if p['year']==year]
                 result+='<section class="selected-papers"><div>' if year is None else f'<section class="paper-layout"><aside class="year-rail"><strong>{year}</strong><p>{len(subset)} articles</p></aside><div>'
                 for p in subset:
-                    names=escape(p['authors']).replace('*','<sup>*</sup>')
+                    names=escape(p['authors'])
                     result+=f'<article class="paper-row"><span class="paper-number">{p["id"]}</span><div><a class="paper-title" href="{escape(p["url"],quote=True)}" target="_blank" rel="noopener noreferrer">{escape(p["title"])}</a><p class="authors">{names}</p><div class="journal-row"><p class="journal">{p["meta_html"]}</p>{badge(p)}</div></div></article>'
                 result+='</div></section>'
         else:
