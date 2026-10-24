@@ -1,5 +1,15 @@
 # BioE Radar accounts
 
+## Named reactions and edition versions (24 October 2026)
+
+Buttons are Like, Useful and Not relevant. The existing internal `more` signal now labels Like; legacy records need no migration. Notes remain owner-only. New signal changes atomically update private feedback, a signed-in-readable `communityReactions/{uid}_{articleSHA}` document (verified display name, no notes/email), and an immutable `reactionEvents/{autoID}`. Legacy private feedback is never automatically published. Undo clears the current shared signal; historical events are retained for edition snapshots.
+
+The Personal and Community average views share the article pool. Rankings use only feedback at/before that edition's immutable `publishedAt` timestamp, with its Beijing `end` time as the legacy fallback. Current clicks update controls and names immediately but cannot change that edition's ranking. Future editions consume these signals. Community scores average the latest non-empty pre-cutoff signal from each reader per article. Like weighs 1, Useful 2, Not relevant -1; readers cannot add duplicate votes. Editorial relevance still bounds similarity-based adjustments. The first edition has no earlier community history, so both versions may initially look alike.
+
+The reaction tooltip lists current reader names on hover or keyboard focus. Shared names and community averages require Google sign-in. UI notes have no AI-processing disclaimer. The recommendation disclosure stays in its own full-width row, with its summary anchored right while expanded content flows below.
+
+Rules were tested with the official Firestore emulator: seven suites cover valid atomic saves/undo, anonymous/cross-owner denial, name spoofing, timestamps, standalone writes, field injection, invalid signals, strict bounds and immutable events. Ranking tests additionally cover next-edition cutoffs, equal per-article reader weighting, and undo. Run `NODE_PATH=<Firebase dependencies> node --test bioe-account/test/community-rules.cjs` with the emulator at 127.0.0.1:8080. The rules remain a prototype for review before broad sharing.
+
 Google Authentication and Firestore are configured in Firebase project `bioe-radar` (Spark). The authorized public domain is `hanmd1990.github.io`; the default Standard Firestore database is in `asia-east2` (Hong Kong). No billing upgrade is required by this change.
 
 `static/literature-account.js` loads official Firebase JS SDK 13.1.0. Web app identifiers are intentionally public. No administrator credential, OAuth client secret, or WeChat secret belongs in this repository.

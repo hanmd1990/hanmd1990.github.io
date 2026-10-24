@@ -9,18 +9,21 @@
   let topic='',journals=new Set(),draft=new Set(),sources=[];
   const node=(tag,cls,value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=value;return el;};
   const account=window.BioERadarAccount,personalization=window.BioERadarPersonalization;
-  let feedback=Object.create(null),accountState={status:'loading',user:null};
+  let feedback=Object.create(null),accountState={status:'loading',user:null},version='community',tooltipIndex=0;
   const feedbackId=personalization.key;
   const hasFeedback=a=>{const f=feedback[feedbackId(a)];return !!(f&&(f.signals.length||f.note));};
   function feedbackControls(a){
     const key=feedbackId(a),box=node('div','lit-feedback'),buttons=node('div','lit-feedback-buttons');
     const current=()=>feedback[key]||{key,id:a.id,doi:a.doi||'',title:a.title,journal:a.journal,signals:[],note:''};
     const update=async entry=>{await account.save(entry);};
-    for(const [signal,title] of [['useful','Useful'],['more','More like this'],['irrelevant','Not relevant']]){
-      const b=node('button','',title);b.type='button';b.dataset.signal=signal;b.disabled=accountState.status!=='signed-in';b.setAttribute('aria-pressed',String(current().signals.includes(signal)));
-      b.addEventListener('click',async()=>{const entry={...current(),signals:[...current().signals]};if(entry.signals.includes(signal))entry.signals=entry.signals.filter(x=>x!==signal);else entry.signals=signal==='irrelevant'?['irrelevant']:[...entry.signals.filter(x=>x!=='irrelevant'),signal];b.disabled=true;await update(entry);if(b.isConnected)b.disabled=accountState.status!=='signed-in';});buttons.append(b);
+    for(const [signal,title] of [['useful','Useful'],['more','Like'],['irrelevant','Not relevant']]){
+      const voters=(accountState.reactions||[]).filter(r=>r.key===key&&r.signals.includes(signal));
+      const names=[...new Map(voters.map(r=>[r.uid,r.name])).values()].sort((a,b)=>a.localeCompare(b));
+      const wrap=node('span','lit-reaction-wrap'),tip=node('span','lit-reaction-tip',names.length?names.join(', '):accountState.user?'No reactions yet':'Sign in to see reader reactions');tip.id='lit-reaction-tip-'+(++tooltipIndex);tip.setAttribute('role','tooltip');
+      const b=node('button','',title+(names.length?' '+names.length:''));b.setAttribute('aria-label',title);b.setAttribute('aria-describedby',tip.id);b.type='button';b.dataset.signal=signal;b.disabled=accountState.status!=='signed-in';b.setAttribute('aria-pressed',String(current().signals.includes(signal)));
+      b.addEventListener('click',async()=>{const entry={...current(),signals:[...current().signals]};if(entry.signals.includes(signal))entry.signals=entry.signals.filter(x=>x!==signal);else entry.signals=signal==='irrelevant'?['irrelevant']:[...entry.signals.filter(x=>x!=='irrelevant'),signal];b.disabled=true;await update(entry);if(b.isConnected)b.disabled=accountState.status!=='signed-in';});wrap.append(b,tip);buttons.append(wrap);
     }
-    const details=node('details','lit-feedback-note'),summary=node('summary','','Private note'),note=node('textarea');note.maxLength=2000;note.rows=2;note.disabled=accountState.status!=='signed-in';note.placeholder='Private reading note (not automatically interpreted by AI)';note.setAttribute('aria-label','Feedback note for '+a.title);note.value=current().note;note.addEventListener('change',()=>update({...current(),note:note.value.trim()}));details.append(summary,note);box.append(buttons,details);return box;
+    const details=node('details','lit-feedback-note'),summary=node('summary','','Private note'),note=node('textarea');note.maxLength=2000;note.rows=2;note.disabled=accountState.status!=='signed-in';note.placeholder='Add a private reading note';note.setAttribute('aria-label','Feedback note for '+a.title);note.value=current().note;note.addEventListener('change',()=>update({...current(),note:note.value.trim()}));details.append(summary,note);box.append(buttons,details);return box;
   }
   const selected=()=>data.editions.find(e=>e.id===edition.value);
   const sourceName=s=>s.replace('bioRxiv - Bioengineering','bioRxiv · Bioengineering').replace('Arxiv - Applied Physics','arXiv · Applied Physics');
@@ -37,8 +40,10 @@
     const e=selected(),q=search.value.trim().toLocaleLowerCase();
     const feedbackFilter=byId('lit-feedback-filter').value;
     const items=e.articles.filter(a=>(feedbackFilter==='all'||(feedbackFilter==='marked'?hasFeedback(a):feedback[feedbackId(a)]?.signals.includes(feedbackFilter)))&&(!topic||a.topics.includes(topic))&&journals.has(sourceName(a.journal))&&(!q||[a.title,a.journal,a.summary,a.doi,...a.authors,...a.topics].join(' ').toLocaleLowerCase().includes(q)));
-    if(sort.value==='personal'){const ranked=personalization.rank(items,feedback,data.editions.flatMap(report=>report.articles));items.splice(0,items.length,...ranked);}else items.sort((a,b)=>sort.value==='date'?String(b.date||'').localeCompare(String(a.date||''))||a.title.localeCompare(b.title):sort.value==='journal'?a.journal.localeCompare(b.journal)||String(b.date||'').localeCompare(String(a.date||'')):b.relevance-a.relevance||a.journal.localeCompare(b.journal)||a.title.localeCompare(b.title));
-    results.replaceChildren(...items.map(row));
+    if(sort.value==='personal'){const baseline=personalization.beforeEdition(accountState.events||[],e,version==='personal'?accountState.user?.uid:undefined,version==='personal'?feedback:{});const ranked=personalization.rank(items,baseline,data.editions.flatMap(report=>report.articles));items.splice(0,items.length,...ranked);}else items.sort((a,b)=>sort.value==='date'?String(b.date||'').localeCompare(String(a.date||''))||a.title.localeCompare(b.title):sort.value==='journal'?a.journal.localeCompare(b.journal)||String(b.date||'').localeCompare(String(a.date||'')):b.relevance-a.relevance||a.journal.localeCompare(b.journal)||a.title.localeCompare(b.title));
+    tooltipIndex=0;results.replaceChildren(...items.map(row));
+    document.querySelectorAll('[data-reading-version]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.readingVersion===version));b.disabled=b.dataset.readingVersion==='personal'&&!accountState.user;});
+    byId('lit-version-note').textContent=!accountState.user?'Sign in for personal recommendations, community averages and reader reactions.':accountState.communityStatus==='error'?'Community feedback is temporarily unavailable. Your private notes remain available.':(version==='personal'?'Personal version':'Community average version')+' · Order fixed for this edition. Reactions inform future editions.';
     byId('lit-count').textContent=items.length+' of '+e.articles.length+' selected articles';
     byId('lit-empty').hidden=items.length!==0;
     byId('lit-window').textContent=e.start+' – '+e.end+' (Beijing time)';
@@ -102,6 +107,7 @@
   search.addEventListener('input',render);sort.addEventListener('change',render);edition.addEventListener('change',setup);
   byId('lit-reset').addEventListener('click',()=>{search.value='';sort.value='relevance';byId('lit-feedback-filter').value='all';setup();search.focus();});
   byId('lit-feedback-filter').addEventListener('change',render);
+  document.querySelectorAll('[data-reading-version]').forEach(b=>b.addEventListener('click',()=>{version=b.dataset.readingVersion;sort.value='personal';render();}));
   byId('lit-account-signin').addEventListener('click',()=>account.signIn());
   byId('lit-account-signout').addEventListener('click',()=>account.signOut());
   account.subscribe(state=>{
@@ -110,9 +116,9 @@
     document.querySelector('.lit-account-panel').dataset.state=state.status;
     byId('lit-account-signin').hidden=!!state.user;byId('lit-account-signin').disabled=['loading','error'].includes(state.status);
     byId('lit-account-signout').hidden=!state.user;
-    byId('lit-account-note').textContent=state.user?'Your feedback is private to this account and syncs automatically.':'Sign in with Google to save private feedback and sync across devices.';
+    byId('lit-account-note').textContent=state.user?'Reactions show your name to signed-in readers. Notes remain private.':'Sign in with Google to save reactions and private notes across devices.';
     byId('lit-feedback-status').textContent=state.status==='signed-out'?'Private preferences, across devices':state.message==='Synced across your devices.'?'Preferences synced':state.message;
-    if(prior!==state.user?.uid){sort.value=state.user?'personal':'relevance';byId('lit-feedback-filter').value='all';}
+    if(prior!==state.user?.uid){version=state.user?'personal':'community';sort.value='personal';byId('lit-feedback-filter').value='all';}
     if(edition.value&&(prior!==state.user?.uid||document.activeElement?.tagName!=='TEXTAREA'))render();
   });
   // Anchor the recurring schedule in Beijing, then derive both DST-sensitive cities.

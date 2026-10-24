@@ -8,7 +8,7 @@
     const sets=new Map([...docs].map(([k,a])=>[k,terms(a)])),df=new Map();
     sets.forEach(ts=>ts.forEach(t=>df.set(t,(df.get(t)||0)+1)));
     const vectors=new Map([...sets].map(([k,ts])=>{const v=new Map(ts.map(t=>[t,Math.log((docs.size+1)/((df.get(t)||0)+1))+1]));return[k,{v,n:Math.hypot(...v.values())||1}];}));
-    const training=Object.entries(feedback).filter(([k,f])=>docs.has(k)&&f.signals?.length).map(([k,f])=>[k,f.signals.includes('irrelevant')?-1:(f.signals.includes('more')?2:0)+(f.signals.includes('useful')?1:0)]);
+    const training=Object.entries(feedback).filter(([k,f])=>docs.has(k)&&(f.signals?.length||Number.isFinite(f.weight))).map(([k,f])=>[k,Number.isFinite(f.weight)?f.weight:signalWeight(f.signals)]);
     const scored=articles.map(a=>{
       const k=key(a),v=vectors.get(k),own=feedback[k]?.signals||[];let total=0,weight=0;
       for(const [other,w] of training){if(other===k)continue;const b=docs.get(other),u=vectors.get(other);let dot=0;v.v.forEach((n,t)=>dot+=n*(u.v.get(t)||0));const tags=new Set(b.topics||[]),ats=a.topics||[],overlap=ats.filter(t=>tags.has(t)).length/Math.max(1,new Set([...ats,...tags]).size);const similarity=.8*dot/(v.n*u.n)+.2*overlap;total+=w*similarity;weight+=Math.abs(w);}
@@ -17,5 +17,16 @@
     });
     return scored.sort((a,b)=>Number(a.negative)-Number(b.negative)||b.score-a.score||a.article.title.localeCompare(b.article.title)).map(x=>x.article);
   }
-  return{key,rank};
+  const signalWeight=signals=>signals.includes('irrelevant')?-1:(signals.includes('more')?1:0)+(signals.includes('useful')?2:0);
+  const millis=value=>typeof value==='number'?value:value?.toMillis?value.toMillis():Date.parse(value)||Infinity;
+  const cutoff=edition=>Date.parse(edition.publishedAt||edition.end.replace(' ','T')+':00+08:00');
+  function beforeEdition(events,edition,uid,legacy={}){
+    const end=cutoff(edition),latest=new Map();
+    for(const e of events){const time=millis(e.createdAt);if(time>end||(uid&&e.uid!==uid))continue;const id=e.uid+'\n'+e.key;if(!latest.has(id)||time>millis(latest.get(id).createdAt))latest.set(id,e);}
+    const result=Object.create(null);
+    if(uid){for(const [k,f] of Object.entries(legacy))if(millis(f.updatedAt)<=end)result[k]=f;for(const e of latest.values())result[e.key]=e;}
+    else{const grouped=new Map();for(const e of latest.values()){if(!e.signals.length)continue;const g=grouped.get(e.key)||[];g.push(signalWeight(e.signals));grouped.set(e.key,g);}for(const [k,weights] of grouped)result[k]={signals:[],weight:weights.reduce((a,b)=>a+b,0)/weights.length};}
+    return result;
+  }
+  return{key,rank,cutoff,beforeEdition,signalWeight};
 });

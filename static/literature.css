@@ -87,10 +87,8 @@
 .lit-account-actions button:disabled,.lit-feedback button:disabled{opacity:.5;cursor:default}
 .lit-reader-tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;margin:20px 0 0;color:#626a75;font-size:12px}
 .lit-reader-tools .lit-feedback-tools{align-items:center}
-.lit-personalization-help{max-width:100%;font-size:12px;line-height:1.7}
-.lit-personalization-help>summary{cursor:pointer;text-align:right;color:var(--hmd-navy)}
-.lit-personalization-help[open]{flex-basis:100%}
-.lit-personalization-help[open]>summary{text-align:left}
+.lit-personalization-help{max-width:100%;margin:10px 0 0;font-size:12px;line-height:1.7}
+.lit-personalization-help>summary{cursor:pointer;text-align:right;color:var(--hmd-navy);width:max-content;max-width:100%;margin-left:auto}
 .lit-personalization-help p{max-width:78ch;margin:10px 0}
 .lit-reader-tools+.lit-status{margin-top:16px}
 @media(max-width:760px){
@@ -105,3 +103,16 @@
  .lit-reader-tools{gap:12px}
 }
 @media(prefers-reduced-motion:reduce){.lit-account-actions button{transition:none}}
+
+/* Reader versions, stable disclosure and named reactions. */
+.lit-version-switch{display:inline-flex;flex-wrap:wrap;gap:3px;padding:3px;border:1px solid #dce3ed;border-radius:7px;background:#f5f7fa}
+.lit-version-switch button{padding:6px 12px;border:1px solid transparent;border-radius:4px;background:transparent;color:var(--hmd-navy);font:12px/1.4 'Segoe UI',Arial,sans-serif;cursor:pointer}
+.lit-version-switch button[aria-pressed=true]{background:var(--hmd-navy);color:white;border-color:var(--hmd-navy)}
+.lit-version-switch button:disabled{opacity:.45;cursor:default}
+.lit-version-note{margin:8px 0 0;color:#626a75;font-size:11px;line-height:1.6}
+.lit-help-body{margin-top:10px;padding:10px 18px;border:1px solid #e1e5ec;border-radius:6px;background:var(--hmd-light-gray)}
+.lit-help-body p{max-width:85ch}
+.lit-reaction-wrap{display:inline-flex;position:relative}
+.lit-reaction-tip{position:absolute;bottom:calc(100% + 8px);left:0;z-index:5;display:none;box-sizing:border-box;width:max-content;max-width:min(240px,72vw);padding:8px 11px;border-radius:6px;background:var(--hmd-navy);color:white;font-size:11px;line-height:1.6;box-shadow:0 4px 12px #142b5520;overflow-wrap:anywhere;pointer-events:none}
+.lit-reaction-wrap:hover .lit-reaction-tip,.lit-reaction-wrap:focus-within .lit-reaction-tip{display:block}
+@media(max-width:600px){.lit-reader-tools{gap:12px}.lit-version-switch button{padding:6px 10px}}

@@ -1,6 +1,7 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 const {key,rank}=require('../../static/literature-personalization.js');
+const {beforeEdition}=require('../../static/literature-personalization.js');
 const paper=(id,title,topics=[],relevance=3)=>({id,title,summary:title,topics,relevance});
 const training=paper('old','wireless magnetic implant bioelectronics',['Implants']);
 const implant=paper('a','wireless magnetic implant bioelectronics',['Implants']);
@@ -22,4 +23,16 @@ test('versioned preprints share feedback identity',()=>{
 });
 test('personal preference has bounded influence over editorial priority',()=>{
  const high=paper('h','galaxy astronomy',['Astronomy'],10);assert.equal(rank([implant,high],{old:{signals:['more']}},[training,implant,high])[0].id,'h');
+});
+test('current clicks never change this edition; next edition includes them',()=>{
+ const edition={end:'2026-10-23 03:30'},next={end:'2026-10-30 03:30'},click={uid:'alice',key:'old',signals:['more'],createdAt:Date.parse('2026-10-24T08:00:00+08:00')};
+ assert.deepEqual(Object.keys(beforeEdition([click],edition,'alice')),[]);
+ assert.deepEqual(beforeEdition([click],next,'alice').old.signals,['more']);
+});
+test('community averages use one latest vote per user and respect undo/cutoff',()=>{
+ const edition={end:'2026-10-30 03:30'},time=Date.parse('2026-10-24T08:00:00+08:00');
+ const events=[{uid:'a',key:'old',signals:['more'],createdAt:time},{uid:'a',key:'old',signals:['useful'],createdAt:time+1},{uid:'b',key:'old',signals:['irrelevant'],createdAt:time}];
+ assert.equal(beforeEdition(events,edition).old.weight,.5);
+ assert.equal(beforeEdition([...events,{uid:'a',key:'old',signals:[],createdAt:time+2}],edition).old.weight,-1);
+ assert.equal(beforeEdition(events,edition,'a').old.signals[0],'useful');
 });
