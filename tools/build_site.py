@@ -278,7 +278,6 @@ for path in ROOT.rglob('index.html'):
         section=html.Element('section',{'class':'hmd-archive microrobot-citation','aria-label':'Publication details'})
         title.addprevious(section)
         for node in (title,authors,metadata):section.append(node)
-        note=html.Element('p',{'class':'paper-note'});note.text='*Corresponding authors; ¹ Authors contributed equally';section.append(note)
         version=hashlib.sha256((ROOT/'static/archive.css').read_bytes()).hexdigest()[:12]
         tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/archive.css?v='+version))
     if route=='contact':
