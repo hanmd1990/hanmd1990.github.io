@@ -336,3 +336,7 @@ body.lab-alumni-page #s-content :is(.alumni-role,.alumni-stage-primary){font-wei
 /* Align archive, contact and recruitment content with Current and Alumni. */
 body .hmd-archive,.lab-contact-layout,.lab-join-layout{box-sizing:content-box;max-width:1180px;padding-left:24px;padding-right:24px}
 @media(max-width:760px){body .hmd-archive,.lab-contact-layout,.lab-join-layout{padding-left:18px;padding-right:18px}}
+
+/* Emphasize the four directions in the generated Contact layout. */
+.lab-contact-page #s-content .lab-contact-travel h3{font-size:18px!important;font-weight:700!important;line-height:1.5!important;color:var(--hmd-navy)!important;margin:0 0 10px!important}
+@media(max-width:767px){.lab-contact-page #s-content .lab-contact-travel h3{font-size:17px!important}}

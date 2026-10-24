@@ -282,9 +282,10 @@ for path in ROOT.rglob('index.html'):
         tree.find('head').append(html.Element('link',rel='stylesheet',href='/static/archive.css?v='+version))
     if route=='contact':
         contact=tree.xpath('//*[@id="s-content"]')[0]
-        profile_names=['Curriculum Vitae','Biography','PKU Profile','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
+        profile_names=['Curriculum Vitae','Biography','pku profile [CN]','pku profile [EN]','Google Scholar','ResearcherID','ORCID','X (Twitter)','LinkedIn','ResearchGate']
         profile_links={text(a):a.get('href') for a in contact.xpath('.//a[@href]') if text(a) in profile_names}
-        profile_links['PKU Profile']='https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm'
+        profile_links['pku profile [CN]']='https://future.pku.edu.cn/szll/jyxln/9a4bd0e17e044037b0228a4dbcaf3875.htm'
+        profile_links['pku profile [EN]']='https://future.pku.edu.cn/en/Faculty_/Teaching_Research_Series/4b920575a0244a4e827b1b36d536c167.htm'
         contact.clear();contact.set('id','s-content')
         layout=html.fragment_fromstring('''<main class="lab-contact-layout">
           <div class="lab-contact-grid">
@@ -292,7 +293,7 @@ for path in ROOT.rglob('index.html'):
             <section class="lab-contact-visit" aria-labelledby="contact-visit"><h2 id="contact-visit">Visit our lab</h2><figure class="lab-contact-map"><a href="/images/people/mengdi-han/contact-02.jpg" data-lightbox="true" aria-label="Enlarge laboratory location map"><img src="/images/people/mengdi-han/contact-02.jpg" alt="Peking University campus map and laboratory location"></a><figcaption>Campus map · Click to enlarge</figcaption></figure><div class="lab-contact-travel"><section class="lab-contact-location"><h3>① Location of our lab</h3><nav class="lab-contact-map-links" aria-label="Map services"><a href="https://maps.app.goo.gl/XG2o6uWEqPignxYM8" target="_blank" rel="noopener noreferrer">Google Map ↗</a><a href="https://j.map.baidu.com/86/7Spi" target="_blank" rel="noopener noreferrer">百度地图 ↗</a><a href="https://surl.amap.com/4fO0iYusb3Nn" target="_blank" rel="noopener noreferrer">高德地图 ↗</a></nav></section><section><h3>② Nearest metro station · ~350 m</h3><p>East Gate of Peking University, Exit B<br>北京大学东门站，B出口</p></section><section><h3>③ Nearest bus station · ~350 m</h3><p>Zhongguanyuan North<br>中关园北站</p></section><section class="lab-contact-driving"><h3>④ Driving &amp; taxi navigation</h3><p>No. 116 Zhongguancun North Street<br>中关村北大街116号，北京大学新奥工学大楼</p></section></div></section>
           </div></main>''')
         profile_nav=layout.xpath('.//nav[@class="lab-contact-profiles"]')[0]
-        profile_icons=['contact-02.png','contact-03.png','contact.png','contact-06.png','contact-04.png','contact-05.png','contact-07.png','contact-08.png','contact-09.png']
+        profile_icons=['contact-02.png','contact-03.png','contact.png','contact.png','contact-06.png','contact-04.png','contact-05.png','contact-07.png','contact-08.png','contact-09.png']
         for name,icon in zip(profile_names,profile_icons):
             if name in profile_links:
                 link=html.Element('a',href=profile_links[name],target='_blank',rel='noopener noreferrer');link.append(html.Element('img',src='/images/people/mengdi-han/'+icon,alt='',attrib={'aria-hidden':'true','width':'18','height':'18'}));label=html.Element('span');label.text=name;link.append(label);profile_nav.append(link)
